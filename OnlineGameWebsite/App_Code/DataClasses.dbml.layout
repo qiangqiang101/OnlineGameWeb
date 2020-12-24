@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 9" name="DataClasses">
+  <DataContextMoniker Name="/DataClassesDataContext" />
+  <nestedChildShapes>
+    <classShape Id="136967a0-e39e-4afe-833d-6bb7d46984cb" absoluteBounds="0.5, 0.5, 2, 4.0785139973958326">
+      <DataClassMoniker Name="/DataClassesDataContext/TblMember" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f24216de-0677-47f3-a918-1754f39ea3a5" absoluteBounds="0.51499999999999968, 0.96, 1.9700000000000002, 3.518513997395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="62e3c18a-8ee3-4808-9c12-2af48f60cb1e" absoluteBounds="0.5, 4.875, 2, 1.9631982421875">
+      <DataClassMoniker Name="/DataClassesDataContext/TblGameAccount" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c3d3000c-9885-4ecd-913e-b6fb68801458" absoluteBounds="0.51499999999999968, 5.335, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(1.5 : 4.57851399739583); (1.5 : 4.875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DataClassesDataContext/TblMember/TblMember_TblGameAccount" />
+      <nodes>
+        <classShapeMoniker Id="136967a0-e39e-4afe-833d-6bb7d46984cb" />
+        <classShapeMoniker Id="62e3c18a-8ee3-4808-9c12-2af48f60cb1e" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="f6a17a96-f661-4bf7-bb84-655dd2f6a33b" absoluteBounds="0.5, 7.125, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/DataClassesDataContext/TblMemberBank" />
+      <nestedChildShapes>
+        <elementListCompartment Id="bb38d39d-4ebc-423d-a4ca-eccad436f199" absoluteBounds="0.51499999999999968, 7.585, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(0.501537461538462 : 4.57851399739583); (0.125 : 4.95505145893429); (0.125 : 6.74878669586338); (0.501213304136619 : 7.125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/DataClassesDataContext/TblMember/TblMember_TblMemberBank" />
+      <nodes>
+        <classShapeMoniker Id="136967a0-e39e-4afe-833d-6bb7d46984cb" />
+        <classShapeMoniker Id="f6a17a96-f661-4bf7-bb84-655dd2f6a33b" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="0b3b196c-0dcc-492e-9bc5-33d3b5b60645" absoluteBounds="2.875, 0.5, 2, 3.5016097005208326">
+      <DataClassMoniker Name="/DataClassesDataContext/TblTransaction" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3512a3ba-9648-4a60-8495-073826fa6310" absoluteBounds="2.8900000000000006, 0.96, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.875 : 2.25080485026042); (2.5 : 2.25080485026042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DataClassesDataContext/TblTransaction/TblTransaction_TblMember" />
+      <nodes>
+        <classShapeMoniker Id="0b3b196c-0dcc-492e-9bc5-33d3b5b60645" />
+        <classShapeMoniker Id="136967a0-e39e-4afe-833d-6bb7d46984cb" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3.875 : 4.00160970052083); (3.875 : 4.3125); (2.8125 : 4.3125); (2.8125 : 5.85659912109375); (2.5 : 5.85659912109375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DataClassesDataContext/TblTransaction/TblTransaction_TblGameAccount" />
+      <nodes>
+        <classShapeMoniker Id="0b3b196c-0dcc-492e-9bc5-33d3b5b60645" />
+        <classShapeMoniker Id="62e3c18a-8ee3-4808-9c12-2af48f60cb1e" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="e5ea6bae-2aef-414d-a778-8a62af13b6d7" absoluteBounds="2.875, 4.375, 2, 2.5401025390625">
+      <DataClassMoniker Name="/DataClassesDataContext/TblTransfer" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a5b201e8-dff8-4807-886c-ffeb1114fbaa" absoluteBounds="2.8899999999999997, 4.835, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.875 : 5.11580006054688); (2.7214 : 5.11580006054688); (2.7214 : 4.73211399739583); (2.031252 : 4.73211399739583); (2.031252 : 4.57851399739583)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DataClassesDataContext/TblTransfer/TblTransfer_TblMember" />
+      <nodes>
+        <classShapeMoniker Id="e5ea6bae-2aef-414d-a778-8a62af13b6d7" />
+        <classShapeMoniker Id="136967a0-e39e-4afe-833d-6bb7d46984cb" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="4cf0a852-dea2-4d07-8379-5eff477792ce" absoluteBounds="5.25, 0.5, 2, 3.3093082682291666">
+      <DataClassMoniker Name="/DataClassesDataContext/TblPromotion" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8bd4b444-870f-429b-b3e9-604a08a9815c" absoluteBounds="5.2650000000000006, 0.96, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="c47d5f22-bb72-45d3-bedd-2955913bb4c5" absoluteBounds="5.25, 4.125, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/DataClassesDataContext/TblBank" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d1b57b7e-b6ff-46d9-875b-9a61b15f4c70" absoluteBounds="5.265, 4.585, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

@@ -4,24 +4,74 @@ Partial Class Register
 
     Protected Sub btnRegister_Click(sender As Object, e As EventArgs) Handles btnRegister.Click
         If txtFullName.Text = Nothing Then
-            MsgBox("Full Name is required!", Me.Page, Me)
+            JsMsgBox("Full Name is required!")
         ElseIf txtBirthday.Text = Nothing Then
-            MsgBox("Birthday is required!", Me.Page, Me)
+            JsMsgBox("Birthday is required!")
         ElseIf txtContact.Text = Nothing Then
-            MsgBox("Contact No. is required!", Me.Page, Me)
+            JsMsgBox("Contact No. is required!")
         ElseIf txtEmail.Text = Nothing Then
-            MsgBox("Email is required!", Me.Page, Me)
+            JsMsgBox("Email is required!")
+        ElseIf IsEmailExists(txtEmail.Text) Then
+            JsMsgBox("Email is already been registered!")
+        ElseIf Not IsEmailValid(txtEmail.Text) Then
+            JsMsgBox("Email is not valid!")
         ElseIf txtUserID.Text = Nothing Then
-            MsgBox("UserID is required!", Me.Page, Me)
+            JsMsgBox("UserID is required!")
+        ElseIf txtUserID.Text.Length < 6 Then
+            JsMsgBox("UserID is too short!")
+        ElseIf IsMemberExists(txtUserID.Text) Then
+            JsMsgBox("UserID already taken, please try another one.")
         ElseIf txtPassword.Text = Nothing Then
-            MsgBox("Password is required!", Me.Page, Me)
+            JsMsgBox("Password is required!")
         ElseIf txtPassword2.Text = Nothing Then
-            MsgBox("Please confirm your password.", Me.Page, Me)
+            JsMsgBox("Please confirm your password.")
         ElseIf txtPassword.Text <> txtPassword2.Text Then
-            MsgBox("Your password did not match!", Me.Page, Me)
+            JsMsgBox("Your password did not match!")
+        ElseIf Not cb18yo.Checked Then
+            JsMsgBox("You have to be at least 18 years old to register.")
+        ElseIf Not cbTnc.Checked Then
+            JsMsgBox("Please accept the Terms & Conditions.")
         Else
-            MsgBox("Registration completed!", Me.Page, Me)
-            Response.Redirect("Default.aspx")
+            If RegisterMember() Then
+                JsMsgBox("Registration completed!")
+                Response.Redirect("Default.aspx")
+            End If
         End If
     End Sub
+
+    Private Sub cmbGender_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbGender.SelectedIndexChanged
+
+    End Sub
+
+    Private Function RegisterMember() As Boolean
+        Dim newMember As New TblMember
+        With newMember
+            .UserName = txtUserID.Text
+            .Password = txtPassword.Text
+            .Email = txtEmail.Text
+            .PhoneNo = txtContact.Text
+            .FullName = txtFullName.Text
+            .DateOfBirth = Date.ParseExact(txtBirthday.Text, "yyyy-MM-dd", System.Globalization.DateTimeFormatInfo.InvariantInfo)
+            .RefCode = txtUserID.Text.GetHashCode
+            .RefCodeReg = txtRegRefCode.Text
+            .VipLevel = 0
+            .Promotion = 0F
+            .DateCreated = Now
+            .LastModified = Now
+            .IPAddress = Request.UserHostAddress
+            .GroupLeaderID = -1
+            .Enabled = True
+            .Remark = Nothing
+        End With
+
+        Try
+            db.TblMembers.InsertOnSubmit(newMember)
+            db.SubmitChanges()
+        Catch ex As Exception
+            Return False
+        End Try
+        Return True
+    End Function
+
+
 End Class

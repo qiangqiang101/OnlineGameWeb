@@ -31,13 +31,13 @@
                                 <div class="col">
                                     <label>Full Name</label>
                                     <div class="form-group">
-                                        <asp:TextBox CssClass="form-control" ID="txtFullName" runat="server" placeholder="Tan Ah Kow"></asp:TextBox>
+                                        <asp:TextBox CssClass="form-control" ID="txtFullName" runat="server" placeholder="Tan Ah Kow" required="Required"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <label>Date of Birth</label>
                                     <div class="form-group">
-                                        <asp:TextBox CssClass="form-control" ID="txtBirthday" runat="server" placeholder="Password" TextMode="Date"></asp:TextBox>
+                                        <asp:TextBox CssClass="form-control" ID="txtBirthday" runat="server" placeholder="dd/MM/yyyy" TextMode="Date" required="Required"></asp:TextBox>
                                     </div>
                                 </div>
                             </div>
@@ -45,13 +45,30 @@
                                 <div class="col">
                                     <label>Contact No</label>
                                     <div class="form-group">
-                                        <asp:TextBox CssClass="form-control" ID="txtContact" runat="server" placeholder="+60123456789" TextMode="Number"></asp:TextBox>
+                                        <asp:TextBox CssClass="form-control" ID="txtContact" runat="server" placeholder="+60123456789" TextMode="Number" required="Required"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <label>Email</label>
                                     <div class="form-group">
-                                        <asp:TextBox CssClass="form-control" ID="txtEmail" runat="server" placeholder="user@email.com" TextMode="Email"></asp:TextBox>
+                                        <asp:TextBox CssClass="form-control" ID="txtEmail" runat="server" placeholder="user@email.com" TextMode="Email" required="Required"></asp:TextBox>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <label>Referral Code</label>
+                                    <div class="form-group">
+                                        <asp:TextBox CssClass="form-control" ID="txtRegRefCode" runat="server" placeholder=""></asp:TextBox>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <label>Gender</label>
+                                    <div class="form-group">
+                                        <asp:DropDownList CssClass="form-control" ID="cmbGender" AutoPostBack="True" runat="server" placeholder="">
+                                            <asp:ListItem Selected="True">Male</asp:ListItem>
+                                            <asp:ListItem>Female</asp:ListItem>
+                                        </asp:DropDownList>
                                     </div>
                                 </div>
                             </div>
@@ -59,19 +76,19 @@
                                 <div class="col">
                                     <label>User ID</label>
                                     <div class="form-group">
-                                        <asp:TextBox class="form-control" ID="txtUserID" runat="server" placeholder="User ID"></asp:TextBox>
+                                        <asp:TextBox class="form-control" ID="txtUserID" runat="server" placeholder="User ID" required="Required"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <label>Password</label>
                                     <div class="form-group">
-                                        <asp:TextBox class="form-control" ID="txtPassword" runat="server" placeholder="Password" TextMode="Password"></asp:TextBox>
+                                        <asp:TextBox class="form-control" ID="txtPassword" runat="server" placeholder="Password" TextMode="Password" required="Required"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <label>Confirm Password</label>
                                     <div class="form-group">
-                                        <asp:TextBox class="form-control" ID="txtPassword2" runat="server" placeholder="Password" TextMode="Password"></asp:TextBox>
+                                        <asp:TextBox class="form-control" ID="txtPassword2" runat="server" placeholder="Password" TextMode="Password" required="Required"></asp:TextBox>
                                     </div>
                                 </div>
                             </div>
