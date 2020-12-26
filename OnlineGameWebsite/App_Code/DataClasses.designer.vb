@@ -277,7 +277,7 @@ Partial Public Class TblMember
 		OnCreated
 	End Sub
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_UserID", DbType:="Int NOT NULL", IsPrimaryKey:=true)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_UserID", DbType:="Int NOT NULL", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
 	Public Property UserID() As Integer
 		Get
 			Return Me._UserID
@@ -737,7 +737,7 @@ Partial Public Class TblGameAccount
 		OnCreated
 	End Sub
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_GameID", DbType:="Int NOT NULL", IsPrimaryKey:=true)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_GameID", DbType:="Int NOT NULL", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
 	Public Property GameID() As Integer
 		Get
 			Return Me._GameID
@@ -968,7 +968,7 @@ Partial Public Class TblMemberBank
 		OnCreated
 	End Sub
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_MemberBankID", DbType:="Int NOT NULL", IsPrimaryKey:=true)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_MemberBankID", DbType:="Int NOT NULL", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
 	Public Property MemberBankID() As Integer
 		Get
 			Return Me._MemberBankID
@@ -1193,7 +1193,7 @@ Partial Public Class TblTransaction
 		OnCreated
 	End Sub
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TransactionID", DbType:="Int NOT NULL", IsPrimaryKey:=true)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TransactionID", DbType:="Int NOT NULL", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
 	Public Property TransactionID() As Integer
 		Get
 			Return Me._TransactionID
@@ -1559,7 +1559,7 @@ Partial Public Class TblTransfer
 		OnCreated
 	End Sub
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TransferID", DbType:="Int NOT NULL", IsPrimaryKey:=true)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TransferID", DbType:="Int NOT NULL", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
 	Public Property TransferID() As Integer
 		Get
 			Return Me._TransferID
@@ -1843,7 +1843,7 @@ Partial Public Class TblPromotion
 		OnCreated
 	End Sub
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PromoID", DbType:="Int NOT NULL", IsPrimaryKey:=true)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PromoID", DbType:="Int NOT NULL", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
 	Public Property PromoID() As Integer
 		Get
 			Return Me._PromoID
@@ -2144,7 +2144,7 @@ Partial Public Class TblBank
 		OnCreated
 	End Sub
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_BankID", DbType:="Int NOT NULL", IsPrimaryKey:=true)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_BankID", DbType:="Int NOT NULL", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
 	Public Property BankID() As Integer
 		Get
 			Return Me._BankID

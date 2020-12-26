@@ -66,8 +66,8 @@
                                     <label>Gender</label>
                                     <div class="form-group">
                                         <asp:DropDownList CssClass="form-control" ID="cmbGender" AutoPostBack="True" runat="server" placeholder="">
-                                            <asp:ListItem Selected="True">Male</asp:ListItem>
-                                            <asp:ListItem>Female</asp:ListItem>
+                                            <asp:ListItem Selected="True" Value="Male">Male</asp:ListItem>
+                                            <asp:ListItem Value="Female">Female</asp:ListItem>
                                         </asp:DropDownList>
                                     </div>
                                 </div>

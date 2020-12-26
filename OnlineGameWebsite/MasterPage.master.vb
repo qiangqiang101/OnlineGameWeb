@@ -1,5 +1,4 @@
-﻿
-Partial Class MasterPage
+﻿Partial Class MasterPage
     Inherits System.Web.UI.MasterPage
 
     Public WriteOnly Property LiveGamesLink As String
@@ -27,14 +26,34 @@ Partial Class MasterPage
     End Property
 
     Private Sub MasterPage_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Select Case Request.FilePath
-            Case "/Default.aspx", "/default.aspx"
+        Dim role As String = HttpContext.Current.Session("role")
+
+        If role = "" Then
+            btnLogin.Visible = True
+            btnRegister.Visible = True
+            lnkMemberPagesDropdown.Visible = False
+            btnLogout.Visible = False
+        Else
+            btnLogin.Visible = False
+            btnRegister.Visible = False
+            navbardrop.InnerText = "Hello " & Session("fullname")
+            lnkMemberPagesDropdown.Visible = True
+            btnLogout.Visible = True
+        End If
+
+        Select Case Request.FilePath.ToLower
+            Case "/default.aspx"
                 lnkHome.Attributes.Add("class", "nav-link active")
-            Case "/SlotGames.aspx", "/slotgames.aspx"
+            Case "/slotgames.aspx"
                 lnkSlot.Attributes.Add("class", "nav-link active")
-            Case "/Register.aspx"
+            Case Else
 
         End Select
+    End Sub
+
+    Private Sub btnLogout_Click(sender As Object, e As EventArgs) Handles btnLogout.Click
+        Session.Clear()
+        Response.Redirect("Default.aspx")
     End Sub
 End Class
 

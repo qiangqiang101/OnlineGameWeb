@@ -14,7 +14,7 @@
         <elementListCompartment Id="c3d3000c-9885-4ecd-913e-b6fb68801458" absoluteBounds="0.51499999999999968, 5.335, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(1.5 : 4.57851399739583); (1.5 : 4.875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(1.5 : 4.57851399739583); (1.5 : 4.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DataClassesDataContext/TblMember/TblMember_TblGameAccount" />
       <nodes>
         <classShapeMoniker Id="136967a0-e39e-4afe-833d-6bb7d46984cb" />
@@ -40,14 +40,14 @@
         <elementListCompartment Id="3512a3ba-9648-4a60-8495-073826fa6310" absoluteBounds="2.8900000000000006, 0.96, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.875 : 2.25080485026042); (2.5 : 2.25080485026042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.875 : 2.25080485026042); (2.5 : 2.25080485026042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DataClassesDataContext/TblTransaction/TblTransaction_TblMember" />
       <nodes>
         <classShapeMoniker Id="0b3b196c-0dcc-492e-9bc5-33d3b5b60645" />
         <classShapeMoniker Id="136967a0-e39e-4afe-833d-6bb7d46984cb" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(3.875 : 4.00160970052083); (3.875 : 4.3125); (2.8125 : 4.3125); (2.8125 : 5.85659912109375); (2.5 : 5.85659912109375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(3.875 : 4.00160970052083); (3.875 : 4.3125); (2.8125 : 4.3125); (2.8125 : 5.85659912109375); (2.5 : 5.85659912109375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DataClassesDataContext/TblTransaction/TblTransaction_TblGameAccount" />
       <nodes>
         <classShapeMoniker Id="0b3b196c-0dcc-492e-9bc5-33d3b5b60645" />
@@ -60,7 +60,7 @@
         <elementListCompartment Id="a5b201e8-dff8-4807-886c-ffeb1114fbaa" absoluteBounds="2.8899999999999997, 4.835, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.875 : 5.11580006054688); (2.7214 : 5.11580006054688); (2.7214 : 4.73211399739583); (2.031252 : 4.73211399739583); (2.031252 : 4.57851399739583)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.875 : 5.11580006054688); (2.7214 : 5.11580006054688); (2.7214 : 4.73211399739583); (2.031252 : 4.73211399739583); (2.031252 : 4.57851399739583)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DataClassesDataContext/TblTransfer/TblTransfer_TblMember" />
       <nodes>
         <classShapeMoniker Id="e5ea6bae-2aef-414d-a778-8a62af13b6d7" />

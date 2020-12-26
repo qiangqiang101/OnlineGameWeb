@@ -32,4 +32,41 @@ Public Module Helper
         Return match.Success
     End Function
 
+    Public Function IsMemberLoginSuccess(username As String, password As String, page As Page) As Boolean
+        If IsEmailValid(username) Then
+            Dim member = (From m In db.TblMembers Where m.Email = username And m.Password = password).FirstOrDefault
+            If member IsNot Nothing Then
+                If member.Enabled Then
+                    page.Session("userid") = member.UserID
+                    page.Session("username") = member.UserName
+                    page.Session("fullname") = member.FullName
+                    page.Session("email") = member.Email
+                    page.Session("role") = "user"
+
+                    JsMsgBox(page, "yes")
+                    Return True
+                Else
+                    Return False
+                End If
+            End If
+        Else
+            Dim member = (From m In db.TblMembers Where m.UserName = username And m.Password = password).FirstOrDefault
+            If member IsNot Nothing Then
+                If member.Enabled Then
+                    page.Session("userid") = member.UserID
+                    page.Session("username") = member.UserName
+                    page.Session("fullname") = member.FullName
+                    page.Session("email") = member.Email
+                    page.Session("role") = "user"
+
+                    JsMsgBox(page, "yes")
+                    Return True
+                Else
+                    Return False
+                End If
+            End If
+        End If
+        Return False
+    End Function
+
 End Module

@@ -34,7 +34,9 @@ Partial Class Register
         Else
             If RegisterMember() Then
                 JsMsgBox("Registration completed!")
-                Response.Redirect("Default.aspx")
+                If IsMemberLoginSuccess(txtUserID.Text, txtPassword.Text, Page) Then Response.Redirect("Default.aspx")
+            Else
+                JsMsgBox("Registration failed! Please contact Customer Service.")
             End If
         End If
     End Sub

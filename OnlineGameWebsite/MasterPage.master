@@ -34,10 +34,21 @@
                     </ul>
 
                     <!-- Buttons -->
-                    <ul class="navbar-nav flex-fill justify-content-end">
-                        <li class="nav-item"><a href="#" class="btn btn-secondary" role="button"><i class="fas fa-sign-in-alt">&nbsp;</i>Login</a></li>
+                    <ul id="navbarrid" class="navbar-nav flex-fill justify-content-end">
+                        <li class="nav-item"><asp:LinkButton ID="btnLogin" runat="server"><a href="Login.aspx" class="btn btn-secondary" role="button"><i class="fas fa-sign-in-alt">&nbsp;</i>Login</a></asp:LinkButton></li>
+                        <li class="nav-item dropdown" id="lnkMemberPagesDropdown" runat="server">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" runat="server">asdasd</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#"><i class="fas fa-dollar-sign fa-fw">&nbsp;</i>Deposit</a>
+                                <a class="dropdown-item" href="#"><i class="fas fa-exchange-alt fa-fw">&nbsp;</i>Transfer</a>
+                                <a class="dropdown-item" href="#"><i class="fas fa-history fa-fw">&nbsp;</i>Withdrawal</a>
+                                <a class="dropdown-item" href="#"><i class="fas fa-hand-holding-usd fa-fw">&nbsp;</i>Transaction History</a>
+                                <hr />
+                                <asp:LinkButton CssClass="dropdown-item" ID="btnLogout" runat="server"><i class="fas fa-sign-out-alt fa-fw">&nbsp;</i>Logout</asp:LinkButton>
+                            </div>
+                        </li>
                         &nbsp;
-                    <li class="nav-item"><a href="Register.aspx" class="btn btn-warning" role="button"><i class="fas fa-user-plus">&nbsp;</i>Sign Up</a></li>
+                        <li class="nav-item"><asp:LinkButton ID="btnRegister" runat="server"><a href="Register.aspx" class="btn btn-warning" role="button"><i class="fas fa-user-plus">&nbsp;</i>Sign Up</a></asp:LinkButton></li>                        
                     </ul>
                 </div>
             </nav>
