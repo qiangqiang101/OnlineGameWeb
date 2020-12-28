@@ -48,14 +48,14 @@ Partial Class Register
     Private Function RegisterMember() As Boolean
         Dim newMember As New TblMember
         With newMember
-            .UserName = txtUserID.Text
-            .Password = txtPassword.Text
-            .Email = txtEmail.Text
-            .PhoneNo = txtContact.Text
-            .FullName = txtFullName.Text
-            .DateOfBirth = Date.ParseExact(txtBirthday.Text, "yyyy-MM-dd", System.Globalization.DateTimeFormatInfo.InvariantInfo)
+            .UserName = txtUserID.Text.Trim
+            .Password = txtPassword.Text.Trim
+            .Email = txtEmail.Text.Trim
+            .PhoneNo = txtContact.Text.Trim
+            .FullName = txtFullName.Text.Trim
+            .DateOfBirth = Date.ParseExact(txtBirthday.Text.Trim, "yyyy-MM-dd", System.Globalization.DateTimeFormatInfo.InvariantInfo)
             .RefCode = txtUserID.Text.GetHashCode
-            .RefCodeReg = txtRegRefCode.Text
+            .RefCodeReg = txtRegRefCode.Text.Trim
             .VipLevel = 0
             .Promotion = 0F
             .DateCreated = Now

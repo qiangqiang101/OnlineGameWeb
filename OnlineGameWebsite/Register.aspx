@@ -31,7 +31,7 @@
                                 <div class="col">
                                     <label>Full Name</label>
                                     <div class="form-group">
-                                        <asp:TextBox CssClass="form-control" ID="txtFullName" runat="server" placeholder="Tan Ah Kow" required="Required"></asp:TextBox>
+                                        <asp:TextBox CssClass="form-control" ID="txtFullName" runat="server" placeholder="Tan Ah Kow" required="Required" AutoCompleteType="DisplayName"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="col">
@@ -45,13 +45,13 @@
                                 <div class="col">
                                     <label>Contact No</label>
                                     <div class="form-group">
-                                        <asp:TextBox CssClass="form-control" ID="txtContact" runat="server" placeholder="+60123456789" TextMode="Number" required="Required"></asp:TextBox>
+                                        <asp:TextBox CssClass="form-control" ID="txtContact" runat="server" placeholder="+60123456789" TextMode="Phone" required="Required" AutoCompleteType="HomePhone"></asp:TextBox>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <label>Email</label>
                                     <div class="form-group">
-                                        <asp:TextBox CssClass="form-control" ID="txtEmail" runat="server" placeholder="user@email.com" TextMode="Email" required="Required"></asp:TextBox>
+                                        <asp:TextBox CssClass="form-control" ID="txtEmail" AutoCompleteType="Email" runat="server" placeholder="user@email.com" TextMode="Email" required="Required"></asp:TextBox>
                                     </div>
                                 </div>
                             </div>

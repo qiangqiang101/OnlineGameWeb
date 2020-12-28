@@ -28,18 +28,27 @@
     Private Sub MasterPage_Load(sender As Object, e As EventArgs) Handles Me.Load
         Dim role As String = HttpContext.Current.Session("role")
 
-        If role = "" Then
-            btnLogin.Visible = True
-            btnRegister.Visible = True
-            lnkMemberPagesDropdown.Visible = False
-            btnLogout.Visible = False
-        Else
-            btnLogin.Visible = False
-            btnRegister.Visible = False
-            navbardrop.InnerText = "Hello " & Session("fullname")
-            lnkMemberPagesDropdown.Visible = True
-            btnLogout.Visible = True
-        End If
+        Select Case role
+            Case "user"
+                btnLogin.Visible = False
+                btnRegister.Visible = False
+                navbardrop.InnerText = "Hello, " & Session("fullname")
+                lnkMemberPagesDropdown.Visible = True
+                lnkAdminDb.Visible = False
+                btnLogout.Visible = True
+            Case "admin"
+                btnLogin.Visible = False
+                btnRegister.Visible = False
+                navbardrop.InnerText = "Hello, " & Session("fullname")
+                lnkMemberPagesDropdown.Visible = True
+                lnkAdminDb.Visible = True
+                btnLogout.Visible = True
+            Case Else
+                btnLogin.Visible = True
+                btnRegister.Visible = True
+                lnkMemberPagesDropdown.Visible = False
+                btnLogout.Visible = False
+        End Select
 
         Select Case Request.FilePath.ToLower
             Case "/default.aspx"
