@@ -102,4 +102,40 @@ Public Module Helper
         Return False
     End Function
 
+    Public Function RB(action As String, css As String, Optional button As String = "btn-primary") As String
+        Return RoundButton(action, css, button)
+    End Function
+
+    Public Function RoundButton(action As String, css As String, Optional button As String = "btn-primary") As String
+        Return "<a href=""" & action & """ class=""btn " & button & " btn-circle btn-sm""><i class=""" & css & """></i></a>"
+    End Function
+
+    Public Function RoundModalButton(target As String, css As String, id As String, Optional button As String = "btn-primary") As String
+        Return "<a href=""#" & id & """ data-toggle=""modal"" data-target=""" & target & """ class=""btn " & button & " btn-circle btn-sm""><i class=""" & css & """></i></a>"
+    End Function
+
+    <Extension>
+    Public Sub AddTableItem(table As Table, ParamArray items As String())
+        Dim row As New TableRow()
+        For Each item In items
+            row.Cells.Add(New TableCell() With {.Text = item})
+        Next
+        table.Rows.Add(row)
+    End Sub
+
+    Public Function StatusToString(status As Integer) As String
+        Select Case status
+            Case 0
+                Return "New"
+            Case 1
+                Return "Pending"
+            Case 2
+                Return "Approved"
+            Case 3
+                Return "Rejected"
+            Case Else
+                Return "Error"
+        End Select
+    End Function
+
 End Module
