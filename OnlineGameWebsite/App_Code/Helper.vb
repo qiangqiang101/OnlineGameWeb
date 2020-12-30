@@ -6,6 +6,7 @@ Public Module Helper
     Public db As New DataClassesDataContext
 
     Public dateFormat As String = "yyyy-MM-dd HH:mm:ss"
+    Public upload As String = "~/Upload/" & Now.Year & "/" & Now.Month & "/" & Now.Day & "/"
 
     <Extension>
     Public Sub JsMsgBox(page As Page, text As String)
@@ -136,6 +137,52 @@ Public Module Helper
             Case Else
                 Return "Error"
         End Select
+    End Function
+
+    Public Function ProductCategoryToString(category As Integer) As String
+        Select Case category
+            Case 1
+                Return "Slot Games"
+            Case 2
+                Return "Live Casino"
+            Case 3
+                Return "Sportsbook"
+            Case 4
+                Return "Other"
+            Case 5
+                Return "Slot Games & Live Casino"
+            Case 6
+                Return "Slot Games & Sportsbook"
+            Case 7
+                Return "Slot Games & Other"
+            Case 8
+                Return "Live Casino & Sportsbook"
+            Case 9
+                Return "Live Casino & Other"
+            Case 10
+                Return "Sportsbook & Other"
+            Case 11
+                Return "Slot Games, Live Casino & Sportsbook"
+            Case 12
+                Return "Slot Games, Live Casino & Other"
+            Case 13
+                Return "Slot Games, Sportsbook & Other"
+            Case 14
+                Return "Live Casino, Sportsbook & Other"
+            Case 15
+                Return "All"
+            Case Else
+                Return "None"
+        End Select
+    End Function
+
+    Public Function Img(path As String, alt As String) As String
+        Return "<img src=""" & path & """ alt=""" & alt & """ height=""30px"" />"
+    End Function
+
+    Public Function IsImage(ext As String) As Boolean
+        Dim imageExts As New List(Of String) From {"gif", "jpg", "jpeg", "jfif", "pjpeg", "pjp", "png", "svg", "webp", "bmp", "apng", "avif"}
+        Return imageExts.Contains(ext)
     End Function
 
 End Module

@@ -41,7 +41,7 @@
                 <hr class="sidebar-divider my-0" />
 
                 <!-- Nav Item - Dashboard -->
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="Dashboard.aspx"><i class="fas fa-fw fa-tachometer-alt"></i><span>Dashboard</span></a>
                 </li>
 
@@ -54,13 +54,13 @@
                 <!-- Nav Item - Pages Collapse Menu -->
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                        <i class="fas fa-fw fa-cog"></i><span>Members</span>
+                        <i class="fas fa-fw fa-users"></i><span>Members</span>
                     </a>
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Members:</h6>
                             <a class="collapse-item" href="Members.aspx">Members</a>
-                            <a class="collapse-item" href="#">Add Member</a>
+                            <a class="collapse-item" href="404.aspx">Placeholder</a>
                         </div>
                     </div>
                 </li>
@@ -68,7 +68,7 @@
                 <!-- Nav Item - Utilities Collapse Menu -->
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-                        <i class="fas fa-fw fa-wrench"></i><span>Transactions</span>
+                        <i class="fas fa-fw fa-dollar-sign"></i><span>Transactions</span>
                     </a>
                     <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
@@ -76,10 +76,7 @@
                             <a class="collapse-item" href="#">Live Transactions</a>
                             <a class="collapse-item" href="#">Transactions</a>
                             <a class="collapse-item" href="#">Transfers</a>
-                            <a class="collapse-item" href="#">Add Deposit</a>
-                            <a class="collapse-item" href="#">Add Promotion</a>
-                            <a class="collapse-item" href="#">Add Withdrawal</a>
-                            <a class="collapse-item" href="#">Add Transfer</a>
+                            <a class="collapse-item" href="404.aspx">Placeholder</a>
                         </div>
                     </div>
                 </li>
@@ -103,20 +100,31 @@
                             <a class="collapse-item" href="#">Homepage</a>
                             <div class="collapse-divider"></div>
                             <h6 class="collapse-header">Other Pages:</h6>
-                            <a class="collapse-item" href="#">404 Page</a>
+                            <a class="collapse-item" href="404.aspx">404 Page</a>
                             <a class="collapse-item" href="#">Blank Page</a>
+                            <a class="collapse-item" href="404.aspx">Placeholder</a>
                         </div>
                     </div>
                 </li>
 
                 <!-- Nav Item - Charts -->
                 <li class="nav-item">
-                    <a class="nav-link" href="charts.html"><i class="fas fa-fw fa-chart-area"></i><span>Report</span></a>
+                    <a class="nav-link" href="404.aspx"><i class="fas fa-fw fa-chart-area"></i><span>Report</span></a>
                 </li>
 
-                <!-- Nav Item - Tables -->
+                <!-- Nav Item - Settings Collapse Menu -->
                 <li class="nav-item">
-                    <a class="nav-link" href="tables.html"><i class="fas fa-fw fa-table"></i><span>Settings</span></a>
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSettings" aria-expanded="true" aria-controls="collapseSettings">
+                        <i class="fas fa-fw fa-cog"></i><span>Settings</span>
+                    </a>
+                    <div id="collapseSettings" class="collapse" aria-labelledby="headingSettings" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Settings:</h6>
+                            <a class="collapse-item" href="GeneralSettings.aspx">General</a>
+                            <a class="collapse-item" href="Products.aspx">Products</a>
+                            <a class="collapse-item" href="GameAccounts.aspx">Game Accounts</a>
+                        </div>
+                    </div>
                 </li>
 
                 <!-- Divider -->
