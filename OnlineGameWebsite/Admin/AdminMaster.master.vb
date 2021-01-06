@@ -2,6 +2,10 @@
 Partial Class Admin_AdminMaster
     Inherits System.Web.UI.MasterPage
 
+    Private Sub Admin_AdminMaster_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Page.Title = settings.CompanyName & " - Back Office"
+    End Sub
+
     Private Sub btnLogout_Click(sender As Object, e As EventArgs) Handles btnLogout.Click
         Session.Clear()
         Response.Redirect("AdminLogin.aspx")

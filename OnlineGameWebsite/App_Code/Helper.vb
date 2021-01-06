@@ -7,6 +7,8 @@ Public Module Helper
 
     Public dateFormat As String = "yyyy-MM-dd HH:mm:ss"
     Public upload As String = "~/Upload/" & Now.Year & "/" & Now.Month & "/" & Now.Day & "/"
+    Public promoTnc As String = "~/Promo/" & Now.Year & "/" & Now.Month & "/" & Now.Day & "/"
+    Public settings As SettingsData = New SettingsData(HttpRuntime.AppDomainAppPath & "\settings.xml").Instance
 
     <Extension>
     Public Sub JsMsgBox(page As Page, text As String)
@@ -173,6 +175,28 @@ Public Module Helper
                 Return "All"
             Case Else
                 Return "None"
+        End Select
+    End Function
+
+    Public Function PromotionTypeToString(type As Integer) As String
+        Select Case type
+            Case 0
+                Return "Percentage"
+            Case 1
+                Return "Fixed Amount"
+            Case Else
+                Return "Unknown"
+        End Select
+    End Function
+
+    Public Function PromotionStatusToString(status As Integer) As String
+        Select Case status
+            Case 0
+                Return "Disabled"
+            Case 1
+                Return "Enabled"
+            Case Else
+                Return "Hidden"
         End Select
     End Function
 

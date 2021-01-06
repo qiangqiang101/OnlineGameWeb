@@ -61,12 +61,6 @@ Partial Public Class DataClassesDataContext
     End Sub
   Partial Private Sub DeleteTblTransfer(instance As TblTransfer)
     End Sub
-  Partial Private Sub InsertTblPromotion(instance As TblPromotion)
-    End Sub
-  Partial Private Sub UpdateTblPromotion(instance As TblPromotion)
-    End Sub
-  Partial Private Sub DeleteTblPromotion(instance As TblPromotion)
-    End Sub
   Partial Private Sub InsertTblBank(instance As TblBank)
     End Sub
   Partial Private Sub UpdateTblBank(instance As TblBank)
@@ -78,6 +72,12 @@ Partial Public Class DataClassesDataContext
   Partial Private Sub UpdateTblProduct(instance As TblProduct)
     End Sub
   Partial Private Sub DeleteTblProduct(instance As TblProduct)
+    End Sub
+  Partial Private Sub InsertTblPromotion(instance As TblPromotion)
+    End Sub
+  Partial Private Sub UpdateTblPromotion(instance As TblPromotion)
+    End Sub
+  Partial Private Sub DeleteTblPromotion(instance As TblPromotion)
     End Sub
   #End Region
 	
@@ -136,12 +136,6 @@ Partial Public Class DataClassesDataContext
 		End Get
 	End Property
 	
-	Public ReadOnly Property TblPromotions() As System.Data.Linq.Table(Of TblPromotion)
-		Get
-			Return Me.GetTable(Of TblPromotion)
-		End Get
-	End Property
-	
 	Public ReadOnly Property TblBanks() As System.Data.Linq.Table(Of TblBank)
 		Get
 			Return Me.GetTable(Of TblBank)
@@ -151,6 +145,12 @@ Partial Public Class DataClassesDataContext
 	Public ReadOnly Property TblProducts() As System.Data.Linq.Table(Of TblProduct)
 		Get
 			Return Me.GetTable(Of TblProduct)
+		End Get
+	End Property
+	
+	Public ReadOnly Property TblPromotions() As System.Data.Linq.Table(Of TblPromotion)
+		Get
+			Return Me.GetTable(Of TblPromotion)
 		End Get
 	End Property
 End Class
@@ -912,10 +912,10 @@ Partial Public Class TblTransaction
 	Private _UserName As String
 	
 	Private _Method As String
-
-    Private _Debit As Single
-
-    Private _Credit As Single
+	
+	Private _Debit As Single
+	
+	Private _Credit As Single
 	
 	Private _Promotion As Single
 	
@@ -1074,24 +1074,25 @@ Partial Public Class TblTransaction
 			End If
 		End Set
 	End Property
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Debit", DbType:="Float NOT NULL", CanBeNull:=False)>
-    Public Property Debit() As Single
-        Get
-            Return Me._Debit
-        End Get
-        Set
-            If (Object.Equals(Me._Debit, Value) = False) Then
-                Me.OnDebitChanging(Value)
-                Me.SendPropertyChanging()
-                Me._Debit = Value
-                Me.SendPropertyChanged("Debit")
-                Me.OnDebitChanged()
-            End If
-        End Set
-    End Property
-
-    <Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Credit", DbType:="Float NOT NULL")>  _
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Debit", DbType:="Float NOT NULL")>  _
+	Public Property Debit() As Single
+		Get
+			Return Me._Debit
+		End Get
+		Set
+			If ((Me._Debit = value)  _
+						= false) Then
+				Me.OnDebitChanging(value)
+				Me.SendPropertyChanging
+				Me._Debit = value
+				Me.SendPropertyChanged("Debit")
+				Me.OnDebitChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Credit", DbType:="Float NOT NULL")>  _
 	Public Property Credit() As Single
 		Get
 			Return Me._Credit
@@ -1512,337 +1513,6 @@ Partial Public Class TblTransfer
 				Me._IPAddress = value
 				Me.SendPropertyChanged("IPAddress")
 				Me.OnIPAddressChanged
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-End Class
-
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.TblPromotion")>  _
-Partial Public Class TblPromotion
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _PromoID As Integer
-	
-	Private _DisplayIndex As Integer
-	
-	Private _PromoName As String
-	
-	Private _PromoType As Integer
-	
-	Private _PromoPercent As Single
-	
-	Private _MaxPayout As Single
-	
-	Private _EnglishName As String
-	
-	Private _ChineseName As String
-	
-	Private _MalayName As String
-	
-	Private _EnglishTNC As String
-	
-	Private _ChineseTNC As String
-	
-	Private _MalayTNC As String
-	
-	Private _Status As Integer
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnPromoIDChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnPromoIDChanged()
-    End Sub
-    Partial Private Sub OnDisplayIndexChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnDisplayIndexChanged()
-    End Sub
-    Partial Private Sub OnPromoNameChanging(value As String)
-    End Sub
-    Partial Private Sub OnPromoNameChanged()
-    End Sub
-    Partial Private Sub OnPromoTypeChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnPromoTypeChanged()
-    End Sub
-    Partial Private Sub OnPromoPercentChanging(value As Single)
-    End Sub
-    Partial Private Sub OnPromoPercentChanged()
-    End Sub
-    Partial Private Sub OnMaxPayoutChanging(value As Single)
-    End Sub
-    Partial Private Sub OnMaxPayoutChanged()
-    End Sub
-    Partial Private Sub OnEnglishNameChanging(value As String)
-    End Sub
-    Partial Private Sub OnEnglishNameChanged()
-    End Sub
-    Partial Private Sub OnChineseNameChanging(value As String)
-    End Sub
-    Partial Private Sub OnChineseNameChanged()
-    End Sub
-    Partial Private Sub OnMalayNameChanging(value As String)
-    End Sub
-    Partial Private Sub OnMalayNameChanged()
-    End Sub
-    Partial Private Sub OnEnglishTNCChanging(value As String)
-    End Sub
-    Partial Private Sub OnEnglishTNCChanged()
-    End Sub
-    Partial Private Sub OnChineseTNCChanging(value As String)
-    End Sub
-    Partial Private Sub OnChineseTNCChanged()
-    End Sub
-    Partial Private Sub OnMalayTNCChanging(value As String)
-    End Sub
-    Partial Private Sub OnMalayTNCChanged()
-    End Sub
-    Partial Private Sub OnStatusChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnStatusChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PromoID", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
-	Public Property PromoID() As Integer
-		Get
-			Return Me._PromoID
-		End Get
-		Set
-			If ((Me._PromoID = value)  _
-						= false) Then
-				Me.OnPromoIDChanging(value)
-				Me.SendPropertyChanging
-				Me._PromoID = value
-				Me.SendPropertyChanged("PromoID")
-				Me.OnPromoIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DisplayIndex", DbType:="Int NOT NULL")>  _
-	Public Property DisplayIndex() As Integer
-		Get
-			Return Me._DisplayIndex
-		End Get
-		Set
-			If ((Me._DisplayIndex = value)  _
-						= false) Then
-				Me.OnDisplayIndexChanging(value)
-				Me.SendPropertyChanging
-				Me._DisplayIndex = value
-				Me.SendPropertyChanged("DisplayIndex")
-				Me.OnDisplayIndexChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PromoName", DbType:="NChar(30) NOT NULL", CanBeNull:=false)>  _
-	Public Property PromoName() As String
-		Get
-			Return Me._PromoName
-		End Get
-		Set
-			If (String.Equals(Me._PromoName, value) = false) Then
-				Me.OnPromoNameChanging(value)
-				Me.SendPropertyChanging
-				Me._PromoName = value
-				Me.SendPropertyChanged("PromoName")
-				Me.OnPromoNameChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PromoType", DbType:="Int NOT NULL")>  _
-	Public Property PromoType() As Integer
-		Get
-			Return Me._PromoType
-		End Get
-		Set
-			If ((Me._PromoType = value)  _
-						= false) Then
-				Me.OnPromoTypeChanging(value)
-				Me.SendPropertyChanging
-				Me._PromoType = value
-				Me.SendPropertyChanged("PromoType")
-				Me.OnPromoTypeChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PromoPercent", DbType:="Float NOT NULL")>  _
-	Public Property PromoPercent() As Single
-		Get
-			Return Me._PromoPercent
-		End Get
-		Set
-			If ((Me._PromoPercent = value)  _
-						= false) Then
-				Me.OnPromoPercentChanging(value)
-				Me.SendPropertyChanging
-				Me._PromoPercent = value
-				Me.SendPropertyChanged("PromoPercent")
-				Me.OnPromoPercentChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_MaxPayout", DbType:="Float NOT NULL")>  _
-	Public Property MaxPayout() As Single
-		Get
-			Return Me._MaxPayout
-		End Get
-		Set
-			If ((Me._MaxPayout = value)  _
-						= false) Then
-				Me.OnMaxPayoutChanging(value)
-				Me.SendPropertyChanging
-				Me._MaxPayout = value
-				Me.SendPropertyChanged("MaxPayout")
-				Me.OnMaxPayoutChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_EnglishName", DbType:="NChar(30)")>  _
-	Public Property EnglishName() As String
-		Get
-			Return Me._EnglishName
-		End Get
-		Set
-			If (String.Equals(Me._EnglishName, value) = false) Then
-				Me.OnEnglishNameChanging(value)
-				Me.SendPropertyChanging
-				Me._EnglishName = value
-				Me.SendPropertyChanged("EnglishName")
-				Me.OnEnglishNameChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ChineseName", DbType:="NChar(30)")>  _
-	Public Property ChineseName() As String
-		Get
-			Return Me._ChineseName
-		End Get
-		Set
-			If (String.Equals(Me._ChineseName, value) = false) Then
-				Me.OnChineseNameChanging(value)
-				Me.SendPropertyChanging
-				Me._ChineseName = value
-				Me.SendPropertyChanged("ChineseName")
-				Me.OnChineseNameChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_MalayName", DbType:="NChar(30)")>  _
-	Public Property MalayName() As String
-		Get
-			Return Me._MalayName
-		End Get
-		Set
-			If (String.Equals(Me._MalayName, value) = false) Then
-				Me.OnMalayNameChanging(value)
-				Me.SendPropertyChanging
-				Me._MalayName = value
-				Me.SendPropertyChanged("MalayName")
-				Me.OnMalayNameChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_EnglishTNC", DbType:="NChar(255)")>  _
-	Public Property EnglishTNC() As String
-		Get
-			Return Me._EnglishTNC
-		End Get
-		Set
-			If (String.Equals(Me._EnglishTNC, value) = false) Then
-				Me.OnEnglishTNCChanging(value)
-				Me.SendPropertyChanging
-				Me._EnglishTNC = value
-				Me.SendPropertyChanged("EnglishTNC")
-				Me.OnEnglishTNCChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ChineseTNC", DbType:="NChar(255)")>  _
-	Public Property ChineseTNC() As String
-		Get
-			Return Me._ChineseTNC
-		End Get
-		Set
-			If (String.Equals(Me._ChineseTNC, value) = false) Then
-				Me.OnChineseTNCChanging(value)
-				Me.SendPropertyChanging
-				Me._ChineseTNC = value
-				Me.SendPropertyChanged("ChineseTNC")
-				Me.OnChineseTNCChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_MalayTNC", DbType:="NChar(255)")>  _
-	Public Property MalayTNC() As String
-		Get
-			Return Me._MalayTNC
-		End Get
-		Set
-			If (String.Equals(Me._MalayTNC, value) = false) Then
-				Me.OnMalayTNCChanging(value)
-				Me.SendPropertyChanging
-				Me._MalayTNC = value
-				Me.SendPropertyChanged("MalayTNC")
-				Me.OnMalayTNCChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Status", DbType:="Int NOT NULL")>  _
-	Public Property Status() As Integer
-		Get
-			Return Me._Status
-		End Get
-		Set
-			If ((Me._Status = value)  _
-						= false) Then
-				Me.OnStatusChanging(value)
-				Me.SendPropertyChanging
-				Me._Status = value
-				Me.SendPropertyChanged("Status")
-				Me.OnStatusChanged
 			End If
 		End Set
 	End Property
@@ -2347,6 +2017,315 @@ Partial Public Class TblProduct
 				Me._ProductImage = value
 				Me.SendPropertyChanged("ProductImage")
 				Me.OnProductImageChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.TblPromotion")>  _
+Partial Public Class TblPromotion
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _PromoID As Integer
+	
+	Private _DisplayIndex As Integer
+	
+	Private _PromoName As String
+	
+	Private _PromoType As Integer
+	
+	Private _PromoPercent As Double
+	
+	Private _MaxPayout As Double
+	
+	Private _EnglishName As String
+	
+	Private _ChineseName As String
+	
+	Private _MalayName As String
+	
+	Private _PromoFile As String
+	
+	Private _Status As Integer
+	
+	Private _PromoImage As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnPromoIDChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnPromoIDChanged()
+    End Sub
+    Partial Private Sub OnDisplayIndexChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnDisplayIndexChanged()
+    End Sub
+    Partial Private Sub OnPromoNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnPromoNameChanged()
+    End Sub
+    Partial Private Sub OnPromoTypeChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnPromoTypeChanged()
+    End Sub
+    Partial Private Sub OnPromoPercentChanging(value As Double)
+    End Sub
+    Partial Private Sub OnPromoPercentChanged()
+    End Sub
+    Partial Private Sub OnMaxPayoutChanging(value As Double)
+    End Sub
+    Partial Private Sub OnMaxPayoutChanged()
+    End Sub
+    Partial Private Sub OnEnglishNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnEnglishNameChanged()
+    End Sub
+    Partial Private Sub OnChineseNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnChineseNameChanged()
+    End Sub
+    Partial Private Sub OnMalayNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnMalayNameChanged()
+    End Sub
+    Partial Private Sub OnPromoFileChanging(value As String)
+    End Sub
+    Partial Private Sub OnPromoFileChanged()
+    End Sub
+    Partial Private Sub OnStatusChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnStatusChanged()
+    End Sub
+    Partial Private Sub OnPromoImageChanging(value As String)
+    End Sub
+    Partial Private Sub OnPromoImageChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PromoID", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
+	Public Property PromoID() As Integer
+		Get
+			Return Me._PromoID
+		End Get
+		Set
+			If ((Me._PromoID = value)  _
+						= false) Then
+				Me.OnPromoIDChanging(value)
+				Me.SendPropertyChanging
+				Me._PromoID = value
+				Me.SendPropertyChanged("PromoID")
+				Me.OnPromoIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DisplayIndex", DbType:="Int NOT NULL")>  _
+	Public Property DisplayIndex() As Integer
+		Get
+			Return Me._DisplayIndex
+		End Get
+		Set
+			If ((Me._DisplayIndex = value)  _
+						= false) Then
+				Me.OnDisplayIndexChanging(value)
+				Me.SendPropertyChanging
+				Me._DisplayIndex = value
+				Me.SendPropertyChanged("DisplayIndex")
+				Me.OnDisplayIndexChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PromoName", DbType:="NChar(30) NOT NULL", CanBeNull:=false)>  _
+	Public Property PromoName() As String
+		Get
+			Return Me._PromoName
+		End Get
+		Set
+			If (String.Equals(Me._PromoName, value) = false) Then
+				Me.OnPromoNameChanging(value)
+				Me.SendPropertyChanging
+				Me._PromoName = value
+				Me.SendPropertyChanged("PromoName")
+				Me.OnPromoNameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PromoType", DbType:="Int NOT NULL")>  _
+	Public Property PromoType() As Integer
+		Get
+			Return Me._PromoType
+		End Get
+		Set
+			If ((Me._PromoType = value)  _
+						= false) Then
+				Me.OnPromoTypeChanging(value)
+				Me.SendPropertyChanging
+				Me._PromoType = value
+				Me.SendPropertyChanged("PromoType")
+				Me.OnPromoTypeChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PromoPercent", DbType:="Float NOT NULL")>  _
+	Public Property PromoPercent() As Double
+		Get
+			Return Me._PromoPercent
+		End Get
+		Set
+			If ((Me._PromoPercent = value)  _
+						= false) Then
+				Me.OnPromoPercentChanging(value)
+				Me.SendPropertyChanging
+				Me._PromoPercent = value
+				Me.SendPropertyChanged("PromoPercent")
+				Me.OnPromoPercentChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_MaxPayout", DbType:="Float NOT NULL")>  _
+	Public Property MaxPayout() As Double
+		Get
+			Return Me._MaxPayout
+		End Get
+		Set
+			If ((Me._MaxPayout = value)  _
+						= false) Then
+				Me.OnMaxPayoutChanging(value)
+				Me.SendPropertyChanging
+				Me._MaxPayout = value
+				Me.SendPropertyChanged("MaxPayout")
+				Me.OnMaxPayoutChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_EnglishName", DbType:="NChar(30)")>  _
+	Public Property EnglishName() As String
+		Get
+			Return Me._EnglishName
+		End Get
+		Set
+			If (String.Equals(Me._EnglishName, value) = false) Then
+				Me.OnEnglishNameChanging(value)
+				Me.SendPropertyChanging
+				Me._EnglishName = value
+				Me.SendPropertyChanged("EnglishName")
+				Me.OnEnglishNameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ChineseName", DbType:="NChar(30)")>  _
+	Public Property ChineseName() As String
+		Get
+			Return Me._ChineseName
+		End Get
+		Set
+			If (String.Equals(Me._ChineseName, value) = false) Then
+				Me.OnChineseNameChanging(value)
+				Me.SendPropertyChanging
+				Me._ChineseName = value
+				Me.SendPropertyChanged("ChineseName")
+				Me.OnChineseNameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_MalayName", DbType:="NChar(30)")>  _
+	Public Property MalayName() As String
+		Get
+			Return Me._MalayName
+		End Get
+		Set
+			If (String.Equals(Me._MalayName, value) = false) Then
+				Me.OnMalayNameChanging(value)
+				Me.SendPropertyChanging
+				Me._MalayName = value
+				Me.SendPropertyChanged("MalayName")
+				Me.OnMalayNameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PromoFile", DbType:="NChar(255)")>  _
+	Public Property PromoFile() As String
+		Get
+			Return Me._PromoFile
+		End Get
+		Set
+			If (String.Equals(Me._PromoFile, value) = false) Then
+				Me.OnPromoFileChanging(value)
+				Me.SendPropertyChanging
+				Me._PromoFile = value
+				Me.SendPropertyChanged("PromoFile")
+				Me.OnPromoFileChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Status", DbType:="Int NOT NULL")>  _
+	Public Property Status() As Integer
+		Get
+			Return Me._Status
+		End Get
+		Set
+			If ((Me._Status = value)  _
+						= false) Then
+				Me.OnStatusChanging(value)
+				Me.SendPropertyChanging
+				Me._Status = value
+				Me.SendPropertyChanged("Status")
+				Me.OnStatusChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PromoImage", DbType:="NChar(255)")>  _
+	Public Property PromoImage() As String
+		Get
+			Return Me._PromoImage
+		End Get
+		Set
+			If (String.Equals(Me._PromoImage, value) = false) Then
+				Me.OnPromoImageChanging(value)
+				Me.SendPropertyChanging
+				Me._PromoImage = value
+				Me.SendPropertyChanged("PromoImage")
+				Me.OnPromoImageChanged
 			End If
 		End Set
 	End Property

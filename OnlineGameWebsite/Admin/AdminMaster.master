@@ -90,19 +90,15 @@
                 <!-- Nav Item - Pages Collapse Menu -->
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-                        <i class="fas fa-fw fa-folder"></i><span>Pages</span>
+                        <i class="fas fa-fw fa-folder"></i><span>Tools</span>
                     </a>
                     <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <h6 class="collapse-header">Pages:</h6>
-                            <a class="collapse-item" href="#">Promotion</a>
-                            <a class="collapse-item" href="#">Products</a>
-                            <a class="collapse-item" href="#">Homepage</a>
+                            <h6 class="collapse-header">Tools:</h6>
+                            <a class="collapse-item" href="#">IP Lookup</a>
                             <div class="collapse-divider"></div>
-                            <h6 class="collapse-header">Other Pages:</h6>
+                            <h6 class="collapse-header">Other:</h6>
                             <a class="collapse-item" href="404.aspx">404 Page</a>
-                            <a class="collapse-item" href="#">Blank Page</a>
-                            <a class="collapse-item" href="404.aspx">Placeholder</a>
                         </div>
                     </div>
                 </li>
@@ -123,6 +119,7 @@
                             <a class="collapse-item" href="GeneralSettings.aspx">General</a>
                             <a class="collapse-item" href="Products.aspx">Products</a>
                             <a class="collapse-item" href="GameAccounts.aspx">Game Accounts</a>
+                            <a class="collapse-item" href="Promotions.aspx">Promotions</a>
                         </div>
                     </div>
                 </li>
@@ -299,7 +296,7 @@
                             <li class="nav-item dropdown no-arrow">
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="navbaruser" runat="server">Douglas McGee</span>
-                                    <img class="img-profile rounded-circle" src="img/undraw_profile.svg" />
+                                    <img class="img-profile rounded-circle" src="img/undraw_profile.svg" alt="profile" />
                                 </a>
                                 <!-- Dropdown - User Information -->
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
