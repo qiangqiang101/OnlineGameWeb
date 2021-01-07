@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="VB" MasterPageFile="~/Admin/AdminMaster.master" AutoEventWireup="true" CodeFile="Promotions.aspx.vb" Inherits="Admin_Promotions" %>
+﻿<%@ Page Title="" Language="VB" MasterPageFile="~/Admin/AdminMaster.master" AutoEventWireup="true" CodeFile="Sliders.aspx.vb" Inherits="Admin_Sliders" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
@@ -9,24 +9,21 @@
         <div class="container-fluid">
 
             <!-- Page Heading -->
-            <h1 class="h3 mb-2 text-gray-800">Promotion</h1>
+            <h1 class="h3 mb-2 text-gray-800">Slider</h1>
 
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Promotions</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Sliders</h6>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <asp:Table CssClass="table table-bordered" ID="dataTable" ClientIDMode="Static" width="100%" cellspacing="0" runat="server">
                             <asp:TableHeaderRow TableSection="TableHeader">
                                 <asp:TableHeaderCell>ID</asp:TableHeaderCell>
-                                <asp:TableHeaderCell>Promotion</asp:TableHeaderCell>
+                                <asp:TableHeaderCell>Name</asp:TableHeaderCell>
                                 <asp:TableHeaderCell>Image</asp:TableHeaderCell>
                                 <asp:TableHeaderCell>Index</asp:TableHeaderCell>
-                                <asp:TableHeaderCell>Value</asp:TableHeaderCell>
-                                <asp:TableHeaderCell>Max Payout</asp:TableHeaderCell>
-                                <asp:TableHeaderCell>Type</asp:TableHeaderCell>
                                 <asp:TableHeaderCell>Status</asp:TableHeaderCell>
                                 <asp:TableHeaderCell>Actions</asp:TableHeaderCell>
                             </asp:TableHeaderRow>
@@ -34,7 +31,7 @@
                     </div>
                     <hr />
                     <div class="col-sm-3 ml-auto">                        
-                        <asp:Button class="btn btn-primary btn-user btn-block" ID="btnAddPromo" runat="server" Text="Add Promotion" />
+                        <asp:Button class="btn btn-primary btn-user btn-block" ID="btnAddSlider" runat="server" Text="Add Slider" />
                     </div>
                 </div>
             </div>

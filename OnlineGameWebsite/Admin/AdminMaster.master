@@ -10,7 +10,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>Backend Admin</title>
+    <title>Back Office</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
@@ -59,8 +59,8 @@
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Members:</h6>
-                            <a class="collapse-item" href="Members.aspx">Members</a>
-                            <a class="collapse-item" href="404.aspx">Placeholder</a>
+                            <a class="collapse-item" href="Members.aspx">Member Enquiry</a>
+                            <a class="collapse-item" href="#">Add Member</a>
                         </div>
                     </div>
                 </li>
@@ -73,10 +73,11 @@
                     <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Transactions:</h6>
-                            <a class="collapse-item" href="#">Live Transactions</a>
-                            <a class="collapse-item" href="#">Transactions</a>
-                            <a class="collapse-item" href="#">Transfers</a>
-                            <a class="collapse-item" href="404.aspx">Placeholder</a>
+                            <a class="collapse-item" href="#">Transaction Reminder</a>
+                            <a class="collapse-item" href="#">Transaction Enquiry</a>
+                            <a class="collapse-item" href="#">Transfer Enquiry</a>
+                            <hr />
+                            <a class="collapse-item" href="#">Adjustment</a>
                         </div>
                     </div>
                 </li>
@@ -103,9 +104,18 @@
                     </div>
                 </li>
 
-                <!-- Nav Item - Charts -->
+                 <!-- Nav Item - Report Collapse Menu -->
                 <li class="nav-item">
-                    <a class="nav-link" href="404.aspx"><i class="fas fa-fw fa-chart-area"></i><span>Report</span></a>
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReport" aria-expanded="true" aria-controls="collapseReport">
+                        <i class="fas fa-fw fa-chart-area"></i><span>Report</span>
+                    </a>
+                    <div id="collapseReport" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Report:</h6>
+                            <a class="collapse-item" href="#">Summary</a>
+                            <a class="collapse-item" href="#">Bank Summary</a>
+                        </div>
+                    </div>
                 </li>
 
                 <!-- Nav Item - Settings Collapse Menu -->
@@ -117,9 +127,17 @@
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Settings:</h6>
                             <a class="collapse-item" href="GeneralSettings.aspx">General</a>
-                            <a class="collapse-item" href="Products.aspx">Products</a>
-                            <a class="collapse-item" href="GameAccounts.aspx">Game Accounts</a>
-                            <a class="collapse-item" href="Promotions.aspx">Promotions</a>
+                            <a class="collapse-item" href="GameAccounts.aspx">Game Account</a>
+                            <a class="collapse-item" href="Banks.aspx">Bank</a>
+                            <div class="collapse-divider"></div>
+                            <h6 class="collapse-header">Page Settings:</h6>
+                            <a class="collapse-item" href="Sliders.aspx">Slider</a>
+                            <a class="collapse-item" href="Promotions.aspx">Promotion</a>
+                            <a class="collapse-item" href="Products.aspx">Product</a>
+                            <div class="collapse-divider"></div>
+                            <h6 class="collapse-header">Transaction Settings:</h6>
+                            <a class="collapse-item" href="#">Reject Reason</a>
+                            <a class="collapse-item" href="#">Remark</a>
                         </div>
                     </div>
                 </li>

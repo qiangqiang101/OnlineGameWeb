@@ -66,9 +66,8 @@
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <label>Status</label>
                                     <asp:DropDownList CssClass="form-control form-control-user" ID="cmbEnabled" AutoPostBack="True" runat="server" placeholder="">
-                                        <asp:ListItem Value="0">Disabled</asp:ListItem>
                                         <asp:ListItem Value="1">Enabled</asp:ListItem>
-                                        <asp:ListItem Value="2">Hidden</asp:ListItem>
+                                        <asp:ListItem Value="0">Disabled</asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
                             </div>

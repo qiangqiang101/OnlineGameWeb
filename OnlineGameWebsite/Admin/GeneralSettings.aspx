@@ -13,7 +13,7 @@
 
             <!-- DataTales Example -->
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-6">
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">General</h6>
@@ -25,6 +25,12 @@
                                     <asp:TextBox class="form-control form-control-user" ID="txtCompany" runat="server" placeholder="Company Name" required="Required"></asp:TextBox>
                                 </div>
                                 <div class="col-sm-6">
+                                    <label>Copyright</label>
+                                    <asp:TextBox class="form-control form-control-user" ID="txtCopyright" runat="server" placeholder="© 2020 Online Game Website" required="Required"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-12">
                                     <label>Logo</label>
                                     <table width="100%" cellspacing="0">
                                     <tbody>
@@ -33,7 +39,7 @@
                                             <td colspan="2"><asp:Image ID="imgLogo" runat="server" height="50px" /></td>
                                         </tr>
                                     </tbody>
-                                </table>
+                                    </table>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -49,6 +55,43 @@
                             <hr />
                             <div class="col-sm-3 ml-auto">
                                 <asp:Button class="btn btn-primary btn-user btn-block" ID="btnSubmit" runat="server" Text="Update" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Twilio SMS API</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <label>Twilio Enable</label>
+                                    <asp:DropDownList CssClass="form-control form-control-user" ID="cmbTwilioEnabled" AutoPostBack="True" runat="server" placeholder="">
+                                        <asp:ListItem Value="False">Disabled</asp:ListItem>
+                                        <asp:ListItem Value="True">Enabled</asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label>Phone No.</label>
+                                    <asp:TextBox class="form-control form-control-user" ID="txtTwilioPhone" runat="server" placeholder="Phone No." TextMode="Phone"></asp:TextBox>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <label>Account SID</label>
+                                    <asp:TextBox class="form-control form-control-user" ID="txtTwilioSID" runat="server" placeholder="Account SID"></asp:TextBox>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label>Auth Token</label>
+                                    <asp:TextBox class="form-control form-control-user" ID="txtTwilioToken" runat="server" placeholder="Auth Token"></asp:TextBox>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="col-sm-3 ml-auto">
+                                <asp:Button class="btn btn-primary btn-user btn-block" ID="btnSubmitTwilio" runat="server" Text="Update" />
                             </div>
                         </div>
                     </div>

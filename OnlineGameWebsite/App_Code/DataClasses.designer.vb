@@ -61,12 +61,6 @@ Partial Public Class DataClassesDataContext
     End Sub
   Partial Private Sub DeleteTblTransfer(instance As TblTransfer)
     End Sub
-  Partial Private Sub InsertTblBank(instance As TblBank)
-    End Sub
-  Partial Private Sub UpdateTblBank(instance As TblBank)
-    End Sub
-  Partial Private Sub DeleteTblBank(instance As TblBank)
-    End Sub
   Partial Private Sub InsertTblProduct(instance As TblProduct)
     End Sub
   Partial Private Sub UpdateTblProduct(instance As TblProduct)
@@ -78,6 +72,18 @@ Partial Public Class DataClassesDataContext
   Partial Private Sub UpdateTblPromotion(instance As TblPromotion)
     End Sub
   Partial Private Sub DeleteTblPromotion(instance As TblPromotion)
+    End Sub
+  Partial Private Sub InsertTblBank(instance As TblBank)
+    End Sub
+  Partial Private Sub UpdateTblBank(instance As TblBank)
+    End Sub
+  Partial Private Sub DeleteTblBank(instance As TblBank)
+    End Sub
+  Partial Private Sub InsertTblSlider(instance As TblSlider)
+    End Sub
+  Partial Private Sub UpdateTblSlider(instance As TblSlider)
+    End Sub
+  Partial Private Sub DeleteTblSlider(instance As TblSlider)
     End Sub
   #End Region
 	
@@ -136,12 +142,6 @@ Partial Public Class DataClassesDataContext
 		End Get
 	End Property
 	
-	Public ReadOnly Property TblBanks() As System.Data.Linq.Table(Of TblBank)
-		Get
-			Return Me.GetTable(Of TblBank)
-		End Get
-	End Property
-	
 	Public ReadOnly Property TblProducts() As System.Data.Linq.Table(Of TblProduct)
 		Get
 			Return Me.GetTable(Of TblProduct)
@@ -151,6 +151,18 @@ Partial Public Class DataClassesDataContext
 	Public ReadOnly Property TblPromotions() As System.Data.Linq.Table(Of TblPromotion)
 		Get
 			Return Me.GetTable(Of TblPromotion)
+		End Get
+	End Property
+	
+	Public ReadOnly Property TblBanks() As System.Data.Linq.Table(Of TblBank)
+		Get
+			Return Me.GetTable(Of TblBank)
+		End Get
+	End Property
+	
+	Public ReadOnly Property TblSliders() As System.Data.Linq.Table(Of TblSlider)
+		Get
+			Return Me.GetTable(Of TblSlider)
 		End Get
 	End Property
 End Class
@@ -1536,225 +1548,6 @@ Partial Public Class TblTransfer
 	End Sub
 End Class
 
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.TblBank")>  _
-Partial Public Class TblBank
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _BankID As Integer
-	
-	Private _BankName As String
-	
-	Private _AccountName As String
-	
-	Private _AccountNo As String
-	
-	Private _Status As Integer
-	
-	Private _BankWeb As String
-	
-	Private _MinAmount As Single
-	
-	Private _MaxAmount As Single
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnBankIDChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnBankIDChanged()
-    End Sub
-    Partial Private Sub OnBankNameChanging(value As String)
-    End Sub
-    Partial Private Sub OnBankNameChanged()
-    End Sub
-    Partial Private Sub OnAccountNameChanging(value As String)
-    End Sub
-    Partial Private Sub OnAccountNameChanged()
-    End Sub
-    Partial Private Sub OnAccountNoChanging(value As String)
-    End Sub
-    Partial Private Sub OnAccountNoChanged()
-    End Sub
-    Partial Private Sub OnStatusChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnStatusChanged()
-    End Sub
-    Partial Private Sub OnBankWebChanging(value As String)
-    End Sub
-    Partial Private Sub OnBankWebChanged()
-    End Sub
-    Partial Private Sub OnMinAmountChanging(value As Single)
-    End Sub
-    Partial Private Sub OnMinAmountChanged()
-    End Sub
-    Partial Private Sub OnMaxAmountChanging(value As Single)
-    End Sub
-    Partial Private Sub OnMaxAmountChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_BankID", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
-	Public Property BankID() As Integer
-		Get
-			Return Me._BankID
-		End Get
-		Set
-			If ((Me._BankID = value)  _
-						= false) Then
-				Me.OnBankIDChanging(value)
-				Me.SendPropertyChanging
-				Me._BankID = value
-				Me.SendPropertyChanged("BankID")
-				Me.OnBankIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_BankName", DbType:="NChar(30) NOT NULL", CanBeNull:=false)>  _
-	Public Property BankName() As String
-		Get
-			Return Me._BankName
-		End Get
-		Set
-			If (String.Equals(Me._BankName, value) = false) Then
-				Me.OnBankNameChanging(value)
-				Me.SendPropertyChanging
-				Me._BankName = value
-				Me.SendPropertyChanged("BankName")
-				Me.OnBankNameChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AccountName", DbType:="NChar(30) NOT NULL", CanBeNull:=false)>  _
-	Public Property AccountName() As String
-		Get
-			Return Me._AccountName
-		End Get
-		Set
-			If (String.Equals(Me._AccountName, value) = false) Then
-				Me.OnAccountNameChanging(value)
-				Me.SendPropertyChanging
-				Me._AccountName = value
-				Me.SendPropertyChanged("AccountName")
-				Me.OnAccountNameChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AccountNo", DbType:="NChar(30) NOT NULL", CanBeNull:=false)>  _
-	Public Property AccountNo() As String
-		Get
-			Return Me._AccountNo
-		End Get
-		Set
-			If (String.Equals(Me._AccountNo, value) = false) Then
-				Me.OnAccountNoChanging(value)
-				Me.SendPropertyChanging
-				Me._AccountNo = value
-				Me.SendPropertyChanged("AccountNo")
-				Me.OnAccountNoChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Status", DbType:="Int NOT NULL")>  _
-	Public Property Status() As Integer
-		Get
-			Return Me._Status
-		End Get
-		Set
-			If ((Me._Status = value)  _
-						= false) Then
-				Me.OnStatusChanging(value)
-				Me.SendPropertyChanging
-				Me._Status = value
-				Me.SendPropertyChanged("Status")
-				Me.OnStatusChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_BankWeb", DbType:="NChar(255)")>  _
-	Public Property BankWeb() As String
-		Get
-			Return Me._BankWeb
-		End Get
-		Set
-			If (String.Equals(Me._BankWeb, value) = false) Then
-				Me.OnBankWebChanging(value)
-				Me.SendPropertyChanging
-				Me._BankWeb = value
-				Me.SendPropertyChanged("BankWeb")
-				Me.OnBankWebChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_MinAmount", DbType:="Float NOT NULL")>  _
-	Public Property MinAmount() As Single
-		Get
-			Return Me._MinAmount
-		End Get
-		Set
-			If ((Me._MinAmount = value)  _
-						= false) Then
-				Me.OnMinAmountChanging(value)
-				Me.SendPropertyChanging
-				Me._MinAmount = value
-				Me.SendPropertyChanged("MinAmount")
-				Me.OnMinAmountChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_MaxAmount", DbType:="Float NOT NULL")>  _
-	Public Property MaxAmount() As Single
-		Get
-			Return Me._MaxAmount
-		End Get
-		Set
-			If ((Me._MaxAmount = value)  _
-						= false) Then
-				Me.OnMaxAmountChanging(value)
-				Me.SendPropertyChanging
-				Me._MaxAmount = value
-				Me.SendPropertyChanged("MaxAmount")
-				Me.OnMaxAmountChanged
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-End Class
-
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.TblProduct")>  _
 Partial Public Class TblProduct
 	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
@@ -2326,6 +2119,445 @@ Partial Public Class TblPromotion
 				Me._PromoImage = value
 				Me.SendPropertyChanged("PromoImage")
 				Me.OnPromoImageChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.TblBank")>  _
+Partial Public Class TblBank
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _BankID As Integer
+	
+	Private _BankName As String
+	
+	Private _AccountName As String
+	
+	Private _AccountNo As String
+	
+	Private _Status As Integer
+	
+	Private _BankWeb As String
+	
+	Private _MinCredit As Single
+	
+	Private _MaxCredit As Single
+	
+	Private _MinDebit As Single
+	
+	Private _MaxDebit As Single
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnBankIDChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnBankIDChanged()
+    End Sub
+    Partial Private Sub OnBankNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnBankNameChanged()
+    End Sub
+    Partial Private Sub OnAccountNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnAccountNameChanged()
+    End Sub
+    Partial Private Sub OnAccountNoChanging(value As String)
+    End Sub
+    Partial Private Sub OnAccountNoChanged()
+    End Sub
+    Partial Private Sub OnStatusChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnStatusChanged()
+    End Sub
+    Partial Private Sub OnBankWebChanging(value As String)
+    End Sub
+    Partial Private Sub OnBankWebChanged()
+    End Sub
+    Partial Private Sub OnMinCreditChanging(value As Single)
+    End Sub
+    Partial Private Sub OnMinCreditChanged()
+    End Sub
+    Partial Private Sub OnMaxCreditChanging(value As Single)
+    End Sub
+    Partial Private Sub OnMaxCreditChanged()
+    End Sub
+    Partial Private Sub OnMinDebitChanging(value As Single)
+    End Sub
+    Partial Private Sub OnMinDebitChanged()
+    End Sub
+    Partial Private Sub OnMaxDebitChanging(value As Single)
+    End Sub
+    Partial Private Sub OnMaxDebitChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_BankID", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
+	Public Property BankID() As Integer
+		Get
+			Return Me._BankID
+		End Get
+		Set
+			If ((Me._BankID = value)  _
+						= false) Then
+				Me.OnBankIDChanging(value)
+				Me.SendPropertyChanging
+				Me._BankID = value
+				Me.SendPropertyChanged("BankID")
+				Me.OnBankIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_BankName", DbType:="NChar(30) NOT NULL", CanBeNull:=false)>  _
+	Public Property BankName() As String
+		Get
+			Return Me._BankName
+		End Get
+		Set
+			If (String.Equals(Me._BankName, value) = false) Then
+				Me.OnBankNameChanging(value)
+				Me.SendPropertyChanging
+				Me._BankName = value
+				Me.SendPropertyChanged("BankName")
+				Me.OnBankNameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AccountName", DbType:="NChar(30) NOT NULL", CanBeNull:=false)>  _
+	Public Property AccountName() As String
+		Get
+			Return Me._AccountName
+		End Get
+		Set
+			If (String.Equals(Me._AccountName, value) = false) Then
+				Me.OnAccountNameChanging(value)
+				Me.SendPropertyChanging
+				Me._AccountName = value
+				Me.SendPropertyChanged("AccountName")
+				Me.OnAccountNameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AccountNo", DbType:="NChar(30) NOT NULL", CanBeNull:=false)>  _
+	Public Property AccountNo() As String
+		Get
+			Return Me._AccountNo
+		End Get
+		Set
+			If (String.Equals(Me._AccountNo, value) = false) Then
+				Me.OnAccountNoChanging(value)
+				Me.SendPropertyChanging
+				Me._AccountNo = value
+				Me.SendPropertyChanged("AccountNo")
+				Me.OnAccountNoChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Status", DbType:="Int NOT NULL")>  _
+	Public Property Status() As Integer
+		Get
+			Return Me._Status
+		End Get
+		Set
+			If ((Me._Status = value)  _
+						= false) Then
+				Me.OnStatusChanging(value)
+				Me.SendPropertyChanging
+				Me._Status = value
+				Me.SendPropertyChanged("Status")
+				Me.OnStatusChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_BankWeb", DbType:="NChar(255)")>  _
+	Public Property BankWeb() As String
+		Get
+			Return Me._BankWeb
+		End Get
+		Set
+			If (String.Equals(Me._BankWeb, value) = false) Then
+				Me.OnBankWebChanging(value)
+				Me.SendPropertyChanging
+				Me._BankWeb = value
+				Me.SendPropertyChanged("BankWeb")
+				Me.OnBankWebChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_MinCredit", DbType:="Float NOT NULL")>  _
+	Public Property MinCredit() As Single
+		Get
+			Return Me._MinCredit
+		End Get
+		Set
+			If ((Me._MinCredit = value)  _
+						= false) Then
+				Me.OnMinCreditChanging(value)
+				Me.SendPropertyChanging
+				Me._MinCredit = value
+				Me.SendPropertyChanged("MinCredit")
+				Me.OnMinCreditChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_MaxCredit", DbType:="Float NOT NULL")>  _
+	Public Property MaxCredit() As Single
+		Get
+			Return Me._MaxCredit
+		End Get
+		Set
+			If ((Me._MaxCredit = value)  _
+						= false) Then
+				Me.OnMaxCreditChanging(value)
+				Me.SendPropertyChanging
+				Me._MaxCredit = value
+				Me.SendPropertyChanged("MaxCredit")
+				Me.OnMaxCreditChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_MinDebit", DbType:="Float NOT NULL")>  _
+	Public Property MinDebit() As Single
+		Get
+			Return Me._MinDebit
+		End Get
+		Set
+			If ((Me._MinDebit = value)  _
+						= false) Then
+				Me.OnMinDebitChanging(value)
+				Me.SendPropertyChanging
+				Me._MinDebit = value
+				Me.SendPropertyChanged("MinDebit")
+				Me.OnMinDebitChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_MaxDebit", DbType:="Float NOT NULL")>  _
+	Public Property MaxDebit() As Single
+		Get
+			Return Me._MaxDebit
+		End Get
+		Set
+			If ((Me._MaxDebit = value)  _
+						= false) Then
+				Me.OnMaxDebitChanging(value)
+				Me.SendPropertyChanging
+				Me._MaxDebit = value
+				Me.SendPropertyChanged("MaxDebit")
+				Me.OnMaxDebitChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.TblSlider")>  _
+Partial Public Class TblSlider
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _SliderID As Integer
+	
+	Private _DisplayIndex As Integer
+	
+	Private _SliderName As String
+	
+	Private _LinkUrl As String
+	
+	Private _SliderImage As String
+	
+	Private _Status As Boolean
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnSliderIDChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnSliderIDChanged()
+    End Sub
+    Partial Private Sub OnDisplayIndexChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnDisplayIndexChanged()
+    End Sub
+    Partial Private Sub OnSliderNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnSliderNameChanged()
+    End Sub
+    Partial Private Sub OnLinkUrlChanging(value As String)
+    End Sub
+    Partial Private Sub OnLinkUrlChanged()
+    End Sub
+    Partial Private Sub OnSliderImageChanging(value As String)
+    End Sub
+    Partial Private Sub OnSliderImageChanged()
+    End Sub
+    Partial Private Sub OnStatusChanging(value As Boolean)
+    End Sub
+    Partial Private Sub OnStatusChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SliderID", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
+	Public Property SliderID() As Integer
+		Get
+			Return Me._SliderID
+		End Get
+		Set
+			If ((Me._SliderID = value)  _
+						= false) Then
+				Me.OnSliderIDChanging(value)
+				Me.SendPropertyChanging
+				Me._SliderID = value
+				Me.SendPropertyChanged("SliderID")
+				Me.OnSliderIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DisplayIndex", DbType:="Int NOT NULL")>  _
+	Public Property DisplayIndex() As Integer
+		Get
+			Return Me._DisplayIndex
+		End Get
+		Set
+			If ((Me._DisplayIndex = value)  _
+						= false) Then
+				Me.OnDisplayIndexChanging(value)
+				Me.SendPropertyChanging
+				Me._DisplayIndex = value
+				Me.SendPropertyChanged("DisplayIndex")
+				Me.OnDisplayIndexChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SliderName", DbType:="NChar(30) NOT NULL", CanBeNull:=false)>  _
+	Public Property SliderName() As String
+		Get
+			Return Me._SliderName
+		End Get
+		Set
+			If (String.Equals(Me._SliderName, value) = false) Then
+				Me.OnSliderNameChanging(value)
+				Me.SendPropertyChanging
+				Me._SliderName = value
+				Me.SendPropertyChanged("SliderName")
+				Me.OnSliderNameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_LinkUrl", DbType:="NChar(255)")>  _
+	Public Property LinkUrl() As String
+		Get
+			Return Me._LinkUrl
+		End Get
+		Set
+			If (String.Equals(Me._LinkUrl, value) = false) Then
+				Me.OnLinkUrlChanging(value)
+				Me.SendPropertyChanging
+				Me._LinkUrl = value
+				Me.SendPropertyChanged("LinkUrl")
+				Me.OnLinkUrlChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_SliderImage", DbType:="NChar(255)")>  _
+	Public Property SliderImage() As String
+		Get
+			Return Me._SliderImage
+		End Get
+		Set
+			If (String.Equals(Me._SliderImage, value) = false) Then
+				Me.OnSliderImageChanging(value)
+				Me.SendPropertyChanging
+				Me._SliderImage = value
+				Me.SendPropertyChanged("SliderImage")
+				Me.OnSliderImageChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Status", DbType:="Bit NOT NULL")>  _
+	Public Property Status() As Boolean
+		Get
+			Return Me._Status
+		End Get
+		Set
+			If ((Me._Status = value)  _
+						= false) Then
+				Me.OnStatusChanging(value)
+				Me.SendPropertyChanging
+				Me._Status = value
+				Me.SendPropertyChanged("Status")
+				Me.OnStatusChanged
 			End If
 		End Set
 	End Property
