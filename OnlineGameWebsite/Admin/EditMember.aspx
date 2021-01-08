@@ -55,23 +55,24 @@
                                     <asp:DropDownList CssClass="form-control form-control-user" ID="cmbLevel" AutoPostBack="True" runat="server" placeholder="">
                                         <asp:ListItem Value="0">Registered</asp:ListItem>
                                         <asp:ListItem Value="1">New Member</asp:ListItem>
-                                        <asp:ListItem Value="2">Normal Member</asp:ListItem>
-                                        <asp:ListItem Value="3">Bronze Member</asp:ListItem>
-                                        <asp:ListItem Value="4">Bronze+ Member</asp:ListItem>
-                                        <asp:ListItem Value="5">Silver Member</asp:ListItem>
-                                        <asp:ListItem Value="6">Silver+ Member</asp:ListItem>
-                                        <asp:ListItem Value="7">Gold Member</asp:ListItem>
-                                        <asp:ListItem Value="8">Gold+ Member</asp:ListItem>
-                                        <asp:ListItem Value="9">Platinum Member</asp:ListItem>
-                                        <asp:ListItem Value="10">Platinum+ Member</asp:ListItem>
+                                        <asp:ListItem Value="2">Normal</asp:ListItem>
+                                        <asp:ListItem Value="3">Bronze</asp:ListItem>
+                                        <asp:ListItem Value="4">Bronze+</asp:ListItem>
+                                        <asp:ListItem Value="5">Silver</asp:ListItem>
+                                        <asp:ListItem Value="6">Silver+</asp:ListItem>
+                                        <asp:ListItem Value="7">Gold</asp:ListItem>
+                                        <asp:ListItem Value="8">Gold+</asp:ListItem>
+                                        <asp:ListItem Value="9">Platinum</asp:ListItem>
+                                        <asp:ListItem Value="10">Platinum+</asp:ListItem>
+                                        <asp:ListItem Value="20">Affiliate</asp:ListItem>
                                         <asp:ListItem Value="32">Administrator</asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
                                 <div class="col-sm-6">
                                     <label>Status</label>
                                     <asp:DropDownList CssClass="form-control form-control-user" ID="cmbEnabled" AutoPostBack="True" runat="server" placeholder="">
-                                        <asp:ListItem Value="False">Disabled</asp:ListItem>
                                         <asp:ListItem Value="True">Enabled</asp:ListItem>
+                                        <asp:ListItem Value="False">Disabled</asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
                             </div>

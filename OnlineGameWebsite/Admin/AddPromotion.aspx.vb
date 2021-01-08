@@ -18,6 +18,7 @@ Partial Class Admin_AddPromotion
         Else
             If AddNewPromotion() Then
                 JsMsgBox("Promotion added successfully.")
+                Response.Redirect("Promotions.aspx")
             Else
                 JsMsgBox("Add promotion failed! Please contact Administrator.")
             End If
@@ -62,6 +63,8 @@ Partial Class Admin_AddPromotion
                     JsMsgBox("Image upload failed, please try upload only supported image format.")
                     .PromoImage = Nothing
                 End If
+            Else
+                .PromoImage = "images/empty_box.png"
             End If
         End With
 

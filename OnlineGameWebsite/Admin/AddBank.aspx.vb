@@ -5,6 +5,7 @@ Partial Class Admin_AddBank
     Private Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
         If AddNewBank() Then
             JsMsgBox("Bank added successfully.")
+            Response.Redirect("Banks.aspx")
         Else
             JsMsgBox("Add bank failed! Please contact Administrator.")
         End If

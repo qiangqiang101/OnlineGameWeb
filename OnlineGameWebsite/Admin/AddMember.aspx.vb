@@ -1,20 +1,18 @@
 ﻿
-Partial Class Register
+Partial Class Admin_AddMember
     Inherits System.Web.UI.Page
 
-    Protected Sub btnRegister_Click(sender As Object, e As EventArgs) Handles btnRegister.Click
+    Private Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
         If txtFullName.Text = Nothing Then
             JsMsgBox("Full Name is required!")
         ElseIf txtBirthday.Text = Nothing Then
             JsMsgBox("Birthday is required!")
-        ElseIf txtContact.Text = Nothing Then
+        ElseIf txtPhone.Text = Nothing Then
             JsMsgBox("Contact No. is required!")
         ElseIf txtEmail.Text = Nothing Then
             JsMsgBox("Email is required!")
         ElseIf IsEmailExists(txtEmail.Text) Then
             JsMsgBox("Email is already been registered!")
-        ElseIf Not IsEmailValid(txtEmail.Text) Then
-            JsMsgBox("Email is not valid!")
         ElseIf txtUserID.Text = Nothing Then
             JsMsgBox("UserID is required!")
         ElseIf txtUserID.Text.Length < 6 Then
@@ -23,18 +21,10 @@ Partial Class Register
             JsMsgBox("UserID already taken, please try another one.")
         ElseIf txtPassword.Text = Nothing Then
             JsMsgBox("Password is required!")
-        ElseIf txtPassword2.Text = Nothing Then
-            JsMsgBox("Please confirm your password.")
-        ElseIf txtPassword.Text <> txtPassword2.Text Then
-            JsMsgBox("Your password did not match!")
-        ElseIf Not cb18yo.Checked Then
-            JsMsgBox("You have to be at least 18 years old to register.")
-        ElseIf Not cbTnc.Checked Then
-            JsMsgBox("Please accept the Terms & Conditions.")
         Else
             If RegisterMember() Then
-                JsMsgBox("Registration completed!")
-                If IsMemberLoginSuccess(txtUserID.Text, txtPassword.Text, Page) Then Response.Redirect("Default.aspx")
+                JsMsgBox("Member created successfully.")
+                Response.Redirect("Members.aspx")
             Else
                 JsMsgBox("Registration failed! Please contact Customer Service.")
             End If
@@ -47,19 +37,19 @@ Partial Class Register
             .UserName = txtUserID.Text.Trim
             .Password = txtPassword.Text.Trim
             .Email = txtEmail.Text.Trim
-            .PhoneNo = txtContact.Text.Trim
+            .PhoneNo = txtPhone.Text.Trim
             .FullName = txtFullName.Text.Trim
             .DateOfBirth = Date.ParseExact(txtBirthday.Text.Trim, "yyyy-MM-dd", System.Globalization.DateTimeFormatInfo.InvariantInfo)
             .RefCode = txtUserID.Text.GetHashCode
             .RefCodeReg = txtRegRefCode.Text.Trim
-            .VipLevel = 0
+            .VipLevel = CInt(cmbLevel.SelectedValue)
             .Promotion = 0F
             .DateCreated = Now
             .LastModified = Now
-            .IPAddress = Request.UserHostAddress
+            .IPAddress = "127.0.0.1"
             .GroupLeaderID = -1
-            .Enabled = True
-            .Remark = Nothing
+            .Enabled = CBool(cmbEnabled.SelectedValue)
+            .Remark = txtRemarks.Text.Trim
         End With
 
         Try
@@ -70,6 +60,5 @@ Partial Class Register
         End Try
         Return True
     End Function
-
 
 End Class

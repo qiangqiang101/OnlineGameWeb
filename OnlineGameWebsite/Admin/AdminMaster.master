@@ -60,7 +60,7 @@
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Members:</h6>
                             <a class="collapse-item" href="Members.aspx">Member Enquiry</a>
-                            <a class="collapse-item" href="#">Add Member</a>
+                            <a class="collapse-item" href="AddMember.aspx">Add Member</a>
                         </div>
                     </div>
                 </li>
@@ -76,8 +76,10 @@
                             <a class="collapse-item" href="#">Transaction Reminder</a>
                             <a class="collapse-item" href="#">Transaction Enquiry</a>
                             <a class="collapse-item" href="#">Transfer Enquiry</a>
-                            <hr />
-                            <a class="collapse-item" href="#">Adjustment</a>
+                            <h6 class="collapse-header">Adjustments:</h6>
+                            <a class="collapse-item" href="#">Credit</a>
+                            <a class="collapse-item" href="#">Debit</a>
+                            <a class="collapse-item" href="#">Promotion</a>
                         </div>
                     </div>
                 </li>

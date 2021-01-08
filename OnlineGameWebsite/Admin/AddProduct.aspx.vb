@@ -2,12 +2,6 @@
 Partial Class Admin_AddProduct
     Inherits System.Web.UI.Page
 
-    Private Sub Admin_AddProduct_Load(sender As Object, e As EventArgs) Handles Me.Load
-        If Not IsPostBack Then
-
-        End If
-    End Sub
-
     Private Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
         If txtName.Text = Nothing Then
             JsMsgBox("Name is required!")
@@ -16,6 +10,7 @@ Partial Class Admin_AddProduct
         Else
             If AddNewProduct() Then
                 JsMsgBox("Product added successfully.")
+                Response.Redirect("Products.aspx")
             Else
                 JsMsgBox("Add product failed! Please contact Administrator.")
             End If
@@ -46,6 +41,8 @@ Partial Class Admin_AddProduct
                     JsMsgBox("Image upload failed, please try upload only supported image format.")
                     .ProductImage = Nothing
                 End If
+            Else
+                .ProductImage = "images/empty_box.png"
             End If
         End With
 

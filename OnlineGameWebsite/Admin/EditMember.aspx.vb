@@ -8,8 +8,8 @@ Partial Class Admin_EditMember
             Dim id As String = Request.QueryString("id")
 
             If id <> Nothing Then
-                Dim m = (From mem In db.TblMembers Where mem.UserID = id).FirstOrDefault
-                If m IsNot Nothing Then
+                Try
+                    Dim m = db.TblMembers.Single(Function(x) x.UserID = id)
                     txtUserID.Text = m.UserName.Trim
                     txtPassword.Text = m.Password.Trim
                     txtEmail.Text = m.Email.Trim
@@ -44,14 +44,14 @@ Partial Class Admin_EditMember
                     Dim tns = (From tran In db.TblTransactions Where tran.UserName = m.UserName)
                     If tns IsNot Nothing Then
                         For Each tn In tns
-                            dataTable3.AddTableItem(tn.TransactionID, tn.TransactionDate, tn.Product, tn.ProductUserName, tn.Method, tn.Debit,
-                                                    If(tn.Promotion = 0F, tn.Credit, tn.Promotion), StatusToString(tn.Status))
+                            dataTable3.AddTableItem(tn.TransactionID, tn.TransactionDate, ProductName(tn.ProductID), tn.ProductUserName, tn.Method, tn.Debit.ToString("0.00"),
+                                                    If(tn.Promotion = 0F, tn.Credit.ToString("0.00"), tn.Promotion.ToString("0.00")), StatusToString(tn.Status))
                         Next
                     End If
-                Else
+                Catch ex As Exception
                     JsMsgBox("Member not found!")
                     btnSubmit.Enabled = False
-                End If
+                End Try
             Else
                 JsMsgBox("Member not found!")
                 btnSubmit.Enabled = False
@@ -61,25 +61,43 @@ Partial Class Admin_EditMember
 
     Private Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
         Dim editMember = db.TblMembers.Single(Function(x) x.UserID = CInt(Request.QueryString("id")))
-        With editMember
-            .UserName = txtUserID.Text.Trim
-            .Password = txtPassword.Text.Trim
-            .Email = txtEmail.Text.Trim
-            .PhoneNo = txtPhone.Text.Trim
-            .FullName = txtFullName.Text.Trim
-            .DateOfBirth = Date.ParseExact(txtBirthday.Text.Trim, "yyyy-MM-dd", System.Globalization.DateTimeFormatInfo.InvariantInfo)
-            .RefCode = .RefCode
-            .RefCodeReg = .RefCodeReg
-            .VipLevel = cmbLevel.SelectedValue
-            .Promotion = .Promotion
-            .DateCreated = .DateCreated
-            .LastModified = Now
-            .IPAddress = .IPAddress
-            .GroupLeaderID = .GroupLeaderID
-            .Enabled = cmbEnabled.SelectedValue
-            .Remark = txtRemarks.Text.Trim
-        End With
-        db.SubmitChanges()
-        JsMsgBox("Member " & editMember.UserName & " update successfully.")
+
+        If TryEditMember() Then
+            JsMsgBox("Member " & editMember.UserName & " update successfully.")
+            Response.Redirect("Members.aspx")
+        Else
+            JsMsgBox("Member " & editMember.UserName & " edit failed! Please contact Administrator.")
+        End If
     End Sub
+
+    Private Function TryEditMember() As Boolean
+        Try
+            Dim editMember = db.TblMembers.Single(Function(x) x.UserID = CInt(Request.QueryString("id")))
+            With editMember
+                .UserName = txtUserID.Text.Trim
+                .Password = txtPassword.Text.Trim
+                .Email = txtEmail.Text.Trim
+                .PhoneNo = txtPhone.Text.Trim
+                .FullName = txtFullName.Text.Trim
+                .DateOfBirth = Date.ParseExact(txtBirthday.Text.Trim, "yyyy-MM-dd", System.Globalization.DateTimeFormatInfo.InvariantInfo)
+                .RefCode = .RefCode
+                .RefCodeReg = .RefCodeReg
+                .VipLevel = cmbLevel.SelectedValue
+                .Promotion = .Promotion
+                .DateCreated = .DateCreated
+                .LastModified = Now
+                .IPAddress = .IPAddress
+                .GroupLeaderID = .GroupLeaderID
+                .Enabled = cmbEnabled.SelectedValue
+                .Remark = txtRemarks.Text.Trim
+            End With
+
+            db.SubmitChanges()
+        Catch ex As Exception
+            Return False
+        End Try
+
+        Return True
+    End Function
+
 End Class

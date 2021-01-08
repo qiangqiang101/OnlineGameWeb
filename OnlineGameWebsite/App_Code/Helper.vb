@@ -197,6 +197,23 @@ Public Module Helper
         End Select
     End Function
 
+    Public Function LogTypeToString(type As Integer) As String
+        Select Case type
+            Case 0
+                Return "Login"
+            Case 1
+                Return "Register"
+            Case 2
+                Return "Deposit"
+            Case 3
+                Return "Withdrawal"
+            Case 4
+                Return "Transfer"
+            Case Else
+                Return "Unknown"
+        End Select
+    End Function
+
     Public Function Img(path As String, alt As String) As String
         Return "<img src=""" & path & """ alt=""" & alt & """ height=""30px"" />"
     End Function
@@ -204,6 +221,14 @@ Public Module Helper
     Public Function IsImage(ext As String) As Boolean
         Dim imageExts As New List(Of String) From {"gif", "jpg", "jpeg", "jfif", "pjpeg", "pjp", "png", "svg", "webp", "bmp", "apng", "avif"}
         Return imageExts.Contains(ext)
+    End Function
+
+    Public Function ProductName(id As Integer) As String
+        Try
+            Return db.TblProducts.Single(Function(x) x.ProductID = id).ProductName
+        Catch ex As Exception
+            Return id
+        End Try
     End Function
 
 End Module

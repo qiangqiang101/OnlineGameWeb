@@ -7,8 +7,8 @@ Partial Class Admin_EditBank
             Dim id As String = Request.QueryString("id")
 
             If id <> Nothing Then
-                Dim b = db.TblBanks.Single(Function(x) x.BankID = id)
-                If b IsNot Nothing Then
+                Try
+                    Dim b = db.TblBanks.Single(Function(x) x.BankID = id)
                     txtBank.Text = b.BankName.Trim
                     txtName.Text = b.AccountName.Trim
                     txtAccNo.Text = b.AccountNo.Trim
@@ -18,10 +18,10 @@ Partial Class Admin_EditBank
                     txtMinDebit.Text = b.MinDebit.ToString("0.00")
                     txtMaxDebit.Text = b.MaxDebit.ToString("0.00")
                     cmbEnabled.SelectedValue = b.Status
-                Else
+                Catch ex As Exception
                     JsMsgBox("Bank not found!")
                     btnSubmit.Enabled = False
-                End If
+                End Try
             Else
                 JsMsgBox("Bank not found!")
                 btnSubmit.Enabled = False
@@ -30,20 +30,37 @@ Partial Class Admin_EditBank
     End Sub
 
     Private Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
-        Dim editBank = db.TblBanks.Single(Function(x) x.BankID = CInt(Request.QueryString("id")))
-        With editBank
-            .BankName = txtBank.Text.Trim
-            .AccountName = txtName.Text.Trim
-            .AccountNo = txtAccNo.Text.Trim
-            .Status = cmbEnabled.SelectedValue
-            .BankWeb = txtWebsite.Text.Trim
-            .MinCredit = CSng(txtMinCredit.Text.Trim)
-            .MaxCredit = CSng(txtMaxCredit.Text.Trim)
-            .MinDebit = CSng(txtMinDebit.Text.Trim)
-            .MaxDebit = CSng(txtMaxDebit.Text.Trim)
-        End With
+        Dim editbank = db.TblBanks.Single(Function(x) x.BankID = CInt(Request.QueryString("id")))
 
-        db.SubmitChanges()
-        JsMsgBox(editBank.BankName & " - " & editBank.AccountName & " (" & editBank.AccountNo & ") update successfully.")
+        If TryEditBank() Then
+            JsMsgBox(editbank.BankName & " - " & editbank.AccountName & " (" & editbank.AccountNo & ") update successfully.")
+            Response.Redirect("Banks.aspx")
+        Else
+            JsMsgBox(editBank.BankName & " - " & editBank.AccountName & " (" & editBank.AccountNo & ") edit failed! Please contact Administrator.")
+        End If
     End Sub
+
+    Private Function TryEditBank() As Boolean
+        Try
+            Dim editbank = db.TblBanks.Single(Function(x) x.BankID = CInt(Request.QueryString("id")))
+            With editbank
+                .BankName = txtBank.Text.Trim
+                .AccountName = txtName.Text.Trim
+                .AccountNo = txtAccNo.Text.Trim
+                .Status = cmbEnabled.SelectedValue
+                .BankWeb = txtWebsite.Text.Trim
+                .MinCredit = CSng(txtMinCredit.Text.Trim)
+                .MaxCredit = CSng(txtMaxCredit.Text.Trim)
+                .MinDebit = CSng(txtMinDebit.Text.Trim)
+                .MaxDebit = CSng(txtMaxDebit.Text.Trim)
+            End With
+
+            db.SubmitChanges()
+        Catch ex As Exception
+            Return False
+        End Try
+
+        Return True
+    End Function
+
 End Class
