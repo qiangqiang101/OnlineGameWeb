@@ -138,8 +138,8 @@
                             <a class="collapse-item" href="Products.aspx">Product</a>
                             <div class="collapse-divider"></div>
                             <h6 class="collapse-header">Transaction Settings:</h6>
-                            <a class="collapse-item" href="#">Reject Reason</a>
-                            <a class="collapse-item" href="#">Remark</a>
+                            <a class="collapse-item" href="RejectReasons.aspx">Reject Reason</a>
+                            <a class="collapse-item" href="Remarks.aspx">Remark</a>
                         </div>
                     </div>
                 </li>
