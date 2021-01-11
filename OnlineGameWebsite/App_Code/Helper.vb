@@ -104,12 +104,13 @@ Public Module Helper
         Return False
     End Function
 
-    Public Function RB(action As String, css As String, Optional button As String = "btn-primary") As String
-        Return RoundButton(action, css, button)
+    Public Function RB(action As String, css As String, Optional button As String = "btn-primary", Optional tooltip As String = "") As String
+        Return RoundButton(action, css, button, tooltip) & " "
     End Function
 
-    Public Function RoundButton(action As String, css As String, Optional button As String = "btn-primary") As String
-        Return "<a href=""" & action & """ class=""btn " & button & " btn-circle btn-sm""><i class=""" & css & """></i></a>"
+    Public Function RoundButton(action As String, css As String, Optional button As String = "btn-primary", Optional tooltip As String = "") As String
+        'Return "<a href=""" & action & """ class=""btn " & button & " btn-circle btn-sm""><i class=""" & css & """></i></a>"
+        Return String.Format("<a href={0}{1}{0} class={0}btn {2} btn-circle btn-sm{0} data-toggle={0}tooltip{0} title={0}{3}{0}><i class={0}{4}{0}></i></a>", """", action, button, tooltip, css)
     End Function
 
     Public Function RoundModalButton(target As String, css As String, id As String, Optional button As String = "btn-primary") As String

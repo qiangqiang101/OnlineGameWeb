@@ -7,37 +7,90 @@ Partial Class Admin_EditProduct
     Public imageUrl As String = Nothing
 
     Private Sub Admin_EditProduct_Load(sender As Object, e As EventArgs) Handles Me.Load
-        If Not IsPostBack Then
-            mode = Request.QueryString("mode")
-            pid = Request.QueryString("id")
+        mode = Request.QueryString("mode")
+        pid = Request.QueryString("id")
 
+        If Not IsPostBack Then
             Select Case mode
                 Case "edit"
-                    If pid <> Nothing Then
-                        Try
-                            Dim p = db.TblProducts.Single(Function(x) x.ProductID = pid)
-                            txtName.Text = p.ProductName.Trim
-                            txtAlias.Text = p.ProductAlias.Trim
-                            cmbCategory.SelectedValue = p.ProductCategory
-                            cmbEnabled.SelectedValue = p.Status
-                            txtBalance.Text = p.Balance.ToString("0.00")
-                            txtAndroid.Text = p.AndroidLink.Trim
-                            txtiOS.Text = p.iOSLink.Trim
-                            txtWindows.Text = p.WindowsLink.Trim
-                            txtWebsite.Text = p.WebsiteUrl.Trim
-                            imageUrl = p.ProductImage
-                            imgProduct.ImageUrl = If(p.ProductImage = Nothing, "", "..\" & p.ProductImage.Trim)
-                            h6.InnerText = "Edit " & p.ProductID.ToString("00000")
-                        Catch ex As Exception
-                            JsMsgBox("Product not found!")
-                            btnSubmit.Enabled = False
-                        End Try
-                    Else
+                    Try
+                        Dim p = db.TblProducts.Single(Function(x) x.ProductID = pid)
+                        txtName.Text = p.ProductName.Trim
+                        txtAlias.Text = p.ProductAlias.Trim
+                        cmbCategory.SelectedValue = p.ProductCategory
+                        cmbEnabled.SelectedValue = p.Status
+                        txtBalance.Text = p.Balance.ToString("0.00")
+                        txtAndroid.Text = p.AndroidLink.Trim
+                        txtiOS.Text = p.iOSLink.Trim
+                        txtWindows.Text = p.WindowsLink.Trim
+                        txtWebsite.Text = p.WebsiteUrl.Trim
+                        imageUrl = p.ProductImage
+                        imgProduct.ImageUrl = If(p.ProductImage = Nothing, "", "..\" & p.ProductImage.Trim)
+                        h6.InnerText = "Edit " & p.ProductID.ToString("00000")
+                    Catch ex As Exception
                         JsMsgBox("Product not found!")
                         btnSubmit.Enabled = False
-                    End If
+                    End Try
                 Case "delete"
+                    Try
+                        Dim p = db.TblProducts.Single(Function(x) x.ProductID = pid)
+                        txtName.Text = p.ProductName.Trim
+                        txtAlias.Text = p.ProductAlias.Trim
+                        cmbCategory.SelectedValue = p.ProductCategory
+                        cmbEnabled.SelectedValue = p.Status
+                        txtBalance.Text = p.Balance.ToString("0.00")
+                        txtAndroid.Text = p.AndroidLink.Trim
+                        txtiOS.Text = p.iOSLink.Trim
+                        txtWindows.Text = p.WindowsLink.Trim
+                        txtWebsite.Text = p.WebsiteUrl.Trim
+                        imageUrl = p.ProductImage
+                        imgProduct.ImageUrl = If(p.ProductImage = Nothing, "", "..\" & p.ProductImage.Trim)
 
+                        txtName.ReadOnly = True
+                        txtAlias.ReadOnly = True
+                        cmbCategory.Enabled = False
+                        cmbEnabled.Enabled = False
+                        txtBalance.ReadOnly = True
+                        txtAndroid.ReadOnly = True
+                        txtiOS.ReadOnly = True
+                        txtWindows.ReadOnly = True
+                        txtWebsite.ReadOnly = True
+
+                        h6.InnerText = "Are you sure you want to delete " & p.ProductName & " (" & p.ProductID.ToString("00000") & ")?"
+                        btnSubmit.Text = "Delete"
+                    Catch ex As Exception
+                        JsMsgBox("Product not found!")
+                        btnSubmit.Enabled = False
+                    End Try
+                Case "duplicate"
+                    h6.InnerText = "Add New Product"
+                    btnSubmit.Text = "Insert"
+                    imgProduct.Visible = False
+
+                    Try
+                        Dim p = db.TblProducts.Single(Function(x) x.ProductID = pid)
+                        txtName.Text = "Copy of " & p.ProductName.Trim
+                        txtAlias.Text = p.ProductAlias.Trim
+                        cmbCategory.SelectedValue = p.ProductCategory
+                        cmbEnabled.SelectedValue = p.Status
+                        txtBalance.Text = p.Balance.ToString("0.00")
+                        txtAndroid.Text = p.AndroidLink.Trim
+                        txtiOS.Text = p.iOSLink.Trim
+                        txtWindows.Text = p.WindowsLink.Trim
+                        txtWebsite.Text = p.WebsiteUrl.Trim
+                        imageUrl = p.ProductImage
+                        imgProduct.ImageUrl = If(p.ProductImage = Nothing, "", "..\" & p.ProductImage.Trim)
+
+                        If AddNewProduct() Then
+                            JsMsgBox("Product added successfully.")
+                            Response.Redirect("Products.aspx")
+                        Else
+                            JsMsgBox("Add product failed! Please contact Administrator.")
+                        End If
+                    Catch ex As Exception
+                        JsMsgBox("Product not found!")
+                        btnSubmit.Enabled = False
+                    End Try
                 Case Else
                     h6.InnerText = "Add New Product"
                     btnSubmit.Text = "Insert"
@@ -58,7 +111,16 @@ Partial Class Admin_EditProduct
                     JsMsgBox("Product " & editProduct.ProductName & " edit failed! Please contact Administrator.")
                 End If
             Case "delete"
+                Try
+                    Dim productToDelete = db.TblProducts.Single(Function(x) x.ProductID = CInt(pid))
+                    db.TblProducts.DeleteOnSubmit(productToDelete)
+                    db.SubmitChanges()
 
+                    JsMsgBox("Product delete successfully.")
+                    Response.Redirect("Products.aspx")
+                Catch ex As Exception
+                    JsMsgBox("Delete product failed! Please contact Administrator.")
+                End Try
             Case Else
                 If txtName.Text = Nothing Then
                     JsMsgBox("Name is required!")
@@ -77,7 +139,7 @@ Partial Class Admin_EditProduct
 
     Private Function TryEditProduct() As Boolean
         Try
-            Dim editProduct = db.TblProducts.Single(Function(x) x.ProductID = CInt(Request.QueryString("id")))
+            Dim editProduct = db.TblProducts.Single(Function(x) x.ProductID = CInt(pid))
             With editProduct
                 .ProductName = txtName.Text.Trim
                 .ProductAlias = txtAlias.Text.Trim
