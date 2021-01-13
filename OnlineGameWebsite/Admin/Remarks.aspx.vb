@@ -5,7 +5,9 @@ Partial Class Admin_Remarks
     Private Sub Admin_Remarks_Load(sender As Object, e As EventArgs) Handles Me.Load
         Dim rr = db.TblTransRemarks.OrderByDescending(Function(x) x.TrID)
         For Each r As TblTransRemark In rr
-            dataTable.AddTableItem(r.TrID.ToString("00000"), r.TRemark.Trim, r.Status.ToString, RB("EditRemark.aspx?mode=edit&id=" & r.TrID, "fas fa-edit"))
+            dataTable.AddTableItem(r.TrID.ToString("00000"), r.TRemark.Trim, r.Status.ToString, RB("EditRemark.aspx?mode=edit&id=" & r.TrID, "fas fa-edit") &
+                                   RB("EditRemark.aspx?mode=delete&id=" & r.TrID, "fas fa-trash", "btn-danger", "Delete") &
+                                   RB("EditRemark.aspx?mode=duplicate&id=" & r.TrID, "fas fa-clone", "btn-info", "Duplicate"))
         Next
     End Sub
 

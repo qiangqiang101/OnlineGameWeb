@@ -6,28 +6,55 @@ Partial Class Admin_EditRejectReason
     Public rrid As String = 0
 
     Private Sub Admin_EditRejectReason_Load(sender As Object, e As EventArgs) Handles Me.Load
-        If Not IsPostBack Then
-            mode = Request.QueryString("mode")
-            rrid = Request.QueryString("id")
+        mode = Request.QueryString("mode")
+        rrid = Request.QueryString("id")
 
+        If Not IsPostBack Then
             Select Case mode
                 Case "edit"
-                    If rrid <> Nothing Then
-                        Try
-                            Dim rr = db.TblTRejectReasons.Single(Function(x) x.TrrID = rrid)
-                            txtName.Text = rr.TrReason.Trim
-                            cmbEnabled.SelectedValue = rr.Status
-                            h6.InnerText = "Edit " & rr.TrrID.ToString("00000")
-                        Catch ex As Exception
-                            JsMsgBox("Reject reason not found!")
-                            btnSubmit.Enabled = False
-                        End Try
-                    Else
+                    Try
+                        Dim rr = db.TblTRejectReasons.Single(Function(x) x.TrrID = rrid)
+                        txtName.Text = rr.TrReason.Trim
+                        cmbEnabled.SelectedValue = rr.Status
+                        h6.InnerText = "Edit " & rr.TrrID.ToString("00000")
+                    Catch ex As Exception
                         JsMsgBox("Reject reason not found!")
                         btnSubmit.Enabled = False
-                    End If
+                    End Try
                 Case "delete"
+                    Try
+                        Dim rr = db.TblTRejectReasons.Single(Function(x) x.TrrID = rrid)
+                        txtName.Text = rr.TrReason.Trim
+                        cmbEnabled.SelectedValue = rr.Status
 
+                        txtName.ReadOnly = True
+                        cmbEnabled.Enabled = False
+
+                        h6.InnerText = "Are you sure you want to delete " & rr.TrReason & " (" & rr.TrrID.ToString("00000") & ")?"
+                        btnSubmit.Text = "Delete"
+                    Catch ex As Exception
+                        JsMsgBox("Reject reason not found!")
+                        btnSubmit.Enabled = False
+                    End Try
+                Case "duplicate"
+                    h6.InnerText = "Add New Reject Reason"
+                    btnSubmit.Text = "Insert"
+
+                    Try
+                        Dim rr = db.TblTRejectReasons.Single(Function(x) x.TrrID = rrid)
+                        txtName.Text = "Copy of " & rr.TrReason.Trim
+                        cmbEnabled.SelectedValue = rr.Status
+
+                        If AddNewRR() Then
+                            JsMsgBox("Reject reason added successfully.")
+                            Response.Redirect("RejectReasons.aspx")
+                        Else
+                            JsMsgBox("Add reject reason failed! Please contact Administrator.")
+                        End If
+                    Catch ex As Exception
+                        JsMsgBox("Reject reason not found!")
+                        btnSubmit.Enabled = False
+                    End Try
                 Case Else
                     h6.InnerText = "Add New Reject Reason"
                     btnSubmit.Text = "Insert"
@@ -47,7 +74,16 @@ Partial Class Admin_EditRejectReason
                     JsMsgBox("Reject reason " & editRR.TrReason & " edit failed! Please contact Administrator.")
                 End If
             Case "delete"
+                Try
+                    Dim rrToDelete = db.TblTRejectReasons.Single(Function(x) x.TrrID = CInt(rrid))
+                    db.TblTRejectReasons.DeleteOnSubmit(rrToDelete)
+                    db.SubmitChanges()
 
+                    JsMsgBox("Reject Reason delete successfully.")
+                    Response.Redirect("RejectReasons.aspx")
+                Catch ex As Exception
+                    JsMsgBox("Delete reject reason failed! Please contact Administrator.")
+                End Try
             Case Else
                 If AddNewRR() Then
                     JsMsgBox("Reject reason added successfully.")

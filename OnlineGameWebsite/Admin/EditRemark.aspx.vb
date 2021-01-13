@@ -6,28 +6,55 @@ Partial Class Admin_EditRemark
     Public rid As String = 0
 
     Private Sub Admin_EditRemark_Load(sender As Object, e As EventArgs) Handles Me.Load
-        If Not IsPostBack Then
-            mode = Request.QueryString("mode")
-            rid = Request.QueryString("id")
+        mode = Request.QueryString("mode")
+        rid = Request.QueryString("id")
 
+        If Not IsPostBack Then
             Select Case mode
                 Case "edit"
-                    If rid <> Nothing Then
-                        Try
-                            Dim rr = db.TblTransRemarks.Single(Function(x) x.TrID = rid)
-                            txtName.Text = rr.TRemark.Trim
-                            cmbEnabled.SelectedValue = rr.Status
-                            h6.InnerText = "Edit " & rr.TrID.ToString("00000")
-                        Catch ex As Exception
-                            JsMsgBox("Remark not found!")
-                            btnSubmit.Enabled = False
-                        End Try
-                    Else
+                    Try
+                        Dim rr = db.TblTransRemarks.Single(Function(x) x.TrID = rid)
+                        txtName.Text = rr.TRemark.Trim
+                        cmbEnabled.SelectedValue = rr.Status
+                        h6.InnerText = "Edit " & rr.TrID.ToString("00000")
+                    Catch ex As Exception
                         JsMsgBox("Remark not found!")
                         btnSubmit.Enabled = False
-                    End If
+                    End Try
                 Case "delete"
+                    Try
+                        Dim rr = db.TblTransRemarks.Single(Function(x) x.TrID = rid)
+                        txtName.Text = rr.TRemark.Trim
+                        cmbEnabled.SelectedValue = rr.Status
 
+                        txtName.ReadOnly = True
+                        cmbEnabled.Enabled = False
+
+                        h6.InnerText = "Are you sure you want to delete " & rr.TRemark & " (" & rr.TrID.ToString("00000") & ")?"
+                        btnSubmit.Text = "Delete"
+                    Catch ex As Exception
+                        JsMsgBox("Remark not found!")
+                        btnSubmit.Enabled = False
+                    End Try
+                Case "duplicate"
+                    h6.InnerText = "Add New Remark"
+                    btnSubmit.Text = "Insert"
+
+                    Try
+                        Dim rr = db.TblTransRemarks.Single(Function(x) x.TrID = rid)
+                        txtName.Text = "Copy of " & rr.TRemark.Trim
+                        cmbEnabled.SelectedValue = rr.Status
+
+                        If AddNewRemark() Then
+                            JsMsgBox("Remark added successfully.")
+                            Response.Redirect("Remarks.aspx")
+                        Else
+                            JsMsgBox("Add remark failed! Please contact Administrator.")
+                        End If
+                    Catch ex As Exception
+                        JsMsgBox("Remark not found!")
+                        btnSubmit.Enabled = False
+                    End Try
                 Case Else
                     h6.InnerText = "Add New Remark"
                     btnSubmit.Text = "Insert"
@@ -47,7 +74,16 @@ Partial Class Admin_EditRemark
                     JsMsgBox("Remark " & editRmk.TRemark & " edit failed! Please contact Administrator.")
                 End If
             Case "delete"
+                Try
+                    Dim remarkToDelete = db.TblTransRemarks.Single(Function(x) x.TrID = CInt(rid))
+                    db.TblTransRemarks.DeleteOnSubmit(remarkToDelete)
+                    db.SubmitChanges()
 
+                    JsMsgBox("Remark delete successfully.")
+                    Response.Redirect("Remarks.aspx")
+                Catch ex As Exception
+                    JsMsgBox("Delete remark failed! Please contact Administrator.")
+                End Try
             Case Else
                 If AddNewRemark() Then
                     JsMsgBox("Remark added successfully.")

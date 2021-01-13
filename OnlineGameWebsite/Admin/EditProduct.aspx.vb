@@ -78,10 +78,10 @@ Partial Class Admin_EditProduct
                         txtiOS.Text = p.iOSLink.Trim
                         txtWindows.Text = p.WindowsLink.Trim
                         txtWebsite.Text = p.WebsiteUrl.Trim
-                        imageUrl = p.ProductImage
+                        imageUrl = p.ProductImage.Trim
                         imgProduct.ImageUrl = If(p.ProductImage = Nothing, "", "..\" & p.ProductImage.Trim)
 
-                        If AddNewProduct() Then
+                        If AddNewProduct(p.ProductImage.Trim) Then
                             JsMsgBox("Product added successfully.")
                             Response.Redirect("Products.aspx")
                         Else
@@ -176,7 +176,7 @@ Partial Class Admin_EditProduct
         Return True
     End Function
 
-    Private Function AddNewProduct() As Boolean
+    Private Function AddNewProduct(Optional image As String = "images/empty_box.png") As Boolean
         Dim newProduct As New TblProduct
         With newProduct
             .ProductName = txtName.Text.Trim
@@ -201,7 +201,7 @@ Partial Class Admin_EditProduct
                     .ProductImage = Nothing
                 End If
             Else
-                .ProductImage = "images/empty_box.png"
+                .ProductImage = image
             End If
         End With
 

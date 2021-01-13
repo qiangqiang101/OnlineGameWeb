@@ -109,7 +109,6 @@ Public Module Helper
     End Function
 
     Public Function RoundButton(action As String, css As String, Optional button As String = "btn-primary", Optional tooltip As String = "") As String
-        'Return "<a href=""" & action & """ class=""btn " & button & " btn-circle btn-sm""><i class=""" & css & """></i></a>"
         Return String.Format("<a href={0}{1}{0} class={0}btn {2} btn-circle btn-sm{0} data-toggle={0}tooltip{0} title={0}{3}{0}><i class={0}{4}{0}></i></a>", """", action, button, tooltip, css)
     End Function
 
@@ -215,8 +214,13 @@ Public Module Helper
         End Select
     End Function
 
-    Public Function Img(path As String, alt As String) As String
-        Return "<img src=""" & path & """ alt=""" & alt & """ height=""30px"" />"
+    Public Function Img(path As String, alt As String, Optional link As Boolean = True) As String
+        'Return "<img src=""" & path & """ alt=""" & alt & """ height=""30px"" />"
+        If link Then
+            Return String.Format("<a href={0}{1}{0} target={0}_blank{0}><img src={0}{1}{0} alt={0}{2}{0} height={0}30px{0} /></a>", """", path, alt)
+        Else
+            Return String.Format("<img src={0}{1}{0} alt={0}{2}{0} height={0}30px{0} />", """", path, alt)
+        End If
     End Function
 
     Public Function IsImage(ext As String) As Boolean
