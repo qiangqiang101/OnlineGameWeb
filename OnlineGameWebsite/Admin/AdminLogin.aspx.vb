@@ -9,6 +9,7 @@ Partial Class Admin_AdminLogin
             JsMsgBox("Password is required!")
         Else
             If IsAdminLoginSuccess(txtUserID.Text.Trim, txtPassword.Text.Trim, Page) Then
+                UpdateUserLastLogin(txtUserID.Text.Trim, Request.UserHostAddress)
                 Response.Redirect("Dashboard.aspx")
             Else
                 JsMsgBox("Incorrect UserID or Password.")

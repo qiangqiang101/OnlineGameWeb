@@ -7,7 +7,7 @@ Partial Class Admin_Products
         For Each p As TblProduct In products
             Dim hasImage As Boolean = p.ProductImage <> Nothing
             dataTable.AddTableItem(p.ProductID.ToString("00000"), If(hasImage, Img("..\" & p.ProductImage.Trim, p.ProductName.Trim), ""), p.ProductName.Trim, p.ProductAlias.Trim,
-                                   p.Balance.ToString("0.00"), ProductCategoryToString(p.ProductCategory), p.Status,
+                                   p.Balance.ToString("0.00"), ProductCategoryToString(p.ProductCategory), BoolStatusToString(p.Status),
                                    RB("EditProduct.aspx?mode=edit&id=" & p.ProductID, "fas fa-edit", tooltip:="Edit") & RB("EditProduct.aspx?mode=delete&id=" & p.ProductID, "fas fa-trash", "btn-danger", "Delete") &
                                    RB("EditProduct.aspx?mode=duplicate&id=" & p.ProductID, "fas fa-clone", "btn-info", "Duplicate"))
         Next

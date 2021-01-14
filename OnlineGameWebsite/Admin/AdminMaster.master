@@ -74,7 +74,7 @@
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Transactions:</h6>
                             <a class="collapse-item" href="#">Transaction Reminder</a>
-                            <a class="collapse-item" href="#">Transaction Enquiry</a>
+                            <a class="collapse-item" href="Transactions.aspx">Transaction Enquiry</a>
                             <a class="collapse-item" href="#">Transfer Enquiry</a>
                             <h6 class="collapse-header">Adjustments:</h6>
                             <a class="collapse-item" href="#">Credit</a>
@@ -98,7 +98,7 @@
                     <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Tools:</h6>
-                            <a class="collapse-item" href="#">IP Lookup</a>
+                            <a class="collapse-item" href="IpTool.aspx">IP Lookup</a>
                             <div class="collapse-divider"></div>
                             <h6 class="collapse-header">Other:</h6>
                             <a class="collapse-item" href="404.aspx">404 Page</a>
@@ -131,6 +131,7 @@
                             <a class="collapse-item" href="GeneralSettings.aspx">General</a>
                             <a class="collapse-item" href="GameAccounts.aspx">Game Account</a>
                             <a class="collapse-item" href="Banks.aspx">Bank</a>
+                            <a class="collapse-item" href="Users.aspx">User</a>
                             <div class="collapse-divider"></div>
                             <h6 class="collapse-header">Page Settings:</h6>
                             <a class="collapse-item" href="Sliders.aspx">Slider</a>
@@ -320,7 +321,7 @@
                                 </a>
                                 <!-- Dropdown - User Information -->
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                                    <a class="dropdown-item" href="#"><i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>Profile</a>
+                                    <a class="dropdown-item" href="#" id="navbarProfile" runat="server"><i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>Profile</a>
                                     <a class="dropdown-item" href="#"><i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>Settings</a>
                                     <a class="dropdown-item" href="#"><i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>Activity Log</a>
                                     <div class="dropdown-divider"></div>

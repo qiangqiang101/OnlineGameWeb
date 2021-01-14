@@ -64,8 +64,6 @@
                                         <asp:ListItem Value="8">Gold+</asp:ListItem>
                                         <asp:ListItem Value="9">Platinum</asp:ListItem>
                                         <asp:ListItem Value="10">Platinum+</asp:ListItem>
-                                        <asp:ListItem Value="20">Affiliate</asp:ListItem>
-                                        <asp:ListItem Value="32">Administrator</asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
                                 <div class="col-sm-6">

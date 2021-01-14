@@ -33,8 +33,12 @@ Partial Class Register
             JsMsgBox("Please accept the Terms & Conditions.")
         Else
             If RegisterMember() Then
+                LogAction(txtUserID.Text.Trim, Request.UserHostAddress, eLogType.Register)
                 JsMsgBox("Registration completed!")
-                If IsMemberLoginSuccess(txtUserID.Text, txtPassword.Text, Page) Then Response.Redirect("Default.aspx")
+                If IsMemberLoginSuccess(txtUserID.Text, txtPassword.Text, Page) Then
+                    LogAction(txtUserID.Text.Trim, Request.UserHostAddress, eLogType.Login)
+                    Response.Redirect("Default.aspx")
+                End If
             Else
                 JsMsgBox("Registration failed! Please contact Customer Service.")
             End If

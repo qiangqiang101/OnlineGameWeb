@@ -107,7 +107,7 @@
   <Table Name="dbo.TblTRejectReason" Member="TblTRejectReasons">
     <Type Name="TblTRejectReason">
       <Column Name="TrrID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="TrReason" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="TrReason" Type="System.String" DbType="NChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="Status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
@@ -120,26 +120,6 @@
       <Column Name="Promotion" Type="System.Single" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="SummaryDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="TransactionID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="dbo.TblTransaction" Member="TblTransactions">
-    <Type Name="TblTransaction">
-      <Column Name="TransactionID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="TransactionDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="UserName" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
-      <Column Name="Method" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
-      <Column Name="Debit" Type="System.Single" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="Credit" Type="System.Single" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="Promotion" Type="System.Single" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="Reason" Type="System.String" DbType="NChar(255)" CanBeNull="true" />
-      <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="ProductUserName" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
-      <Column Name="Bank" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
-      <Column Name="BankAccount" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
-      <Column Name="UploadFile" Type="System.String" DbType="NChar(255)" CanBeNull="true" />
-      <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="IPAddress" Type="System.String" DbType="NChar(20)" CanBeNull="true" />
-      <Column Name="ApproveByUser" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Table Name="dbo.TblBankRecord" Member="TblBankRecords">
@@ -181,11 +161,37 @@
       <Column Name="UserName" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
       <Column Name="Password" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
       <Column Name="FullName" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="NChar(255) NOT NULL" CanBeNull="false" />
       <Column Name="DateCreated" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="UserRole" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="LastLoginDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="LastLoginIP" Type="System.String" DbType="NChar(20)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TblTransaction" Member="TblTransactions">
+    <Type Name="TblTransaction">
+      <Column Name="TransactionID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TransactionDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Method" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="TransType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Debit" Type="System.Single" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Credit" Type="System.Single" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Promotion" Type="System.Single" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Channel" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Reason" Type="System.String" DbType="NChar(255)" CanBeNull="true" />
+      <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ProductUserName" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Bank" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+      <Column Name="BankAccount" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+      <Column Name="UploadFile" Type="System.String" DbType="NChar(255)" CanBeNull="true" />
+      <Column Name="Reference" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+      <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IPAddress" Type="System.String" DbType="NChar(20)" CanBeNull="true" />
+      <Column Name="ApproveByUser" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="ApproveDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Remark" Type="System.String" DbType="NChar(255)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

@@ -21,11 +21,25 @@ Public Module Helper
         Return False
     End Function
 
-    Public Function IsEmailExists(email As String) As Boolean
-        Dim check = (From m In db.TblMembers Where m.Email = email).ToList
-        Dim members = (From m In db.TblMembers)
-        If members.Contains(check.FirstOrDefault) Then Return True
+    Public Function IsUserExists(username As String) As Boolean
+        Dim check = (From u In db.TblUsers Where u.UserName = username).ToList
+        Dim users = (From m In db.TblUsers)
+        If users.Contains(check.FirstOrDefault) Then Return True
         Return False
+    End Function
+
+    Public Function IsEmailExists(email As String, Optional checkMember As Boolean = True) As Boolean
+        If checkMember Then
+            Dim check = (From m In db.TblMembers Where m.Email = email).ToList
+            Dim members = (From m In db.TblMembers)
+            If members.Contains(check.FirstOrDefault) Then Return True
+            Return False
+        Else
+            Dim check = (From u In db.TblUsers Where u.Email = email).ToList
+            Dim users = (From m In db.TblUsers)
+            If users.Contains(check.FirstOrDefault) Then Return True
+            Return False
+        End If
     End Function
 
     Public Function IsEmailValid(email As String) As Boolean
@@ -71,38 +85,47 @@ Public Module Helper
 
     Public Function IsAdminLoginSuccess(username As String, password As String, page As Page) As Boolean
         If IsEmailValid(username) Then
-            Dim member = (From m In db.TblMembers Where m.Email = username And m.Password = password).FirstOrDefault
-            If member IsNot Nothing Then
-                If member.Enabled AndAlso member.VipLevel = 32 Then
-                    page.Session("userid") = member.UserID
-                    page.Session("username") = member.UserName
-                    page.Session("fullname") = member.FullName
-                    page.Session("email") = member.Email
-                    page.Session("role") = "admin"
+            Try
+                Dim user = db.TblUsers.Single(Function(x) x.Email = username AndAlso x.Password = password)
+                If user.Status Then
+                    page.Session("userid") = user.UserID
+                    page.Session("username") = user.UserName
+                    page.Session("fullname") = user.FullName
+                    page.Session("email") = user.Email
+                    page.Session("role") = UserRoleToString(user.UserRole)
 
                     Return True
-                Else
-                    Return False
                 End If
-            End If
+            Catch ex As Exception
+                Return False
+            End Try
         Else
-            Dim member = (From m In db.TblMembers Where m.UserName = username And m.Password = password).FirstOrDefault
-            If member IsNot Nothing Then
-                If member.Enabled AndAlso member.VipLevel = 32 Then
-                    page.Session("userid") = member.UserID
-                    page.Session("username") = member.UserName
-                    page.Session("fullname") = member.FullName
-                    page.Session("email") = member.Email
-                    page.Session("role") = "admin"
+            Try
+                Dim user = db.TblUsers.Single(Function(x) x.UserName = username AndAlso x.Password = password)
+                If user.Status Then
+                    page.Session("userid") = user.UserID
+                    page.Session("username") = user.UserName
+                    page.Session("fullname") = user.FullName
+                    page.Session("email") = user.Email
+                    page.Session("role") = UserRoleToString(user.UserRole)
 
                     Return True
-                Else
-                    Return False
                 End If
-            End If
+            Catch ex As Exception
+                Return False
+            End Try
         End If
         Return False
     End Function
+
+    Public Sub UpdateUserLastLogin(username As String, ip As String)
+        Dim user = db.TblUsers.Single(Function(x) x.UserName = username)
+        With user
+            .LastLoginDate = Now
+            .LastLoginIP = ip
+        End With
+        db.SubmitChanges()
+    End Sub
 
     Public Function RB(action As String, css As String, Optional button As String = "btn-primary", Optional tooltip As String = "") As String
         Return RoundButton(action, css, button, tooltip) & " "
@@ -177,6 +200,17 @@ Public Module Helper
         End Select
     End Function
 
+    Public Function TransactionTypeToString(type As Integer) As String
+        Select Case type
+            Case 0
+                Return "Credit"
+            Case 1
+                Return "Debit"
+            Case Else
+                Return "Promotion"
+        End Select
+    End Function
+
     Public Function PromotionTypeToString(type As Integer) As String
         Select Case type
             Case 0
@@ -197,20 +231,25 @@ Public Module Helper
         End Select
     End Function
 
-    Public Function LogTypeToString(type As Integer) As String
-        Select Case type
-            Case 0
-                Return "Login"
-            Case 1
-                Return "Register"
-            Case 2
-                Return "Deposit"
-            Case 3
-                Return "Withdrawal"
-            Case 4
-                Return "Transfer"
+    Public Function BoolStatusToString(status As Boolean) As String
+        Select Case status
+            Case False
+                Return "Disabled"
             Case Else
-                Return "Unknown"
+                Return "Enabled"
+        End Select
+    End Function
+
+    Public Function UserRoleToString(role As Integer) As String
+        Select Case role
+            Case 1
+                Return "Agent/Affiliate"
+            Case 2
+                Return "Administrator"
+            Case 3
+                Return "Full Administrator"
+            Case Else
+                Return "Customer Serivce"
         End Select
     End Function
 
@@ -233,6 +272,58 @@ Public Module Helper
             Return db.TblProducts.Single(Function(x) x.ProductID = id).ProductName
         Catch ex As Exception
             Return id
+        End Try
+    End Function
+
+    Public Function LogTypeToString(log As Integer) As String
+        Select Case log
+            Case 0
+                Return "Register"
+            Case 1
+                Return "Login"
+            Case 2
+                Return "Credit"
+            Case 3
+                Return "Debit"
+            Case 4
+                Return "Transfer"
+            Case Else
+                Return "Request Game Account"
+        End Select
+    End Function
+
+    Public Enum eLogType
+        Register
+        Login
+        Credit
+        Debit
+        Transfer
+        RequestGameAcc
+    End Enum
+
+    Public Sub LogAction(username As String, ip As String, type As eLogType)
+        Dim newLog As New TblLog
+        With newLog
+            .LogMember = username
+            .LogIP = ip
+            .LogType = CInt(type)
+            .LogDate = Now
+        End With
+
+        Try
+            db.TblLogs.InsertOnSubmit(newLog)
+            db.SubmitChanges()
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Public Function LastLoginIP(username As String) As String
+        Try
+            Dim log = db.TblLogs.Where(Function(x) x.LogMember = username And x.LogType = 1).OrderByDescending(Function(x) x.LogDate).FirstOrDefault
+            Return log.LogIP.Trim
+        Catch ex As Exception
+            Return "127.0.0.1"
         End Try
     End Function
 

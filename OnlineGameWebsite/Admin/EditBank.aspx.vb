@@ -23,6 +23,7 @@ Partial Class Admin_EditBank
                         txtMinDebit.Text = b.MinDebit.ToString("0.00")
                         txtMaxDebit.Text = b.MaxDebit.ToString("0.00")
                         cmbEnabled.SelectedValue = b.Status
+
                         h6.InnerText = "Edit " & b.BankID.ToString("00000")
                     Catch ex As Exception
                         JsMsgBox("Bank not found!")

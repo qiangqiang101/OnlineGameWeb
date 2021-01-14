@@ -9,6 +9,7 @@ Partial Class Login
             JsMsgBox("Password is required!")
         Else
             If IsMemberLoginSuccess(txtUserID.Text.Trim, txtPassword.Text.Trim, Page) Then
+                LogAction(txtUserID.Text.Trim, Request.UserHostAddress, eLogType.Login)
                 Response.Redirect("Default.aspx")
             Else
                 JsMsgBox("Incorrect UserID or Password.")

@@ -9,7 +9,7 @@
         <div class="container-fluid">
 
             <!-- Page Heading -->
-            <h1 class="h3 mb-2 text-gray-800">Member Edit</h1>
+            <h1 class="h3 mb-2 text-gray-800" id="h1" runat="server">Member Edit</h1>
 
             <!-- DataTales Example -->
             <div class="row">
@@ -64,8 +64,6 @@
                                         <asp:ListItem Value="8">Gold+</asp:ListItem>
                                         <asp:ListItem Value="9">Platinum</asp:ListItem>
                                         <asp:ListItem Value="10">Platinum+</asp:ListItem>
-                                        <asp:ListItem Value="20">Affiliate</asp:ListItem>
-                                        <asp:ListItem Value="32">Administrator</asp:ListItem>
                                     </asp:DropDownList>
                                 </div>
                                 <div class="col-sm-6">

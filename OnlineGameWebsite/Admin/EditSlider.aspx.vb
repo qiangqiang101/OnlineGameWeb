@@ -7,32 +7,71 @@ Partial Class Admin_EditSlider
     Private imageUrl As String = Nothing
 
     Private Sub Admin_EditSlider_Load(sender As Object, e As EventArgs) Handles Me.Load
-        If Not IsPostBack Then
-            mode = Request.QueryString("mode")
-            sid = Request.QueryString("id")
+        mode = Request.QueryString("mode")
+        sid = Request.QueryString("id")
 
+        If Not IsPostBack Then
             Select Case mode
                 Case "edit"
-                    If sid <> Nothing Then
-                        Try
-                            Dim s = db.TblSliders.Single(Function(x) x.SliderID = sid)
-                            txtIndex.Text = s.DisplayIndex
-                            txtName.Text = s.SliderName.Trim
-                            txtUrl.Text = s.LinkUrl.Trim
-                            cmbEnabled.SelectedValue = s.Status
-                            imageUrl = s.SliderImage.Trim
-                            imgSlide.ImageUrl = If(s.SliderImage = Nothing, "", "..\" & s.SliderImage.Trim)
-                            h6.InnerText = "Edit " & s.SliderID.ToString("00000")
-                        Catch ex As Exception
-                            JsMsgBox("Slider not found!")
-                            btnSubmit.Enabled = False
-                        End Try
-                    Else
+                    Try
+                        Dim s = db.TblSliders.Single(Function(x) x.SliderID = sid)
+                        txtIndex.Text = s.DisplayIndex
+                        txtName.Text = s.SliderName.Trim
+                        txtUrl.Text = s.LinkUrl.Trim
+                        cmbEnabled.SelectedValue = s.Status
+                        imageUrl = s.SliderImage.Trim
+                        imgSlide.ImageUrl = If(s.SliderImage = Nothing, "", "..\" & s.SliderImage.Trim)
+                        h6.InnerText = "Edit " & s.SliderID.ToString("00000")
+                    Catch ex As Exception
                         JsMsgBox("Slider not found!")
                         btnSubmit.Enabled = False
-                    End If
+                    End Try
                 Case "delete"
+                    Try
+                        Dim s = db.TblSliders.Single(Function(x) x.SliderID = sid)
+                        txtIndex.Text = s.DisplayIndex
+                        txtName.Text = s.SliderName.Trim
+                        txtUrl.Text = s.LinkUrl.Trim
+                        cmbEnabled.SelectedValue = s.Status
+                        imageUrl = s.SliderImage.Trim
+                        imgSlide.ImageUrl = If(s.SliderImage = Nothing, "", "..\" & s.SliderImage.Trim)
 
+                        txtIndex.ReadOnly = True
+                        txtName.ReadOnly = True
+                        txtUrl.ReadOnly = True
+                        cmbEnabled.Enabled = False
+
+                        h6.InnerText = "Are you sure you want to delete " & s.SliderName & " (" & s.SliderID.ToString("00000") & ")?"
+                        btnSubmit.Text = "Delete"
+                    Catch ex As Exception
+                        JsMsgBox("Slider not found!")
+                        btnSubmit.Enabled = False
+                    End Try
+                Case "duplicate"
+                    h6.InnerText = "Add New Slider"
+                    btnSubmit.Text = "Insert"
+                    imgSlide.Visible = False
+
+                    Try
+                        Dim s = db.TblSliders.Single(Function(x) x.SliderID = sid)
+                        txtIndex.Text = s.DisplayIndex
+                        txtName.Text = "Copy of " & s.SliderName.Trim
+                        txtUrl.Text = s.LinkUrl.Trim
+                        cmbEnabled.SelectedValue = s.Status
+                        imageUrl = s.SliderImage.Trim
+                        imgSlide.ImageUrl = If(s.SliderImage = Nothing, "", "..\" & s.SliderImage.Trim)
+                        h6.InnerText = "Edit " & s.SliderID.ToString("00000")
+
+                        If AddNewSlider() Then
+                            JsMsgBox("Slider added successfully.")
+                            Response.Redirect("Sliders.aspx")
+                        Else
+                            JsMsgBox("Add slider failed! Please contact Administrator.")
+                        End If
+                    Catch ex As Exception
+                        JsMsgBox("Slider not found!")
+                        btnSubmit.Enabled = False
+                    End Try
                 Case Else
                     h6.InnerText = "Add New Slider"
                     btnSubmit.Text = "Insert"
@@ -53,7 +92,16 @@ Partial Class Admin_EditSlider
                     JsMsgBox("Slider " & editSlide.SliderName & " edit failed! Please contact Administrator.")
                 End If
             Case "delete"
+                Try
+                    Dim sliderToDelete = db.TblSliders.Single(Function(x) x.SliderID = CInt(sid))
+                    db.TblSliders.DeleteOnSubmit(sliderToDelete)
+                    db.SubmitChanges()
 
+                    JsMsgBox("Slider delete successfully.")
+                    Response.Redirect("Sliders.aspx")
+                Catch ex As Exception
+                    JsMsgBox("Delete slider failed! Please contact Administrator.")
+                End Try
             Case Else
                 If txtName.Text = Nothing Then
                     JsMsgBox("Slider name is required!")
@@ -103,7 +151,7 @@ Partial Class Admin_EditSlider
         Return True
     End Function
 
-    Private Function AddNewSlider() As Boolean
+    Private Function AddNewSlider(Optional image As String = "images/empty_box.png") As Boolean
         Dim newSlide As New TblSlider
         With newSlide
             .DisplayIndex = CInt(txtIndex.Text.Trim)
@@ -124,7 +172,7 @@ Partial Class Admin_EditSlider
                     .SliderImage = Nothing
                 End If
             Else
-                .SliderImage = "images/empty_box.png"
+                .SliderImage = image
             End If
         End With
 
