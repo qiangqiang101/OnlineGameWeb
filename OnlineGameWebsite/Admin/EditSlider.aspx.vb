@@ -19,8 +19,10 @@ Partial Class Admin_EditSlider
                         txtName.Text = s.SliderName.Trim
                         txtUrl.Text = s.LinkUrl.Trim
                         cmbEnabled.SelectedValue = s.Status
-                        imageUrl = s.SliderImage.Trim
-                        imgSlide.ImageUrl = If(s.SliderImage = Nothing, "", "..\" & s.SliderImage.Trim)
+                        If s.SliderImage <> Nothing Then
+                            imageUrl = s.SliderImage.Trim
+                            imgSlide.ImageUrl = If(s.SliderImage = Nothing, "", "..\" & s.SliderImage.Trim)
+                        End If
                         h6.InnerText = "Edit " & s.SliderID.ToString("00000")
                     Catch ex As Exception
                         JsMsgBox("Slider not found!")

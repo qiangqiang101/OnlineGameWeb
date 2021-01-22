@@ -4,67 +4,1016 @@
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Online Game Website in ASP</title>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <link href="css/all.css" rel="stylesheet" />
+    <title>Online Game Website in ASP</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&amp;subset=latin-ext">
+    <link rel="stylesheet" href="Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="Content/font-awesome.min.css" />
+    <link rel="stylesheet" href="fonts/essential-regular-fonts/essential-icons.css" />
+
+    <link rel="stylesheet" href="Plugins/owl-carousel/owl.carousel.css" />
+    <link rel="stylesheet" href="Plugins/owl-carousel/owl.theme.css" />
+
+    <link rel="stylesheet" href="Plugins/Magnific-Popup/magnific-popup.css" />
+
+    <link rel="stylesheet" href="Plugins/ion.rangeSlider/css/ion.rangeSlider.css" />
+    <link rel="stylesheet" href="Plugins/ion.rangeSlider/css/ion.rangeSlider.skinNice.css" />
+
+    <link rel="stylesheet" href="Plugins/custom-scrollbar/jquery.mCustomScrollbar.css" />
+
+    <link rel="stylesheet" href="Plugins/jquery-bar-rating/themes/fontawesome-stars.css" />
+
+    <link rel="stylesheet" href="Plugins/masterslider/style/masterslider.css" />
+    <link rel="stylesheet" href="Plugins/masterslider/skins/default/style.css" />
+    <link rel="stylesheet" href="Plugins/masterslider/fullscreen/style/ms-fullscreen.css" />
+
+    <link rel="stylesheet" href="Theme/css/theme.min.css" />
+    <link rel="stylesheet" href="Theme/css/inm.css" />
+
+    <link rel="stylesheet" href="Theme/css/color/Default.css" id="color" />
+
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
     <form id="form1" runat="server">
-        <div id="dvheader">
-            <nav class="navbar navbar-expand-sm bg-dark navbar-dark ml-auto">
-                <div class="container">
-                    <!-- Brand/logo -->
-                    <a class="navbar-brand" href="Default.aspx"><img src="images/logo.png" alt="logo" style="width: 150px;" /></a>       
-
-                    <!-- Links -->
-                    <ul id="navbarid" class="navbar-nav">
-                        <li class="nav-item"><a class="nav-link" href="Default.aspx" id="lnkHome" runat="Server"><i class="fas fa-home">&nbsp;</i>Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="SlotGames.aspx" id="lnkSlot" runat="Server"><i class="fas fa-trophy">&nbsp;</i>Slot Games</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#" id="lnkLive" runat="Server"><i class="fas fa-dice-six">&nbsp;</i>Live Games</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#" id="lnkSport" runat="Server"><i class="fas fa-futbol">&nbsp;</i>Sportsbook</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#" id="lnkOther" runat="Server"><i class="fas fa-dice">&nbsp;</i>Others</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#" id="lnkPromo" runat="Server"><i class="fas fa-percentage">&nbsp;</i>Promotion</a></li>
-                    </ul>
-
-                    <!-- Buttons -->
-                    <ul id="navbarrid" class="navbar-nav flex-fill justify-content-end">
-                        <li class="nav-item"><asp:LinkButton ID="btnLogin" runat="server"><a href="Login.aspx" class="btn btn-secondary" role="button"><i class="fas fa-sign-in-alt">&nbsp;</i>Login</a></asp:LinkButton></li>
-                        <li class="nav-item dropdown" id="lnkMemberPagesDropdown" runat="server">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown" runat="server">Hello, </a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#"><i class="fas fa-dollar-sign fa-fw">&nbsp;</i>Deposit</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-exchange-alt fa-fw">&nbsp;</i>Transfer</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-history fa-fw">&nbsp;</i>Withdrawal</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-hand-holding-usd fa-fw">&nbsp;</i>Transaction History</a>
-                                <hr />
-                                <a class="dropdown-item" href="Admin/Dashboard.aspx" id="lnkAdminDb" runat="server"><i class="fas fa-tachometer-alt fa-fw">&nbsp;</i>Admin Dashboard</a>
-                                <asp:LinkButton CssClass="dropdown-item" ID="btnLogout" runat="server"><i class="fas fa-sign-out-alt fa-fw">&nbsp;</i>Logout</asp:LinkButton>
+        <div id="dvheader" class="body">
+            <header class="header standart_nav">
+                <div class="top">
+                    <div class="container p-t-10 p-b-10">
+                        <div class="row">
+                            <div class="col-md-6 hidden-sm hidden-xs" id="siteTitle" runat="server">
+                                Palovit Construction Company
                             </div>
-                        </li>
-                        &nbsp;
-                        <li class="nav-item"><asp:LinkButton ID="btnRegister" runat="server"><a href="Register.aspx" class="btn btn-warning" role="button"><i class="fas fa-user-plus">&nbsp;</i>Sign Up</a></asp:LinkButton></li>                        
-                    </ul>
+                            <div class="col-md-6 col-sm-12 col-xs-12">
+                                <div class="pull-right hidden-sm hidden-xs">
+                                    <ul class="social">
+                                        <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                        <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                        <li class="instagram"><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                        <li class="google"><a href="#"><i class="fa fa-google"></i></a></li>
+                                        <li class="youtube"><a href="#"><i class="fa fa-youtube"></i></a></li>
+                                    </ul>
+                                </div>
+                                <div class="dropdown pull-right">
+                                    <a href="#" class="dropdown" id="language" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">English
+                            <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu palovit-dropdown" aria-labelledby="language">
+                                        <li><a href="#">English</a></li>
+                                        <li><a href="#">中文</a></li>
+                                        <li><a href="#">Malay</a></li>
+                                    </ul>
+                                </div>
+                                <div class="rmenu" id="memberLogin" runat="server">
+                                    <div id="account">
+                                        <a href="#" class="dropdown">
+                                            <i class="fa fa-user-o">&nbsp</i>Log in /
+                                <span>Register</span>
+                                            <span class="caret"></span>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <div class="account">
+                                                    <div class="signin">
+                                                        <h4>Sign In</h4>
+                                                        <hr />
+                                                        <form action="#" method="post">
+                                                            <div class="form-group">
+                                                                <label>User ID / E-mail</label>
+                                                                <asp:TextBox class="form-control" ID="txtUserID" runat="server" placeholder="User ID / Email" required="Required"></asp:TextBox>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <a class="pull-right" id="Recover" href="#">Reset Password</a>
+                                                                <label>Password</label>
+                                                                <asp:TextBox class="form-control" ID="txtPassword" runat="server" placeholder="Password" TextMode="Password" required="Required"></asp:TextBox>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="row">
+                                                                    <div class="col-xs-6">
+                                                                        <span class="remember-box checkbox">
+                                                                            <label for="rememberme">
+                                                                                <input type="checkbox" id="rememberme" name="rememberme">Remember Me
+                                                                            </label>
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="col-xs-6">
+                                                                        <asp:Button class="btn btn-palovit palovit35 pull-right" ID="btnLogin" runat="server" Text="Login" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                        <p>Don't have an account yet? <a href="#" id="SignUp">Sign Up</a></p>
+                                                    </div>
+                                                    <div class="signup">
+                                                        <h4>Create Account</h4>
+                                                        <hr />
+                                                        <form action="#" method="post">
+                                                            <div class="form-group">
+                                                                <label>E-mail</label>
+                                                                <input type="text" value="" class="form-control">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <div class="row">
+                                                                    <div class="col-xs-6">
+                                                                        <label>Password</label>
+                                                                        <input type="password" value="" class="form-control">
+                                                                    </div>
+                                                                    <div class="col-xs-6">
+                                                                        <label>Re-enter Password</label>
+                                                                        <input type="password" value="" class="form-control">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group clearfix">
+                                                                <input type="submit" value="Create Account" class="btn btn-palovit palovit35 pull-left" />
+                                                            </div>
+                                                        </form>
+                                                        <p>Already have an account? <a href="#" id="SignIn">Log In</a></p>
+                                                    </div>
+                                                    <div class="recover">
+                                                        <h4>Reset My Password</h4>
+                                                        <hr />
+                                                        <p>Complete the form below to receive an email with the authorization code needed to reset your password.</p>
+                                                        <form action="#" method="post">
+                                                            <div class="form-group">
+                                                                <label>E-mail</label>
+                                                                <input type="text" value="" class="form-control">
+                                                            </div>
+                                                            <div class="form-group clearfix">
+                                                                <input type="submit" value="Submit" class="btn btn-palovit palovit35 pull-left" />
+                                                            </div>
+                                                        </form>
+                                                        <p>Already have an account? <a href="#" id="RecoverCancel">Log In</a></p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="dropdown pull-right" id="memberMenu" runat="server">
+                                    <a href="#" class="dropdown" id="memberArea" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">My Account
+                            <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu palovit-dropdown" aria-labelledby="memberArea">
+                                        <li><a href="Deposit.aspx">Deposit</a></li>
+                                        <li><a href="Withdrawal.aspx">Withdrawal</a></li>
+                                        <li><a href="Transfer.aspx">Transfer</a></li>
+                                        <li><a href="TransactionHistory.aspx">Transaction History</a></li>
+                                        <li><a href="TransferHistory.aspx">Transfer History</a></li>
+                                        <li><a href="GameAccount.aspx">Game Accounts</a></li>
+                                        <hr />
+                                        <li><a href="#" id="logout" runat="server">Log out</a></li>
+                                    </ul>
+                                </div>
+                                <div class="rmenu" id="memberName" runat="server">
+                                    <a href="#" aria-haspopup="false" aria-expanded="true">Hello</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </nav>
-        </div>
+                <div class="center">
+                    <div class="container p-t-30 p-b-30">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                                <a href="Default.aspx" class="logo">
+                                    <img src="Theme/img/logo.png" class="img-responsive" alt="" id="siteLogo" runat="server" />
+                                </a>
+                            </div>
+                            <div class="col-lg-2 col-md-2 hidden-sm hidden-xs info">
+                                <div>
+                                    <i class="fa fa-whatsapp"></i>
+                                </div>
+                                <div>
+                                    <strong>WHATSAPP</strong>
+                                    <span>+6012-345 6789</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-2 hidden-sm hidden-xs info">
+                                <div>
+                                    <i class="fa fa-telegram"></i>
+                                </div>
+                                <div>
+                                    <strong>TELEGRAM</strong>
+                                    <span>onlinegame</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-2 hidden-sm hidden-xs info">
+                                <div>
+                                    <i class="fa fa-weixin"></i>
+                                </div>
+                                <div>
+                                    <strong>WECHAT</strong>
+                                    <span>wxid_0123456789</span>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-2 hidden-md hidden-sm hidden-xs info">
+                                <asp:Button class="btn btn-slider-black" ID="btnHead" runat="server" Text="Sign Up Now" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-9 col-sm-12 col-xs-12 rspnav">
+                                <nav class="collnav collapse">
+                                    <ul class="nav nav-pills">
+                                        <li><a href="Default.aspx">HOME</a></li>
+                                        <%--<li class="dropdown">
+                                            <a class="dropdown-toggle" href="Index.html">HOME</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="Home-1.html">Home 1</a></li>
+                                                <li><a href="Home-2.html">Home 2</a></li>
+                                                <li><a href="Home-3.html">Home 3</a></li>
+                                                <li><a href="Home-4.html">Home 4</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" href="#">SERVICES</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="Services.html">Services</a></li>
+                                                <li><a href="Services-Detail.html">Services Detail</a></li>
+                                                <li><a href="Services-Detail-Two.html">Services Detail Two</a></li>
+                                                <li><a href="Services-Detail-Three.html">Services Detail Three</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" href="#">PROJECTS</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="Project-Grid-2-Columns.html">Project Grid 2 Columns</a></li>
+                                                <li><a href="Project-Grid-3-Columns.html">Project Grid 3 Columns</a></li>
+                                                <li><a href="Project-Grid-4-Columns.html">Project Grid 4 Columns</a></li>
+                                                <li><a href="Single-Project.html">Single Project</a></li>
+                                            </ul>
+                                        </li>--%>
+                                        <li class="dropdown dropdown-mega">
+                                            <a class="dropdown-toggle" href="#">PRODUCTS</a>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <div class="mega-content">
+                                                        <div class="row">
+                                                            <div class="col-md-3">
+                                                                <span class="mega-sub-title">SLOT GAMES</span>
+                                                                <ul class="mega-sub-nav">
+                                                                    <li><a href="Header-Standart-Nav.html">Standart Menu</a></li>
+                                                                    <li><a href="Header-Transparent-Nav.html">Transparent Menu</a></li>
+                                                                    <li><a href="Header-Radius-Topmenu-Nav.html">Radius Top Menu</a></li>
+                                                                    <li><a href="SlotGames.aspx">More Slot Games...</a></li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <span class="mega-sub-title">LIVE GAMES</span>
+                                                                <ul class="mega-sub-nav">
+                                                                    <li><a href="Footer-Standart.html">Standart Footer</a></li>
+                                                                    <li><a href="Footer-Short.html">Short Footer</a></li>
+                                                                    <li><a href="Footer-Simple.html">Simple Footer</a></li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <span class="mega-sub-title">SPORTSBOOK</span>
+                                                                <ul class="mega-sub-nav">
+                                                                    <li><a href="About-1.html">About 1</a></li>
+                                                                    <li><a href="About-2.html">About 2</a></li>
+                                                                    <li><a href="Career.html">Career</a></li>
+                                                                    <li><a href="Company.html">Company</a></li>
+                                                                    <li><a href="Page404.html">404 Page</a></li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <span class="mega-sub-title">OTHERS</span>
+                                                                <ul class="mega-sub-nav">
+                                                                    <li><a href="Accordion.html">Accordion</a></li>
+                                                                    <li><a href="Tab.html">Tab</a></li>
+                                                                    <li><a href="Buttons.html">Buttons</a></li>
+                                                                    <li><a href="Alerts.html">Alerts</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <%--<li class="dropdown">
+                                            <a class="dropdown-toggle" href="#">BLOG</a>
+                                            <ul class="dropdown-menu">
+                                                <li class="dropdown-submenu">
+                                                    <a href="#">Blog Grid Layouts</a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="Blog-Grid-Left-Sidebar.html">Blog Grid Left Sidebar</a></li>
+                                                        <li><a href="Blog-Grid-Right-Sidebar.html">Blog Grid Right Sidebar</a></li>
+                                                        <li><a href="Blog-Grid-Full-Width.html">Blog Grid Full Width</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li><a href="Blog-List-Style.html">Blog List Style</a></li>
+                                                <li><a href="Blog-Post-Single.html">Blog Post Single</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown">
+                                            <a class="dropdown-toggle" href="#">SHOP</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="Shop-Grid-Left-Sidebar.html">Shop Grid Left Sidebar</a></li>
+                                                <li><a href="Shop-Grid-Right-Sidebar.html">Shop Grid Right Sidebar</a></li>
+                                                <li><a href="Shop-Grid-Full-Width.html">Shop Grid Full Width</a></li>
+                                                <li><a href="Shop-Single-Product.html">Shop Single Product</a></li>
+                                                <li><a href="Shop-Cart.html">Shop Cart</a></li>
+                                                <li><a href="Shop-Checkout.html">Shop Checkout</a></li>
+                                                <li><a href="Shop-Login.html">Shop Login</a></li>
+                                            </ul>
+                                        </li>--%>
+                                        <li><a href="Contact.html">LIVE SCORE</a></li>
+                                        <li><a href="Contact.html">DOWNLOAD</a></li>
+                                        <li><a href="Contact.html">PROMOTION</a></li>
+                                        <li><a href="Contact.html">CONTACT</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <div class="col-sm-2 col-xs-2 hidden-lg hidden-md rspbtn">
+                                <button data-toggle="collapse" data-target=".collnav">
+                                    <i class="fa fa-bars"></i>
+                                </button>
+                            </div>
+                            <div class="col-md-3 col-sm-10 col-xs-10">
+                                <div class="search">
+                                    <form action="#">
+                                        <div class="input-group">
+                                            <input type="text" placeholder="Search...">
+                                            <span class="input-group-btn">
+                                                <button type="submit"><i class="fa fa-search"></i></button>
+                                            </span>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <div class="main">
 
-        <div style="min-height: 700px">
-            <asp:ContentPlaceHolder ID="dvcontent" runat="server">
+
+                <!-- end of template -->
+                <%--<section class="archive2 p-t-60 p-b-20">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4 m-b-30 item">
+                                <div><i data-icon="O" class="icon"></i></div>
+                                <div>
+                                    <h4>CONSTRUCTION</h4>
+                                    <p>Bringing so sociable felicity supplied mr. September suspicion far him two acuteness perfectly.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4 m-b-30 item">
+                                <div><i data-icon=";" class="icon"></i></div>
+                                <div>
+                                    <h4>ARCHITECTURE</h4>
+                                    <p>Bringing so sociable felicity supplied mr. September suspicion far him two acuteness perfectly.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4 m-b-30 item">
+                                <div><i data-icon="!" class="icon"></i></div>
+                                <div>
+                                    <h4>PROJECT MANAGEMENT</h4>
+                                    <p>Bringing so sociable felicity supplied mr. September suspicion far him two acuteness perfectly.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4 m-b-30 item">
+                                <div><i data-icon="P" class="icon"></i></div>
+                                <div>
+                                    <h4>INTERIOR DESIGN</h4>
+                                    <p>Bringing so sociable felicity supplied mr. September suspicion far him two acuteness perfectly.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4 m-b-30 item">
+                                <div><i data-icon="^" class="icon"></i></div>
+                                <div>
+                                    <h4>RENOVATION</h4>
+                                    <p>Bringing so sociable felicity supplied mr. September suspicion far him two acuteness perfectly.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4 m-b-30 item">
+                                <div><i data-icon="V" class="icon"></i></div>
+                                <div>
+                                    <h4>REPORTING</h4>
+                                    <p>Bringing so sociable felicity supplied mr. September suspicion far him two acuteness perfectly.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>--%>
+                <%--<section class="company border-top p-t-30 p-b-50">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 palovit-title m-b-20">
+                                <hr class="hr" />
+                                <h2>ABOUT OUR COMPANY</h2>
+                                <p>We diminution preference thoroughly if. Joy deal pain view much her time. Led young gay would now state. Pronounce we attention admitting on assurance of suspicion conveying</p>
+                            </div>
+                            <div class="col-md-12 owl-carousel" data-items="1" data-autoplay="3000" data-pagination="true">
+                                <div class="item">
+                                    <div class="col-md-6 p-t-30">
+                                        <h4>Our Company Mission</h4>
+                                        <p>Certainly elsewhere my do allowance at. The address farther six hearted hundred towards husband. Are securing off occasion remember daughter replying. Held that feel his see own yet. Strangers ye to he sometimes propriety in. She right plate seven has. Bed who perceive judgment did marianne. </p>
+                                        <ul class="hidden-sm hidden-xs">
+                                            <li>Possession her thoroughly remarkably terminated man continuing</li>
+                                            <li>Can friendly laughter goodness man him appetite carriage</li>
+                                            <li>Sportsman delighted improving dashwoods gay instantly happiness</li>
+                                            <li>Demesne mention promise you justice arrived way</li>
+                                            <li>As departure at no propriety zealously my</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <img src="Theme/img/about-1.jpg" class="img-responsive" alt="" />
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="col-md-6 p-t-30">
+                                        <h4>Our Company Mission</h4>
+                                        <p>Certainly elsewhere my do allowance at. The address farther six hearted hundred towards husband. Are securing off occasion remember daughter replying. Held that feel his see own yet. Strangers ye to he sometimes propriety in. She right plate seven has. Bed who perceive judgment did marianne. </p>
+                                        <ul class="hidden-sm hidden-xs">
+                                            <li>Possession her thoroughly remarkably terminated man continuing</li>
+                                            <li>Can friendly laughter goodness man him appetite carriage</li>
+                                            <li>Sportsman delighted improving dashwoods gay instantly happiness</li>
+                                            <li>Demesne mention promise you justice arrived way</li>
+                                            <li>As departure at no propriety zealously my</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <img src="Theme/img/about-1.jpg" class="img-responsive" alt="" />
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="col-md-6 p-t-30">
+                                        <h4>Our Company Mission</h4>
+                                        <p>Certainly elsewhere my do allowance at. The address farther six hearted hundred towards husband. Are securing off occasion remember daughter replying. Held that feel his see own yet. Strangers ye to he sometimes propriety in. She right plate seven has. Bed who perceive judgment did marianne. </p>
+                                        <ul class="hidden-sm hidden-xs">
+                                            <li>Possession her thoroughly remarkably terminated man continuing</li>
+                                            <li>Can friendly laughter goodness man him appetite carriage</li>
+                                            <li>Sportsman delighted improving dashwoods gay instantly happiness</li>
+                                            <li>Demesne mention promise you justice arrived way</li>
+                                            <li>As departure at no propriety zealously my</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <img src="Theme/img/about-1.jpg" class="img-responsive" alt="" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>--%>
+                <%--<section class="form2">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 palovit-title m-b-30">
+                                <hr class="hr" />
+                                <h2>GET A QUOTE</h2>
+                                <p>We diminution preference thoroughly if. Joy deal pain view much her time. Led young gay would now state. Pronounce we attention admitting on assurance of suspicion conveying </p>
+                            </div>
+                            <div class="col-md-8 col-md-offset-2">
+                                <form>
+                                    <div class="row item">
+                                        <div class="col-md-6">
+                                            <div class="append-icon">
+                                                <input type="text" class="form-control" placeholder="Name" />
+                                                <i class="fa fa-user"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="append-icon">
+                                                <input type="text" class="form-control" placeholder="Email Address" />
+                                                <i class="fa fa-envelope-open-o"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="append-icon">
+                                                <input type="text" class="form-control" placeholder="Phone Number" />
+                                                <i class="fa fa-phone"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="append-icon">
+                                                <select class="form-control">
+                                                    <option>Category</option>
+                                                </select>
+                                                <i class="fa fa-caret-down"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <textarea rows="7" class="form-control" placeholder="Message"></textarea>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <button type="button" class="btn btn-palovit center-block">SEND MESSAGE</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>--%>
+                <%--<section class="accordion p-t-50 p-b-50">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6 left">
+                                <hr class="hr" />
+                                <h4>Our Company Mission</h4>
+                                <div class="panel-group m-t-30" id="accordion" role="tablist" aria-multiselectable="true">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" role="tab" id="heading1">
+                                            <h3 class="panel-title">
+                                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                                                    <i class="fa fa-chevron-up"></i>
+                                                    Quality materials and quality workmanship
+                                                </a>
+                                            </h3>
+                                        </div>
+                                        <div id="collapse1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading1">
+                                            <div class="panel-body">
+                                                <p>Are securing off occasion remember daughter replying. Held that feel his see own yet. Strangers ye to he sometimes propriety in. She right plate seven has. Bed who perceive judgment did marianne. </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" role="tab" id="heading2">
+                                            <h3 class="panel-title">
+                                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                                                    <i class="fa fa-chevron-down"></i>
+                                                    Appropriate for small and large construction companies
+                                                </a>
+                                            </h3>
+                                        </div>
+                                        <div id="collapse2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading2">
+                                            <div class="panel-body">
+                                                <p>Are securing off occasion remember daughter replying. Held that feel his see own yet. Strangers ye to he sometimes propriety in. She right plate seven has. Bed who perceive judgment did marianne. </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" role="tab" id="heading3">
+                                            <h3 class="panel-title">
+                                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                                                    <i class="fa fa-chevron-down"></i>
+                                                    Unlimited materials options plus predefined materials combinations
+                                                </a>
+                                            </h3>
+                                        </div>
+                                        <div id="collapse3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading3">
+                                            <div class="panel-body">
+                                                <p>Are securing off occasion remember daughter replying. Held that feel his see own yet. Strangers ye to he sometimes propriety in. She right plate seven has. Bed who perceive judgment did marianne. </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading" role="tab" id="heading4">
+                                            <h3 class="panel-title">
+                                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                                                    <i class="fa fa-chevron-down"></i>
+                                                    Simple and clean construction, architecture template
+                                                </a>
+                                            </h3>
+                                        </div>
+                                        <div id="collapse4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading4">
+                                            <div class="panel-body">
+                                                <p>Are securing off occasion remember daughter replying. Held that feel his see own yet. Strangers ye to he sometimes propriety in. She right plate seven has. Bed who perceive judgment did marianne. </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 right">
+                                <hr class="hr" />
+                                <h4>What The People Say</h4>
+                                <div id="carousel-example-generic" class="carousel slide m-t-30" data-ride="carousel">
+                                    <div class="carousel-inner" role="listbox">
+                                        <div class="item active">
+                                            <div class="row">
+                                                <div class="col-xs-3">
+                                                    <img src="Theme/img/testimonial-1.jpg" alt="" />
+                                                </div>
+                                                <div class="col-xs-9 p-t-30">
+                                                    <strong>Dustin F. Barnett</strong>
+                                                    <br />
+                                                    <span>Ceo & Founder</span>
+                                                </div>
+                                            </div>
+                                            <hr />
+                                            <p>"He unaffected sympathize discovered at no am conviction principles. Girl ham very how yet hill four show. Meet lain on he only size. Branched learning so subjects mistress do appetite jennings be in. Esteems up lasting no village morning do offices. Settled wishing ability musical may another set age. Diminution my apartments he attachment is entreaties announcing estimating."</p>
+                                        </div>
+                                        <div class="item">
+                                            <div class="row">
+                                                <div class="col-xs-3">
+                                                    <img src="Theme/img/testimonial-2.jpg" alt="" />
+                                                </div>
+                                                <div class="col-xs-9 p-t-30">
+                                                    <strong>Dustin F. Barnett</strong>
+                                                    <br />
+                                                    <span>Ceo & Founder</span>
+                                                </div>
+                                            </div>
+                                            <hr />
+                                            <p>"He unaffected sympathize discovered at no am conviction principles. Girl ham very how yet hill four show. Meet lain on he only size. Branched learning so subjects mistress do appetite jennings be in. Esteems up lasting no village morning do offices. Settled wishing ability musical may another set age. Diminution my apartments he attachment is entreaties announcing estimating."</p>
+                                        </div>
+                                    </div>
+                                    <a class="carousel-control left hidden-xs" href="#carousel-example-generic" role="button" data-slide="prev">
+                                        <i class="fa fa-chevron-left"></i>
+                                    </a>
+                                    <a class="carousel-control right hidden-xs" href="#carousel-example-generic" role="button" data-slide="next">
+                                        <i class="fa fa-chevron-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>--%>
+                <%--<section class="projets3 border-top p-t-30 p-b-50">
+                    <div class="row">
+                        <div class="col-md-12 palovit-title">
+                            <hr class="hr" />
+                            <h2>FEATURED PROJECTS</h2>
+                            <ul class="filter">
+                                <li class="active" data-filter="*">All Projets</li>
+                                <li data-filter=".item1">Buildings</li>
+                                <li data-filter=".item2">Decoration</li>
+                                <li data-filter=".item3">Architecture</li>
+                                <li data-filter=".item1">Renovation</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-12 p-t-30">
+                            <div class="grid">
+                                <div class="col-lg-2 col-md-3 col-sm-4 item item3">
+                                    <div class="grid-box">
+                                        <div class="grid-box-wrapper">
+                                            <img src="Theme/img/lightbox-1.jpg" class="img-responsive" alt="" />
+                                            <a href="#" class="grid-box-title">
+                                                <div class="grid-box-category">Architecture</div>
+                                                <div class="grid-box-detail">DUBAI : DUBAI PARK CENTER</div>
+                                            </a>
+                                            <div class="grid-box-action">
+                                                <a href="#">
+                                                    <span class="box-action-icon"><i class="fa fa-link"></i></span>
+                                                </a>
+                                                <a href="Theme/img/lightbox-1.jpg" class="image-link">
+                                                    <span class="box-action-icon"><i class="fa fa-search"></i></span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-3 col-sm-4 item item2">
+                                    <div class="grid-box">
+                                        <div class="grid-box-wrapper">
+                                            <img src="Theme/img/lightbox-2.jpg" class="img-responsive" alt="" />
+                                            <a href="#" class="grid-box-title">
+                                                <div class="grid-box-category">Decoration</div>
+                                                <div class="grid-box-detail">KITCHEN DECORATION</div>
+                                            </a>
+                                            <div class="grid-box-action">
+                                                <a href="#">
+                                                    <span class="box-action-icon"><i class="fa fa-link"></i></span>
+                                                </a>
+                                                <a href="Theme/img/lightbox-2.jpg" class="image-link">
+                                                    <span class="box-action-icon"><i class="fa fa-search"></i></span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-3 col-sm-4 item item1">
+                                    <div class="grid-box">
+                                        <div class="grid-box-wrapper">
+                                            <img src="Theme/img/lightbox-3.jpg" class="img-responsive" alt="" />
+                                            <a href="#" class="grid-box-title">
+                                                <div class="grid-box-category">Buildings</div>
+                                                <div class="grid-box-detail">HOME BUILDINGS</div>
+                                            </a>
+                                            <div class="grid-box-action">
+                                                <a href="#">
+                                                    <span class="box-action-icon"><i class="fa fa-link"></i></span>
+                                                </a>
+                                                <a href="Theme/img/lightbox-3.jpg" class="image-link">
+                                                    <span class="box-action-icon"><i class="fa fa-search"></i></span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-3 col-sm-4 item item1">
+                                    <div class="grid-box">
+                                        <div class="grid-box-wrapper">
+                                            <img src="Theme/img/lightbox-4.jpg" class="img-responsive" alt="" />
+                                            <a href="#" class="grid-box-title">
+                                                <div class="grid-box-category">Buildings</div>
+                                                <div class="grid-box-detail">GARDEN BUILDINGS</div>
+                                            </a>
+                                            <div class="grid-box-action">
+                                                <a href="#">
+                                                    <span class="box-action-icon"><i class="fa fa-link"></i></span>
+                                                </a>
+                                                <a href="Theme/img/lightbox-4.jpg" class="image-link">
+                                                    <span class="box-action-icon"><i class="fa fa-search"></i></span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-3 col-sm-4 item item2">
+                                    <div class="grid-box">
+                                        <div class="grid-box-wrapper">
+                                            <img src="Theme/img/lightbox-5.jpg" class="img-responsive" alt="" />
+                                            <a href="#" class="grid-box-title">
+                                                <div class="grid-box-category">Decoration</div>
+                                                <div class="grid-box-detail">LIVING ROOM DECORATION</div>
+                                            </a>
+                                            <div class="grid-box-action">
+                                                <a href="#">
+                                                    <span class="box-action-icon"><i class="fa fa-link"></i></span>
+                                                </a>
+                                                <a href="Theme/img/lightbox-5.jpg" class="image-link">
+                                                    <span class="box-action-icon"><i class="fa fa-search"></i></span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-3 col-sm-4 item item3">
+                                    <div class="grid-box">
+                                        <div class="grid-box-wrapper">
+                                            <img src="Theme/img/lightbox-6.jpg" class="img-responsive" alt="" />
+                                            <a href="#" class="grid-box-title">
+                                                <div class="grid-box-category">Architecture</div>
+                                                <div class="grid-box-detail">GARDEN PARK CENTER</div>
+                                            </a>
+                                            <div class="grid-box-action">
+                                                <a href="#">
+                                                    <span class="box-action-icon"><i class="fa fa-link"></i></span>
+                                                </a>
+                                                <a href="Theme/img/lightbox-6.jpg" class="image-link">
+                                                    <span class="box-action-icon"><i class="fa fa-search"></i></span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-3 col-sm-4 item item3">
+                                    <div class="grid-box">
+                                        <div class="grid-box-wrapper">
+                                            <img src="Theme/img/lightbox-7.jpg" class="img-responsive" alt="" />
+                                            <a href="#" class="grid-box-title">
+                                                <div class="grid-box-category">Architecture</div>
+                                                <div class="grid-box-detail">CHILDREN ROOM</div>
+                                            </a>
+                                            <div class="grid-box-action">
+                                                <a href="#">
+                                                    <span class="box-action-icon"><i class="fa fa-link"></i></span>
+                                                </a>
+                                                <a href="Theme/img/lightbox-7.jpg" class="image-link">
+                                                    <span class="box-action-icon"><i class="fa fa-search"></i></span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-3 col-sm-4 item item2">
+                                    <div class="grid-box">
+                                        <div class="grid-box-wrapper">
+                                            <img src="Theme/img/lightbox-8.jpg" class="img-responsive" alt="" />
+                                            <a href="#" class="grid-box-title">
+                                                <div class="grid-box-category">Decoration</div>
+                                                <div class="grid-box-detail">LIVING ROOM DECURATION</div>
+                                            </a>
+                                            <div class="grid-box-action">
+                                                <a href="#">
+                                                    <span class="box-action-icon"><i class="fa fa-link"></i></span>
+                                                </a>
+                                                <a href="Theme/img/lightbox-8.jpg" class="image-link">
+                                                    <span class="box-action-icon"><i class="fa fa-search"></i></span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-3 col-sm-4 item item1">
+                                    <div class="grid-box">
+                                        <div class="grid-box-wrapper">
+                                            <img src="Theme/img/lightbox-9.jpg" class="img-responsive" alt="" />
+                                            <a href="#" class="grid-box-title">
+                                                <div class="grid-box-category">Buildings</div>
+                                                <div class="grid-box-detail">HOME BUILDINGS</div>
+                                            </a>
+                                            <div class="grid-box-action">
+                                                <a href="#">
+                                                    <span class="box-action-icon"><i class="fa fa-link"></i></span>
+                                                </a>
+                                                <a href="Theme/img/lightbox-9.jpg" class="image-link">
+                                                    <span class="box-action-icon"><i class="fa fa-search"></i></span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-3 col-sm-4 item item3">
+                                    <div class="grid-box">
+                                        <div class="grid-box-wrapper">
+                                            <img src="Theme/img/lightbox-10.jpg" class="img-responsive" alt="" />
+                                            <a href="#" class="grid-box-title">
+                                                <div class="grid-box-category">Architecture</div>
+                                                <div class="grid-box-detail">CREATIVE DECORATION</div>
+                                            </a>
+                                            <div class="grid-box-action">
+                                                <a href="#">
+                                                    <span class="box-action-icon"><i class="fa fa-link"></i></span>
+                                                </a>
+                                                <a href="Theme/img/lightbox-10.jpg" class="image-link">
+                                                    <span class="box-action-icon"><i class="fa fa-search"></i></span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-3 col-sm-4 item item2">
+                                    <div class="grid-box">
+                                        <div class="grid-box-wrapper">
+                                            <img src="Theme/img/lightbox-11.jpg" class="img-responsive" alt="" />
+                                            <a href="#" class="grid-box-title">
+                                                <div class="grid-box-category">Decoration</div>
+                                                <div class="grid-box-detail">LIVING ROOM</div>
+                                            </a>
+                                            <div class="grid-box-action">
+                                                <a href="#">
+                                                    <span class="box-action-icon"><i class="fa fa-link"></i></span>
+                                                </a>
+                                                <a href="Theme/img/lightbox-11.jpg" class="image-link">
+                                                    <span class="box-action-icon"><i class="fa fa-search"></i></span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 col-md-3 col-sm-4 item item1">
+                                    <div class="grid-box">
+                                        <div class="grid-box-wrapper">
+                                            <img src="Theme/img/lightbox-12.jpg" class="img-responsive" alt="" />
+                                            <a href="#" class="grid-box-title">
+                                                <div class="grid-box-category">Architecture</div>
+                                                <div class="grid-box-detail">BATHROOM DESIGN</div>
+                                            </a>
+                                            <div class="grid-box-action">
+                                                <a href="#">
+                                                    <span class="box-action-icon"><i class="fa fa-link"></i></span>
+                                                </a>
+                                                <a href="Theme/img/lightbox-12.jpg" class="image-link">
+                                                    <span class="box-action-icon"><i class="fa fa-search"></i></span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 button">
+                            <a href="#" class="btn btn-slider-black">READ MORE</a>
+                        </div>
+                    </div>
+                </section>--%>
+                <%--<section class="news3 border-top p-t-30 p-b-50">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12 palovit-title m-b-20">
+                                <hr class="hr" />
+                                <h2>LATEST NEWS</h2>
+                                <p>We diminution preference thoroughly if. Joy deal pain view much her time. Led young gay would now state. Pronounce we attention admitting on assurance of suspicion conveying</p>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-4 item">
+                                        <img src="Theme/img/blog-1.jpg" class="img-responsive" alt="" />
+                                        <div>
+                                            <span>Jeff D. Stutler - 16 September 2016</span>
+                                            <a href="#">
+                                                <h4>Sportsman delIghted improvIng dashwoods gay Instantly happiness six</h4>
+                                            </a>
+                                            <p>Sportsman delighted improving dashwoods gay instantly happiness six. Ham now amounted absolute not mistaken way pleasant whatever. At an these still no dried folly stood thing.</p>
+                                            <a href="#" class="read">READ MORE</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 item">
+                                        <img src="Theme/img/blog-2.jpg" class="img-responsive" alt="" />
+                                        <div>
+                                            <span>Jeff D. Stutler - 16 September 2016</span>
+                                            <a href="#">
+                                                <h4>In excuse hardly summer in basket misery. By rent an part need </h4>
+                                            </a>
+                                            <p>Sportsman delighted improving dashwoods gay instantly happiness six. Ham now amounted absolute not mistaken way pleasant whatever. At an these still no dried folly stood thing.</p>
+                                            <a href="#" class="read">READ MORE</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 item">
+                                        <img src="Theme/img/blog-3.jpg" class="img-responsive" alt="" />
+                                        <div>
+                                            <span>Jeff D. Stutler - 16 September 2016</span>
+                                            <a href="#">
+                                                <h4>Needed oppose seemed how all. Very mrs shed shew gave you</h4>
+                                            </a>
+                                            <p>Sportsman delighted improving dashwoods gay instantly happiness six. Ham now amounted absolute not mistaken way pleasant whatever. At an these still no dried folly stood thing.</p>
+                                            <a href="#" class="read">READ MORE</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>--%>
+
+                <asp:ContentPlaceHolder ID="dvcontent" runat="server">
             </asp:ContentPlaceHolder>
-        </div>
-
-        <div id="dvfooter">
-            <div class="jumbotron text-center" style="margin-bottom: 0">
-                <p>© 2020 Online Game Website</p>
             </div>
         </div>
+
+        <footer id="dvfooter" class="footer">
+            <div class="ftop">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h4>About Us</h4>
+                            <p>We are one of the most excellent and trusted online casino brands in Asia, we are manage by Billion Ace Investment Ltd Company, registered and certified by First Cagayan Leisure & Resort Corporation and officially approved by Philippines government. As a top online gambling sites, we provides a lot of online betting games such as casino games, online sports betting and slot games.</p>
+                            <ul class="social">
+                                <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                <li class="instagram"><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                <li class="google"><a href="#"><i class="fa fa-google"></i></a></li>
+                                <li class="youtube"><a href="#"><i class="fa fa-youtube"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>Get In Touch</h4>
+                            <ul class="adress">
+                                <li><i class="fa fa-telegram"></i>onlinegame</li>
+                                <li><i class="fa fa-whatsapp"></i>+6012-345 6789</li>
+                                <li><i class="fa fa-phone"></i>+6012-345 6789</li>
+                                <li><i class="fa fa-weixin"></i>wxid_123456789</li>
+                                <li><i class="fa fa-envelope"></i>contact@palovit.com</li>
+                                <li><i class="fa fa-support"></i>support@palovit.com</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <h4>Latest Winners</h4>
+                            <p>You can find our lastest winner here.</p>
+                            <ul class="adress">
+                                <li><i class="fa fa-user-circle"></i>imnotmxxxxx MYR 1,000 just now</li>
+                                <li><i class="fa fa-user-circle"></i>closeoxxxxx MYR 300 1 minute ago</li>
+                                <li><i class="fa fa-user-circle"></i>crossnxxxxx MYR 250 5 minutes ago</li>
+                                <li><i class="fa fa-user-circle"></i>hantukaxxxx MYR 1,688 20 minutes ago</li>
+                                <li><i class="fa fa-user-circle"></i>unclerogxxx MYR 88 22 minutes ago</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="fbottom">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <a href="Default.aspx" class="logo">
+                                <img src="Theme/img/logo1.png" class="img-responsive" alt="" id="siteLogo2" runat="server" />
+                            </a>
+                        </div>
+                        <div class="col-md-4 copyright" id="copyright" runat="server">
+                            Copyright 2016. All Rights Reserved.
+                        </div>
+                        <div class="col-md-6 clearfix fmenu">
+                            <ul>
+                                <li><a href="#">FAQ's</a></li>
+                                <li><a href="#">Sitemap</a></li>
+                                <li><a href="#">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <a class="pagetop" href="#">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+        <script src="Scripts/jquery-3.1.1.min.js"></script>
+        <script src="Scripts/bootstrap.min.js"></script>
+        <script src="Plugins/isotope/isotope.pkgd.min.js"></script>
+        <script src="Plugins/owl-carousel/owl.carousel.min.js"></script>
+        <script src="Plugins/Magnific-Popup/jquery.magnific-popup.min.js"></script>
+        <script src="Plugins/ion.rangeSlider/js/ion.rangeSlider.min.js"></script>
+        <script src="Plugins/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="Plugins/jquery-bar-rating/jquery.barrating.min.js"></script>
+        <script src="Plugins/masterslider/jquery.easing.min.js"></script>
+        <script src="Plugins/masterslider/masterslider.min.js"></script>
+        <script src="Theme/js/Script.js"></script>
+
+        <script src="Scripts/jquery.cookie-1.4.1.min.js"></script>
+        <link rel="stylesheet" href="Theme/demo/Demo.css" />
+        <%--<script src="Theme/demo/Demo.js"></script>--%>
     </form>
 </body>
 </html>
