@@ -4,7 +4,6 @@
 </asp:Content>
 <asp:Content ID="dvcontent" ContentPlaceHolderID="dvcontent" runat="Server">
     <div>
-        <!-- template -->
         <div class="ms-fullscreen-template">
             <!-- masterslider -->
             <div class="master-slider ms-skin-default" id="masterslider" clientidmode="Static" runat="server">

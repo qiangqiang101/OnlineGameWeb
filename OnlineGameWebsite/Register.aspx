@@ -3,121 +3,84 @@
 <asp:Content ID="dvhead" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="dvcontent" ContentPlaceHolderID="dvcontent" runat="Server">
-    <div>
-        <div class="container-fluid container">
-            <br />
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col">
-                                    <center>
-                                            <i class="fas fa-user"></i>
-                                        </center>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <center><h4>Registration</h4></center>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <hr />
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <label>Full Name</label>
-                                    <div class="form-group">
-                                        <asp:TextBox CssClass="form-control" ID="txtFullName" runat="server" placeholder="Tan Ah Kow" required="Required" AutoCompleteType="DisplayName"></asp:TextBox>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <label>Date of Birth</label>
-                                    <div class="form-group">
-                                        <asp:TextBox CssClass="form-control" ID="txtBirthday" runat="server" placeholder="dd/MM/yyyy" TextMode="Date" required="Required"></asp:TextBox>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <label>Contact No</label>
-                                    <div class="form-group">
-                                        <asp:TextBox CssClass="form-control" ID="txtContact" runat="server" placeholder="+60123456789" TextMode="Phone" required="Required" AutoCompleteType="HomePhone"></asp:TextBox>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <label>Email</label>
-                                    <div class="form-group">
-                                        <asp:TextBox CssClass="form-control" ID="txtEmail" AutoCompleteType="Email" runat="server" placeholder="user@email.com" TextMode="Email" required="Required"></asp:TextBox>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <label>Referral Code</label>
-                                    <div class="form-group">
-                                        <asp:TextBox CssClass="form-control" ID="txtRegRefCode" runat="server" placeholder=""></asp:TextBox>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <label>Gender</label>
-                                    <div class="form-group">
-                                        <asp:DropDownList CssClass="form-control" ID="cmbGender" AutoPostBack="True" runat="server" placeholder="">
-                                            <asp:ListItem Selected="True" Value="Male">Male</asp:ListItem>
-                                            <asp:ListItem Value="Female">Female</asp:ListItem>
-                                        </asp:DropDownList>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <label>User ID</label>
-                                    <div class="form-group">
-                                        <asp:TextBox class="form-control" ID="txtUserID" runat="server" placeholder="User ID" required="Required"></asp:TextBox>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <label>Password</label>
-                                    <div class="form-group">
-                                        <asp:TextBox class="form-control" ID="txtPassword" runat="server" placeholder="Password" TextMode="Password" required="Required"></asp:TextBox>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <label>Confirm Password</label>
-                                    <div class="form-group">
-                                        <asp:TextBox class="form-control" ID="txtPassword2" runat="server" placeholder="Password" TextMode="Password" required="Required"></asp:TextBox>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr />
-                            <div class="row" style="margin-left: 5px;">
-                                <div class="col">
-                                    <div class="form-check-label">
-                                    <asp:CheckBox class="form-check-input" ID="cbTnc" runat="Server" Text="&nbsp I understand and accept all the policies, Conditions, Rules and Privacy statement." /><br />
-                                    <asp:CheckBox class="form-check-input" ID="cb18yo" runat="Server" Text="&nbsp I declare that I am 18 years old or above." />
-                                    <br />
-                                    <br />
-                                </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-6 mx-auto">
-                                    <center>
-                           <div class="form-group">
-                               <asp:Button class="btn btn-primary btn-block btn-lg" ID="btnRegister" runat="server" Text="Sign Up Now" />
-                               <a href="Login.aspx">Already a member?</a>
-                           </div>
-                        </center>
-                                </div>
-                            </div>
-                        </div>
+    <div class="main">
+
+        <section class="header-page">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>REGISTER</h1>
+                        <ul class="breadcrumb">
+                            <li><a href="Default.aspx">Home</a></li>
+                            <li class="active">Sign Up</li>
+                        </ul>
                     </div>
                 </div>
-                <div class="col-md-2">
-                    <img src="images/reg.jpg" alt="register" style="width: auto;" />
+            </div>
+        </section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <article class="page-contact p-t-30 p-b-50">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <hr class="hr" />
+                                <h4>Sign Up</h4>
+                                <form action="#" class="m-t-30">
+                                    <div class="form-group col-md-6">
+                                        <label>Full Name</label>
+                                        <asp:TextBox CssClass="form-control" ID="txtFullName" runat="server" placeholder="Tan Ah Kow" required="Required" AutoCompleteType="DisplayName"></asp:TextBox>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Date of Birth</label>
+                                        <asp:TextBox CssClass="form-control" ID="txtBirthday" runat="server" placeholder="dd/MM/yyyy" TextMode="Date" required="Required"></asp:TextBox>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Contact No</label>
+                                        <asp:TextBox CssClass="form-control" ID="txtContact" runat="server" placeholder="+60123456789" TextMode="Phone" required="Required" AutoCompleteType="HomePhone"></asp:TextBox>
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <label>Email</label>
+                                        <asp:TextBox CssClass="form-control" ID="txtEmail" AutoCompleteType="Email" runat="server" placeholder="user@email.com" TextMode="Email" required="Required"></asp:TextBox>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Referral Code</label>
+                                        <asp:TextBox CssClass="form-control" ID="txtRegRefCode" runat="server" placeholder=""></asp:TextBox>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>User ID</label>
+                                        <asp:TextBox class="form-control" ID="txtUserID" runat="server" placeholder="User ID" required="Required"></asp:TextBox>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Password</label>
+                                        <asp:TextBox class="form-control" ID="txtPassword" runat="server" placeholder="Password" TextMode="Password" required="Required"></asp:TextBox>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Confirm Password</label>
+                                        <asp:TextBox class="form-control" ID="txtPassword2" runat="server" placeholder="Password" TextMode="Password" required="Required"></asp:TextBox>
+                                    </div>
+                                    <hr class="hr" />
+                                    <div class="form-check-label col-md-12">
+                                        <asp:CheckBox class="form-check-input" ID="cbTnc" runat="Server" Text="&nbsp I understand and accept all the policies, Conditions, Rules and Privacy statement." /><br />
+                                        <asp:CheckBox class="form-check-input" ID="cb18yo" runat="Server" Text="&nbsp I declare that I am 18 years old or above." />
+                                        <br />
+                                        <br />
+                                    </div>
+                                    <div class="form-group m-t-30 center-block">
+                                        <asp:Button class="btn btn-palovit" ID="btnRegister" runat="server" Text="CREATE ACCOUNT NOW" />
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-3">
+                                <hr class="hr" />
+                                <h4>Member Benefits</h4>
+                                <ul class="adress" id="benefitsList" runat="server">
+                                    <%--Promotion will list here--%>
+                                </ul>
+                            </div>
+                        </div>
+                    </article>
                 </div>
             </div>
         </div>

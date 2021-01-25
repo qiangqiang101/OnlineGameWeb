@@ -2230,7 +2230,7 @@ html.boxed .body {
     }
     /*------------------------ 6 Pages ------------------------*/
     .main section.header-page {
-        background: url('../img/construction_tr.jpg') no-repeat center center fixed;
+        background: url('../img/page-header.jpg') no-repeat center center fixed;
         padding: 150px 0 100px 0;
         background-size: cover;
         position: relative;

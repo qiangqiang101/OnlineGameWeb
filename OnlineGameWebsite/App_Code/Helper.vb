@@ -163,41 +163,16 @@ Public Module Helper
         End Select
     End Function
 
-    Public Function ProductCategoryToString(category As Integer) As String
-        Select Case category
-            Case 1
-                Return "Slot Games"
-            Case 2
-                Return "Live Casino"
-            Case 3
-                Return "Sportsbook"
-            Case 4
-                Return "Other"
-            Case 5
-                Return "Slot Games & Live Casino"
-            Case 6
-                Return "Slot Games & Sportsbook"
-            Case 7
-                Return "Slot Games & Other"
-            Case 8
-                Return "Live Casino & Sportsbook"
-            Case 9
-                Return "Live Casino & Other"
-            Case 10
-                Return "Sportsbook & Other"
-            Case 11
-                Return "Slot Games, Live Casino & Sportsbook"
-            Case 12
-                Return "Slot Games, Live Casino & Other"
-            Case 13
-                Return "Slot Games, Sportsbook & Other"
-            Case 14
-                Return "Live Casino, Sportsbook & Other"
-            Case 15
-                Return "All"
-            Case Else
-                Return "None"
-        End Select
+    Public Function GenerateCategoryString(slot As Boolean, live As Boolean, sport As Boolean, rng As Boolean, fish As Boolean, poker As Boolean, other As Boolean) As String
+        Dim result As New List(Of String)
+        If slot Then result.Add("Slot Games")
+        If live Then result.Add("Live Casino")
+        If sport Then result.Add("Sportsbook")
+        If rng Then result.Add("RNG")
+        If fish Then result.Add("Fish Hunter")
+        If poker Then result.Add("Poker")
+        If other Then result.Add("Other")
+        Return String.Join(", ", result)
     End Function
 
     Public Function TransactionTypeToString(type As Integer) As String

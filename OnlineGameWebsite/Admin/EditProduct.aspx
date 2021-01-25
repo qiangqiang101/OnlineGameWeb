@@ -32,24 +32,35 @@
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <label>Category</label>
-                                    <asp:DropDownList CssClass="form-control form-control-user" ID="cmbCategory" AutoPostBack="True" runat="server" placeholder="">
-                                        <asp:ListItem Value="1">Slot Games</asp:ListItem>
-                                        <asp:ListItem Value="2">Live Casino</asp:ListItem>
-                                        <asp:ListItem Value="3">Sportsbook</asp:ListItem>
-                                        <asp:ListItem Value="4">Other</asp:ListItem>
-                                        <asp:ListItem Value="5">Slot Games & Live Casino</asp:ListItem>
-                                        <asp:ListItem Value="6">Slot Games & Sportsbook</asp:ListItem>
-                                        <asp:ListItem Value="7">Slot Games & Other</asp:ListItem>
-                                        <asp:ListItem Value="8">Live Casino & Sportsbook</asp:ListItem>
-                                        <asp:ListItem Value="9">Live Casino & Other</asp:ListItem>
-                                        <asp:ListItem Value="10">Sportsbook & Other</asp:ListItem>
-                                        <asp:ListItem Value="11">Slot Games, Live Casino & Sportsbook</asp:ListItem>
-                                        <asp:ListItem Value="12">Slot Games, Live Casino & Other</asp:ListItem>
-                                        <asp:ListItem Value="13">Slot Games, Sportsbook & Other</asp:ListItem>
-                                        <asp:ListItem Value="14">Live Casino, Sportsbook & Other</asp:ListItem>
-                                        <asp:ListItem Value="15">All</asp:ListItem>
-                                        <asp:ListItem Value="0">None</asp:ListItem>
-                                    </asp:DropDownList>
+                                    <div class="custom-control custom-checkbox small">
+                                        <div class="form-group row">
+                                            <div class="col-sm-4 mb-3 mb-sm-0">
+                                                <asp:CheckBox class="form-check-input form-control-user" ID="cbSlot" runat="server" Text="&nbsp Slot Game" />
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <asp:CheckBox class="form-check-input form-control-user" ID="cbLive" runat="server" Text="&nbsp Live Casino" />
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <asp:CheckBox class="form-check-input form-control-user" ID="cbSport" runat="server" Text="&nbsp Sportsbook" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-4 mb-3 mb-sm-0">
+                                                <asp:CheckBox class="form-check-input form-control-user" ID="cbRNG" runat="server" Text="&nbsp RNG" />
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <asp:CheckBox class="form-check-input form-control-user" ID="cbFish" runat="server" Text="&nbsp Fish Hunter" />
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <asp:CheckBox class="form-check-input form-control-user" ID="cbPoker" runat="server" Text="&nbsp Poker" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-4 mb-3 mb-sm-0">
+                                                <asp:CheckBox class="form-check-input form-control-user" ID="cbOther" runat="server" Text="&nbsp Other" />
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <label>Status</label>
@@ -90,14 +101,16 @@
                             <div class="form-group row">
                                 <div class="col-sm-12">
                                     <table width="100%" cellspacing="0">
-                                    <tbody>
-                                        <tr>
-                                            <td colspan="2">Select Image</td>
-                                            <td colspan="2"><asp:FileUpload ID="fileUploader" runat="server" /></td>
-                                            <td colspan="2"><asp:Image ID="imgProduct" runat="server" Width="200px" /></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                        <tbody>
+                                            <tr>
+                                                <td colspan="2">Select Image</td>
+                                                <td colspan="2">
+                                                    <asp:FileUpload ID="fileUploader" runat="server" /></td>
+                                                <td colspan="2">
+                                                    <asp:Image ID="imgProduct" runat="server" Width="200px" /></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                             <hr />

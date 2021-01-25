@@ -49,12 +49,6 @@ Partial Public Class DataClassesDataContext
     End Sub
   Partial Private Sub DeleteTblTransfer(instance As TblTransfer)
     End Sub
-  Partial Private Sub InsertTblProduct(instance As TblProduct)
-    End Sub
-  Partial Private Sub UpdateTblProduct(instance As TblProduct)
-    End Sub
-  Partial Private Sub DeleteTblProduct(instance As TblProduct)
-    End Sub
   Partial Private Sub InsertTblPromotion(instance As TblPromotion)
     End Sub
   Partial Private Sub UpdateTblPromotion(instance As TblPromotion)
@@ -121,6 +115,12 @@ Partial Public Class DataClassesDataContext
     End Sub
   Partial Private Sub DeleteTblTransaction(instance As TblTransaction)
     End Sub
+  Partial Private Sub InsertTblProduct(instance As TblProduct)
+    End Sub
+  Partial Private Sub UpdateTblProduct(instance As TblProduct)
+    End Sub
+  Partial Private Sub DeleteTblProduct(instance As TblProduct)
+    End Sub
   #End Region
 	
 	Public Sub New()
@@ -163,12 +163,6 @@ Partial Public Class DataClassesDataContext
 	Public ReadOnly Property TblTransfers() As System.Data.Linq.Table(Of TblTransfer)
 		Get
 			Return Me.GetTable(Of TblTransfer)
-		End Get
-	End Property
-	
-	Public ReadOnly Property TblProducts() As System.Data.Linq.Table(Of TblProduct)
-		Get
-			Return Me.GetTable(Of TblProduct)
 		End Get
 	End Property
 	
@@ -235,6 +229,12 @@ Partial Public Class DataClassesDataContext
 	Public ReadOnly Property TblTransactions() As System.Data.Linq.Table(Of TblTransaction)
 		Get
 			Return Me.GetTable(Of TblTransaction)
+		End Get
+	End Property
+	
+	Public ReadOnly Property TblProducts() As System.Data.Linq.Table(Of TblProduct)
+		Get
+			Return Me.GetTable(Of TblProduct)
 		End Get
 	End Property
 End Class
@@ -801,291 +801,6 @@ Partial Public Class TblTransfer
 				Me._IPAddress = value
 				Me.SendPropertyChanged("IPAddress")
 				Me.OnIPAddressChanged
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-End Class
-
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.TblProduct")>  _
-Partial Public Class TblProduct
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _ProductID As Integer
-	
-	Private _ProductName As String
-	
-	Private _ProductAlias As String
-	
-	Private _Balance As Single
-	
-	Private _Status As Boolean
-	
-	Private _AndroidLink As String
-	
-	Private _iOSLink As String
-	
-	Private _WindowsLink As String
-	
-	Private _WebsiteUrl As String
-	
-	Private _ProductCategory As Integer
-	
-	Private _ProductImage As String
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnProductIDChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnProductIDChanged()
-    End Sub
-    Partial Private Sub OnProductNameChanging(value As String)
-    End Sub
-    Partial Private Sub OnProductNameChanged()
-    End Sub
-    Partial Private Sub OnProductAliasChanging(value As String)
-    End Sub
-    Partial Private Sub OnProductAliasChanged()
-    End Sub
-    Partial Private Sub OnBalanceChanging(value As Single)
-    End Sub
-    Partial Private Sub OnBalanceChanged()
-    End Sub
-    Partial Private Sub OnStatusChanging(value As Boolean)
-    End Sub
-    Partial Private Sub OnStatusChanged()
-    End Sub
-    Partial Private Sub OnAndroidLinkChanging(value As String)
-    End Sub
-    Partial Private Sub OnAndroidLinkChanged()
-    End Sub
-    Partial Private Sub OniOSLinkChanging(value As String)
-    End Sub
-    Partial Private Sub OniOSLinkChanged()
-    End Sub
-    Partial Private Sub OnWindowsLinkChanging(value As String)
-    End Sub
-    Partial Private Sub OnWindowsLinkChanged()
-    End Sub
-    Partial Private Sub OnWebsiteUrlChanging(value As String)
-    End Sub
-    Partial Private Sub OnWebsiteUrlChanged()
-    End Sub
-    Partial Private Sub OnProductCategoryChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnProductCategoryChanged()
-    End Sub
-    Partial Private Sub OnProductImageChanging(value As String)
-    End Sub
-    Partial Private Sub OnProductImageChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ProductID", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
-	Public Property ProductID() As Integer
-		Get
-			Return Me._ProductID
-		End Get
-		Set
-			If ((Me._ProductID = value)  _
-						= false) Then
-				Me.OnProductIDChanging(value)
-				Me.SendPropertyChanging
-				Me._ProductID = value
-				Me.SendPropertyChanged("ProductID")
-				Me.OnProductIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ProductName", DbType:="NChar(30) NOT NULL", CanBeNull:=false)>  _
-	Public Property ProductName() As String
-		Get
-			Return Me._ProductName
-		End Get
-		Set
-			If (String.Equals(Me._ProductName, value) = false) Then
-				Me.OnProductNameChanging(value)
-				Me.SendPropertyChanging
-				Me._ProductName = value
-				Me.SendPropertyChanged("ProductName")
-				Me.OnProductNameChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ProductAlias", DbType:="NChar(30)")>  _
-	Public Property ProductAlias() As String
-		Get
-			Return Me._ProductAlias
-		End Get
-		Set
-			If (String.Equals(Me._ProductAlias, value) = false) Then
-				Me.OnProductAliasChanging(value)
-				Me.SendPropertyChanging
-				Me._ProductAlias = value
-				Me.SendPropertyChanged("ProductAlias")
-				Me.OnProductAliasChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Balance", DbType:="Float NOT NULL")>  _
-	Public Property Balance() As Single
-		Get
-			Return Me._Balance
-		End Get
-		Set
-			If ((Me._Balance = value)  _
-						= false) Then
-				Me.OnBalanceChanging(value)
-				Me.SendPropertyChanging
-				Me._Balance = value
-				Me.SendPropertyChanged("Balance")
-				Me.OnBalanceChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Status", DbType:="Bit NOT NULL")>  _
-	Public Property Status() As Boolean
-		Get
-			Return Me._Status
-		End Get
-		Set
-			If ((Me._Status = value)  _
-						= false) Then
-				Me.OnStatusChanging(value)
-				Me.SendPropertyChanging
-				Me._Status = value
-				Me.SendPropertyChanged("Status")
-				Me.OnStatusChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AndroidLink", DbType:="NChar(255)")>  _
-	Public Property AndroidLink() As String
-		Get
-			Return Me._AndroidLink
-		End Get
-		Set
-			If (String.Equals(Me._AndroidLink, value) = false) Then
-				Me.OnAndroidLinkChanging(value)
-				Me.SendPropertyChanging
-				Me._AndroidLink = value
-				Me.SendPropertyChanged("AndroidLink")
-				Me.OnAndroidLinkChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_iOSLink", DbType:="NChar(255)")>  _
-	Public Property iOSLink() As String
-		Get
-			Return Me._iOSLink
-		End Get
-		Set
-			If (String.Equals(Me._iOSLink, value) = false) Then
-				Me.OniOSLinkChanging(value)
-				Me.SendPropertyChanging
-				Me._iOSLink = value
-				Me.SendPropertyChanged("iOSLink")
-				Me.OniOSLinkChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_WindowsLink", DbType:="NChar(255)")>  _
-	Public Property WindowsLink() As String
-		Get
-			Return Me._WindowsLink
-		End Get
-		Set
-			If (String.Equals(Me._WindowsLink, value) = false) Then
-				Me.OnWindowsLinkChanging(value)
-				Me.SendPropertyChanging
-				Me._WindowsLink = value
-				Me.SendPropertyChanged("WindowsLink")
-				Me.OnWindowsLinkChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_WebsiteUrl", DbType:="NChar(255)")>  _
-	Public Property WebsiteUrl() As String
-		Get
-			Return Me._WebsiteUrl
-		End Get
-		Set
-			If (String.Equals(Me._WebsiteUrl, value) = false) Then
-				Me.OnWebsiteUrlChanging(value)
-				Me.SendPropertyChanging
-				Me._WebsiteUrl = value
-				Me.SendPropertyChanged("WebsiteUrl")
-				Me.OnWebsiteUrlChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ProductCategory", DbType:="Int NOT NULL")>  _
-	Public Property ProductCategory() As Integer
-		Get
-			Return Me._ProductCategory
-		End Get
-		Set
-			If ((Me._ProductCategory = value)  _
-						= false) Then
-				Me.OnProductCategoryChanging(value)
-				Me.SendPropertyChanging
-				Me._ProductCategory = value
-				Me.SendPropertyChanged("ProductCategory")
-				Me.OnProductCategoryChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ProductImage", DbType:="NChar(255) NOT NULL", CanBeNull:=false)>  _
-	Public Property ProductImage() As String
-		Get
-			Return Me._ProductImage
-		End Get
-		Set
-			If (String.Equals(Me._ProductImage, value) = false) Then
-				Me.OnProductImageChanging(value)
-				Me.SendPropertyChanging
-				Me._ProductImage = value
-				Me.SendPropertyChanged("ProductImage")
-				Me.OnProductImageChanged
 			End If
 		End Set
 	End Property
@@ -3817,6 +3532,429 @@ Partial Public Class TblTransaction
 				Me._Remark = value
 				Me.SendPropertyChanged("Remark")
 				Me.OnRemarkChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.TblProduct")>  _
+Partial Public Class TblProduct
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _ProductID As Integer
+	
+	Private _ProductName As String
+	
+	Private _ProductAlias As String
+	
+	Private _Balance As Single
+	
+	Private _Status As Boolean
+	
+	Private _AndroidLink As String
+	
+	Private _iOSLink As String
+	
+	Private _WindowsLink As String
+	
+	Private _WebsiteUrl As String
+	
+	Private _ProductImage As String
+	
+	Private _CatSlot As Boolean
+	
+	Private _CatLive As Boolean
+	
+	Private _CatSport As Boolean
+	
+	Private _CatFish As Boolean
+	
+	Private _CatPoker As Boolean
+	
+	Private _CatRNG As Boolean
+	
+	Private _CatOther As Boolean
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnProductIDChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnProductIDChanged()
+    End Sub
+    Partial Private Sub OnProductNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnProductNameChanged()
+    End Sub
+    Partial Private Sub OnProductAliasChanging(value As String)
+    End Sub
+    Partial Private Sub OnProductAliasChanged()
+    End Sub
+    Partial Private Sub OnBalanceChanging(value As Single)
+    End Sub
+    Partial Private Sub OnBalanceChanged()
+    End Sub
+    Partial Private Sub OnStatusChanging(value As Boolean)
+    End Sub
+    Partial Private Sub OnStatusChanged()
+    End Sub
+    Partial Private Sub OnAndroidLinkChanging(value As String)
+    End Sub
+    Partial Private Sub OnAndroidLinkChanged()
+    End Sub
+    Partial Private Sub OniOSLinkChanging(value As String)
+    End Sub
+    Partial Private Sub OniOSLinkChanged()
+    End Sub
+    Partial Private Sub OnWindowsLinkChanging(value As String)
+    End Sub
+    Partial Private Sub OnWindowsLinkChanged()
+    End Sub
+    Partial Private Sub OnWebsiteUrlChanging(value As String)
+    End Sub
+    Partial Private Sub OnWebsiteUrlChanged()
+    End Sub
+    Partial Private Sub OnProductImageChanging(value As String)
+    End Sub
+    Partial Private Sub OnProductImageChanged()
+    End Sub
+    Partial Private Sub OnCatSlotChanging(value As Boolean)
+    End Sub
+    Partial Private Sub OnCatSlotChanged()
+    End Sub
+    Partial Private Sub OnCatLiveChanging(value As Boolean)
+    End Sub
+    Partial Private Sub OnCatLiveChanged()
+    End Sub
+    Partial Private Sub OnCatSportChanging(value As Boolean)
+    End Sub
+    Partial Private Sub OnCatSportChanged()
+    End Sub
+    Partial Private Sub OnCatFishChanging(value As Boolean)
+    End Sub
+    Partial Private Sub OnCatFishChanged()
+    End Sub
+    Partial Private Sub OnCatPokerChanging(value As Boolean)
+    End Sub
+    Partial Private Sub OnCatPokerChanged()
+    End Sub
+    Partial Private Sub OnCatRNGChanging(value As Boolean)
+    End Sub
+    Partial Private Sub OnCatRNGChanged()
+    End Sub
+    Partial Private Sub OnCatOtherChanging(value As Boolean)
+    End Sub
+    Partial Private Sub OnCatOtherChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ProductID", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
+	Public Property ProductID() As Integer
+		Get
+			Return Me._ProductID
+		End Get
+		Set
+			If ((Me._ProductID = value)  _
+						= false) Then
+				Me.OnProductIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ProductID = value
+				Me.SendPropertyChanged("ProductID")
+				Me.OnProductIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ProductName", DbType:="NChar(30) NOT NULL", CanBeNull:=false)>  _
+	Public Property ProductName() As String
+		Get
+			Return Me._ProductName
+		End Get
+		Set
+			If (String.Equals(Me._ProductName, value) = false) Then
+				Me.OnProductNameChanging(value)
+				Me.SendPropertyChanging
+				Me._ProductName = value
+				Me.SendPropertyChanged("ProductName")
+				Me.OnProductNameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ProductAlias", DbType:="NChar(30)")>  _
+	Public Property ProductAlias() As String
+		Get
+			Return Me._ProductAlias
+		End Get
+		Set
+			If (String.Equals(Me._ProductAlias, value) = false) Then
+				Me.OnProductAliasChanging(value)
+				Me.SendPropertyChanging
+				Me._ProductAlias = value
+				Me.SendPropertyChanged("ProductAlias")
+				Me.OnProductAliasChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Balance", DbType:="Float NOT NULL")>  _
+	Public Property Balance() As Single
+		Get
+			Return Me._Balance
+		End Get
+		Set
+			If ((Me._Balance = value)  _
+						= false) Then
+				Me.OnBalanceChanging(value)
+				Me.SendPropertyChanging
+				Me._Balance = value
+				Me.SendPropertyChanged("Balance")
+				Me.OnBalanceChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Status", DbType:="Bit NOT NULL")>  _
+	Public Property Status() As Boolean
+		Get
+			Return Me._Status
+		End Get
+		Set
+			If ((Me._Status = value)  _
+						= false) Then
+				Me.OnStatusChanging(value)
+				Me.SendPropertyChanging
+				Me._Status = value
+				Me.SendPropertyChanged("Status")
+				Me.OnStatusChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AndroidLink", DbType:="NChar(255)")>  _
+	Public Property AndroidLink() As String
+		Get
+			Return Me._AndroidLink
+		End Get
+		Set
+			If (String.Equals(Me._AndroidLink, value) = false) Then
+				Me.OnAndroidLinkChanging(value)
+				Me.SendPropertyChanging
+				Me._AndroidLink = value
+				Me.SendPropertyChanged("AndroidLink")
+				Me.OnAndroidLinkChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_iOSLink", DbType:="NChar(255)")>  _
+	Public Property iOSLink() As String
+		Get
+			Return Me._iOSLink
+		End Get
+		Set
+			If (String.Equals(Me._iOSLink, value) = false) Then
+				Me.OniOSLinkChanging(value)
+				Me.SendPropertyChanging
+				Me._iOSLink = value
+				Me.SendPropertyChanged("iOSLink")
+				Me.OniOSLinkChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_WindowsLink", DbType:="NChar(255)")>  _
+	Public Property WindowsLink() As String
+		Get
+			Return Me._WindowsLink
+		End Get
+		Set
+			If (String.Equals(Me._WindowsLink, value) = false) Then
+				Me.OnWindowsLinkChanging(value)
+				Me.SendPropertyChanging
+				Me._WindowsLink = value
+				Me.SendPropertyChanged("WindowsLink")
+				Me.OnWindowsLinkChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_WebsiteUrl", DbType:="NChar(255)")>  _
+	Public Property WebsiteUrl() As String
+		Get
+			Return Me._WebsiteUrl
+		End Get
+		Set
+			If (String.Equals(Me._WebsiteUrl, value) = false) Then
+				Me.OnWebsiteUrlChanging(value)
+				Me.SendPropertyChanging
+				Me._WebsiteUrl = value
+				Me.SendPropertyChanged("WebsiteUrl")
+				Me.OnWebsiteUrlChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ProductImage", DbType:="NChar(255) NOT NULL", CanBeNull:=false)>  _
+	Public Property ProductImage() As String
+		Get
+			Return Me._ProductImage
+		End Get
+		Set
+			If (String.Equals(Me._ProductImage, value) = false) Then
+				Me.OnProductImageChanging(value)
+				Me.SendPropertyChanging
+				Me._ProductImage = value
+				Me.SendPropertyChanged("ProductImage")
+				Me.OnProductImageChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CatSlot", DbType:="Bit NOT NULL")>  _
+	Public Property CatSlot() As Boolean
+		Get
+			Return Me._CatSlot
+		End Get
+		Set
+			If ((Me._CatSlot = value)  _
+						= false) Then
+				Me.OnCatSlotChanging(value)
+				Me.SendPropertyChanging
+				Me._CatSlot = value
+				Me.SendPropertyChanged("CatSlot")
+				Me.OnCatSlotChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CatLive", DbType:="Bit NOT NULL")>  _
+	Public Property CatLive() As Boolean
+		Get
+			Return Me._CatLive
+		End Get
+		Set
+			If ((Me._CatLive = value)  _
+						= false) Then
+				Me.OnCatLiveChanging(value)
+				Me.SendPropertyChanging
+				Me._CatLive = value
+				Me.SendPropertyChanged("CatLive")
+				Me.OnCatLiveChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CatSport", DbType:="Bit NOT NULL")>  _
+	Public Property CatSport() As Boolean
+		Get
+			Return Me._CatSport
+		End Get
+		Set
+			If ((Me._CatSport = value)  _
+						= false) Then
+				Me.OnCatSportChanging(value)
+				Me.SendPropertyChanging
+				Me._CatSport = value
+				Me.SendPropertyChanged("CatSport")
+				Me.OnCatSportChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CatFish", DbType:="Bit NOT NULL")>  _
+	Public Property CatFish() As Boolean
+		Get
+			Return Me._CatFish
+		End Get
+		Set
+			If ((Me._CatFish = value)  _
+						= false) Then
+				Me.OnCatFishChanging(value)
+				Me.SendPropertyChanging
+				Me._CatFish = value
+				Me.SendPropertyChanged("CatFish")
+				Me.OnCatFishChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CatPoker", DbType:="Bit NOT NULL")>  _
+	Public Property CatPoker() As Boolean
+		Get
+			Return Me._CatPoker
+		End Get
+		Set
+			If ((Me._CatPoker = value)  _
+						= false) Then
+				Me.OnCatPokerChanging(value)
+				Me.SendPropertyChanging
+				Me._CatPoker = value
+				Me.SendPropertyChanged("CatPoker")
+				Me.OnCatPokerChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CatRNG", DbType:="Bit NOT NULL")>  _
+	Public Property CatRNG() As Boolean
+		Get
+			Return Me._CatRNG
+		End Get
+		Set
+			If ((Me._CatRNG = value)  _
+						= false) Then
+				Me.OnCatRNGChanging(value)
+				Me.SendPropertyChanging
+				Me._CatRNG = value
+				Me.SendPropertyChanged("CatRNG")
+				Me.OnCatRNGChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CatOther", DbType:="Bit NOT NULL")>  _
+	Public Property CatOther() As Boolean
+		Get
+			Return Me._CatOther
+		End Get
+		Set
+			If ((Me._CatOther = value)  _
+						= false) Then
+				Me.OnCatOtherChanging(value)
+				Me.SendPropertyChanging
+				Me._CatOther = value
+				Me.SendPropertyChanged("CatOther")
+				Me.OnCatOtherChanged
 			End If
 		End Set
 	End Property

@@ -2,6 +2,9 @@
 Partial Class Register
     Inherits System.Web.UI.Page
 
+    Public ref As String = ""
+    Public agent As String = ""
+
     Protected Sub btnRegister_Click(sender As Object, e As EventArgs) Handles btnRegister.Click
         If txtFullName.Text = Nothing Then
             JsMsgBox("Full Name is required!")
@@ -64,6 +67,7 @@ Partial Class Register
             .GroupLeaderID = -1
             .Enabled = True
             .Remark = Nothing
+            .Affiliate = agent.Trim
         End With
 
         Try
@@ -75,5 +79,28 @@ Partial Class Register
         Return True
     End Function
 
+    Private Function LoadPromotions(text As String, icon As String) As HtmlGenericControl
+        Dim i = New HtmlGenericControl("i")
+        With i
+            .Attributes("class") = "fa fa-" & icon
+        End With
+        Dim li = New HtmlGenericControl("li")
+        With li
+            .InnerText = text.Trim
+            .Controls.Add(i)
+        End With
+        Return li
+    End Function
 
+    Private Sub Register_Load(sender As Object, e As EventArgs) Handles Me.Load
+        ref = Request.QueryString("ref")
+        agent = Request.QueryString("agent")
+
+        txtRegRefCode.Text = ref
+
+        Dim promos = db.TblPromotions.Where(Function(x) x.Status = 1).ToList
+        For Each promo As TblPromotion In promos
+            benefitsList.Controls.Add(LoadPromotions(promo.EnglishName, "star"))
+        Next
+    End Sub
 End Class

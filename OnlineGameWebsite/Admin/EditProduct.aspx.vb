@@ -17,7 +17,13 @@ Partial Class Admin_EditProduct
                         Dim p = db.TblProducts.Single(Function(x) x.ProductID = pid)
                         txtName.Text = p.ProductName.Trim
                         txtAlias.Text = p.ProductAlias.Trim
-                        cmbCategory.SelectedValue = p.ProductCategory
+                        cbSlot.Checked = p.CatSlot
+                        cbLive.Checked = p.CatLive
+                        cbSport.Checked = p.CatSport
+                        cbRNG.Checked = p.CatRNG
+                        cbFish.Checked = p.CatFish
+                        cbPoker.Checked = p.CatPoker
+                        cbOther.Checked = p.CatOther
                         cmbEnabled.SelectedValue = p.Status
                         txtBalance.Text = p.Balance.ToString("0.00")
                         txtAndroid.Text = p.AndroidLink.Trim
@@ -36,7 +42,13 @@ Partial Class Admin_EditProduct
                         Dim p = db.TblProducts.Single(Function(x) x.ProductID = pid)
                         txtName.Text = p.ProductName.Trim
                         txtAlias.Text = p.ProductAlias.Trim
-                        cmbCategory.SelectedValue = p.ProductCategory
+                        cbSlot.Checked = p.CatSlot
+                        cbLive.Checked = p.CatLive
+                        cbSport.Checked = p.CatSport
+                        cbRNG.Checked = p.CatRNG
+                        cbFish.Checked = p.CatFish
+                        cbPoker.Checked = p.CatPoker
+                        cbOther.Checked = p.CatOther
                         cmbEnabled.SelectedValue = p.Status
                         txtBalance.Text = p.Balance.ToString("0.00")
                         txtAndroid.Text = p.AndroidLink.Trim
@@ -48,7 +60,13 @@ Partial Class Admin_EditProduct
 
                         txtName.ReadOnly = True
                         txtAlias.ReadOnly = True
-                        cmbCategory.Enabled = False
+                        cbSlot.Enabled = False
+                        cbLive.Enabled = False
+                        cbSport.Enabled = False
+                        cbRNG.Enabled = False
+                        cbFish.Enabled = False
+                        cbPoker.Enabled = False
+                        cbOther.Enabled = False
                         cmbEnabled.Enabled = False
                         txtBalance.ReadOnly = True
                         txtAndroid.ReadOnly = True
@@ -71,7 +89,13 @@ Partial Class Admin_EditProduct
                         Dim p = db.TblProducts.Single(Function(x) x.ProductID = pid)
                         txtName.Text = "Copy of " & p.ProductName.Trim
                         txtAlias.Text = p.ProductAlias.Trim
-                        cmbCategory.SelectedValue = p.ProductCategory
+                        cbSlot.Checked = p.CatSlot
+                        cbLive.Checked = p.CatLive
+                        cbSport.Checked = p.CatSport
+                        cbRNG.Checked = p.CatRNG
+                        cbFish.Checked = p.CatFish
+                        cbPoker.Checked = p.CatPoker
+                        cbOther.Checked = p.CatOther
                         cmbEnabled.SelectedValue = p.Status
                         txtBalance.Text = p.Balance.ToString("0.00")
                         txtAndroid.Text = p.AndroidLink.Trim
@@ -106,7 +130,7 @@ Partial Class Admin_EditProduct
 
                 If TryEditProduct() Then
                     JsMsgBox("Product " & editProduct.ProductName & " update successfully.")
-                    Response.Redirect("Product.aspx")
+                    Response.Redirect("Products.aspx")
                 Else
                     JsMsgBox("Product " & editProduct.ProductName & " edit failed! Please contact Administrator.")
                 End If
@@ -143,7 +167,13 @@ Partial Class Admin_EditProduct
             With editProduct
                 .ProductName = txtName.Text.Trim
                 .ProductAlias = txtAlias.Text.Trim
-                .ProductCategory = cmbCategory.SelectedValue
+                .CatSlot = cbSlot.Checked
+                .CatLive = cbLive.Checked
+                .CatSport = cbSport.Checked
+                .CatRNG = cbRNG.Checked
+                .CatFish = cbFish.Checked
+                .CatPoker = cbPoker.Checked
+                .CatOther = cbOther.Checked
                 .Status = cmbEnabled.SelectedValue
                 .Balance = CSng(txtBalance.Text)
                 .AndroidLink = txtAndroid.Text.Trim
@@ -181,7 +211,13 @@ Partial Class Admin_EditProduct
         With newProduct
             .ProductName = txtName.Text.Trim
             .ProductAlias = txtAlias.Text.Trim
-            .ProductCategory = cmbCategory.SelectedValue
+            .CatSlot = cbSlot.Checked
+            .CatLive = cbLive.Checked
+            .CatSport = cbSport.Checked
+            .CatRNG = cbRNG.Checked
+            .CatFish = cbFish.Checked
+            .CatPoker = cbPoker.Checked
+            .CatOther = cbOther.Checked
             .Status = cmbEnabled.SelectedValue
             .Balance = CSng(txtBalance.Text)
             .AndroidLink = txtAndroid.Text.Trim

@@ -35,3 +35,71 @@
 .main section.inm_bg1 h2 {
     color: #fff;
 }
+
+.main section.inm_slot {
+        background: url('../img/page-header-slot.jpg') no-repeat center center fixed;
+    }
+
+.main section.inm_live {
+        background: url('../img/page-header-live.jpg') no-repeat center center fixed;
+    }
+
+.main section.inm_sport {
+        background: url('../img/page-header-sport.jpg') no-repeat center center fixed;
+    }
+
+.main section.inm_rng {
+        background: url('../img/page-header-rng.jpg') no-repeat center center fixed;
+    }
+
+.main section.inm_fish {
+        background: url('../img/page-header-fish.jpg') no-repeat center center fixed;
+    }
+
+.main section.inm_poker {
+        background: url('../img/page-header-poker.jpg') no-repeat center center fixed;
+    }
+
+.main section.inm_other {
+        background: url('../img/page-header-other.jpg') no-repeat center center fixed;
+    }
+
+.android_link {
+    color: #a4c639;
+    font-size: x-large;
+    transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    -moz-transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in;
+}
+
+.ios_link {
+    color: #000000;
+    font-size: x-large;
+    transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    -moz-transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in;
+}
+
+.windows_link {
+    color: #00adef;
+    font-size: x-large;
+    transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    -moz-transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in;
+}
+
+.website_link {
+    color: #e34c26;
+    font-size: x-large;
+    transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    -moz-transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in;
+}
+
+.inm_img_border {
+    border: 1px solid #eeeeee
+}

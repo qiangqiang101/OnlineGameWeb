@@ -33,21 +33,6 @@
       <Column Name="IPAddress" Type="System.String" DbType="NChar(20)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.TblProduct" Member="TblProducts">
-    <Type Name="TblProduct">
-      <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="ProductName" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
-      <Column Name="ProductAlias" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
-      <Column Name="Balance" Type="System.Single" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="Status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="AndroidLink" Type="System.String" DbType="NChar(255)" CanBeNull="true" />
-      <Column Name="iOSLink" Type="System.String" DbType="NChar(255)" CanBeNull="true" />
-      <Column Name="WindowsLink" Type="System.String" DbType="NChar(255)" CanBeNull="true" />
-      <Column Name="WebsiteUrl" Type="System.String" DbType="NChar(255)" CanBeNull="true" />
-      <Column Name="ProductCategory" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="ProductImage" Type="System.String" DbType="NChar(255) NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
   <Table Name="dbo.TblPromotion" Member="TblPromotions">
     <Type Name="TblPromotion">
       <Column Name="PromoID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -192,6 +177,27 @@
       <Column Name="ApproveByUser" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
       <Column Name="ApproveDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="Remark" Type="System.String" DbType="NChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TblProduct" Member="TblProducts">
+    <Type Name="TblProduct">
+      <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ProductName" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="ProductAlias" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+      <Column Name="Balance" Type="System.Single" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="AndroidLink" Type="System.String" DbType="NChar(255)" CanBeNull="true" />
+      <Column Name="iOSLink" Type="System.String" DbType="NChar(255)" CanBeNull="true" />
+      <Column Name="WindowsLink" Type="System.String" DbType="NChar(255)" CanBeNull="true" />
+      <Column Name="WebsiteUrl" Type="System.String" DbType="NChar(255)" CanBeNull="true" />
+      <Column Name="ProductImage" Type="System.String" DbType="NChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="CatSlot" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CatLive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CatSport" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CatFish" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CatPoker" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CatRNG" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CatOther" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
 </Database>
