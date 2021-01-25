@@ -5329,8 +5329,8 @@ MSSliderEvent.DESTROY				= 'ms_destroy';
 		// Default Options
 		this.options = {
             forceInit           : true,       // Force calling init even an error occurs in jQuery's dom ready method.
-			autoplay 			: false,      // Enables the autoplay slideshow.
-			loop 				: false,	  // Enables the continuous sliding mode.
+			autoplay 			: true,      // Enables the autoplay slideshow.
+			loop 				: true,	  // Enables the continuous sliding mode.
 			mouse				: true,		  // Whether the user can use mouse drag navigation.
 			swipe				: true,		  // Whether the drag/swipe navigation is enabled.
 			grabCursor			: true,		  // Whether the slider uses grab mouse cursor.

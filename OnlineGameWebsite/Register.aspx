@@ -1,4 +1,4 @@
-﻿<%@ Page Language="VB" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Register.aspx.vb" Inherits="Register" %>
+﻿<%@ Page Language="VB" MasterPageFile="~/MasterPage.master" AutoEventWireup="false" EnableEventValidation="false" CodeFile="Register.aspx.vb" Inherits="Register" %>
 
 <asp:Content ID="dvhead" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>

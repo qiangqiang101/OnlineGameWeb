@@ -248,7 +248,7 @@
                 <div class="bottom">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-9 col-sm-12 col-xs-12 rspnav">
+                            <div class="col-md-12 col-sm-12 col-xs-12 rspnav">
                                 <nav class="collnav collapse">
                                     <ul class="nav nav-pills">
                                         <li><a href="Default.aspx"><i class="fa fa-home">&nbsp</i>HOME</a></li>
@@ -279,7 +279,7 @@
                                                 <li><a href="Single-Project.html">Single Project</a></li>
                                             </ul>
                                         </li>--%>
-                                        <li class="dropdown dropdown-mega">
+                                        <li class="dropdown dropdown-mega" id="megaProduct" runat="server">
                                             <a class="dropdown-toggle" href="Products.aspx?cat=all"><i class="fa fa-trophy">&nbsp</i>PRODUCTS</a>
                                             <ul class="dropdown-menu">
                                                 <li>
@@ -306,6 +306,7 @@
                                                                 </ul>
                                                             </div>
                                                         </div>
+                                                        <hr />
                                                         <div class="row">
                                                             <div class="col-md-3">
                                                                 <span class="mega-sub-title">FISH HUNTER</span>
@@ -331,6 +332,19 @@
                                                         </div>
                                                     </div>
                                                 </li>
+                                            </ul>
+                                        </li>
+                                        <li class="dropdown" id="mobileProduct" runat="server">
+                                            <a class="dropdown-toggle" href="Products.aspx?cat=all"><i class="fa fa-trophy">&nbsp</i>PRODUCTS</a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="Products.aspx?cat=slot">Slot Game</a></li>
+                                                <li><a href="Products.aspx?cat=live">Live Casino</a></li>
+                                                <li><a href="Products.aspx?cat=sport">Sportsbook</a></li>
+                                                <li><a href="Products.aspx?cat=rng">RNG</a></li>
+                                                <li><a href="Products.aspx?cat=fish">Fish Hunter</a></li>
+                                                <li><a href="Products.aspx?cat=poker">Poker</a></li>
+                                                <li><a href="Products.aspx?cat=other">Other</a></li>
+                                                <li><a href="Products.aspx?cat=all">All Products</a></li>
                                             </ul>
                                         </li>
                                         <%--<li class="dropdown">
@@ -363,6 +377,7 @@
                                         <li><a href="LiveScore.aspx"><i class="fa fa-futbol-o">&nbsp</i>LIVE SCORE</a></li>
                                         <li><a href="Download.aspx"><i class="fa fa-download">&nbsp</i>DOWNLOAD</a></li>
                                         <li><a href="Promotion.aspx"><i class="fa fa-percent">&nbsp</i>PROMOTION</a></li>
+                                        <li><a href="Banking.aspx"><i class="fa fa-university">&nbsp</i>BANKING</a></li>
                                         <li><a href="Contact.aspx"><i class="fa fa-phone">&nbsp</i>CONTACT</a></li>
                                     </ul>
                                 </nav>
