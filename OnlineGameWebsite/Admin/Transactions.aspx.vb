@@ -9,11 +9,11 @@ Partial Class Admin_Transaction
             Dim p As TblProduct = db.TblProducts.Single(Function(x) x.ProductID = t.ProductID)
             Select Case t.TransType
                 Case 0 'credit
-                    dataTable.AddTableItem(t.TransactionID.ToString("00000"), t.TransactionDate.ToString(dateFormat), t.UserName.Trim, m.FullName.Trim, p.ProductName.Trim, t.Method, StatusToString(t.Status), t.Credit.ToString("0.00"), "", "Credit", TransactionTypeToString(t.TransType), If(t.Remark = Nothing, "", t.Remark.Trim), RB("EditTransaction.aspx?mode=edit&id=" & t.TransactionID, "fas fa-edit", tooltip:="Edit"))
+                    dataTable.AddTableItem(t.TransactionID.ToString("00000"), t.TransactionDate.ToString(dateFormat), t.UserName.Trim, m.FullName.Trim, p.ProductName.Trim, t.Method, StatusToString(t.Status), t.Credit.ToString("0.00"), "", "Credit", If(t.Remark = Nothing, "", t.Remark.Trim), RB("EditTransaction.aspx?mode=edit&id=" & t.TransactionID, "fas fa-edit", tooltip:="Edit"))
                 Case 1 'debit
-                    dataTable.AddTableItem(t.TransactionID.ToString("00000"), t.TransactionDate.ToString(dateFormat), t.UserName.Trim, m.FullName.Trim, p.ProductName.Trim, t.Method, StatusToString(t.Status), "", t.Debit.ToString("0.00"), "Debit", TransactionTypeToString(t.TransType), If(t.Remark = Nothing, "", t.Remark.Trim), RB("EditTransaction.aspx?mode=edit&id=" & t.TransactionID, "fas fa-edit", tooltip:="Edit"))
+                    dataTable.AddTableItem(t.TransactionID.ToString("00000"), t.TransactionDate.ToString(dateFormat), t.UserName.Trim, m.FullName.Trim, p.ProductName.Trim, t.Method, StatusToString(t.Status), "", t.Debit.ToString("0.00"), "Debit", If(t.Remark = Nothing, "", t.Remark.Trim), RB("EditTransaction.aspx?mode=edit&id=" & t.TransactionID, "fas fa-edit", tooltip:="Edit"))
                 Case 2 'bonus
-                    dataTable.AddTableItem(t.TransactionID.ToString("00000"), t.TransactionDate.ToString(dateFormat), t.UserName.Trim, m.FullName.Trim, p.ProductName.Trim, t.Method, StatusToString(t.Status), t.Promotion.ToString("0.00"), "", "Promotion", TransactionTypeToString(t.TransType), If(t.Remark = Nothing, "", t.Remark.Trim), RB("EditTransaction.aspx?mode=edit&id=" & t.TransactionID, "fas fa-edit", tooltip:="Edit"))
+                    dataTable.AddTableItem(t.TransactionID.ToString("00000"), t.TransactionDate.ToString(dateFormat), t.UserName.Trim, m.FullName.Trim, p.ProductName.Trim, t.Method, StatusToString(t.Status), t.Promotion.ToString("0.00"), "", "Promotion", If(t.Remark = Nothing, "", t.Remark.Trim), RB("EditTransaction.aspx?mode=edit&id=" & t.TransactionID, "fas fa-edit", tooltip:="Edit"))
             End Select
         Next
     End Sub

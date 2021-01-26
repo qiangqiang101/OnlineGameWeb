@@ -72,7 +72,7 @@ Partial Class Admin_EditMember
                         Dim gas = (From acc In db.TblGameAccounts Where acc.MemberUserName = m.UserName)
                         If gas IsNot Nothing Then
                             For Each ga In gas
-                                dataTable1.AddTableItem(ga.GameID, ga.UserName.Trim, ga.Password.Trim, ga.Product.Trim,
+                                dataTable1.AddTableItem(ga.GameID, ga.UserName.Trim, ga.Password.Trim, GetProductName(ga.ProductID),
                                                                RB("#", "fas fa-trash", "btn-danger"))
                             Next
                         End If
@@ -96,7 +96,7 @@ Partial Class Admin_EditMember
                         Dim gas = (From acc In db.TblGameAccounts Where acc.MemberUserName = m.UserName)
                         If gas IsNot Nothing Then
                             For Each ga In gas
-                                dataTable1.AddTableItem(ga.GameID, ga.UserName.Trim, ga.Password.Trim, ga.Product.Trim,
+                                dataTable1.AddTableItem(ga.GameID, ga.UserName.Trim, ga.Password.Trim, GetProductName(ga.ProductID),
                                                                RB("DeleteGameAcc.aspx?id=" & ga.GameID, "fas fa-trash", "btn-danger"))
                             Next
                         End If

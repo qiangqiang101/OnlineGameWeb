@@ -7,62 +7,78 @@
     position: relative;
 }
 
-.main section.inm_bg1:before {
-    content: '';
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    background-color: rgba(0, 0, 0, 0.75);
-}
+    .main section.inm_bg1:before {
+        content: '';
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.75);
+    }
 
-.main section.inm_bg1 strong {
-    margin-bottom: 5px;
-    font-weight: 500;
-    font-size: 27px;
-    display: block;
-    color: #fff;
-    line-height: 30px;
-}
+    .main section.inm_bg1 strong {
+        margin-bottom: 5px;
+        font-weight: 500;
+        font-size: 27px;
+        display: block;
+        color: #fff;
+        line-height: 30px;
+    }
 
-.main section.inm_bg1 span {
-    color: #fff;
-    font-size: 15px;
-    letter-spacing: 1px;
-}
+    .main section.inm_bg1 span {
+        color: #fff;
+        font-size: 15px;
+        letter-spacing: 1px;
+    }
 
-.main section.inm_bg1 h2 {
-    color: #fff;
-}
+    .main section.inm_bg1 h2 {
+        color: #fff;
+    }
 
 .main section.inm_slot {
-        background: url('../img/page-header-slot.jpg') no-repeat center center fixed;
-    }
+    background: url('../img/page-header-slot.jpg') no-repeat center center fixed;
+}
 
 .main section.inm_live {
-        background: url('../img/page-header-live.jpg') no-repeat center center fixed;
-    }
+    background: url('../img/page-header-live.jpg') no-repeat center center fixed;
+}
 
 .main section.inm_sport {
-        background: url('../img/page-header-sport.jpg') no-repeat center center fixed;
-    }
+    background: url('../img/page-header-sport.jpg') no-repeat center center fixed;
+}
 
 .main section.inm_rng {
-        background: url('../img/page-header-rng.jpg') no-repeat center center fixed;
-    }
+    background: url('../img/page-header-rng.jpg') no-repeat center center fixed;
+}
 
 .main section.inm_fish {
-        background: url('../img/page-header-fish.jpg') no-repeat center center fixed;
-    }
+    background: url('../img/page-header-fish.jpg') no-repeat center center fixed;
+}
 
 .main section.inm_poker {
-        background: url('../img/page-header-poker.jpg') no-repeat center center fixed;
-    }
+    background: url('../img/page-header-poker.jpg') no-repeat center center fixed;
+}
 
 .main section.inm_other {
-        background: url('../img/page-header-other.jpg') no-repeat center center fixed;
-    }
+    background: url('../img/page-header-other.jpg') no-repeat center center fixed;
+}
+
+.main section.inm_deposit {
+    background: url('../img/page-header-deposit.jpg') no-repeat center center fixed;
+}
+
+.main section.inm_withdraw {
+    background: url('../img/page-header-withdraw.jpg') no-repeat center center fixed;
+}
+
+.main section.inm_transfer {
+    background: url('../img/page-header-transfer.jpg') no-repeat center center fixed;
+}
+
+.main section.inm_history {
+    background: url('../img/page-header-history.jpg') no-repeat center center fixed;
+}
 
 .android_link {
     color: #a4c639;
@@ -101,5 +117,5 @@
 }
 
 .inm_img_border {
-    border: 1px solid #eeeeee
+    border: 1px solid #eeeeee;
 }

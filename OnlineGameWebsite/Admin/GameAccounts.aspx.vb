@@ -6,7 +6,7 @@ Partial Class Admin_GameAccounts
         Dim gameAccounts = (From ga In db.TblGameAccounts Order By ga.GameID Descending)
         For Each ga As TblGameAccount In gameAccounts
             dataTable.AddTableItem(ga.GameID.ToString("00000"), ga.DateCreated.ToString(dateFormat),
-                                   ga.UserName.Trim, ga.Password.Trim, ga.Product.Trim, ga.MemberUserName.Trim)
+                                   ga.UserName.Trim, ga.Password.Trim, GetProductName(ga.ProductID), ga.MemberUserName.Trim)
         Next
     End Sub
 
@@ -30,18 +30,18 @@ Partial Class Admin_GameAccounts
     Private Sub BulkInsert(lists() As String)
         For i As Integer = 0 To lists.Count - 1
             Dim accounts() As String = lists(i).Split(","c)
-            InsertVault(accounts(0).Trim, accounts(1).Trim, accounts(2).Trim)
+            InsertVault(CInt(accounts(0).Trim), accounts(1).Trim, accounts(2).Trim)
         Next
     End Sub
 
-    Private Sub InsertVault(product As String, username As String, password As String)
+    Private Sub InsertVault(product As Integer, username As String, password As String)
         Dim newGameAcc As New TblGameAccount
         With newGameAcc
             .DateCreated = Now
             .MemberUserName = Nothing
             .UserName = username.Trim
             .Password = password.Trim
-            .Product = product.Trim
+            .ProductID = product
         End With
 
         db.TblGameAccounts.InsertOnSubmit(newGameAcc)

@@ -1,4 +1,8 @@
-﻿Imports System.Runtime.CompilerServices
+﻿Imports System.Drawing
+Imports System.Drawing.Drawing2D
+Imports System.Drawing.Text
+Imports System.IO
+Imports System.Runtime.CompilerServices
 Imports Microsoft.VisualBasic
 
 Public Module Helper
@@ -12,6 +16,18 @@ Public Module Helper
     <Extension>
     Public Sub JsMsgBox(page As Page, text As String)
         page.Response.Write("<script>alert('" & text & "');</script>")
+    End Sub
+
+    <Extension>
+    Public Sub LoginMsgBox(page As Page)
+        page.Response.Write("<script>alert('Please log in to continue.');</script>")
+        page.Response.Write("<script>window.location.href='Default.aspx';</script>")
+    End Sub
+
+    <Extension>
+    Public Sub JsMsgBoxRedirect(page As Page, text As String, redirect As String)
+        page.Response.Write("<script>alert('" & text & "');</script>")
+        page.Response.Write("<script>window.location.href='" & redirect & "';</script>")
     End Sub
 
     Public Function IsMemberExists(username As String) As Boolean
@@ -139,6 +155,10 @@ Public Module Helper
         Return "<a href=""#" & id & """ data-toggle=""modal"" data-target=""" & target & """ class=""btn " & button & " btn-circle btn-sm""><i class=""" & css & """></i></a>"
     End Function
 
+    Public Function DeleteButton(action As String, Optional button As String = "fa-times") As String
+        Return String.Format("<a href={0}{1}{0}><i class={0}fa {2}{0}></i></a>", """", action, button)
+    End Function
+
     <Extension>
     Public Sub AddTableItem(table As Table, ParamArray items As String())
         Dim row As New TableRow()
@@ -183,6 +203,19 @@ Public Module Helper
                 Return "Debit"
             Case Else
                 Return "Promotion"
+        End Select
+    End Function
+
+    Public Function TransactionChannelToString(chan As Integer) As String
+        Select Case chan
+            Case 0
+                Return "Cash Deposit Machine"
+            Case 1
+                Return "ATM Transfer"
+            Case 2
+                Return "Internet Transfer"
+            Case Else
+                Return "Other"
         End Select
     End Function
 
@@ -240,6 +273,11 @@ Public Module Helper
     Public Function IsImage(ext As String) As Boolean
         Dim imageExts As New List(Of String) From {"gif", "jpg", "jpeg", "jfif", "pjpeg", "pjp", "png", "svg", "webp", "bmp", "apng", "avif"}
         Return imageExts.Contains(ext)
+    End Function
+
+    Public Function CanUpload(ext As String) As Boolean
+        Dim exts As New List(Of String) From {"gif", "jpg", "jpeg", "jfif", "pjpeg", "pjp", "png", "svg", "webp", "bmp", "apng", "avif", "pdf"}
+        Return exts.Contains(ext)
     End Function
 
     Public Function ProductName(id As Integer) As String
@@ -310,6 +348,62 @@ Public Module Helper
         If OS.IsMatch(userAgent) Then device_info = OS.Match(userAgent).Groups(0).Value
         If device.IsMatch(userAgent.Substring(0, 4)) Then device_info += device.Match(userAgent).Groups(0).Value
         Return Not String.IsNullOrEmpty(device_info)
+    End Function
+
+    Public Function TextToImage(text As String) As String
+        Dim bitmap As New Bitmap(1, 1)
+        Dim font As New Font("Arial", 40, FontStyle.Strikeout, GraphicsUnit.Pixel)
+        Dim graphics As Graphics = Graphics.FromImage(bitmap)
+        Dim width As Integer = CInt(graphics.MeasureString(text, font).Width)
+        Dim height As Integer = CInt(graphics.MeasureString(text, font).Height)
+        bitmap = New Bitmap(bitmap, New Size(width, height))
+        graphics = Graphics.FromImage(bitmap)
+        graphics.Clear(Color.White)
+        graphics.SmoothingMode = SmoothingMode.AntiAlias
+        graphics.TextRenderingHint = TextRenderingHint.AntiAlias
+        graphics.DrawString(text, font, New SolidBrush(Color.FromArgb(255, 0, 0)), 0, 0)
+        graphics.Flush()
+        graphics.Dispose()
+
+        Dim ms As New MemoryStream()
+        bitmap.Save(ms, Imaging.ImageFormat.Jpeg)
+        Return Convert.ToBase64String(ms.ToArray)
+        ms.Dispose()
+    End Function
+
+    Public Function GetProductUserName(productID As Integer, username As String) As String
+        Try
+            Dim result = db.TblGameAccounts.Single(Function(x) x.MemberUserName = username And x.ProductID = productID)
+            Return result.UserName
+        Catch ex As Exception
+            Return "ERROR"
+        End Try
+    End Function
+
+    Public Function GetProductName(productID As Integer) As String
+        Try
+            Dim result = db.TblGameAccounts.Single(Function(x) x.ProductID = productID)
+            Return result.UserName
+        Catch ex As Exception
+            Return "ERROR"
+        End Try
+    End Function
+
+    Public Function CalcPromotion(promoID As Integer, amount As Single) As Single
+        Try
+            Dim promo = db.TblPromotions.Single(Function(x) x.PromoID = promoID)
+            Dim percent = promo.PromoPercent
+            Dim type = promo.PromoType
+            If type = 0 Then
+                'percent
+                Return (amount * percent)
+            Else
+                'fixed
+                Return amount + percent
+            End If
+        Catch ex As Exception
+            Return 0F
+        End Try
     End Function
 
 End Module

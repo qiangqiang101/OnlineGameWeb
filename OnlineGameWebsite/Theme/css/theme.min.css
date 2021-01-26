@@ -3133,11 +3133,11 @@ blockquote {
     .main article.shop-cart table.table tbody tr td, .main article.shop-checkout table.table tbody tr td {
         border-top: 1px solid #e8e8e8;
         position: relative;
-        padding: 22px 10px;
+        padding: 10px 5px;
     }
 
         .main article.shop-cart table.table tbody tr td:first-child, .main article.shop-checkout table.table tbody tr td:first-child {
-            padding-left: 65px;
+            padding-left: 10px;
         }
 
             .main article.shop-cart table.table tbody tr td:first-child img, .main article.shop-checkout table.table tbody tr td:first-child img {

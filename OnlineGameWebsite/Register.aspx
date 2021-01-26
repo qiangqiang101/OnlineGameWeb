@@ -4,7 +4,6 @@
 </asp:Content>
 <asp:Content ID="dvcontent" ContentPlaceHolderID="dvcontent" runat="Server">
     <div class="main">
-
         <section class="header-page">
             <div class="container">
                 <div class="row">

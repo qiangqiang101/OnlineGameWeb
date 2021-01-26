@@ -37,12 +37,6 @@ Partial Public Class DataClassesDataContext
     End Sub
   Partial Private Sub DeleteTblMemberBank(instance As TblMemberBank)
     End Sub
-  Partial Private Sub InsertTblGameAccount(instance As TblGameAccount)
-    End Sub
-  Partial Private Sub UpdateTblGameAccount(instance As TblGameAccount)
-    End Sub
-  Partial Private Sub DeleteTblGameAccount(instance As TblGameAccount)
-    End Sub
   Partial Private Sub InsertTblTransfer(instance As TblTransfer)
     End Sub
   Partial Private Sub UpdateTblTransfer(instance As TblTransfer)
@@ -121,6 +115,12 @@ Partial Public Class DataClassesDataContext
     End Sub
   Partial Private Sub DeleteTblProduct(instance As TblProduct)
     End Sub
+  Partial Private Sub InsertTblGameAccount(instance As TblGameAccount)
+    End Sub
+  Partial Private Sub UpdateTblGameAccount(instance As TblGameAccount)
+    End Sub
+  Partial Private Sub DeleteTblGameAccount(instance As TblGameAccount)
+    End Sub
   #End Region
 	
 	Public Sub New()
@@ -151,12 +151,6 @@ Partial Public Class DataClassesDataContext
 	Public ReadOnly Property TblMemberBanks() As System.Data.Linq.Table(Of TblMemberBank)
 		Get
 			Return Me.GetTable(Of TblMemberBank)
-		End Get
-	End Property
-	
-	Public ReadOnly Property TblGameAccounts() As System.Data.Linq.Table(Of TblGameAccount)
-		Get
-			Return Me.GetTable(Of TblGameAccount)
 		End Get
 	End Property
 	
@@ -235,6 +229,12 @@ Partial Public Class DataClassesDataContext
 	Public ReadOnly Property TblProducts() As System.Data.Linq.Table(Of TblProduct)
 		Get
 			Return Me.GetTable(Of TblProduct)
+		End Get
+	End Property
+	
+	Public ReadOnly Property TblGameAccounts() As System.Data.Linq.Table(Of TblGameAccount)
+		Get
+			Return Me.GetTable(Of TblGameAccount)
 		End Get
 	End Property
 End Class
@@ -355,179 +355,6 @@ Partial Public Class TblMemberBank
 	End Property
 	
 	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_MemberUserName", DbType:="NChar(30) NOT NULL", CanBeNull:=false)>  _
-	Public Property MemberUserName() As String
-		Get
-			Return Me._MemberUserName
-		End Get
-		Set
-			If (String.Equals(Me._MemberUserName, value) = false) Then
-				Me.OnMemberUserNameChanging(value)
-				Me.SendPropertyChanging
-				Me._MemberUserName = value
-				Me.SendPropertyChanged("MemberUserName")
-				Me.OnMemberUserNameChanged
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-End Class
-
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.TblGameAccount")>  _
-Partial Public Class TblGameAccount
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _GameID As Integer
-	
-	Private _UserName As String
-	
-	Private _Password As String
-	
-	Private _Product As String
-	
-	Private _DateCreated As Date
-	
-	Private _MemberUserName As String
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnGameIDChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnGameIDChanged()
-    End Sub
-    Partial Private Sub OnUserNameChanging(value As String)
-    End Sub
-    Partial Private Sub OnUserNameChanged()
-    End Sub
-    Partial Private Sub OnPasswordChanging(value As String)
-    End Sub
-    Partial Private Sub OnPasswordChanged()
-    End Sub
-    Partial Private Sub OnProductChanging(value As String)
-    End Sub
-    Partial Private Sub OnProductChanged()
-    End Sub
-    Partial Private Sub OnDateCreatedChanging(value As Date)
-    End Sub
-    Partial Private Sub OnDateCreatedChanged()
-    End Sub
-    Partial Private Sub OnMemberUserNameChanging(value As String)
-    End Sub
-    Partial Private Sub OnMemberUserNameChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_GameID", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
-	Public Property GameID() As Integer
-		Get
-			Return Me._GameID
-		End Get
-		Set
-			If ((Me._GameID = value)  _
-						= false) Then
-				Me.OnGameIDChanging(value)
-				Me.SendPropertyChanging
-				Me._GameID = value
-				Me.SendPropertyChanged("GameID")
-				Me.OnGameIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_UserName", DbType:="NChar(30) NOT NULL", CanBeNull:=false)>  _
-	Public Property UserName() As String
-		Get
-			Return Me._UserName
-		End Get
-		Set
-			If (String.Equals(Me._UserName, value) = false) Then
-				Me.OnUserNameChanging(value)
-				Me.SendPropertyChanging
-				Me._UserName = value
-				Me.SendPropertyChanged("UserName")
-				Me.OnUserNameChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Password", DbType:="NChar(30) NOT NULL", CanBeNull:=false)>  _
-	Public Property Password() As String
-		Get
-			Return Me._Password
-		End Get
-		Set
-			If (String.Equals(Me._Password, value) = false) Then
-				Me.OnPasswordChanging(value)
-				Me.SendPropertyChanging
-				Me._Password = value
-				Me.SendPropertyChanged("Password")
-				Me.OnPasswordChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Product", DbType:="NChar(30) NOT NULL", CanBeNull:=false)>  _
-	Public Property Product() As String
-		Get
-			Return Me._Product
-		End Get
-		Set
-			If (String.Equals(Me._Product, value) = false) Then
-				Me.OnProductChanging(value)
-				Me.SendPropertyChanging
-				Me._Product = value
-				Me.SendPropertyChanged("Product")
-				Me.OnProductChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DateCreated", DbType:="DateTime NOT NULL")>  _
-	Public Property DateCreated() As Date
-		Get
-			Return Me._DateCreated
-		End Get
-		Set
-			If ((Me._DateCreated = value)  _
-						= false) Then
-				Me.OnDateCreatedChanging(value)
-				Me.SendPropertyChanging
-				Me._DateCreated = value
-				Me.SendPropertyChanged("DateCreated")
-				Me.OnDateCreatedChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_MemberUserName", DbType:="NChar(30)")>  _
 	Public Property MemberUserName() As String
 		Get
 			Return Me._MemberUserName
@@ -838,9 +665,9 @@ Partial Public Class TblPromotion
 	
 	Private _PromoType As Integer
 	
-	Private _PromoPercent As Double
+	Private _PromoPercent As Single
 	
-	Private _MaxPayout As Double
+	Private _MaxPayout As Single
 	
 	Private _EnglishName As String
 	
@@ -877,11 +704,11 @@ Partial Public Class TblPromotion
     End Sub
     Partial Private Sub OnPromoTypeChanged()
     End Sub
-    Partial Private Sub OnPromoPercentChanging(value As Double)
+    Partial Private Sub OnPromoPercentChanging(value As Single)
     End Sub
     Partial Private Sub OnPromoPercentChanged()
     End Sub
-    Partial Private Sub OnMaxPayoutChanging(value As Double)
+    Partial Private Sub OnMaxPayoutChanging(value As Single)
     End Sub
     Partial Private Sub OnMaxPayoutChanged()
     End Sub
@@ -984,7 +811,7 @@ Partial Public Class TblPromotion
 	End Property
 	
 	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_PromoPercent", DbType:="Float NOT NULL")>  _
-	Public Property PromoPercent() As Double
+	Public Property PromoPercent() As Single
 		Get
 			Return Me._PromoPercent
 		End Get
@@ -1001,7 +828,7 @@ Partial Public Class TblPromotion
 	End Property
 	
 	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_MaxPayout", DbType:="Float NOT NULL")>  _
-	Public Property MaxPayout() As Double
+	Public Property MaxPayout() As Single
 		Get
 			Return Me._MaxPayout
 		End Get
@@ -3092,6 +2919,8 @@ Partial Public Class TblTransaction
 	
 	Private _Remark As String
 	
+	Private _TransactionDateUser As Date
+	
     #Region "Extensibility Method Definitions"
     Partial Private Sub OnLoaded()
     End Sub
@@ -3182,6 +3011,10 @@ Partial Public Class TblTransaction
     Partial Private Sub OnRemarkChanging(value As String)
     End Sub
     Partial Private Sub OnRemarkChanged()
+    End Sub
+    Partial Private Sub OnTransactionDateUserChanging(value As Date)
+    End Sub
+    Partial Private Sub OnTransactionDateUserChanged()
     End Sub
     #End Region
 	
@@ -3532,6 +3365,23 @@ Partial Public Class TblTransaction
 				Me._Remark = value
 				Me.SendPropertyChanged("Remark")
 				Me.OnRemarkChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TransactionDateUser", DbType:="DateTime NOT NULL")>  _
+	Public Property TransactionDateUser() As Date
+		Get
+			Return Me._TransactionDateUser
+		End Get
+		Set
+			If ((Me._TransactionDateUser = value)  _
+						= false) Then
+				Me.OnTransactionDateUserChanging(value)
+				Me.SendPropertyChanging
+				Me._TransactionDateUser = value
+				Me.SendPropertyChanged("TransactionDateUser")
+				Me.OnTransactionDateUserChanged
 			End If
 		End Set
 	End Property
@@ -3955,6 +3805,180 @@ Partial Public Class TblProduct
 				Me._CatOther = value
 				Me.SendPropertyChanged("CatOther")
 				Me.OnCatOtherChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.TblGameAccount")>  _
+Partial Public Class TblGameAccount
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _GameID As Integer
+	
+	Private _UserName As String
+	
+	Private _Password As String
+	
+	Private _ProductID As Integer
+	
+	Private _DateCreated As Date
+	
+	Private _MemberUserName As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnGameIDChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnGameIDChanged()
+    End Sub
+    Partial Private Sub OnUserNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnUserNameChanged()
+    End Sub
+    Partial Private Sub OnPasswordChanging(value As String)
+    End Sub
+    Partial Private Sub OnPasswordChanged()
+    End Sub
+    Partial Private Sub OnProductIDChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnProductIDChanged()
+    End Sub
+    Partial Private Sub OnDateCreatedChanging(value As Date)
+    End Sub
+    Partial Private Sub OnDateCreatedChanged()
+    End Sub
+    Partial Private Sub OnMemberUserNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnMemberUserNameChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_GameID", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
+	Public Property GameID() As Integer
+		Get
+			Return Me._GameID
+		End Get
+		Set
+			If ((Me._GameID = value)  _
+						= false) Then
+				Me.OnGameIDChanging(value)
+				Me.SendPropertyChanging
+				Me._GameID = value
+				Me.SendPropertyChanged("GameID")
+				Me.OnGameIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_UserName", DbType:="NChar(30) NOT NULL", CanBeNull:=false)>  _
+	Public Property UserName() As String
+		Get
+			Return Me._UserName
+		End Get
+		Set
+			If (String.Equals(Me._UserName, value) = false) Then
+				Me.OnUserNameChanging(value)
+				Me.SendPropertyChanging
+				Me._UserName = value
+				Me.SendPropertyChanged("UserName")
+				Me.OnUserNameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Password", DbType:="NChar(30) NOT NULL", CanBeNull:=false)>  _
+	Public Property Password() As String
+		Get
+			Return Me._Password
+		End Get
+		Set
+			If (String.Equals(Me._Password, value) = false) Then
+				Me.OnPasswordChanging(value)
+				Me.SendPropertyChanging
+				Me._Password = value
+				Me.SendPropertyChanged("Password")
+				Me.OnPasswordChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ProductID", DbType:="Int NOT NULL")>  _
+	Public Property ProductID() As Integer
+		Get
+			Return Me._ProductID
+		End Get
+		Set
+			If ((Me._ProductID = value)  _
+						= false) Then
+				Me.OnProductIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ProductID = value
+				Me.SendPropertyChanged("ProductID")
+				Me.OnProductIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_DateCreated", DbType:="DateTime NOT NULL")>  _
+	Public Property DateCreated() As Date
+		Get
+			Return Me._DateCreated
+		End Get
+		Set
+			If ((Me._DateCreated = value)  _
+						= false) Then
+				Me.OnDateCreatedChanging(value)
+				Me.SendPropertyChanging
+				Me._DateCreated = value
+				Me.SendPropertyChanged("DateCreated")
+				Me.OnDateCreatedChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_MemberUserName", DbType:="NChar(30)")>  _
+	Public Property MemberUserName() As String
+		Get
+			Return Me._MemberUserName
+		End Get
+		Set
+			If (String.Equals(Me._MemberUserName, value) = false) Then
+				Me.OnMemberUserNameChanging(value)
+				Me.SendPropertyChanging
+				Me._MemberUserName = value
+				Me.SendPropertyChanged("MemberUserName")
+				Me.OnMemberUserNameChanged
 			End If
 		End Set
 	End Property
