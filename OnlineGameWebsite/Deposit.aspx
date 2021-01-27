@@ -89,7 +89,7 @@
                                             <img src="#" id="captchaImg" runat="server" class="img-responsive" alt="" style="height: 50px;" />
                                         </div>
                                     </div>
-                                    <div class="form-group m-t-30">
+                                    <div class="form-group m-t-30 col-md-12">
                                         <asp:Button class="btn btn-palovit center-block" ID="btnSubmit" runat="server" Text="SUBMIT" />
                                     </div>
                                 </form>

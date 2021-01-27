@@ -22,25 +22,25 @@ Partial Class Deposit
 
         If role <> "user" Then
             LoginMsgBox
+        Else
+            Dim banks = db.TblBanks.Where(Function(x) x.Status = 1).ToList
+            For Each bank As TblBank In banks
+                cmbBank.Items.Add(New ListItem(bank.BankName.Trim, bank.BankID))
+            Next
+            Dim promos = db.TblPromotions.Where(Function(x) x.Status = 1).ToList
+            For Each promo As TblPromotion In promos
+                cmbPromotion.Items.Add(New ListItem(promo.EnglishName.Trim, promo.PromoID))
+            Next
+            Dim products = db.TblProducts.Where(Function(x) x.Status = True).ToList
+            For Each pdt As TblProduct In products
+                Dim pdtName As String = Nothing
+                If String.IsNullOrWhiteSpace(pdt.ProductAlias) Then pdtName = pdt.ProductName.Trim Else pdtName = pdt.ProductAlias.Trim
+                cmbProduct.Items.Add(New ListItem(pdtName, pdt.ProductID))
+            Next
+
+            txtAmount.Text = "30.00"
+            txtDepositDate.Text = Now.ToLocalTime().ToString("yyyy-MM-ddTHH:mm")
         End If
-
-        Dim banks = db.TblBanks.Where(Function(x) x.Status = 1).ToList
-        For Each bank As TblBank In banks
-            cmbBank.Items.Add(New ListItem(bank.BankName.Trim, bank.BankID))
-        Next
-        Dim promos = db.TblPromotions.Where(Function(x) x.Status = 1).ToList
-        For Each promo As TblPromotion In promos
-            cmbPromotion.Items.Add(New ListItem(promo.EnglishName.Trim, promo.PromoID))
-        Next
-        Dim products = db.TblProducts.Where(Function(x) x.Status = True).ToList
-        For Each pdt As TblProduct In products
-            Dim pdtName As String = Nothing
-            If String.IsNullOrWhiteSpace(pdt.ProductAlias) Then pdtName = pdt.ProductName.Trim Else pdtName = pdt.ProductAlias.Trim
-            cmbProduct.Items.Add(New ListItem(pdtName, pdt.ProductID))
-        Next
-
-        txtAmount.Text = "30.00"
-        txtDepositDate.Text = Now.ToLocalTime().ToString("yyyy-MM-ddTHH:mm")
 
         If Not IsPostBack Then
             captcha = New Random().Next(0, 999999)

@@ -37,13 +37,21 @@ Partial Class Admin_EditMember
                 lblLastLoginIP.InnerText = LastLoginIP(m.UserName)
                 cmbLevel.SelectedValue = m.VipLevel
                 cmbEnabled.SelectedValue = m.Enabled
+                cmbBank.SelectedValue = m.BankName
+                txtAccNo.Text = If(m.AccountNo = Nothing, "", m.AccountNo.Trim)
                 txtRemarks.Text = If(m.Remark = Nothing, Nothing, m.Remark.Trim)
 
-                Dim tns = (From tran In db.TblTransactions Where tran.UserName = m.UserName)
+                Dim tns = db.TblTransactions.Where(Function(x) x.UserName = m.UserName).OrderByDescending(Function(x) x.TransactionID)
                 If tns IsNot Nothing Then
                     For Each tn In tns
-                        dataTable3.AddTableItem(tn.TransactionID, tn.TransactionDate, ProductName(tn.ProductID), tn.ProductUserName, tn.Method, tn.Debit.ToString("0.00"),
-                                                        If(tn.Promotion = 0F, tn.Credit.ToString("0.00"), tn.Promotion.ToString("0.00")), StatusToString(tn.Status))
+                        If tn.TransType = 1 Then
+                            dataTable3.AddTableItem(tn.TransactionID.ToString("00000"), tn.TransactionDate, ProductName(tn.ProductID), tn.ProductUserName, tn.Method, tn.Debit.ToString("0.00"),
+                                                            "", StatusToString(tn.Status))
+                        Else
+                            dataTable3.AddTableItem(tn.TransactionID.ToString("00000"), tn.TransactionDate, ProductName(tn.ProductID), tn.ProductUserName, tn.Method, "",
+                                                            If(tn.Promotion = 0F, tn.Credit.ToString("0.00"), tn.Promotion.ToString("0.00")), StatusToString(tn.Status))
+                        End If
+
                     Next
                 End If
             Catch ex As Exception
@@ -62,6 +70,8 @@ Partial Class Admin_EditMember
                     txtBirthday.ReadOnly = True
                     cmbLevel.Enabled = False
                     cmbEnabled.Enabled = False
+                    cmbBank.Enabled = False
+                    txtAccNo.ReadOnly = True
                     txtRemarks.ReadOnly = True
 
                     btnSubmit.Text = "Edit Member"
@@ -74,14 +84,6 @@ Partial Class Admin_EditMember
                             For Each ga In gas
                                 dataTable1.AddTableItem(ga.GameID, ga.UserName.Trim, ga.Password.Trim, GetProductName(ga.ProductID),
                                                                RB("#", "fas fa-trash", "btn-danger"))
-                            Next
-                        End If
-
-                        Dim mbs = (From bnk In db.TblMemberBanks Where bnk.MemberUserName = m.UserName)
-                        If mbs IsNot Nothing Then
-                            For Each mb In mbs
-                                dataTable2.AddTableItem(mb.MemberBankID, mb.BankName.Trim, mb.AccountName.Trim, mb.AccountNo.Trim,
-                                                                RB("#", "fas fa-trash", "btn-danger"))
                             Next
                         End If
                     Catch ex As Exception
@@ -100,14 +102,6 @@ Partial Class Admin_EditMember
                                                                RB("DeleteGameAcc.aspx?id=" & ga.GameID, "fas fa-trash", "btn-danger"))
                             Next
                         End If
-
-                        Dim mbs = (From bnk In db.TblMemberBanks Where bnk.MemberUserName = m.UserName)
-                        If mbs IsNot Nothing Then
-                            For Each mb In mbs
-                                dataTable2.AddTableItem(mb.MemberBankID, mb.BankName.Trim, mb.AccountName.Trim, mb.AccountNo.Trim,
-                                                                RB("DeleteMemberBank.aspx?id=" & mb.MemberBankID, "fas fa-trash", "btn-danger"))
-                            Next
-                        End If
                     Catch ex As Exception
                         JsMsgBox("Member not found!")
                         btnSubmit.Enabled = False
@@ -122,7 +116,7 @@ Partial Class Admin_EditMember
             Case "view"
                 Response.Redirect("EditMember.aspx?mode=edit&id=" & mid)
             Case Else
-                Dim editMember = db.TblMembers.Single(Function(x) x.UserID = CInt(Request.QueryString("id")))
+                Dim editMember = db.TblMembers.Single(Function(x) x.UserID = CInt(mid))
 
                 If TryEditMember() Then
                     JsMsgBox("Member " & editMember.UserName & " update successfully.")
@@ -135,7 +129,7 @@ Partial Class Admin_EditMember
 
     Private Function TryEditMember() As Boolean
         Try
-            Dim editMember = db.TblMembers.Single(Function(x) x.UserID = CInt(Request.QueryString("id")))
+            Dim editMember = db.TblMembers.Single(Function(x) x.UserID = CInt(mid))
             With editMember
                 .UserName = txtUserID.Text.Trim
                 .Password = txtPassword.Text.Trim
@@ -153,6 +147,8 @@ Partial Class Admin_EditMember
                 .GroupLeaderID = .GroupLeaderID
                 .Enabled = cmbEnabled.SelectedValue
                 .Remark = txtRemarks.Text.Trim
+                .BankName = cmbBank.SelectedValue
+                .AccountNo = txtAccNo.Text.Trim
             End With
 
             db.SubmitChanges()

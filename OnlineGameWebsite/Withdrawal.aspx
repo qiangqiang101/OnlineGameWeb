@@ -50,6 +50,7 @@
                                     <div class="form-group col-md-6">
                                         <label>Bank</label>
                                         <asp:DropDownList CssClass="form-control" ID="cmbBank" AutoPostBack="False" runat="server" placeholder="">
+                                            <asp:ListItem Value="-1">---</asp:ListItem>
                                             <asp:ListItem Value="0">Maybank</asp:ListItem>
                                             <asp:ListItem Value="1">CIMB Bank</asp:ListItem>
                                             <asp:ListItem Value="2">Public Bank</asp:ListItem>
@@ -95,7 +96,7 @@
                                             <img src="#" id="captchaImg" runat="server" class="img-responsive" alt="" style="height: 50px;" />
                                         </div>
                                     </div>
-                                    <div class="form-group m-t-30">
+                                    <div class="form-group m-t-30 col-md-12">
                                         <asp:Button class="btn btn-palovit center-block" ID="btnSubmit" runat="server" Text="SUBMIT" />
                                     </div>
                                 </form>

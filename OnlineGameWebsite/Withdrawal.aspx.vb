@@ -22,17 +22,25 @@ Partial Class Withdrawal
 
         If role <> "user" Then
             LoginMsgBox
+        Else
+            Dim products = db.TblProducts.Where(Function(x) x.Status = True).ToList
+            For Each pdt As TblProduct In products
+                Dim pdtName As String = Nothing
+                If String.IsNullOrWhiteSpace(pdt.ProductAlias) Then pdtName = pdt.ProductName.Trim Else pdtName = pdt.ProductAlias.Trim
+                cmbProduct.Items.Add(New ListItem(pdtName, pdt.ProductID))
+            Next
+
+            txtAmount.Text = "50.00"
+            txtBankAccountName.Text = Session("fullname").ToString.Trim
+
+            Try
+                Dim m = db.TblMembers.Single(Function(x) x.UserID = Session("userid").ToString.Trim)
+                txtBankAccountNo.Text = m.AccountNo.Trim
+                cmbBank.SelectedValue = m.BankName
+            Catch ex As Exception
+                JsMsgBox(ex.Message & ex.StackTrace)
+            End Try
         End If
-
-        Dim products = db.TblProducts.Where(Function(x) x.Status = True).ToList
-        For Each pdt As TblProduct In products
-            Dim pdtName As String = Nothing
-            If String.IsNullOrWhiteSpace(pdt.ProductAlias) Then pdtName = pdt.ProductName.Trim Else pdtName = pdt.ProductAlias.Trim
-            cmbProduct.Items.Add(New ListItem(pdtName, pdt.ProductID))
-        Next
-
-        txtAmount.Text = "50.00"
-        txtBankAccountName.Text = Session("fullname").ToString.Trim
 
         If Not IsPostBack Then
             captcha = New Random().Next(0, 999999)

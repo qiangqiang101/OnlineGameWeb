@@ -74,9 +74,42 @@
                                     </asp:DropDownList>
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <label>Bank</label>
+                                    <asp:DropDownList CssClass="form-control form-control-user" ID="cmbBank" AutoPostBack="True" runat="server" placeholder="">
+                                        <asp:ListItem Value="-1">---</asp:ListItem>
+                                        <asp:ListItem Value="0">Maybank</asp:ListItem>
+                                        <asp:ListItem Value="1">CIMB Bank</asp:ListItem>
+                                        <asp:ListItem Value="2">Public Bank</asp:ListItem>
+                                        <asp:ListItem Value="3">RHB Bank</asp:ListItem>
+                                        <asp:ListItem Value="4">Hong Leong Bank</asp:ListItem>
+                                        <asp:ListItem Value="5">AmBank</asp:ListItem>
+                                        <asp:ListItem Value="6">UOB Bank</asp:ListItem>
+                                        <asp:ListItem Value="7">Bank Rakyat</asp:ListItem>
+                                        <asp:ListItem Value="8">OCBC Bank</asp:ListItem>
+                                        <asp:ListItem Value="9">HSBC Bank</asp:ListItem>
+                                        <asp:ListItem Value="10">Affin Bank</asp:ListItem>
+                                        <asp:ListItem Value="11">Bank Islam</asp:ListItem>
+                                        <asp:ListItem Value="12">Standard Chartered Bank</asp:ListItem>
+                                        <asp:ListItem Value="13">CitiBank</asp:ListItem>
+                                        <asp:ListItem Value="14">Bank Simpanan Malaysia</asp:ListItem>
+                                        <asp:ListItem Value="15">Bank Muamalat</asp:ListItem>
+                                        <asp:ListItem Value="16">Alliance Bank</asp:ListItem>
+                                        <asp:ListItem Value="17">Agrobank</asp:ListItem>
+                                        <asp:ListItem Value="18">Al-Rajhi</asp:ListItem>
+                                        <asp:ListItem Value="19">MBSB Bank</asp:ListItem>
+                                        <asp:ListItem Value="20">Co-op Bank Pertama</asp:ListItem>
+                                    </asp:DropDownList>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label>Bank Account</label>
+                                    <asp:TextBox class="form-control form-control-user" ID="txtAccNo" runat="server" placeholder=""></asp:TextBox>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <label>Remarks</label>
-                                <asp:TextBox class="form-control form-control-user" ID="txtRemarks" runat="server" TextMode="MultiLine"></asp:TextBox>
+                                <asp:TextBox class="form-control form-control-user" ID="txtRemarks" runat="server" TextMode="MultiLine" Height="95px"></asp:TextBox>
                             </div>
                             <hr />
                             <div class="col-sm-3 ml-auto">
@@ -142,7 +175,7 @@
             </div>
 
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">Products</h6>
@@ -155,27 +188,6 @@
                                         <asp:TableHeaderCell>User Name</asp:TableHeaderCell>
                                         <asp:TableHeaderCell>Password</asp:TableHeaderCell>
                                         <asp:TableHeaderCell>Product</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>Actions</asp:TableHeaderCell>
-                                    </asp:TableHeaderRow>
-                                </asp:Table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-6">
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Bank Accounts</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <asp:Table CssClass="table table-bordered" ID="dataTable2" ClientIDMode="Static" Width="100%" CellSpacing="0" runat="server">
-                                    <asp:TableHeaderRow TableSection="TableHeader">
-                                        <asp:TableHeaderCell>ID</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>Bank Name</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>Account Name</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>Account No.</asp:TableHeaderCell>
                                         <asp:TableHeaderCell>Actions</asp:TableHeaderCell>
                                     </asp:TableHeaderRow>
                                 </asp:Table>

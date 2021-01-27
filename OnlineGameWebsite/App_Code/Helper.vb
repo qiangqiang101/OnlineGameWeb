@@ -168,6 +168,44 @@ Public Module Helper
         table.Rows.Add(row)
     End Sub
 
+    <Extension>
+    Public Sub AddTransactionTableItem(table As Table, id As Integer, tdate As Date, userid As String, fullname As String, productname As String, method As String, status As Integer, credit As Single, debit As Single, promo As Single, type As Integer, remark As String)
+        Dim row As New TableRow()
+        row.Cells.Add(New TableCell() With {.Text = id.ToString("00000")})
+        row.Cells.Add(New TableCell() With {.Text = tdate.ToString(dateFormat)})
+        row.Cells.Add(New TableCell() With {.Text = userid.Trim})
+        row.Cells.Add(New TableCell() With {.Text = fullname.Trim})
+        row.Cells.Add(New TableCell() With {.Text = productname.Trim})
+        row.Cells.Add(New TableCell() With {.Text = method.Trim})
+        Dim statusColor As Color = Color.Blue
+        Select Case status
+            Case 0, 1
+                statusColor = Color.Blue
+            Case 2
+                statusColor = Color.Green
+            Case Else
+                statusColor = Color.Red
+        End Select
+        row.Cells.Add(New TableCell() With {.Text = StatusToString(status), .ForeColor = statusColor})
+        row.Cells.Add(New TableCell() With {.Text = If(credit <> 0F, credit.ToString("0.00"), If(promo <> 0F, promo.ToString("0.00"), ""))})
+        row.Cells.Add(New TableCell() With {.Text = If(debit <> 0F, debit.ToString("0.00"), "")})
+        row.Cells.Add(New TableCell() With {.Text = If(type = 0, "Credit", If(type = 2, "Promotion", "Debit"))})
+        row.Cells.Add(New TableCell() With {.Text = If(remark = Nothing, "", remark.Trim)})
+        Select Case type
+            Case 0
+                row.Cells.Add(New TableCell() With {.Text = RB("EditDeposit.aspx?mode=edit&id=" & id, "fas fa-eye", tooltip:="Edit")})
+            Case 1
+                row.Cells.Add(New TableCell() With {.Text = RB("EditWithdrawal.aspx?mode=edit&id=" & id, "fas fa-eye", tooltip:="Edit")})
+            Case Else
+                If status <= 1 Then
+                    row.Cells.Add(New TableCell() With {.Text = RB("EditDeposit.aspx?mode=approve&id=" & id, "fas fa-check", "btn-success", "Approve") & RB("EditDeposit.aspx?mode=reject&id=" & id, "fas fa-times", "btn-danger", "Reject")})
+                Else
+                    row.Cells.Add(New TableCell() With {.Text = RB("EditDeposit.aspx?mode=edit&id=" & id, "fas fa-eye", tooltip:="Edit")})
+                End If
+        End Select
+        table.Rows.Add(row)
+    End Sub
+
     Public Function StatusToString(status As Integer) As String
         Select Case status
             Case 0
@@ -182,6 +220,17 @@ Public Module Helper
                 Return "Error"
         End Select
     End Function
+
+    Public Sub Pending(tid As Integer)
+        Try
+            Dim t = db.TblTransactions.Single(Function(x) x.TransactionID = tid)
+            If t.Status = 0 Then
+                t.Status = 1
+                db.SubmitChanges()
+            End If
+        Catch ex As Exception
+        End Try
+    End Sub
 
     Public Function GenerateCategoryString(slot As Boolean, live As Boolean, sport As Boolean, rng As Boolean, fish As Boolean, poker As Boolean, other As Boolean) As String
         Dim result As New List(Of String)
@@ -374,7 +423,7 @@ Public Module Helper
     Public Function GetProductUserName(productID As Integer, username As String) As String
         Try
             Dim result = db.TblGameAccounts.Single(Function(x) x.MemberUserName = username And x.ProductID = productID)
-            Return result.UserName
+            Return result.UserName.Trim
         Catch ex As Exception
             Return "ERROR"
         End Try
@@ -382,8 +431,8 @@ Public Module Helper
 
     Public Function GetProductName(productID As Integer) As String
         Try
-            Dim result = db.TblGameAccounts.Single(Function(x) x.ProductID = productID)
-            Return result.UserName
+            Dim result = db.TblProducts.Single(Function(x) x.ProductID = productID)
+            Return result.ProductName.Trim
         Catch ex As Exception
             Return "ERROR"
         End Try
