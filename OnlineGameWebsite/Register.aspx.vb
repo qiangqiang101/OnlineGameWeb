@@ -49,30 +49,32 @@ Partial Class Register
     End Sub
 
     Private Function RegisterMember() As Boolean
-        Dim newMember As New TblMember
-        With newMember
-            .UserName = txtUserID.Text.Trim
-            .Password = txtPassword.Text.Trim
-            .Email = txtEmail.Text.Trim
-            .PhoneNo = txtContact.Text.Trim
-            .FullName = txtFullName.Text.Trim
-            .DateOfBirth = Date.ParseExact(txtBirthday.Text.Trim, "yyyy-MM-dd", System.Globalization.DateTimeFormatInfo.InvariantInfo)
-            .RefCode = txtUserID.Text.GetHashCode
-            .RefCodeReg = txtRegRefCode.Text.Trim
-            .VipLevel = 0
-            .Promotion = 0F
-            .DateCreated = Now
-            .LastModified = Now
-            .IPAddress = Request.UserHostAddress
-            .GroupLeaderID = -1
-            .Enabled = True
-            .Remark = Nothing
-            .Affiliate = agent.Trim
-        End With
-
         Try
-            db.TblMembers.InsertOnSubmit(newMember)
-            db.SubmitChanges()
+            Using db As New DataClassesDataContext
+                Dim newMember As New TblMember
+                With newMember
+                    .UserName = txtUserID.Text.Trim
+                    .Password = txtPassword.Text.Trim
+                    .Email = txtEmail.Text.Trim
+                    .PhoneNo = txtContact.Text.Trim
+                    .FullName = txtFullName.Text.Trim
+                    .DateOfBirth = Date.ParseExact(txtBirthday.Text.Trim, "yyyy-MM-dd", System.Globalization.DateTimeFormatInfo.InvariantInfo)
+                    .RefCode = txtUserID.Text.GetHashCode
+                    .RefCodeReg = txtRegRefCode.Text.Trim
+                    .VipLevel = 0
+                    .Promotion = 0F
+                    .DateCreated = Now
+                    .LastModified = Now
+                    .IPAddress = Request.UserHostAddress
+                    .GroupLeaderID = -1
+                    .Enabled = True
+                    .Remark = Nothing
+                    .Affiliate = agent.Trim
+                End With
+
+                db.TblMembers.InsertOnSubmit(newMember)
+                db.SubmitChanges()
+            End Using
         Catch ex As Exception
             Return False
         End Try
@@ -98,9 +100,11 @@ Partial Class Register
 
         txtRegRefCode.Text = ref
 
-        Dim promos = db.TblPromotions.Where(Function(x) x.Status = 1).ToList
-        For Each promo As TblPromotion In promos
-            benefitsList.Controls.Add(LoadPromotions(promo.EnglishName, "star"))
-        Next
+        Using db As New DataClassesDataContext
+            Dim promos = db.TblPromotions.Where(Function(x) x.Status = 1).ToList
+            For Each promo As TblPromotion In promos
+                benefitsList.Controls.Add(LoadPromotions(promo.EnglishName, "star"))
+            Next
+        End Using
     End Sub
 End Class

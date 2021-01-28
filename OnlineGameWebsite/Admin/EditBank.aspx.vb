@@ -13,47 +13,51 @@ Partial Class Admin_EditBank
             Select Case mode
                 Case "edit"
                     Try
-                        Dim b = db.TblBanks.Single(Function(x) x.BankID = CInt(bid))
-                        txtBank.Text = b.BankName.Trim
-                        txtName.Text = b.AccountName.Trim
-                        txtAccNo.Text = b.AccountNo.Trim
-                        txtWebsite.Text = b.BankWeb.Trim
-                        txtMinCredit.Text = b.MinCredit.ToString("0.00")
-                        txtMaxCredit.Text = b.MaxCredit.ToString("0.00")
-                        txtMinDebit.Text = b.MinDebit.ToString("0.00")
-                        txtMaxDebit.Text = b.MaxDebit.ToString("0.00")
-                        cmbEnabled.SelectedValue = b.Status
+                        Using db As New DataClassesDataContext
+                            Dim b = db.TblBanks.Single(Function(x) x.BankID = CInt(bid))
+                            txtBank.Text = b.BankName.Trim
+                            txtName.Text = b.AccountName.Trim
+                            txtAccNo.Text = b.AccountNo.Trim
+                            txtWebsite.Text = b.BankWeb.Trim
+                            txtMinCredit.Text = b.MinCredit.ToString("0.00")
+                            txtMaxCredit.Text = b.MaxCredit.ToString("0.00")
+                            txtMinDebit.Text = b.MinDebit.ToString("0.00")
+                            txtMaxDebit.Text = b.MaxDebit.ToString("0.00")
+                            cmbEnabled.SelectedValue = b.Status
 
-                        h6.InnerText = "Edit " & b.BankID.ToString("00000")
+                            h6.InnerText = "Edit " & b.BankID.ToString("00000")
+                        End Using
                     Catch ex As Exception
                         JsMsgBox("Bank not found!")
                         btnSubmit.Enabled = False
                     End Try
                 Case "delete"
                     Try
-                        Dim b = db.TblBanks.Single(Function(x) x.BankID = CInt(bid))
-                        txtBank.Text = b.BankName.Trim
-                        txtName.Text = b.AccountName.Trim
-                        txtAccNo.Text = b.AccountNo.Trim
-                        txtWebsite.Text = b.BankWeb.Trim
-                        txtMinCredit.Text = b.MinCredit.ToString("0.00")
-                        txtMaxCredit.Text = b.MaxCredit.ToString("0.00")
-                        txtMinDebit.Text = b.MinDebit.ToString("0.00")
-                        txtMaxDebit.Text = b.MaxDebit.ToString("0.00")
-                        cmbEnabled.SelectedValue = b.Status
+                        Using db As New DataClassesDataContext
+                            Dim b = db.TblBanks.Single(Function(x) x.BankID = CInt(bid))
+                            txtBank.Text = b.BankName.Trim
+                            txtName.Text = b.AccountName.Trim
+                            txtAccNo.Text = b.AccountNo.Trim
+                            txtWebsite.Text = b.BankWeb.Trim
+                            txtMinCredit.Text = b.MinCredit.ToString("0.00")
+                            txtMaxCredit.Text = b.MaxCredit.ToString("0.00")
+                            txtMinDebit.Text = b.MinDebit.ToString("0.00")
+                            txtMaxDebit.Text = b.MaxDebit.ToString("0.00")
+                            cmbEnabled.SelectedValue = b.Status
 
-                        txtBank.ReadOnly = True
-                        txtName.ReadOnly = True
-                        txtAccNo.ReadOnly = True
-                        txtWebsite.ReadOnly = True
-                        txtMinDebit.ReadOnly = True
-                        txtMaxDebit.ReadOnly = True
-                        txtMinCredit.ReadOnly = True
-                        txtMaxCredit.ReadOnly = True
-                        cmbEnabled.Enabled = False
+                            txtBank.ReadOnly = True
+                            txtName.ReadOnly = True
+                            txtAccNo.ReadOnly = True
+                            txtWebsite.ReadOnly = True
+                            txtMinDebit.ReadOnly = True
+                            txtMaxDebit.ReadOnly = True
+                            txtMinCredit.ReadOnly = True
+                            txtMaxCredit.ReadOnly = True
+                            cmbEnabled.Enabled = False
 
-                        h6.InnerText = "Are you sure you want to delete " & b.BankName & " (" & b.BankID.ToString("00000") & ")?"
-                        btnSubmit.Text = "Delete"
+                            h6.InnerText = "Are you sure you want to delete " & b.BankName & " (" & b.BankID.ToString("00000") & ")?"
+                            btnSubmit.Text = "Delete"
+                        End Using
                     Catch ex As Exception
                         JsMsgBox("Bank not found!")
                         btnSubmit.Enabled = False
@@ -63,16 +67,18 @@ Partial Class Admin_EditBank
                     btnSubmit.Text = "Insert"
 
                     Try
-                        Dim b = db.TblBanks.Single(Function(x) x.BankID = CInt(bid))
-                        txtBank.Text = "Copy of " & b.BankName.Trim
-                        txtName.Text = b.AccountName.Trim
-                        txtAccNo.Text = b.AccountNo.Trim
-                        txtWebsite.Text = b.BankWeb.Trim
-                        txtMinCredit.Text = b.MinCredit.ToString("0.00")
-                        txtMaxCredit.Text = b.MaxCredit.ToString("0.00")
-                        txtMinDebit.Text = b.MinDebit.ToString("0.00")
-                        txtMaxDebit.Text = b.MaxDebit.ToString("0.00")
-                        cmbEnabled.SelectedValue = b.Status
+                        Using db As New DataClassesDataContext
+                            Dim b = db.TblBanks.Single(Function(x) x.BankID = CInt(bid))
+                            txtBank.Text = "Copy of " & b.BankName.Trim
+                            txtName.Text = b.AccountName.Trim
+                            txtAccNo.Text = b.AccountNo.Trim
+                            txtWebsite.Text = b.BankWeb.Trim
+                            txtMinCredit.Text = b.MinCredit.ToString("0.00")
+                            txtMaxCredit.Text = b.MaxCredit.ToString("0.00")
+                            txtMinDebit.Text = b.MinDebit.ToString("0.00")
+                            txtMaxDebit.Text = b.MaxDebit.ToString("0.00")
+                            cmbEnabled.SelectedValue = b.Status
+                        End Using
 
                         If AddNewBank() Then
                             JsMsgBox("Bank duplicate successfully.")
@@ -94,19 +100,23 @@ Partial Class Admin_EditBank
     Private Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
         Select Case mode
             Case "edit"
-                Dim editbank = db.TblBanks.Single(Function(x) x.BankID = CInt(bid))
+                Using db As New DataClassesDataContext
+                    Dim editbank = db.TblBanks.Single(Function(x) x.BankID = CInt(bid))
 
-                If TryEditBank() Then
-                    JsMsgBox(editbank.BankName & " - " & editbank.AccountName & " (" & editbank.AccountNo & ") update successfully.")
-                    Response.Redirect("Banks.aspx")
-                Else
-                    JsMsgBox(editbank.BankName & " - " & editbank.AccountName & " (" & editbank.AccountNo & ") edit failed! Please contact Administrator.")
-                End If
+                    If TryEditBank() Then
+                        JsMsgBox(editbank.BankName & " - " & editbank.AccountName & " (" & editbank.AccountNo & ") update successfully.")
+                        Response.Redirect("Banks.aspx")
+                    Else
+                        JsMsgBox(editbank.BankName & " - " & editbank.AccountName & " (" & editbank.AccountNo & ") edit failed! Please contact Administrator.")
+                    End If
+                End Using
             Case "delete"
                 Try
-                    Dim bankToDelete = db.TblBanks.Single(Function(x) x.BankID = CInt(bid))
-                    db.TblBanks.DeleteOnSubmit(bankToDelete)
-                    db.SubmitChanges()
+                    Using db As New DataClassesDataContext
+                        Dim bankToDelete = db.TblBanks.Single(Function(x) x.BankID = CInt(bid))
+                        db.TblBanks.DeleteOnSubmit(bankToDelete)
+                        db.SubmitChanges()
+                    End Using
 
                     JsMsgBox("Bank delete successfully.")
                     Response.Redirect("Banks.aspx")
@@ -125,20 +135,22 @@ Partial Class Admin_EditBank
 
     Private Function TryEditBank() As Boolean
         Try
-            Dim editbank = db.TblBanks.Single(Function(x) x.BankID = CInt(bid))
-            With editbank
-                .BankName = txtBank.Text.Trim
-                .AccountName = txtName.Text.Trim
-                .AccountNo = txtAccNo.Text.Trim
-                .Status = cmbEnabled.SelectedValue
-                .BankWeb = txtWebsite.Text.Trim
-                .MinCredit = CSng(txtMinCredit.Text.Trim)
-                .MaxCredit = CSng(txtMaxCredit.Text.Trim)
-                .MinDebit = CSng(txtMinDebit.Text.Trim)
-                .MaxDebit = CSng(txtMaxDebit.Text.Trim)
-            End With
+            Using db As New DataClassesDataContext
+                Dim editbank = db.TblBanks.Single(Function(x) x.BankID = CInt(bid))
+                With editbank
+                    .BankName = txtBank.Text.Trim
+                    .AccountName = txtName.Text.Trim
+                    .AccountNo = txtAccNo.Text.Trim
+                    .Status = cmbEnabled.SelectedValue
+                    .BankWeb = txtWebsite.Text.Trim
+                    .MinCredit = CSng(txtMinCredit.Text.Trim)
+                    .MaxCredit = CSng(txtMaxCredit.Text.Trim)
+                    .MinDebit = CSng(txtMinDebit.Text.Trim)
+                    .MaxDebit = CSng(txtMaxDebit.Text.Trim)
+                End With
 
-            db.SubmitChanges()
+                db.SubmitChanges()
+            End Using
         Catch ex As Exception
             Return False
         End Try
@@ -147,22 +159,24 @@ Partial Class Admin_EditBank
     End Function
 
     Private Function AddNewBank() As Boolean
-        Dim newBank As New TblBank
-        With newBank
-            .BankName = txtBank.Text.Trim
-            .AccountName = txtName.Text.Trim
-            .AccountNo = txtAccNo.Text.Trim
-            .Status = cmbEnabled.SelectedValue
-            .BankWeb = txtWebsite.Text.Trim
-            .MinCredit = CSng(txtMinCredit.Text.Trim)
-            .MaxCredit = CSng(txtMaxCredit.Text.Trim)
-            .MinDebit = CSng(txtMinDebit.Text.Trim)
-            .MaxDebit = CSng(txtMaxDebit.Text.Trim)
-        End With
-
         Try
-            db.TblBanks.InsertOnSubmit(newBank)
-            db.SubmitChanges()
+            Using db As New DataClassesDataContext
+                Dim newBank As New TblBank
+                With newBank
+                    .BankName = txtBank.Text.Trim
+                    .AccountName = txtName.Text.Trim
+                    .AccountNo = txtAccNo.Text.Trim
+                    .Status = cmbEnabled.SelectedValue
+                    .BankWeb = txtWebsite.Text.Trim
+                    .MinCredit = CSng(txtMinCredit.Text.Trim)
+                    .MaxCredit = CSng(txtMaxCredit.Text.Trim)
+                    .MinDebit = CSng(txtMinDebit.Text.Trim)
+                    .MaxDebit = CSng(txtMaxDebit.Text.Trim)
+                End With
+
+                db.TblBanks.InsertOnSubmit(newBank)
+                db.SubmitChanges()
+            End Using
         Catch ex As Exception
             Return False
         End Try

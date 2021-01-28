@@ -23,23 +23,25 @@ Partial Class Withdrawal
         If role <> "user" Then
             LoginMsgBox
         Else
-            Dim products = db.TblProducts.Where(Function(x) x.Status = True).ToList
-            For Each pdt As TblProduct In products
-                Dim pdtName As String = Nothing
-                If String.IsNullOrWhiteSpace(pdt.ProductAlias) Then pdtName = pdt.ProductName.Trim Else pdtName = pdt.ProductAlias.Trim
-                cmbProduct.Items.Add(New ListItem(pdtName, pdt.ProductID))
-            Next
+            Using db As New DataClassesDataContext
+                Dim products = db.TblProducts.Where(Function(x) x.Status = True).ToList
+                For Each pdt As TblProduct In products
+                    Dim pdtName As String = Nothing
+                    If String.IsNullOrWhiteSpace(pdt.ProductAlias) Then pdtName = pdt.ProductName.Trim Else pdtName = pdt.ProductAlias.Trim
+                    cmbProduct.Items.Add(New ListItem(pdtName, pdt.ProductID))
+                Next
 
-            txtAmount.Text = "50.00"
-            txtBankAccountName.Text = Session("fullname").ToString.Trim
+                txtAmount.Text = "50.00"
+                txtBankAccountName.Text = Session("fullname").ToString.Trim
 
-            Try
-                Dim m = db.TblMembers.Single(Function(x) x.UserID = Session("userid").ToString.Trim)
-                txtBankAccountNo.Text = m.AccountNo.Trim
-                cmbBank.SelectedValue = m.BankName
-            Catch ex As Exception
-                JsMsgBox(ex.Message & ex.StackTrace)
-            End Try
+                Try
+                    Dim m = db.TblMembers.Single(Function(x) x.UserID = Session("userid").ToString.Trim)
+                    txtBankAccountNo.Text = m.AccountNo.Trim
+                    cmbBank.SelectedValue = m.BankName
+                Catch ex As Exception
+                    JsMsgBox(ex.Message & ex.StackTrace)
+                End Try
+            End Using
         End If
 
         If Not IsPostBack Then
@@ -50,34 +52,36 @@ Partial Class Withdrawal
     End Sub
 
     Private Function Withdrawal() As Boolean
-        Dim newTransaction As New TblTransaction
-        With newTransaction
-            .TransactionDate = Now
-            .UserName = Session("username").ToString.Trim
-            .Method = cmbBank.SelectedItem.Text
-            .TransType = 1 'debit
-            .Debit = CSng(txtAmount.Text.Trim)
-            .Credit = 0F
-            .Promotion = 0F
-            .Channel = 3 'other
-            .Reason = Nothing
-            .ProductID = cmbProduct.SelectedValue
-            .ProductUserName = GetProductUserName(cmbProduct.SelectedValue, Session("username").ToString.Trim)
-            .Bank = txtBankAccountName.Text.Trim
-            .BankAccount = txtBankAccountNo.Text.Trim
-            .UploadFile = Nothing
-            .Reference = Nothing
-            .Status = 0
-            .IPAddress = Request.UserHostAddress.Trim
-            .ApproveByUser = "None"
-            .ApproveDate = Now
-            .Remark = Nothing
-            .TransactionDateUser = Now
-        End With
-
         Try
-            db.TblTransactions.InsertOnSubmit(newTransaction)
-            db.SubmitChanges()
+            Using db As New DataClassesDataContext
+                Dim newTransaction As New TblTransaction
+                With newTransaction
+                    .TransactionDate = Now
+                    .UserName = Session("username").ToString.Trim
+                    .Method = cmbBank.SelectedItem.Text
+                    .TransType = 1 'debit
+                    .Debit = CSng(txtAmount.Text.Trim)
+                    .Credit = 0F
+                    .Promotion = 0F
+                    .Channel = 4 'withdrawal
+                    .Reason = Nothing
+                    .ProductID = cmbProduct.SelectedValue
+                    .ProductUserName = GetProductUserName(cmbProduct.SelectedValue, Session("username").ToString.Trim)
+                    .Bank = txtBankAccountName.Text.Trim
+                    .BankAccount = txtBankAccountNo.Text.Trim
+                    .UploadFile = Nothing
+                    .Reference = txtRemark.Text
+                    .Status = 0
+                    .IPAddress = Request.UserHostAddress.Trim
+                    .ApproveByUser = "None"
+                    .ApproveDate = Now
+                    .Remark = Nothing
+                    .TransactionDateUser = Now
+                End With
+
+                db.TblTransactions.InsertOnSubmit(newTransaction)
+                db.SubmitChanges()
+            End Using
         Catch ex As Exception
             Return False
         End Try

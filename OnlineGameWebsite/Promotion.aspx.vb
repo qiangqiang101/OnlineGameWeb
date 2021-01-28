@@ -3,11 +3,13 @@ Partial Class Promotion
     Inherits System.Web.UI.Page
 
     Private Sub Promotion_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Dim promos = db.TblPromotions.Where(Function(x) x.Status = 1).ToList
-        For Each promo As TblPromotion In promos
-            Dim data = New PromoData(Server.MapPath(promo.PromoFile)).Instance
-            accordion.Controls.Add(LoadPromotions(promo.PromoID, promo.EnglishName, data.English, promo.PromoImage))
-        Next
+        Using db As New DataClassesDataContext
+            Dim promos = db.TblPromotions.Where(Function(x) x.Status = 1).ToList
+            For Each promo As TblPromotion In promos
+                Dim data = New PromoData(Server.MapPath(promo.PromoFile)).Instance
+                accordion.Controls.Add(LoadPromotions(promo.PromoID, promo.EnglishName, data.English, promo.PromoImage))
+            Next
+        End Using
     End Sub
 
     Private Function LoadPromotions(id As String, title As String, text As String, image As String) As HtmlGenericControl

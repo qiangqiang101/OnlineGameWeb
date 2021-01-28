@@ -14,68 +14,72 @@ Partial Class Admin_EditProduct
             Select Case mode
                 Case "edit"
                     Try
-                        Dim p = db.TblProducts.Single(Function(x) x.ProductID = pid)
-                        txtName.Text = p.ProductName.Trim
-                        txtAlias.Text = p.ProductAlias.Trim
-                        cbSlot.Checked = p.CatSlot
-                        cbLive.Checked = p.CatLive
-                        cbSport.Checked = p.CatSport
-                        cbRNG.Checked = p.CatRNG
-                        cbFish.Checked = p.CatFish
-                        cbPoker.Checked = p.CatPoker
-                        cbOther.Checked = p.CatOther
-                        cmbEnabled.SelectedValue = p.Status
-                        txtBalance.Text = p.Balance.ToString("0.00")
-                        txtAndroid.Text = p.AndroidLink.Trim
-                        txtiOS.Text = p.iOSLink.Trim
-                        txtWindows.Text = p.WindowsLink.Trim
-                        txtWebsite.Text = p.WebsiteUrl.Trim
-                        imageUrl = p.ProductImage
-                        imgProduct.ImageUrl = If(p.ProductImage = Nothing, "", "..\" & p.ProductImage.Trim)
-                        h6.InnerText = "Edit " & p.ProductID.ToString("00000")
+                        Using db As New DataClassesDataContext
+                            Dim p = db.TblProducts.Single(Function(x) x.ProductID = pid)
+                            txtName.Text = p.ProductName.Trim
+                            txtAlias.Text = p.ProductAlias.Trim
+                            cbSlot.Checked = p.CatSlot
+                            cbLive.Checked = p.CatLive
+                            cbSport.Checked = p.CatSport
+                            cbRNG.Checked = p.CatRNG
+                            cbFish.Checked = p.CatFish
+                            cbPoker.Checked = p.CatPoker
+                            cbOther.Checked = p.CatOther
+                            cmbEnabled.SelectedValue = p.Status
+                            txtBalance.Text = p.Balance.ToString("0.00")
+                            txtAndroid.Text = p.AndroidLink.Trim
+                            txtiOS.Text = p.iOSLink.Trim
+                            txtWindows.Text = p.WindowsLink.Trim
+                            txtWebsite.Text = p.WebsiteUrl.Trim
+                            imageUrl = p.ProductImage
+                            imgProduct.ImageUrl = If(p.ProductImage = Nothing, "", "..\" & p.ProductImage.Trim)
+                            h6.InnerText = "Edit " & p.ProductID.ToString("00000")
+                        End Using
                     Catch ex As Exception
                         JsMsgBox("Product not found!")
                         btnSubmit.Enabled = False
                     End Try
                 Case "delete"
                     Try
-                        Dim p = db.TblProducts.Single(Function(x) x.ProductID = pid)
-                        txtName.Text = p.ProductName.Trim
-                        txtAlias.Text = p.ProductAlias.Trim
-                        cbSlot.Checked = p.CatSlot
-                        cbLive.Checked = p.CatLive
-                        cbSport.Checked = p.CatSport
-                        cbRNG.Checked = p.CatRNG
-                        cbFish.Checked = p.CatFish
-                        cbPoker.Checked = p.CatPoker
-                        cbOther.Checked = p.CatOther
-                        cmbEnabled.SelectedValue = p.Status
-                        txtBalance.Text = p.Balance.ToString("0.00")
-                        txtAndroid.Text = p.AndroidLink.Trim
-                        txtiOS.Text = p.iOSLink.Trim
-                        txtWindows.Text = p.WindowsLink.Trim
-                        txtWebsite.Text = p.WebsiteUrl.Trim
-                        imageUrl = p.ProductImage
-                        imgProduct.ImageUrl = If(p.ProductImage = Nothing, "", "..\" & p.ProductImage.Trim)
+                        Using db As New DataClassesDataContext
+                            Dim p = db.TblProducts.Single(Function(x) x.ProductID = pid)
+                            txtName.Text = p.ProductName.Trim
+                            txtAlias.Text = p.ProductAlias.Trim
+                            cbSlot.Checked = p.CatSlot
+                            cbLive.Checked = p.CatLive
+                            cbSport.Checked = p.CatSport
+                            cbRNG.Checked = p.CatRNG
+                            cbFish.Checked = p.CatFish
+                            cbPoker.Checked = p.CatPoker
+                            cbOther.Checked = p.CatOther
+                            cmbEnabled.SelectedValue = p.Status
+                            txtBalance.Text = p.Balance.ToString("0.00")
+                            txtAndroid.Text = p.AndroidLink.Trim
+                            txtiOS.Text = p.iOSLink.Trim
+                            txtWindows.Text = p.WindowsLink.Trim
+                            txtWebsite.Text = p.WebsiteUrl.Trim
+                            imageUrl = p.ProductImage
+                            imgProduct.ImageUrl = If(p.ProductImage = Nothing, "", "..\" & p.ProductImage.Trim)
 
-                        txtName.ReadOnly = True
-                        txtAlias.ReadOnly = True
-                        cbSlot.Enabled = False
-                        cbLive.Enabled = False
-                        cbSport.Enabled = False
-                        cbRNG.Enabled = False
-                        cbFish.Enabled = False
-                        cbPoker.Enabled = False
-                        cbOther.Enabled = False
-                        cmbEnabled.Enabled = False
-                        txtBalance.ReadOnly = True
-                        txtAndroid.ReadOnly = True
-                        txtiOS.ReadOnly = True
-                        txtWindows.ReadOnly = True
-                        txtWebsite.ReadOnly = True
+                            txtName.ReadOnly = True
+                            txtAlias.ReadOnly = True
+                            cbSlot.Enabled = False
+                            cbLive.Enabled = False
+                            cbSport.Enabled = False
+                            cbRNG.Enabled = False
+                            cbFish.Enabled = False
+                            cbPoker.Enabled = False
+                            cbOther.Enabled = False
+                            cmbEnabled.Enabled = False
+                            txtBalance.ReadOnly = True
+                            txtAndroid.ReadOnly = True
+                            txtiOS.ReadOnly = True
+                            txtWindows.ReadOnly = True
+                            txtWebsite.ReadOnly = True
 
-                        h6.InnerText = "Are you sure you want to delete " & p.ProductName & " (" & p.ProductID.ToString("00000") & ")?"
-                        btnSubmit.Text = "Delete"
+                            h6.InnerText = "Are you sure you want to delete " & p.ProductName & " (" & p.ProductID.ToString("00000") & ")?"
+                            btnSubmit.Text = "Delete"
+                        End Using
                     Catch ex As Exception
                         JsMsgBox("Product not found!")
                         btnSubmit.Enabled = False
@@ -86,31 +90,33 @@ Partial Class Admin_EditProduct
                     imgProduct.Visible = False
 
                     Try
-                        Dim p = db.TblProducts.Single(Function(x) x.ProductID = pid)
-                        txtName.Text = "Copy of " & p.ProductName.Trim
-                        txtAlias.Text = p.ProductAlias.Trim
-                        cbSlot.Checked = p.CatSlot
-                        cbLive.Checked = p.CatLive
-                        cbSport.Checked = p.CatSport
-                        cbRNG.Checked = p.CatRNG
-                        cbFish.Checked = p.CatFish
-                        cbPoker.Checked = p.CatPoker
-                        cbOther.Checked = p.CatOther
-                        cmbEnabled.SelectedValue = p.Status
-                        txtBalance.Text = p.Balance.ToString("0.00")
-                        txtAndroid.Text = p.AndroidLink.Trim
-                        txtiOS.Text = p.iOSLink.Trim
-                        txtWindows.Text = p.WindowsLink.Trim
-                        txtWebsite.Text = p.WebsiteUrl.Trim
-                        imageUrl = p.ProductImage.Trim
-                        imgProduct.ImageUrl = If(p.ProductImage = Nothing, "", "..\" & p.ProductImage.Trim)
+                        Using db As New DataClassesDataContext
+                            Dim p = db.TblProducts.Single(Function(x) x.ProductID = pid)
+                            txtName.Text = "Copy of " & p.ProductName.Trim
+                            txtAlias.Text = p.ProductAlias.Trim
+                            cbSlot.Checked = p.CatSlot
+                            cbLive.Checked = p.CatLive
+                            cbSport.Checked = p.CatSport
+                            cbRNG.Checked = p.CatRNG
+                            cbFish.Checked = p.CatFish
+                            cbPoker.Checked = p.CatPoker
+                            cbOther.Checked = p.CatOther
+                            cmbEnabled.SelectedValue = p.Status
+                            txtBalance.Text = p.Balance.ToString("0.00")
+                            txtAndroid.Text = p.AndroidLink.Trim
+                            txtiOS.Text = p.iOSLink.Trim
+                            txtWindows.Text = p.WindowsLink.Trim
+                            txtWebsite.Text = p.WebsiteUrl.Trim
+                            imageUrl = p.ProductImage.Trim
+                            imgProduct.ImageUrl = If(p.ProductImage = Nothing, "", "..\" & p.ProductImage.Trim)
 
-                        If AddNewProduct(p.ProductImage.Trim) Then
-                            JsMsgBox("Product added successfully.")
-                            Response.Redirect("Products.aspx")
-                        Else
-                            JsMsgBox("Add product failed! Please contact Administrator.")
-                        End If
+                            If AddNewProduct(p.ProductImage.Trim) Then
+                                JsMsgBox("Product added successfully.")
+                                Response.Redirect("Products.aspx")
+                            Else
+                                JsMsgBox("Add product failed! Please contact Administrator.")
+                            End If
+                        End Using
                     Catch ex As Exception
                         JsMsgBox("Product not found!")
                         btnSubmit.Enabled = False
@@ -126,22 +132,26 @@ Partial Class Admin_EditProduct
     Private Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
         Select Case mode
             Case "edit"
-                Dim editProduct = db.TblProducts.Single(Function(x) x.ProductID = CInt(pid))
+                Using db As New DataClassesDataContext
+                    Dim editProduct = db.TblProducts.Single(Function(x) x.ProductID = CInt(pid))
 
-                If TryEditProduct() Then
-                    JsMsgBox("Product " & editProduct.ProductName & " update successfully.")
-                    Response.Redirect("Products.aspx")
-                Else
-                    JsMsgBox("Product " & editProduct.ProductName & " edit failed! Please contact Administrator.")
-                End If
+                    If TryEditProduct() Then
+                        JsMsgBox("Product " & editProduct.ProductName & " update successfully.")
+                        Response.Redirect("Products.aspx")
+                    Else
+                        JsMsgBox("Product " & editProduct.ProductName & " edit failed! Please contact Administrator.")
+                    End If
+                End Using
             Case "delete"
                 Try
-                    Dim productToDelete = db.TblProducts.Single(Function(x) x.ProductID = CInt(pid))
-                    db.TblProducts.DeleteOnSubmit(productToDelete)
-                    db.SubmitChanges()
+                    Using db As New DataClassesDataContext
+                        Dim productToDelete = db.TblProducts.Single(Function(x) x.ProductID = CInt(pid))
+                        db.TblProducts.DeleteOnSubmit(productToDelete)
+                        db.SubmitChanges()
 
-                    JsMsgBox("Product delete successfully.")
-                    Response.Redirect("Products.aspx")
+                        JsMsgBox("Product delete successfully.")
+                        Response.Redirect("Products.aspx")
+                    End Using
                 Catch ex As Exception
                     JsMsgBox("Delete product failed! Please contact Administrator.")
                 End Try
@@ -163,42 +173,44 @@ Partial Class Admin_EditProduct
 
     Private Function TryEditProduct() As Boolean
         Try
-            Dim editProduct = db.TblProducts.Single(Function(x) x.ProductID = CInt(pid))
-            With editProduct
-                .ProductName = txtName.Text.Trim
-                .ProductAlias = txtAlias.Text.Trim
-                .CatSlot = cbSlot.Checked
-                .CatLive = cbLive.Checked
-                .CatSport = cbSport.Checked
-                .CatRNG = cbRNG.Checked
-                .CatFish = cbFish.Checked
-                .CatPoker = cbPoker.Checked
-                .CatOther = cbOther.Checked
-                .Status = cmbEnabled.SelectedValue
-                .Balance = CSng(txtBalance.Text)
-                .AndroidLink = txtAndroid.Text.Trim
-                .iOSLink = txtiOS.Text.Trim
-                .WindowsLink = txtWindows.Text.Trim
-                .WebsiteUrl = txtWebsite.Text.Trim
+            Using db As New DataClassesDataContext
+                Dim editProduct = db.TblProducts.Single(Function(x) x.ProductID = CInt(pid))
+                With editProduct
+                    .ProductName = txtName.Text.Trim
+                    .ProductAlias = txtAlias.Text.Trim
+                    .CatSlot = cbSlot.Checked
+                    .CatLive = cbLive.Checked
+                    .CatSport = cbSport.Checked
+                    .CatRNG = cbRNG.Checked
+                    .CatFish = cbFish.Checked
+                    .CatPoker = cbPoker.Checked
+                    .CatOther = cbOther.Checked
+                    .Status = cmbEnabled.SelectedValue
+                    .Balance = CSng(txtBalance.Text)
+                    .AndroidLink = txtAndroid.Text.Trim
+                    .iOSLink = txtiOS.Text.Trim
+                    .WindowsLink = txtWindows.Text.Trim
+                    .WebsiteUrl = txtWebsite.Text.Trim
 
-                If fileUploader.HasFile Then
-                    Dim file As String = Server.MapPath(upload & fileUploader.FileName)
-                    Dim fileUrl As String = (upload & fileUploader.FileName).Replace("~/", "")
-                    Dim ext = file.Substring(file.LastIndexOf(".") + 1).ToLower
-                    If IsImage(ext) Then
-                        If Not IO.Directory.Exists(Server.MapPath(upload)) Then IO.Directory.CreateDirectory(Server.MapPath(upload))
-                        fileUploader.SaveAs(file)
-                        .ProductImage = fileUrl
+                    If fileUploader.HasFile Then
+                        Dim file As String = Server.MapPath(upload & fileUploader.FileName)
+                        Dim fileUrl As String = (upload & fileUploader.FileName).Replace("~/", "")
+                        Dim ext = file.Substring(file.LastIndexOf(".") + 1).ToLower
+                        If IsImage(ext) Then
+                            If Not IO.Directory.Exists(Server.MapPath(upload)) Then IO.Directory.CreateDirectory(Server.MapPath(upload))
+                            fileUploader.SaveAs(file)
+                            .ProductImage = fileUrl
+                        Else
+                            JsMsgBox("Image upload failed, please try upload only supported image format.")
+                            .ProductImage = imageUrl
+                        End If
                     Else
-                        JsMsgBox("Image upload failed, please try upload only supported image format.")
                         .ProductImage = imageUrl
                     End If
-                Else
-                    .ProductImage = imageUrl
-                End If
-            End With
+                End With
 
-            db.SubmitChanges()
+                db.SubmitChanges()
+            End Using
         Catch ex As Exception
             Return False
         End Try
@@ -207,43 +219,45 @@ Partial Class Admin_EditProduct
     End Function
 
     Private Function AddNewProduct(Optional image As String = "images/empty_box.png") As Boolean
-        Dim newProduct As New TblProduct
-        With newProduct
-            .ProductName = txtName.Text.Trim
-            .ProductAlias = txtAlias.Text.Trim
-            .CatSlot = cbSlot.Checked
-            .CatLive = cbLive.Checked
-            .CatSport = cbSport.Checked
-            .CatRNG = cbRNG.Checked
-            .CatFish = cbFish.Checked
-            .CatPoker = cbPoker.Checked
-            .CatOther = cbOther.Checked
-            .Status = cmbEnabled.SelectedValue
-            .Balance = CSng(txtBalance.Text)
-            .AndroidLink = txtAndroid.Text.Trim
-            .iOSLink = txtiOS.Text.Trim
-            .WindowsLink = txtWindows.Text.Trim
-            .WebsiteUrl = txtWebsite.Text.Trim
-            If fileUploader.HasFile Then
-                Dim file As String = Server.MapPath(upload & fileUploader.FileName)
-                Dim fileUrl As String = (upload & fileUploader.FileName).Replace("~/", "")
-                Dim ext = file.Substring(file.LastIndexOf(".") + 1).ToLower
-                If IsImage(ext) Then
-                    If Not IO.Directory.Exists(Server.MapPath(upload)) Then IO.Directory.CreateDirectory(Server.MapPath(upload))
-                    fileUploader.SaveAs(file)
-                    .ProductImage = fileUrl
-                Else
-                    JsMsgBox("Image upload failed, please try upload only supported image format.")
-                    .ProductImage = Nothing
-                End If
-            Else
-                .ProductImage = image
-            End If
-        End With
-
         Try
-            db.TblProducts.InsertOnSubmit(newProduct)
-            db.SubmitChanges()
+            Using db As New DataClassesDataContext
+                Dim newProduct As New TblProduct
+                With newProduct
+                    .ProductName = txtName.Text.Trim
+                    .ProductAlias = txtAlias.Text.Trim
+                    .CatSlot = cbSlot.Checked
+                    .CatLive = cbLive.Checked
+                    .CatSport = cbSport.Checked
+                    .CatRNG = cbRNG.Checked
+                    .CatFish = cbFish.Checked
+                    .CatPoker = cbPoker.Checked
+                    .CatOther = cbOther.Checked
+                    .Status = cmbEnabled.SelectedValue
+                    .Balance = CSng(txtBalance.Text)
+                    .AndroidLink = txtAndroid.Text.Trim
+                    .iOSLink = txtiOS.Text.Trim
+                    .WindowsLink = txtWindows.Text.Trim
+                    .WebsiteUrl = txtWebsite.Text.Trim
+                    If fileUploader.HasFile Then
+                        Dim file As String = Server.MapPath(upload & fileUploader.FileName)
+                        Dim fileUrl As String = (upload & fileUploader.FileName).Replace("~/", "")
+                        Dim ext = file.Substring(file.LastIndexOf(".") + 1).ToLower
+                        If IsImage(ext) Then
+                            If Not IO.Directory.Exists(Server.MapPath(upload)) Then IO.Directory.CreateDirectory(Server.MapPath(upload))
+                            fileUploader.SaveAs(file)
+                            .ProductImage = fileUrl
+                        Else
+                            JsMsgBox("Image upload failed, please try upload only supported image format.")
+                            .ProductImage = Nothing
+                        End If
+                    Else
+                        .ProductImage = image
+                    End If
+                End With
+
+                db.TblProducts.InsertOnSubmit(newProduct)
+                db.SubmitChanges()
+            End Using
         Catch ex As Exception
             Return False
         End Try

@@ -1,12 +1,12 @@
 ﻿
-Partial Class Admin_EditDeposit
+Partial Class Admin_EditWithdrawal
     Inherits System.Web.UI.Page
 
     Public mode As String = "edit"
     Public tid As String = 0
     Public bankList As New Dictionary(Of Integer, String)
 
-    Private Sub Admin_EditTransaction_Load(sender As Object, e As EventArgs) Handles Me.Load
+    Private Sub Admin_EditWithdrawal_Load(sender As Object, e As EventArgs) Handles Me.Load
         mode = Request.QueryString("mode")
         tid = Request.QueryString("id")
 
@@ -40,11 +40,9 @@ Partial Class Admin_EditDeposit
                             lblFullName.InnerText = m.FullName.Trim
                             lblIpAddress.InnerText = t.IPAddress.Trim
                             lblTime.InnerText = t.TransactionDate.ToString(dateFormat)
-                            lblAmount.InnerText = t.Credit.ToString("0.00")
+                            lblAmount.InnerText = t.Debit.ToString("0.00")
                             lblMethod.InnerText = t.Method.Trim
-                            lblChannel.InnerText = TransactionChannelToString(t.Channel)
-                            lblDepositTime.InnerText = t.TransactionDateUser.ToString(dateFormat)
-                            lblRefNo.InnerText = If(t.Reference = Nothing, "-", t.Reference.Trim)
+                            lblRemarks.InnerText = If(t.Reference = Nothing, "-", t.Reference.Trim)
                             lblAffiliate.InnerText = If(m.Affiliate = Nothing, "-", m.Affiliate.Trim)
                             lblStatus.InnerText = StatusToString(t.Status)
                             If t.Status <= 1 Then
@@ -53,11 +51,6 @@ Partial Class Admin_EditDeposit
                             Else
                                 btnApprove.Visible = False
                                 btnReject.Visible = False
-                            End If
-                            If t.UploadFile <> Nothing Then
-                                bankSlip.Attributes("href") = "..\" & t.UploadFile.Trim
-                            Else
-                                bankSlip.Visible = False
                             End If
                             If Not t.ApproveBank = Nothing Then cmbPaymentMethod.SelectedValue = t.ApproveBank.Trim
                             If Not t.Reason = Nothing Then cmbRejectReason.SelectedValue = t.Reason.Trim
@@ -73,74 +66,6 @@ Partial Class Admin_EditDeposit
                         btnReject.Enabled = False
                         Exit Sub
                     End Try
-                Case "promo"
-                    Try
-                        Pending(CInt(tid))
-
-                        Using db As New DataClassesDataContext
-                            Dim rejects = db.TblTRejectReasons.Where(Function(x) x.Status = True).ToList
-                            cmbRejectReason.Items.Add(New ListItem("", ""))
-                            For Each reason As TblTRejectReason In rejects
-                                cmbRejectReason.Items.Add(New ListItem(reason.TrReason.Trim, reason.TrReason.Trim))
-                            Next
-
-                            cmbPaymentMethod.Items.Add(New ListItem("---", ""))
-                            cmbPaymentMethod.Enabled = False
-
-                            Dim t = db.TblTransactions.Single(Function(x) x.TransactionID = CInt(tid))
-                            Dim p = db.TblProducts.Single(Function(x) x.ProductID = t.ProductID)
-                            Dim m = db.TblMembers.Single(Function(x) x.UserName = t.UserName)
-
-                            h6Title.InnerText = "Transaction " & t.TransactionID.ToString("00000")
-                            lblID.InnerText = t.TransactionID.ToString("00000")
-                            lblProduct.InnerText = p.ProductName.Trim
-                            lblProductUsername.InnerText = t.ProductUserName.Trim
-                            lblUserID.InnerText = t.UserName.Trim
-                            lblFullName.InnerText = m.FullName.Trim
-                            lblIpAddress.InnerText = t.IPAddress.Trim
-                            lblTime.InnerText = t.TransactionDate.ToString(dateFormat)
-                            lblAmount.InnerText = t.Promotion.ToString("0.00")
-                            lblMethod.InnerText = t.Method.Trim
-                            lblChannel.InnerText = TransactionChannelToString(t.Channel)
-                            lblDepositTime.InnerText = t.TransactionDateUser.ToString(dateFormat)
-                            lblRefNo.InnerText = If(t.Reference = Nothing, "-", t.Reference.Trim)
-                            lblAffiliate.InnerText = If(m.Affiliate = Nothing, "-", m.Affiliate.Trim)
-                            lblStatus.InnerText = StatusToString(t.Status)
-                            If t.Status <= 1 Then
-                                btnApprove.Visible = True
-                                btnReject.Visible = True
-                            Else
-                                btnApprove.Visible = False
-                                btnReject.Visible = False
-                            End If
-                            bankSlip.Visible = False
-                            If Not t.ApproveBank = Nothing Then cmbPaymentMethod.SelectedValue = t.ApproveBank.Trim
-                            If Not t.Reason = Nothing Then cmbRejectReason.SelectedValue = t.Reason.Trim
-                            If Not t.Remark = Nothing Then txtRemarks.Text = t.Remark.Trim
-                            If t.ApproveByUser.Trim <> "None" Then
-                                txtConfirmUser.Text = t.ApproveByUser.Trim
-                                txtConfirmDate.Text = t.ApproveDate.ToString(dateFormat)
-                            End If
-                        End Using
-                    Catch ex As Exception
-                        JsMsgBox("Transaction not found!")
-                        btnApprove.Enabled = False
-                        btnReject.Enabled = False
-                        Exit Sub
-                    End Try
-                Case "approve"
-                    If TryApprovePromotion() Then
-                        Response.Redirect("Transactions.aspx")
-                    Else
-                        JsMsgBox("Transaction failed to Approve! Please contact Administrator.")
-                    End If
-                Case "reject"
-                    If TryRejectTransaction() Then
-                        Response.Redirect("Transactions.aspx")
-                    Else
-                        JsMsgBox("Transaction failed to Reject! Please contact Administrator.")
-                    End If
-                Case Else
             End Select
         End If
     End Sub
@@ -153,21 +78,15 @@ Partial Class Admin_EditDeposit
         Select Case mode
             Case "edit"
                 If TryApproveTransaction() Then
-                    If TryCreditToBank() Then
-                        If TryCreditToSummary() Then
+                    If TryDebitToBank() Then
+                        If TryDebitToSummary() Then
                             Response.Redirect("Transactions.aspx")
                         Else
-                            JsMsgBox("Credit to summary failed! Please contact Administrator.")
+                            JsMsgBox("Debit to summary failed! Please contact Administrator.")
                         End If
                     Else
-                        JsMsgBox("Credit to bank record failed! Please contact Administrator.")
+                        JsMsgBox("Debit to bank record failed! Please contact Administrator.")
                     End If
-                Else
-                    JsMsgBox("Transaction failed to Approve! Please contact Administrator.")
-                End If
-            Case "promo"
-                If TryApprovePromotion() Then
-                    Response.Redirect("Transactions.aspx")
                 Else
                     JsMsgBox("Transaction failed to Approve! Please contact Administrator.")
                 End If
@@ -227,27 +146,7 @@ Partial Class Admin_EditDeposit
         Return True
     End Function
 
-    Private Function TryApprovePromotion() As Boolean
-        Try
-            Using db As New DataClassesDataContext
-                Dim editTransaction = db.TblTransactions.Single(Function(x) x.TransactionID = CInt(tid))
-                With editTransaction
-                    .Remark = txtRemarks.Text.Trim
-                    .Status = 2
-                    .ApproveByUser = Session("username").ToString.Trim
-                    .ApproveDate = Now
-                End With
-
-                db.SubmitChanges()
-            End Using
-        Catch ex As Exception
-            Return False
-        End Try
-
-        Return True
-    End Function
-
-    Private Function TryCreditToBank() As Boolean
+    Private Function TryDebitToBank() As Boolean
         Try
             Using db As New DataClassesDataContext
                 Dim t = db.TblTransactions.Single(Function(x) x.TransactionID = CInt(tid))
@@ -258,7 +157,7 @@ Partial Class Admin_EditDeposit
                     .TransactionID = CInt(tid)
                     .Credit = t.Credit
                     .Debit = t.Debit
-                    .Description = lblUserID.InnerText.Trim & " deposited " & lblAmount.InnerText & " to " & lblProduct.InnerText & "."
+                    .Description = lblUserID.InnerText.Trim & " withdrew " & lblAmount.InnerText & " from " & lblProduct.InnerText & "."
                     .RecordDatetime = Now
                 End With
 
@@ -272,7 +171,7 @@ Partial Class Admin_EditDeposit
         Return True
     End Function
 
-    Private Function TryCreditToSummary() As Boolean
+    Private Function TryDebitToSummary() As Boolean
         Try
             Using db As New DataClassesDataContext
                 Dim t = db.TblTransactions.Single(Function(x) x.TransactionID = CInt(tid))
@@ -297,5 +196,4 @@ Partial Class Admin_EditDeposit
 
         Return True
     End Function
-
 End Class

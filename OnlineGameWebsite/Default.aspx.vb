@@ -2,15 +2,17 @@
     Inherits System.Web.UI.Page
 
     Private Sub _Default_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Dim sliders = db.TblSliders.Where(Function(x) x.Status = True And x.SliderImage <> Nothing).OrderByDescending(Function(x) x.DisplayIndex And x.SliderID).Take(9).ToList
-        For Each slider As TblSlider In sliders
-            masterslider.Controls.Add(LoadSliders(slider.SliderImage, slider.SliderName))
-        Next
+        Using db As New DataClassesDataContext
+            Dim sliders = db.TblSliders.Where(Function(x) x.Status = True And x.SliderImage <> Nothing).OrderByDescending(Function(x) x.DisplayIndex And x.SliderID).Take(9).ToList
+            For Each slider As TblSlider In sliders
+                masterslider.Controls.Add(LoadSliders(slider.SliderImage, slider.SliderName))
+            Next
 
-        Dim products = db.TblProducts.Where(Function(x) x.Status = True And x.ProductImage <> Nothing).ToList
-        For Each product As TblProduct In products
-            productslider.Controls.Add(LoadProductSliders(product.ProductImage))
-        Next
+            Dim products = db.TblProducts.Where(Function(x) x.Status = True And x.ProductImage <> Nothing).ToList
+            For Each product As TblProduct In products
+                productslider.Controls.Add(LoadProductSliders(product.ProductImage))
+            Next
+        End Using
     End Sub
 
     Private Function LoadSliders(image As String, name As String) As HtmlGenericControl

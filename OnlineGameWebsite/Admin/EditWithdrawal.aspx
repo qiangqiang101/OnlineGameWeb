@@ -1,15 +1,15 @@
-﻿<%@ Page Title="" Language="VB" MasterPageFile="~/Admin/AdminMaster.master" AutoEventWireup="true" CodeFile="EditDeposit.aspx.vb" Inherits="Admin_EditDeposit" %>
+﻿<%@ Page Title="" Language="VB" MasterPageFile="~/Admin/AdminMaster.master" AutoEventWireup="true" CodeFile="EditWithdrawal.aspx.vb" Inherits="Admin_EditWithdrawal" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="admincontent" runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="admincontent" Runat="Server">
     <!-- Main Content -->
     <div id="content">
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
             <!-- Page Heading -->
-            <h1 class="h3 mb-2 text-gray-800" id="h1" runat="server">Credit Transaction</h1>
+            <h1 class="h3 mb-2 text-gray-800" id="h1" runat="server">Debit Transaction</h1>
 
             <!-- DataTales Example -->
             <div class="row">
@@ -30,14 +30,9 @@
                                     <label>IP</label><br />
                                     <label>Time</label><br />
                                     <h4><label>Amount</label></h4>
-                                    <label>Payment Method</label><br />
-                                    <label>Channel</label><br />
-                                    <label>Deposit Time</label>
                                     <hr />
-                                    <label>Reference No.</label><br />
                                     <label>Affiliate</label><br />
-                                    <label>Status</label><br />
-                                    <label></label>
+                                    <label>Status</label>
                                 </div>
                                 <div class="col-sm-7">
                                     <label id="lblID" runat="server">#99999</label><br />
@@ -48,14 +43,31 @@
                                     <label id="lblIpAddress" runat="server">#127.0.0.1</label><br />
                                     <label id="lblTime" runat="server">#1990-01-01 00:00:00</label><br />
                                     <h4><b><label id="lblAmount" runat="server" style="text-decoration: underline;">#100.00</label></b></h4>
-                                    <label id="lblMethod" runat="server">#Maybank</label><br />
-                                    <label id="lblChannel" runat="server">#Channel</label><br />
-                                    <label id="lblDepositTime" runat="server">#1990-01-01 00:00:00</label>
                                     <hr />
-                                    <label id="lblRefNo" runat="server">#RefNo</label><br />
                                     <label id="lblAffiliate" runat="server">#Affiliate</label><br />
-                                    <label id="lblStatus" runat="server">#New</label><br />
-                                    <a href="#" target="_blank" id="bankSlip" runat="server">Bank Slip</a>
+                                    <label id="lblStatus" runat="server">#New</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Bank Data</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <div class="col-sm-5 mb-3 mb-sm-0">
+                                    <label>Payment Method</label><br />
+                                    <label>Account Name</label><br />
+                                    <label>Account No.</label><br />
+                                    <label>Remarks</label>
+                                </div>
+                                <div class="col-sm-7">
+                                    <label id="lblMethod" runat="server">#Maybank</label><br />
+                                    <label id="lblAccName" runat="server">#Tan Ah Beng</label><br />
+                                    <label id="lblAccNo" runat="server">#112233445566</label><br />
+                                    <label id="lblRemarks" runat="server">#Remarks</label>
                                 </div>
                             </div>
                         </div>

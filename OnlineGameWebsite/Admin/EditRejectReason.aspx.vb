@@ -13,25 +13,29 @@ Partial Class Admin_EditRejectReason
             Select Case mode
                 Case "edit"
                     Try
-                        Dim rr = db.TblTRejectReasons.Single(Function(x) x.TrrID = rrid)
-                        txtName.Text = rr.TrReason.Trim
-                        cmbEnabled.SelectedValue = rr.Status
-                        h6.InnerText = "Edit " & rr.TrrID.ToString("00000")
+                        Using db As New DataClassesDataContext
+                            Dim rr = db.TblTRejectReasons.Single(Function(x) x.TrrID = rrid)
+                            txtName.Text = rr.TrReason.Trim
+                            cmbEnabled.SelectedValue = rr.Status
+                            h6.InnerText = "Edit " & rr.TrrID.ToString("00000")
+                        End Using
                     Catch ex As Exception
                         JsMsgBox("Reject reason not found!")
                         btnSubmit.Enabled = False
                     End Try
                 Case "delete"
                     Try
-                        Dim rr = db.TblTRejectReasons.Single(Function(x) x.TrrID = rrid)
-                        txtName.Text = rr.TrReason.Trim
-                        cmbEnabled.SelectedValue = rr.Status
+                        Using db As New DataClassesDataContext
+                            Dim rr = db.TblTRejectReasons.Single(Function(x) x.TrrID = rrid)
+                            txtName.Text = rr.TrReason.Trim
+                            cmbEnabled.SelectedValue = rr.Status
 
-                        txtName.ReadOnly = True
-                        cmbEnabled.Enabled = False
+                            txtName.ReadOnly = True
+                            cmbEnabled.Enabled = False
 
-                        h6.InnerText = "Are you sure you want to delete " & rr.TrReason & " (" & rr.TrrID.ToString("00000") & ")?"
-                        btnSubmit.Text = "Delete"
+                            h6.InnerText = "Are you sure you want to delete " & rr.TrReason & " (" & rr.TrrID.ToString("00000") & ")?"
+                            btnSubmit.Text = "Delete"
+                        End Using
                     Catch ex As Exception
                         JsMsgBox("Reject reason not found!")
                         btnSubmit.Enabled = False
@@ -41,9 +45,11 @@ Partial Class Admin_EditRejectReason
                     btnSubmit.Text = "Insert"
 
                     Try
-                        Dim rr = db.TblTRejectReasons.Single(Function(x) x.TrrID = rrid)
-                        txtName.Text = "Copy of " & rr.TrReason.Trim
-                        cmbEnabled.SelectedValue = rr.Status
+                        Using db As New DataClassesDataContext
+                            Dim rr = db.TblTRejectReasons.Single(Function(x) x.TrrID = rrid)
+                            txtName.Text = "Copy of " & rr.TrReason.Trim
+                            cmbEnabled.SelectedValue = rr.Status
+                        End Using
 
                         If AddNewRR() Then
                             JsMsgBox("Reject reason added successfully.")
@@ -65,19 +71,23 @@ Partial Class Admin_EditRejectReason
     Private Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
         Select Case mode
             Case "edit"
-                Dim editRR = db.TblTRejectReasons.Single(Function(x) x.TrrID = CInt(rrid))
+                Using db As New DataClassesDataContext
+                    Dim editRR = db.TblTRejectReasons.Single(Function(x) x.TrrID = CInt(rrid))
 
-                If TryEditRR() Then
-                    JsMsgBox("Reject reason " & editRR.TrReason & " update successfully.")
-                    Response.Redirect("RejectReasons.aspx")
-                Else
-                    JsMsgBox("Reject reason " & editRR.TrReason & " edit failed! Please contact Administrator.")
-                End If
+                    If TryEditRR() Then
+                        JsMsgBox("Reject reason " & editRR.TrReason & " update successfully.")
+                        Response.Redirect("RejectReasons.aspx")
+                    Else
+                        JsMsgBox("Reject reason " & editRR.TrReason & " edit failed! Please contact Administrator.")
+                    End If
+                End Using
             Case "delete"
                 Try
-                    Dim rrToDelete = db.TblTRejectReasons.Single(Function(x) x.TrrID = CInt(rrid))
-                    db.TblTRejectReasons.DeleteOnSubmit(rrToDelete)
-                    db.SubmitChanges()
+                    Using db As New DataClassesDataContext
+                        Dim rrToDelete = db.TblTRejectReasons.Single(Function(x) x.TrrID = CInt(rrid))
+                        db.TblTRejectReasons.DeleteOnSubmit(rrToDelete)
+                        db.SubmitChanges()
+                    End Using
 
                     JsMsgBox("Reject Reason delete successfully.")
                     Response.Redirect("RejectReasons.aspx")
@@ -96,13 +106,15 @@ Partial Class Admin_EditRejectReason
 
     Private Function TryEditRR() As Boolean
         Try
-            Dim editRR = db.TblTRejectReasons.Single(Function(x) x.TrrID = CInt(rrid))
-            With editRR
-                .TrReason = txtName.Text.Trim
-                .Status = CBool(cmbEnabled.SelectedValue)
-            End With
+            Using db As New DataClassesDataContext
+                Dim editRR = db.TblTRejectReasons.Single(Function(x) x.TrrID = CInt(rrid))
+                With editRR
+                    .TrReason = txtName.Text.Trim
+                    .Status = CBool(cmbEnabled.SelectedValue)
+                End With
 
-            db.SubmitChanges()
+                db.SubmitChanges()
+            End Using
         Catch ex As Exception
             Return False
         End Try
@@ -111,15 +123,17 @@ Partial Class Admin_EditRejectReason
     End Function
 
     Private Function AddNewRR() As Boolean
-        Dim newRR As New TblTRejectReason
-        With newRR
-            .TrReason = txtName.Text.Trim
-            .Status = CBool(cmbEnabled.SelectedValue)
-        End With
-
         Try
-            db.TblTRejectReasons.InsertOnSubmit(newRR)
-            db.SubmitChanges()
+            Using db As New DataClassesDataContext
+                Dim newRR As New TblTRejectReason
+                With newRR
+                    .TrReason = txtName.Text.Trim
+                    .Status = CBool(cmbEnabled.SelectedValue)
+                End With
+
+                db.TblTRejectReasons.InsertOnSubmit(newRR)
+                db.SubmitChanges()
+            End Using
         Catch ex As Exception
             Return False
         End Try

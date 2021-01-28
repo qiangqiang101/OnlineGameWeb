@@ -83,8 +83,8 @@
                                         <asp:TextBox CssClass="form-control" ID="txtBankAccountNo" runat="server" placeholder=""></asp:TextBox>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label>Note</label>
-                                        <asp:TextBox CssClass="form-control" ID="txtNote" runat="server" placeholder=""></asp:TextBox>
+                                        <label>Remark</label>
+                                        <asp:TextBox CssClass="form-control" ID="txtRemark" runat="server" placeholder=""></asp:TextBox>
                                     </div>
                                     <div class="form-group m-t-30">
                                         <div class="form-group col-md-6">

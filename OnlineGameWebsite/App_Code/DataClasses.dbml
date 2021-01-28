@@ -195,4 +195,65 @@
       <Column Name="LastLoginIP" Type="System.String" DbType="NChar(20)" CanBeNull="true" />
     </Type>
   </Table>
+  <Function Name="dbo.GetMembers" Method="GetMembers">
+    <ElementType Name="GetMembersResult">
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="NChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="FullName" Type="System.String" DbType="NChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="RefCode" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="RefCodeReg" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+      <Column Name="Enabled" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Affiliate" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+      <Column Name="BankName" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="AccountNo" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetTransactions" Method="GetTransactions">
+    <ElementType Name="GetTransactionsResult">
+      <Column Name="TransactionID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TransactionDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Method" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="TransType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Debit" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Credit" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Promotion" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Reason" Type="System.String" DbType="NChar(255)" CanBeNull="true" />
+      <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ProductUserName" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Bank" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+      <Column Name="BankAccount" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+      <Column Name="UploadFile" Type="System.String" DbType="NChar(255)" CanBeNull="true" />
+      <Column Name="Reference" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+      <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ApproveByUser" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="ApproveDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Remark" Type="System.String" DbType="NChar(255)" CanBeNull="true" />
+      <Column Name="ApproveBank" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetProductName" Method="GetProductName">
+    <Parameter Name="productID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GetProductNameResult">
+      <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ProductName" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="ProductAlias" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+      <Column Name="Balance" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="AndroidLink" Type="System.String" DbType="NChar(255)" CanBeNull="true" />
+      <Column Name="iOSLink" Type="System.String" DbType="NChar(255)" CanBeNull="true" />
+      <Column Name="WindowsLink" Type="System.String" DbType="NChar(255)" CanBeNull="true" />
+      <Column Name="WebsiteUrl" Type="System.String" DbType="NChar(255)" CanBeNull="true" />
+      <Column Name="ProductImage" Type="System.String" DbType="NChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="CatSlot" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CatLive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CatSport" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CatFish" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CatPoker" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CatRNG" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CatOther" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
 </Database>

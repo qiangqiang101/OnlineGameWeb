@@ -13,58 +13,64 @@ Partial Class Admin_EditUser
             Select Case mode
                 Case "profile"
                     Try
-                        Dim u = db.TblUsers.Single(Function(x) x.UserID = CInt(uid))
-                        txtUserName.Text = u.UserName.Trim
-                        txtPassword.Text = u.Password.Trim
-                        txtFullName.Text = u.FullName.Trim
-                        txtEmail.Text = u.Email.Trim
-                        cmbCategory.SelectedValue = u.UserRole
-                        cmbEnabled.SelectedValue = u.Status
-                        txtUserName.ReadOnly = True
-                        cmbCategory.Enabled = False
-                        cmbEnabled.Enabled = False
+                        Using db As New DataClassesDataContext
+                            Dim u = db.TblUsers.Single(Function(x) x.UserID = CInt(uid))
+                            txtUserName.Text = u.UserName.Trim
+                            txtPassword.Text = u.Password.Trim
+                            txtFullName.Text = u.FullName.Trim
+                            txtEmail.Text = u.Email.Trim
+                            cmbCategory.SelectedValue = u.UserRole
+                            cmbEnabled.SelectedValue = u.Status
+                            txtUserName.ReadOnly = True
+                            cmbCategory.Enabled = False
+                            cmbEnabled.Enabled = False
 
-                        h6.InnerText = "Edit Profile"
-                        h1.InnerText = "My Profile"
+                            h6.InnerText = "Edit Profile"
+                            h1.InnerText = "My Profile"
+                        End Using
                     Catch ex As Exception
                         JsMsgBox("User not found!")
                         btnSubmit.Enabled = False
                     End Try
                 Case "edit"
                     Try
-                        Dim u = db.TblUsers.Single(Function(x) x.UserID = CInt(uid))
-                        txtUserName.Text = u.UserName.Trim
-                        txtPassword.Text = u.Password.Trim
-                        txtFullName.Text = u.FullName.Trim
-                        txtEmail.Text = u.Email.Trim
-                        cmbCategory.SelectedValue = u.UserRole
-                        cmbEnabled.SelectedValue = u.Status
-                        txtUserName.ReadOnly = True
+                        Using db As New DataClassesDataContext
+                            Dim u = db.TblUsers.Single(Function(x) x.UserID = CInt(uid))
+                            txtUserName.Text = u.UserName.Trim
+                            txtPassword.Text = u.Password.Trim
+                            txtFullName.Text = u.FullName.Trim
+                            txtEmail.Text = u.Email.Trim
+                            cmbCategory.SelectedValue = u.UserRole
+                            cmbEnabled.SelectedValue = u.Status
+                            txtUserName.ReadOnly = True
 
-                        h6.InnerText = "Edit " & u.UserID.ToString("00000")
+                            h6.InnerText = "Edit " & u.UserID.ToString("00000")
+                        End Using
                     Catch ex As Exception
                         JsMsgBox("User not found!")
                         btnSubmit.Enabled = False
                     End Try
                 Case "delete"
                     Try
-                        Dim u = db.TblUsers.Single(Function(x) x.UserID = CInt(uid))
-                        txtUserName.Text = u.UserName.Trim
-                        txtPassword.Text = u.Password.Trim
-                        txtFullName.Text = u.FullName.Trim
-                        txtEmail.Text = u.Email.Trim
-                        cmbCategory.SelectedValue = u.UserRole
-                        cmbEnabled.SelectedValue = u.Status
+                        Using db As New DataClassesDataContext
+                            Dim u = db.TblUsers.Single(Function(x) x.UserID = CInt(uid))
+                            txtUserName.Text = u.UserName.Trim
+                            txtPassword.Text = u.Password.Trim
+                            txtFullName.Text = u.FullName.Trim
+                            txtEmail.Text = u.Email.Trim
+                            cmbCategory.SelectedValue = u.UserRole
+                            cmbEnabled.SelectedValue = u.Status
 
-                        txtUserName.ReadOnly = True
-                        txtPassword.ReadOnly = True
-                        txtFullName.ReadOnly = True
-                        txtEmail.ReadOnly = True
-                        cmbCategory.Enabled = False
-                        cmbEnabled.Enabled = False
+                            txtUserName.ReadOnly = True
+                            txtPassword.ReadOnly = True
+                            txtFullName.ReadOnly = True
+                            txtEmail.ReadOnly = True
+                            cmbCategory.Enabled = False
+                            cmbEnabled.Enabled = False
 
-                        h6.InnerText = "Are you sure you want to delete " & u.UserName & " (" & u.UserID.ToString("00000") & ")?"
-                        btnSubmit.Text = "Delete"
+                            h6.InnerText = "Are you sure you want to delete " & u.UserName & " (" & u.UserID.ToString("00000") & ")?"
+                            btnSubmit.Text = "Delete"
+                        End Using
                     Catch ex As Exception
                         JsMsgBox("User not found!")
                         btnSubmit.Enabled = False
@@ -79,31 +85,37 @@ Partial Class Admin_EditUser
     Private Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
         Select Case mode
             Case "profile"
-                Dim editUser = db.TblUsers.Single(Function(x) x.UserID = CInt(uid))
+                Using db As New DataClassesDataContext
+                    Dim editUser = db.TblUsers.Single(Function(x) x.UserID = CInt(uid))
 
-                If TryEditUser() Then
-                    JsMsgBox(editUser.UserName & " update successfully.")
-                    Response.Redirect("Dashboard.aspx")
-                Else
-                    JsMsgBox(editUser.UserName & " edit failed! Please contact Administrator.")
-                End If
+                    If TryEditUser() Then
+                        JsMsgBox(editUser.UserName & " update successfully.")
+                        Response.Redirect("Dashboard.aspx")
+                    Else
+                        JsMsgBox(editUser.UserName & " edit failed! Please contact Administrator.")
+                    End If
+                End Using
             Case "edit"
-                Dim editUser = db.TblUsers.Single(Function(x) x.UserID = CInt(uid))
+                Using db As New DataClassesDataContext
+                    Dim editUser = db.TblUsers.Single(Function(x) x.UserID = CInt(uid))
 
-                If TryEditUser() Then
-                    JsMsgBox(editUser.UserName & " update successfully.")
-                    Response.Redirect("Users.aspx")
-                Else
-                    JsMsgBox(editUser.UserName & " edit failed! Please contact Administrator.")
-                End If
+                    If TryEditUser() Then
+                        JsMsgBox(editUser.UserName & " update successfully.")
+                        Response.Redirect("Users.aspx")
+                    Else
+                        JsMsgBox(editUser.UserName & " edit failed! Please contact Administrator.")
+                    End If
+                End Using
             Case "delete"
                 Try
-                    Dim userToDelete = db.TblUsers.Single(Function(x) x.UserID = CInt(uid))
-                    db.TblUsers.DeleteOnSubmit(userToDelete)
-                    db.SubmitChanges()
+                    Using db As New DataClassesDataContext
+                        Dim userToDelete = db.TblUsers.Single(Function(x) x.UserID = CInt(uid))
+                        db.TblUsers.DeleteOnSubmit(userToDelete)
+                        db.SubmitChanges()
 
-                    JsMsgBox("User delete successfully.")
-                    Response.Redirect("Users.aspx")
+                        JsMsgBox("User delete successfully.")
+                        Response.Redirect("Users.aspx")
+                    End Using
                 Catch ex As Exception
                     JsMsgBox("Delete user failed! Please contact Administrator.")
                 End Try
@@ -125,20 +137,22 @@ Partial Class Admin_EditUser
 
     Private Function TryEditUser() As Boolean
         Try
-            Dim editUser = db.TblUsers.Single(Function(x) x.UserID = CInt(uid))
-            With editUser
-                .UserName = txtUserName.Text.Trim
-                .Password = txtPassword.Text.Trim
-                .FullName = txtFullName.Text.Trim
-                .Email = txtEmail.Text.Trim
-                .DateCreated = editUser.DateCreated
-                .UserRole = cmbCategory.SelectedValue
-                .Status = cmbEnabled.SelectedValue
-                .LastLoginDate = editUser.LastLoginDate
-                .LastLoginIP = editUser.LastLoginIP
-            End With
+            Using db As New DataClassesDataContext
+                Dim editUser = db.TblUsers.Single(Function(x) x.UserID = CInt(uid))
+                With editUser
+                    .UserName = txtUserName.Text.Trim
+                    .Password = txtPassword.Text.Trim
+                    .FullName = txtFullName.Text.Trim
+                    .Email = txtEmail.Text.Trim
+                    .DateCreated = editUser.DateCreated
+                    .UserRole = cmbCategory.SelectedValue
+                    .Status = cmbEnabled.SelectedValue
+                    .LastLoginDate = editUser.LastLoginDate
+                    .LastLoginIP = editUser.LastLoginIP
+                End With
 
-            db.SubmitChanges()
+                db.SubmitChanges()
+            End Using
         Catch ex As Exception
             Return False
         End Try
@@ -147,22 +161,24 @@ Partial Class Admin_EditUser
     End Function
 
     Private Function AddNewUser() As Boolean
-        Dim newUser As New TblUser
-        With newUser
-            .UserName = txtUserName.Text.Trim
-            .Password = txtPassword.Text.Trim
-            .FullName = txtFullName.Text.Trim
-            .Email = txtEmail.Text.Trim
-            .DateCreated = Now
-            .UserRole = cmbCategory.SelectedValue
-            .Status = cmbEnabled.SelectedValue
-            .LastLoginDate = Now
-            .LastLoginIP = "127.0.0.1"
-        End With
-
         Try
-            db.TblUsers.InsertOnSubmit(newUser)
-            db.SubmitChanges()
+            Using db As New DataClassesDataContext
+                Dim newUser As New TblUser
+                With newUser
+                    .UserName = txtUserName.Text.Trim
+                    .Password = txtPassword.Text.Trim
+                    .FullName = txtFullName.Text.Trim
+                    .Email = txtEmail.Text.Trim
+                    .DateCreated = Now
+                    .UserRole = cmbCategory.SelectedValue
+                    .Status = cmbEnabled.SelectedValue
+                    .LastLoginDate = Now
+                    .LastLoginIP = "127.0.0.1"
+                End With
+
+                db.TblUsers.InsertOnSubmit(newUser)
+                db.SubmitChanges()
+            End Using
         Catch ex As Exception
             Return False
         End Try

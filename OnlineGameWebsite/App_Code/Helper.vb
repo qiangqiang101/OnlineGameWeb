@@ -7,8 +7,6 @@ Imports Microsoft.VisualBasic
 
 Public Module Helper
 
-    Public db As New DataClassesDataContext
-
     Public dateFormat As String = "yyyy-MM-dd HH:mm:ss"
     Public upload As String = "~/Upload/" & Now.Year & "/" & Now.Month & "/" & Now.Day & "/"
     Public promoTnc As String = "~/Promo/" & Now.Year & "/" & Now.Month & "/" & Now.Day & "/"
@@ -31,30 +29,38 @@ Public Module Helper
     End Sub
 
     Public Function IsMemberExists(username As String) As Boolean
-        Dim check = (From m In db.TblMembers Where m.UserName = username).ToList
-        Dim members = (From m In db.TblMembers)
-        If members.Contains(check.FirstOrDefault) Then Return True
-        Return False
+        Using db As New DataClassesDataContext
+            Dim check = (From m In db.TblMembers Where m.UserName = username).ToList
+            Dim members = (From m In db.TblMembers)
+            If members.Contains(check.FirstOrDefault) Then Return True
+            Return False
+        End Using
     End Function
 
     Public Function IsUserExists(username As String) As Boolean
-        Dim check = (From u In db.TblUsers Where u.UserName = username).ToList
-        Dim users = (From m In db.TblUsers)
-        If users.Contains(check.FirstOrDefault) Then Return True
-        Return False
+        Using db As New DataClassesDataContext
+            Dim check = (From u In db.TblUsers Where u.UserName = username).ToList
+            Dim users = (From m In db.TblUsers)
+            If users.Contains(check.FirstOrDefault) Then Return True
+            Return False
+        End Using
     End Function
 
     Public Function IsEmailExists(email As String, Optional checkMember As Boolean = True) As Boolean
         If checkMember Then
-            Dim check = (From m In db.TblMembers Where m.Email = email).ToList
-            Dim members = (From m In db.TblMembers)
-            If members.Contains(check.FirstOrDefault) Then Return True
-            Return False
+            Using db As New DataClassesDataContext
+                Dim check = (From m In db.TblMembers Where m.Email = email).ToList
+                Dim members = (From m In db.TblMembers)
+                If members.Contains(check.FirstOrDefault) Then Return True
+                Return False
+            End Using
         Else
-            Dim check = (From u In db.TblUsers Where u.Email = email).ToList
-            Dim users = (From m In db.TblUsers)
-            If users.Contains(check.FirstOrDefault) Then Return True
-            Return False
+            Using db As New DataClassesDataContext
+                Dim check = (From u In db.TblUsers Where u.Email = email).ToList
+                Dim users = (From m In db.TblUsers)
+                If users.Contains(check.FirstOrDefault) Then Return True
+                Return False
+            End Using
         End If
     End Function
 
@@ -66,35 +72,39 @@ Public Module Helper
 
     Public Function IsMemberLoginSuccess(username As String, password As String, page As Page) As Boolean
         If IsEmailValid(username) Then
-            Dim member = (From m In db.TblMembers Where m.Email = username And m.Password = password).FirstOrDefault
-            If member IsNot Nothing Then
-                If member.Enabled Then
-                    page.Session("userid") = member.UserID
-                    page.Session("username") = member.UserName
-                    page.Session("fullname") = member.FullName
-                    page.Session("email") = member.Email
-                    page.Session("role") = "user"
+            Using db As New DataClassesDataContext
+                Dim member = (From m In db.TblMembers Where m.Email = username And m.Password = password).FirstOrDefault
+                If member IsNot Nothing Then
+                    If member.Enabled Then
+                        page.Session("userid") = member.UserID
+                        page.Session("username") = member.UserName
+                        page.Session("fullname") = member.FullName
+                        page.Session("email") = member.Email
+                        page.Session("role") = "user"
 
-                    Return True
-                Else
-                    Return False
+                        Return True
+                    Else
+                        Return False
+                    End If
                 End If
-            End If
+            End Using
         Else
-            Dim member = (From m In db.TblMembers Where m.UserName = username And m.Password = password).FirstOrDefault
-            If member IsNot Nothing Then
-                If member.Enabled Then
-                    page.Session("userid") = member.UserID
-                    page.Session("username") = member.UserName
-                    page.Session("fullname") = member.FullName
-                    page.Session("email") = member.Email
-                    page.Session("role") = "user"
+            Using db As New DataClassesDataContext
+                Dim member = (From m In db.TblMembers Where m.UserName = username And m.Password = password).FirstOrDefault
+                If member IsNot Nothing Then
+                    If member.Enabled Then
+                        page.Session("userid") = member.UserID
+                        page.Session("username") = member.UserName
+                        page.Session("fullname") = member.FullName
+                        page.Session("email") = member.Email
+                        page.Session("role") = "user"
 
-                    Return True
-                Else
-                    Return False
+                        Return True
+                    Else
+                        Return False
+                    End If
                 End If
-            End If
+            End Using
         End If
         Return False
     End Function
@@ -102,31 +112,35 @@ Public Module Helper
     Public Function IsAdminLoginSuccess(username As String, password As String, page As Page) As Boolean
         If IsEmailValid(username) Then
             Try
-                Dim user = db.TblUsers.Single(Function(x) x.Email = username AndAlso x.Password = password)
-                If user.Status Then
-                    page.Session("userid") = user.UserID
-                    page.Session("username") = user.UserName
-                    page.Session("fullname") = user.FullName
-                    page.Session("email") = user.Email
-                    page.Session("role") = UserRoleToString(user.UserRole)
+                Using db As New DataClassesDataContext
+                    Dim user = db.TblUsers.Single(Function(x) x.Email = username AndAlso x.Password = password)
+                    If user.Status Then
+                        page.Session("userid") = user.UserID
+                        page.Session("username") = user.UserName
+                        page.Session("fullname") = user.FullName
+                        page.Session("email") = user.Email
+                        page.Session("role") = UserRoleToString(user.UserRole)
 
-                    Return True
-                End If
+                        Return True
+                    End If
+                End Using
             Catch ex As Exception
                 Return False
             End Try
         Else
             Try
-                Dim user = db.TblUsers.Single(Function(x) x.UserName = username AndAlso x.Password = password)
-                If user.Status Then
-                    page.Session("userid") = user.UserID
-                    page.Session("username") = user.UserName
-                    page.Session("fullname") = user.FullName
-                    page.Session("email") = user.Email
-                    page.Session("role") = UserRoleToString(user.UserRole)
+                Using db As New DataClassesDataContext
+                    Dim user = db.TblUsers.Single(Function(x) x.UserName = username AndAlso x.Password = password)
+                    If user.Status Then
+                        page.Session("userid") = user.UserID
+                        page.Session("username") = user.UserName
+                        page.Session("fullname") = user.FullName
+                        page.Session("email") = user.Email
+                        page.Session("role") = UserRoleToString(user.UserRole)
 
-                    Return True
-                End If
+                        Return True
+                    End If
+                End Using
             Catch ex As Exception
                 Return False
             End Try
@@ -135,12 +149,14 @@ Public Module Helper
     End Function
 
     Public Sub UpdateUserLastLogin(username As String, ip As String)
-        Dim user = db.TblUsers.Single(Function(x) x.UserName = username)
-        With user
-            .LastLoginDate = Now
-            .LastLoginIP = ip
-        End With
-        db.SubmitChanges()
+        Using db As New DataClassesDataContext
+            Dim user = db.TblUsers.Single(Function(x) x.UserName = username)
+            With user
+                .LastLoginDate = Now
+                .LastLoginIP = ip
+            End With
+            db.SubmitChanges()
+        End Using
     End Sub
 
     Public Function RB(action As String, css As String, Optional button As String = "btn-primary", Optional tooltip As String = "") As String
@@ -198,9 +214,11 @@ Public Module Helper
                 row.Cells.Add(New TableCell() With {.Text = RB("EditWithdrawal.aspx?mode=edit&id=" & id, "fas fa-eye", tooltip:="Edit")})
             Case Else
                 If status <= 1 Then
-                    row.Cells.Add(New TableCell() With {.Text = RB("EditDeposit.aspx?mode=approve&id=" & id, "fas fa-check", "btn-success", "Approve") & RB("EditDeposit.aspx?mode=reject&id=" & id, "fas fa-times", "btn-danger", "Reject")})
+                    row.Cells.Add(New TableCell() With {.Text = RB("EditDeposit.aspx?mode=promo&id=" & id, "fas fa-eye", tooltip:="Edit") &
+                                  RB("EditDeposit.aspx?mode=approve&id=" & id, "fas fa-check", "btn-success", "Approve") &
+                                  RB("EditDeposit.aspx?mode=reject&id=" & id, "fas fa-times", "btn-danger", "Reject")})
                 Else
-                    row.Cells.Add(New TableCell() With {.Text = RB("EditDeposit.aspx?mode=edit&id=" & id, "fas fa-eye", tooltip:="Edit")})
+                    row.Cells.Add(New TableCell() With {.Text = RB("EditDeposit.aspx?mode=promo&id=" & id, "fas fa-eye", tooltip:="Edit")})
                 End If
         End Select
         table.Rows.Add(row)
@@ -223,14 +241,29 @@ Public Module Helper
 
     Public Sub Pending(tid As Integer)
         Try
-            Dim t = db.TblTransactions.Single(Function(x) x.TransactionID = tid)
-            If t.Status = 0 Then
-                t.Status = 1
-                db.SubmitChanges()
-            End If
+            Using db As New DataClassesDataContext
+                Dim t = db.TblTransactions.Single(Function(x) x.TransactionID = tid)
+                If t.Status = 0 Then
+                    t.Status = 1
+                    db.SubmitChanges()
+                End If
+            End Using
         Catch ex As Exception
         End Try
     End Sub
+
+    'Public Function UpdateProductBalance(pid As Integer, amount As Single) As Boolean
+    '    Try
+    '        Using db As New DataClassesDataContext
+    '            Dim p = db.TblProducts.Single(Function(x) x.ProductID = pid)
+    '            p.Balance += amount
+    '        End Using
+    '    Catch ex As Exception
+    '        Return False
+    '    End Try
+
+    '    Return True
+    'End Function
 
     Public Function GenerateCategoryString(slot As Boolean, live As Boolean, sport As Boolean, rng As Boolean, fish As Boolean, poker As Boolean, other As Boolean) As String
         Dim result As New List(Of String)
@@ -263,6 +296,10 @@ Public Module Helper
                 Return "ATM Transfer"
             Case 2
                 Return "Internet Transfer"
+            Case 3
+                Return "Promotion"
+            Case 4
+                Return "Withdrawal"
             Case Else
                 Return "Other"
         End Select
@@ -329,14 +366,6 @@ Public Module Helper
         Return exts.Contains(ext)
     End Function
 
-    Public Function ProductName(id As Integer) As String
-        Try
-            Return db.TblProducts.Single(Function(x) x.ProductID = id).ProductName
-        Catch ex As Exception
-            Return id
-        End Try
-    End Function
-
     Public Function LogTypeToString(log As Integer) As String
         Select Case log
             Case 0
@@ -373,8 +402,10 @@ Public Module Helper
         End With
 
         Try
-            db.TblLogs.InsertOnSubmit(newLog)
-            db.SubmitChanges()
+            Using db As New DataClassesDataContext
+                db.TblLogs.InsertOnSubmit(newLog)
+                db.SubmitChanges()
+            End Using
         Catch ex As Exception
 
         End Try
@@ -382,8 +413,10 @@ Public Module Helper
 
     Public Function LastLoginIP(username As String) As String
         Try
-            Dim log = db.TblLogs.Where(Function(x) x.LogMember = username And x.LogType = 1).OrderByDescending(Function(x) x.LogDate).FirstOrDefault
-            Return log.LogIP.Trim
+            Using db As New DataClassesDataContext
+                Dim log = db.TblLogs.Where(Function(x) x.LogMember = username And x.LogType = 1).OrderByDescending(Function(x) x.LogDate).FirstOrDefault
+                Return log.LogIP.Trim
+            End Using
         Catch ex As Exception
             Return "127.0.0.1"
         End Try
@@ -422,8 +455,10 @@ Public Module Helper
 
     Public Function GetProductUserName(productID As Integer, username As String) As String
         Try
-            Dim result = db.TblGameAccounts.Single(Function(x) x.MemberUserName = username And x.ProductID = productID)
-            Return result.UserName.Trim
+            Using db As New DataClassesDataContext
+                Dim result = db.TblGameAccounts.Single(Function(x) x.MemberUserName = username And x.ProductID = productID)
+                Return result.UserName.Trim
+            End Using
         Catch ex As Exception
             Return "ERROR"
         End Try
@@ -431,8 +466,10 @@ Public Module Helper
 
     Public Function GetProductName(productID As Integer) As String
         Try
-            Dim result = db.TblProducts.Single(Function(x) x.ProductID = productID)
-            Return result.ProductName.Trim
+            Using db As New DataClassesDataContext
+                Dim result = db.TblProducts.Single(Function(x) x.ProductID = productID)
+                Return result.ProductName.Trim
+            End Using
         Catch ex As Exception
             Return "ERROR"
         End Try
@@ -440,16 +477,18 @@ Public Module Helper
 
     Public Function CalcPromotion(promoID As Integer, amount As Single) As Single
         Try
-            Dim promo = db.TblPromotions.Single(Function(x) x.PromoID = promoID)
-            Dim percent = promo.PromoPercent
-            Dim type = promo.PromoType
-            If type = 0 Then
-                'percent
-                Return (amount * percent)
-            Else
-                'fixed
-                Return amount + percent
-            End If
+            Using db As New DataClassesDataContext
+                Dim promo = db.TblPromotions.Single(Function(x) x.PromoID = promoID)
+                Dim percent = promo.PromoPercent
+                Dim type = promo.PromoType
+                If type = 0 Then
+                    'percent
+                    Return (amount * percent)
+                Else
+                    'fixed
+                    Return amount + percent
+                End If
+            End Using
         Catch ex As Exception
             Return 0F
         End Try

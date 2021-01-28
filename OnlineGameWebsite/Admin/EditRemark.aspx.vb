@@ -13,17 +13,20 @@ Partial Class Admin_EditRemark
             Select Case mode
                 Case "edit"
                     Try
-                        Dim rr = db.TblTransRemarks.Single(Function(x) x.TrID = rid)
-                        txtName.Text = rr.TRemark.Trim
-                        cmbEnabled.SelectedValue = rr.Status
-                        h6.InnerText = "Edit " & rr.TrID.ToString("00000")
+                        Using db As New DataClassesDataContext
+                            Dim rr = db.TblTransRemarks.Single(Function(x) x.TrID = rid)
+                            txtName.Text = rr.TRemark.Trim
+                            cmbEnabled.SelectedValue = rr.Status
+                            h6.InnerText = "Edit " & rr.TrID.ToString("00000")
+                        End Using
                     Catch ex As Exception
                         JsMsgBox("Remark not found!")
                         btnSubmit.Enabled = False
                     End Try
                 Case "delete"
                     Try
-                        Dim rr = db.TblTransRemarks.Single(Function(x) x.TrID = rid)
+                        Using db As New DataClassesDataContext
+                            Dim rr = db.TblTransRemarks.Single(Function(x) x.TrID = rid)
                         txtName.Text = rr.TRemark.Trim
                         cmbEnabled.SelectedValue = rr.Status
 
@@ -31,7 +34,8 @@ Partial Class Admin_EditRemark
                         cmbEnabled.Enabled = False
 
                         h6.InnerText = "Are you sure you want to delete " & rr.TRemark & " (" & rr.TrID.ToString("00000") & ")?"
-                        btnSubmit.Text = "Delete"
+                            btnSubmit.Text = "Delete"
+                        End Using
                     Catch ex As Exception
                         JsMsgBox("Remark not found!")
                         btnSubmit.Enabled = False
@@ -41,16 +45,18 @@ Partial Class Admin_EditRemark
                     btnSubmit.Text = "Insert"
 
                     Try
-                        Dim rr = db.TblTransRemarks.Single(Function(x) x.TrID = rid)
-                        txtName.Text = "Copy of " & rr.TRemark.Trim
-                        cmbEnabled.SelectedValue = rr.Status
+                        Using db As New DataClassesDataContext
+                            Dim rr = db.TblTransRemarks.Single(Function(x) x.TrID = rid)
+                            txtName.Text = "Copy of " & rr.TRemark.Trim
+                            cmbEnabled.SelectedValue = rr.Status
 
-                        If AddNewRemark() Then
-                            JsMsgBox("Remark added successfully.")
-                            Response.Redirect("Remarks.aspx")
-                        Else
-                            JsMsgBox("Add remark failed! Please contact Administrator.")
-                        End If
+                            If AddNewRemark() Then
+                                JsMsgBox("Remark added successfully.")
+                                Response.Redirect("Remarks.aspx")
+                            Else
+                                JsMsgBox("Add remark failed! Please contact Administrator.")
+                            End If
+                        End Using
                     Catch ex As Exception
                         JsMsgBox("Remark not found!")
                         btnSubmit.Enabled = False
@@ -65,19 +71,23 @@ Partial Class Admin_EditRemark
     Private Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
         Select Case mode
             Case "edit"
-                Dim editRmk = db.TblTransRemarks.Single(Function(x) x.TrID = CInt(rid))
+                Using db As New DataClassesDataContext
+                    Dim editRmk = db.TblTransRemarks.Single(Function(x) x.TrID = CInt(rid))
 
-                If TryEditRemark() Then
-                    JsMsgBox("Remark " & editRmk.TRemark & " update successfully.")
-                    Response.Redirect("Remarks.aspx")
-                Else
-                    JsMsgBox("Remark " & editRmk.TRemark & " edit failed! Please contact Administrator.")
-                End If
+                    If TryEditRemark() Then
+                        JsMsgBox("Remark " & editRmk.TRemark & " update successfully.")
+                        Response.Redirect("Remarks.aspx")
+                    Else
+                        JsMsgBox("Remark " & editRmk.TRemark & " edit failed! Please contact Administrator.")
+                    End If
+                End Using
             Case "delete"
                 Try
-                    Dim remarkToDelete = db.TblTransRemarks.Single(Function(x) x.TrID = CInt(rid))
-                    db.TblTransRemarks.DeleteOnSubmit(remarkToDelete)
-                    db.SubmitChanges()
+                    Using db As New DataClassesDataContext
+                        Dim remarkToDelete = db.TblTransRemarks.Single(Function(x) x.TrID = CInt(rid))
+                        db.TblTransRemarks.DeleteOnSubmit(remarkToDelete)
+                        db.SubmitChanges()
+                    End Using
 
                     JsMsgBox("Remark delete successfully.")
                     Response.Redirect("Remarks.aspx")
@@ -96,13 +106,15 @@ Partial Class Admin_EditRemark
 
     Private Function TryEditRemark() As Boolean
         Try
-            Dim editRmk = db.TblTransRemarks.Single(Function(x) x.TrID = CInt(rid))
-            With editRmk
-                .TRemark = txtName.Text.Trim
-                .Status = CBool(cmbEnabled.SelectedValue)
-            End With
+            Using db As New DataClassesDataContext
+                Dim editRmk = db.TblTransRemarks.Single(Function(x) x.TrID = CInt(rid))
+                With editRmk
+                    .TRemark = txtName.Text.Trim
+                    .Status = CBool(cmbEnabled.SelectedValue)
+                End With
 
-            db.SubmitChanges()
+                db.SubmitChanges()
+            End Using
         Catch ex As Exception
             Return False
         End Try
@@ -111,15 +123,17 @@ Partial Class Admin_EditRemark
     End Function
 
     Private Function AddNewRemark() As Boolean
-        Dim newRemark As New TblTransRemark
-        With newRemark
-            .TRemark = txtName.Text.Trim
-            .Status = CBool(cmbEnabled.SelectedValue)
-        End With
-
         Try
-            db.TblTransRemarks.InsertOnSubmit(newRemark)
-            db.SubmitChanges()
+            Using db As New DataClassesDataContext
+                Dim newRemark As New TblTransRemark
+                With newRemark
+                    .TRemark = txtName.Text.Trim
+                    .Status = CBool(cmbEnabled.SelectedValue)
+                End With
+
+                db.TblTransRemarks.InsertOnSubmit(newRemark)
+                db.SubmitChanges()
+            End Using
         Catch ex As Exception
             Return False
         End Try

@@ -14,23 +14,26 @@ Partial Class Admin_EditSlider
             Select Case mode
                 Case "edit"
                     Try
-                        Dim s = db.TblSliders.Single(Function(x) x.SliderID = sid)
-                        txtIndex.Text = s.DisplayIndex
-                        txtName.Text = s.SliderName.Trim
-                        txtUrl.Text = s.LinkUrl.Trim
-                        cmbEnabled.SelectedValue = s.Status
-                        If s.SliderImage <> Nothing Then
-                            imageUrl = s.SliderImage.Trim
-                            imgSlide.ImageUrl = If(s.SliderImage = Nothing, "", "..\" & s.SliderImage.Trim)
-                        End If
-                        h6.InnerText = "Edit " & s.SliderID.ToString("00000")
+                        Using db As New DataClassesDataContext
+                            Dim s = db.TblSliders.Single(Function(x) x.SliderID = sid)
+                            txtIndex.Text = s.DisplayIndex
+                            txtName.Text = s.SliderName.Trim
+                            txtUrl.Text = s.LinkUrl.Trim
+                            cmbEnabled.SelectedValue = s.Status
+                            If s.SliderImage <> Nothing Then
+                                imageUrl = s.SliderImage.Trim
+                                imgSlide.ImageUrl = If(s.SliderImage = Nothing, "", "..\" & s.SliderImage.Trim)
+                            End If
+                            h6.InnerText = "Edit " & s.SliderID.ToString("00000")
+                        End Using
                     Catch ex As Exception
                         JsMsgBox("Slider not found!")
                         btnSubmit.Enabled = False
                     End Try
                 Case "delete"
                     Try
-                        Dim s = db.TblSliders.Single(Function(x) x.SliderID = sid)
+                        Using db As New DataClassesDataContext
+                            Dim s = db.TblSliders.Single(Function(x) x.SliderID = sid)
                         txtIndex.Text = s.DisplayIndex
                         txtName.Text = s.SliderName.Trim
                         txtUrl.Text = s.LinkUrl.Trim
@@ -44,7 +47,8 @@ Partial Class Admin_EditSlider
                         cmbEnabled.Enabled = False
 
                         h6.InnerText = "Are you sure you want to delete " & s.SliderName & " (" & s.SliderID.ToString("00000") & ")?"
-                        btnSubmit.Text = "Delete"
+                            btnSubmit.Text = "Delete"
+                        End Using
                     Catch ex As Exception
                         JsMsgBox("Slider not found!")
                         btnSubmit.Enabled = False
@@ -55,14 +59,16 @@ Partial Class Admin_EditSlider
                     imgSlide.Visible = False
 
                     Try
-                        Dim s = db.TblSliders.Single(Function(x) x.SliderID = sid)
-                        txtIndex.Text = s.DisplayIndex
-                        txtName.Text = "Copy of " & s.SliderName.Trim
-                        txtUrl.Text = s.LinkUrl.Trim
-                        cmbEnabled.SelectedValue = s.Status
-                        imageUrl = s.SliderImage.Trim
-                        imgSlide.ImageUrl = If(s.SliderImage = Nothing, "", "..\" & s.SliderImage.Trim)
-                        h6.InnerText = "Edit " & s.SliderID.ToString("00000")
+                        Using db As New DataClassesDataContext
+                            Dim s = db.TblSliders.Single(Function(x) x.SliderID = sid)
+                            txtIndex.Text = s.DisplayIndex
+                            txtName.Text = "Copy of " & s.SliderName.Trim
+                            txtUrl.Text = s.LinkUrl.Trim
+                            cmbEnabled.SelectedValue = s.Status
+                            imageUrl = s.SliderImage.Trim
+                            imgSlide.ImageUrl = If(s.SliderImage = Nothing, "", "..\" & s.SliderImage.Trim)
+                            h6.InnerText = "Edit " & s.SliderID.ToString("00000")
+                        End Using
 
                         If AddNewSlider() Then
                             JsMsgBox("Slider added successfully.")
@@ -85,19 +91,23 @@ Partial Class Admin_EditSlider
     Private Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
         Select Case mode
             Case "edit"
-                Dim editSlide = db.TblSliders.Single(Function(x) x.SliderID = CInt(sid))
+                Using db As New DataClassesDataContext
+                    Dim editSlide = db.TblSliders.Single(Function(x) x.SliderID = CInt(sid))
 
-                If TryEditSlider() Then
-                    JsMsgBox("Slider " & editSlide.SliderName & " update successfully.")
-                    Response.Redirect("Sliders.aspx")
-                Else
-                    JsMsgBox("Slider " & editSlide.SliderName & " edit failed! Please contact Administrator.")
-                End If
+                    If TryEditSlider() Then
+                        JsMsgBox("Slider " & editSlide.SliderName & " update successfully.")
+                        Response.Redirect("Sliders.aspx")
+                    Else
+                        JsMsgBox("Slider " & editSlide.SliderName & " edit failed! Please contact Administrator.")
+                    End If
+                End Using
             Case "delete"
                 Try
-                    Dim sliderToDelete = db.TblSliders.Single(Function(x) x.SliderID = CInt(sid))
-                    db.TblSliders.DeleteOnSubmit(sliderToDelete)
-                    db.SubmitChanges()
+                    Using db As New DataClassesDataContext
+                        Dim sliderToDelete = db.TblSliders.Single(Function(x) x.SliderID = CInt(sid))
+                        db.TblSliders.DeleteOnSubmit(sliderToDelete)
+                        db.SubmitChanges()
+                    End Using
 
                     JsMsgBox("Slider delete successfully.")
                     Response.Redirect("Sliders.aspx")
@@ -121,31 +131,33 @@ Partial Class Admin_EditSlider
 
     Private Function TryEditSlider() As Boolean
         Try
-            Dim editSlide = db.TblSliders.Single(Function(x) x.SliderID = CInt(sid))
-            With editSlide
-                .DisplayIndex = CInt(txtIndex.Text.Trim)
-                .SliderName = txtName.Text.Trim
-                .LinkUrl = txtUrl.Text.Trim
-                .Status = CBool(cmbEnabled.SelectedValue)
+            Using db As New DataClassesDataContext
+                Dim editSlide = db.TblSliders.Single(Function(x) x.SliderID = CInt(sid))
+                With editSlide
+                    .DisplayIndex = CInt(txtIndex.Text.Trim)
+                    .SliderName = txtName.Text.Trim
+                    .LinkUrl = txtUrl.Text.Trim
+                    .Status = CBool(cmbEnabled.SelectedValue)
 
-                If fileUploader.HasFile Then
-                    Dim file As String = Server.MapPath(upload & fileUploader.FileName)
-                    Dim fileUrl As String = (upload & fileUploader.FileName).Replace("~/", "")
-                    Dim ext = file.Substring(file.LastIndexOf(".") + 1).ToLower
-                    If IsImage(ext) Then
-                        If Not IO.Directory.Exists(Server.MapPath(upload)) Then IO.Directory.CreateDirectory(Server.MapPath(upload))
-                        fileUploader.SaveAs(file)
-                        .SliderImage = fileUrl
+                    If fileUploader.HasFile Then
+                        Dim file As String = Server.MapPath(upload & fileUploader.FileName)
+                        Dim fileUrl As String = (upload & fileUploader.FileName).Replace("~/", "")
+                        Dim ext = file.Substring(file.LastIndexOf(".") + 1).ToLower
+                        If IsImage(ext) Then
+                            If Not IO.Directory.Exists(Server.MapPath(upload)) Then IO.Directory.CreateDirectory(Server.MapPath(upload))
+                            fileUploader.SaveAs(file)
+                            .SliderImage = fileUrl
+                        Else
+                            JsMsgBox("Image upload failed, please try upload only supported image format.")
+                            .SliderImage = imageUrl
+                        End If
                     Else
-                        JsMsgBox("Image upload failed, please try upload only supported image format.")
                         .SliderImage = imageUrl
                     End If
-                Else
-                    .SliderImage = imageUrl
-                End If
-            End With
+                End With
 
-            db.SubmitChanges()
+                db.SubmitChanges()
+            End Using
         Catch ex As Exception
             Return False
         End Try
@@ -154,33 +166,35 @@ Partial Class Admin_EditSlider
     End Function
 
     Private Function AddNewSlider(Optional image As String = "images/empty_box.png") As Boolean
-        Dim newSlide As New TblSlider
-        With newSlide
-            .DisplayIndex = CInt(txtIndex.Text.Trim)
-            .SliderName = txtName.Text.Trim
-            .LinkUrl = txtUrl.Text.Trim
-            .Status = CBool(cmbEnabled.SelectedValue)
-
-            If fileUploader.HasFile Then
-                Dim file As String = Server.MapPath(upload & fileUploader.FileName)
-                Dim fileUrl As String = (upload & fileUploader.FileName).Replace("~/", "")
-                Dim ext = file.Substring(file.LastIndexOf(".") + 1).ToLower
-                If IsImage(ext) Then
-                    If Not IO.Directory.Exists(Server.MapPath(upload)) Then IO.Directory.CreateDirectory(Server.MapPath(upload))
-                    fileUploader.SaveAs(file)
-                    .SliderImage = fileUrl
-                Else
-                    JsMsgBox("Image upload failed, please try upload only supported image format.")
-                    .SliderImage = Nothing
-                End If
-            Else
-                .SliderImage = image
-            End If
-        End With
-
         Try
-            db.TblSliders.InsertOnSubmit(newSlide)
-            db.SubmitChanges()
+            Using db As New DataClassesDataContext
+                Dim newSlide As New TblSlider
+                With newSlide
+                    .DisplayIndex = CInt(txtIndex.Text.Trim)
+                    .SliderName = txtName.Text.Trim
+                    .LinkUrl = txtUrl.Text.Trim
+                    .Status = CBool(cmbEnabled.SelectedValue)
+
+                    If fileUploader.HasFile Then
+                        Dim file As String = Server.MapPath(upload & fileUploader.FileName)
+                        Dim fileUrl As String = (upload & fileUploader.FileName).Replace("~/", "")
+                        Dim ext = file.Substring(file.LastIndexOf(".") + 1).ToLower
+                        If IsImage(ext) Then
+                            If Not IO.Directory.Exists(Server.MapPath(upload)) Then IO.Directory.CreateDirectory(Server.MapPath(upload))
+                            fileUploader.SaveAs(file)
+                            .SliderImage = fileUrl
+                        Else
+                            JsMsgBox("Image upload failed, please try upload only supported image format.")
+                            .SliderImage = Nothing
+                        End If
+                    Else
+                        .SliderImage = image
+                    End If
+                End With
+
+                db.TblSliders.InsertOnSubmit(newSlide)
+                db.SubmitChanges()
+            End Using
         Catch ex As Exception
             Return False
         End Try

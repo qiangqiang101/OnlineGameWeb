@@ -1,5 +1,6 @@
 ﻿<%@ Master Language="VB" CodeFile="MasterPage.master.vb" Inherits="MasterPage" %>
 
+
 <!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
@@ -59,13 +60,24 @@
                                     </ul>
                                 </div>
                                 <div class="dropdown pull-right">
+                                    <% Select Case Request.Cookies("Lang").Value
+                                            Case 1 %>
+                                    <a href="#" class="dropdown" id="language" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">中文
+                            <span class="caret"></span>
+                                    </a>
+                                            <% Case 2 %>
+                                    <a href="#" class="dropdown" id="language" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Malay
+                            <span class="caret"></span>
+                                    </a>
+                                           <% Case Else %>
                                     <a href="#" class="dropdown" id="language" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">English
                             <span class="caret"></span>
                                     </a>
+                                      <%  End Select %>
                                     <ul class="dropdown-menu palovit-dropdown" aria-labelledby="language">
-                                        <li><a href="#">English</a></li>
-                                        <li><a href="#">中文</a></li>
-                                        <li><a href="#">Malay</a></li>
+                                        <li><a href="#" id="langEn" runat="server">English</a></li>
+                                        <li><a href="#" id="langZh" runat="server">中文</a></li>
+                                        <li><a href="#" id="langMy" runat="server">Malay</a></li>
                                     </ul>
                                 </div>
                                 <div class="rmenu" id="memberLogin" runat="server">

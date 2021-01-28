@@ -3,11 +3,13 @@ Partial Class Admin_GameAccounts
     Inherits System.Web.UI.Page
 
     Private Sub Admin_GameAccounts_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Dim gameAccounts = (From ga In db.TblGameAccounts Order By ga.GameID Descending)
-        For Each ga As TblGameAccount In gameAccounts
-            dataTable.AddTableItem(ga.GameID.ToString("00000"), ga.DateCreated.ToString(dateFormat),
-                                   ga.UserName.Trim, ga.Password.Trim, GetProductName(ga.ProductID), ga.MemberUserName.Trim)
-        Next
+        Using db As New DataClassesDataContext
+            Dim gameAccounts = (From ga In db.TblGameAccounts Order By ga.GameID Descending)
+            For Each ga As TblGameAccount In gameAccounts
+                dataTable.AddTableItem(ga.GameID.ToString("00000"), ga.DateCreated.ToString(dateFormat),
+                                       ga.UserName.Trim, ga.Password.Trim, GetProductName(ga.ProductID), ga.MemberUserName.Trim)
+            Next
+        End Using
     End Sub
 
     Private Sub btnUpload_Click(sender As Object, e As EventArgs) Handles btnUpload.Click
@@ -35,16 +37,18 @@ Partial Class Admin_GameAccounts
     End Sub
 
     Private Sub InsertVault(product As Integer, username As String, password As String)
-        Dim newGameAcc As New TblGameAccount
-        With newGameAcc
-            .DateCreated = Now
-            .MemberUserName = Nothing
-            .UserName = username.Trim
-            .Password = password.Trim
-            .ProductID = product
-        End With
+        Using db As New DataClassesDataContext
+            Dim newGameAcc As New TblGameAccount
+            With newGameAcc
+                .DateCreated = Now
+                .MemberUserName = Nothing
+                .UserName = username.Trim
+                .Password = password.Trim
+                .ProductID = product
+            End With
 
-        db.TblGameAccounts.InsertOnSubmit(newGameAcc)
-        db.SubmitChanges()
+            db.TblGameAccounts.InsertOnSubmit(newGameAcc)
+            db.SubmitChanges()
+        End Using
     End Sub
 End Class

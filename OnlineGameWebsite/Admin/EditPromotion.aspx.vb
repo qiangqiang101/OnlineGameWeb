@@ -16,69 +16,73 @@ Partial Class Admin_EditPromotion
             Select Case mode
                 Case "edit"
                     Try
-                        Dim p = db.TblPromotions.Single(Function(x) x.PromoID = pid)
-                        txtPromotion.Text = p.PromoName.Trim
-                        txtEngName.Text = p.EnglishName.Trim
-                        txtChiName.Text = p.ChineseName.Trim
-                        txtMysName.Text = p.MalayName.Trim
-                        txtIndex.Text = p.DisplayIndex
-                        cmbType.SelectedValue = p.PromoType
-                        txtValue.Text = p.PromoPercent.ToString("0.00")
-                        txtMaxPayout.Text = p.MaxPayout.ToString("0.00")
-                        cmbEnabled.SelectedValue = p.Status
+                        Using db As New DataClassesDataContext
+                            Dim p = db.TblPromotions.Single(Function(x) x.PromoID = pid)
+                            txtPromotion.Text = p.PromoName.Trim
+                            txtEngName.Text = p.EnglishName.Trim
+                            txtChiName.Text = p.ChineseName.Trim
+                            txtMysName.Text = p.MalayName.Trim
+                            txtIndex.Text = p.DisplayIndex
+                            cmbType.SelectedValue = p.PromoType
+                            txtValue.Text = p.PromoPercent.ToString("0.00")
+                            txtMaxPayout.Text = p.MaxPayout.ToString("0.00")
+                            cmbEnabled.SelectedValue = p.Status
 
-                        promoUrl = p.PromoFile
-                        promodat = New PromoData(Server.MapPath("..\" & p.PromoFile)).Instance
+                            promoUrl = p.PromoFile
+                            promodat = New PromoData(Server.MapPath("..\" & p.PromoFile)).Instance
 
-                        txtEngTnC.Text = promodat.English
-                        txtChiTnC.Text = promodat.Chinese
-                        txtMysTnc.Text = promodat.Malay
+                            txtEngTnC.Text = promodat.English
+                            txtChiTnC.Text = promodat.Chinese
+                            txtMysTnc.Text = promodat.Malay
 
-                        imageUrl = p.PromoImage.Trim
-                        imgPromo.ImageUrl = If(p.PromoImage = Nothing, "", "..\" & p.PromoImage.Trim)
-                        h6.InnerText = "Edit " & p.PromoID.ToString("00000")
+                            imageUrl = p.PromoImage.Trim
+                            imgPromo.ImageUrl = If(p.PromoImage = Nothing, "", "..\" & p.PromoImage.Trim)
+                            h6.InnerText = "Edit " & p.PromoID.ToString("00000")
+                        End Using
                     Catch ex As Exception
                         JsMsgBox("Promotion not found!")
                         btnSubmit.Enabled = False
                     End Try
                 Case "delete"
                     Try
-                        Dim p = db.TblPromotions.Single(Function(x) x.PromoID = pid)
-                        txtPromotion.Text = p.PromoName.Trim
-                        txtEngName.Text = p.EnglishName.Trim
-                        txtChiName.Text = p.ChineseName.Trim
-                        txtMysName.Text = p.MalayName.Trim
-                        txtIndex.Text = p.DisplayIndex
-                        cmbType.SelectedValue = p.PromoType
-                        txtValue.Text = p.PromoPercent.ToString("0.00")
-                        txtMaxPayout.Text = p.MaxPayout.ToString("0.00")
-                        cmbEnabled.SelectedValue = p.Status
+                        Using db As New DataClassesDataContext
+                            Dim p = db.TblPromotions.Single(Function(x) x.PromoID = pid)
+                            txtPromotion.Text = p.PromoName.Trim
+                            txtEngName.Text = p.EnglishName.Trim
+                            txtChiName.Text = p.ChineseName.Trim
+                            txtMysName.Text = p.MalayName.Trim
+                            txtIndex.Text = p.DisplayIndex
+                            cmbType.SelectedValue = p.PromoType
+                            txtValue.Text = p.PromoPercent.ToString("0.00")
+                            txtMaxPayout.Text = p.MaxPayout.ToString("0.00")
+                            cmbEnabled.SelectedValue = p.Status
 
-                        promoUrl = p.PromoFile
-                        promodat = New PromoData(Server.MapPath("..\" & p.PromoFile)).Instance
+                            promoUrl = p.PromoFile
+                            promodat = New PromoData(Server.MapPath("..\" & p.PromoFile)).Instance
 
-                        txtEngTnC.Text = promodat.English
-                        txtChiTnC.Text = promodat.Chinese
-                        txtMysTnc.Text = promodat.Malay
+                            txtEngTnC.Text = promodat.English
+                            txtChiTnC.Text = promodat.Chinese
+                            txtMysTnc.Text = promodat.Malay
 
-                        imageUrl = p.PromoImage.Trim
-                        imgPromo.ImageUrl = If(p.PromoImage = Nothing, "", "..\" & p.PromoImage.Trim)
+                            imageUrl = p.PromoImage.Trim
+                            imgPromo.ImageUrl = If(p.PromoImage = Nothing, "", "..\" & p.PromoImage.Trim)
 
-                        txtPromotion.ReadOnly = True
-                        txtEngName.ReadOnly = True
-                        txtChiName.ReadOnly = True
-                        txtMysName.ReadOnly = True
-                        txtIndex.ReadOnly = True
-                        cmbType.Enabled = False
-                        txtValue.ReadOnly = True
-                        txtMaxPayout.ReadOnly = True
-                        cmbEnabled.Enabled = False
-                        txtEngTnC.ReadOnly = True
-                        txtChiTnC.ReadOnly = True
-                        txtMysTnc.ReadOnly = True
+                            txtPromotion.ReadOnly = True
+                            txtEngName.ReadOnly = True
+                            txtChiName.ReadOnly = True
+                            txtMysName.ReadOnly = True
+                            txtIndex.ReadOnly = True
+                            cmbType.Enabled = False
+                            txtValue.ReadOnly = True
+                            txtMaxPayout.ReadOnly = True
+                            cmbEnabled.Enabled = False
+                            txtEngTnC.ReadOnly = True
+                            txtChiTnC.ReadOnly = True
+                            txtMysTnc.ReadOnly = True
 
-                        h6.InnerText = "Are you sure you want to delete " & p.PromoName & " (" & p.PromoID.ToString("00000") & ")?"
-                        btnSubmit.Text = "Delete"
+                            h6.InnerText = "Are you sure you want to delete " & p.PromoName & " (" & p.PromoID.ToString("00000") & ")?"
+                            btnSubmit.Text = "Delete"
+                        End Using
                     Catch ex As Exception
                         JsMsgBox("Promotion not found!")
                         btnSubmit.Enabled = False
@@ -89,33 +93,35 @@ Partial Class Admin_EditPromotion
                     imgPromo.Visible = False
 
                     Try
-                        Dim p = db.TblPromotions.Single(Function(x) x.PromoID = pid)
-                        txtPromotion.Text = "Copy of " & p.PromoName.Trim
-                        txtEngName.Text = p.EnglishName.Trim
-                        txtChiName.Text = p.ChineseName.Trim
-                        txtMysName.Text = p.MalayName.Trim
-                        txtIndex.Text = p.DisplayIndex
-                        cmbType.SelectedValue = p.PromoType
-                        txtValue.Text = p.PromoPercent.ToString("0.00")
-                        txtMaxPayout.Text = p.MaxPayout.ToString("0.00")
-                        cmbEnabled.SelectedValue = p.Status
+                        Using db As New DataClassesDataContext
+                            Dim p = db.TblPromotions.Single(Function(x) x.PromoID = pid)
+                            txtPromotion.Text = "Copy of " & p.PromoName.Trim
+                            txtEngName.Text = p.EnglishName.Trim
+                            txtChiName.Text = p.ChineseName.Trim
+                            txtMysName.Text = p.MalayName.Trim
+                            txtIndex.Text = p.DisplayIndex
+                            cmbType.SelectedValue = p.PromoType
+                            txtValue.Text = p.PromoPercent.ToString("0.00")
+                            txtMaxPayout.Text = p.MaxPayout.ToString("0.00")
+                            cmbEnabled.SelectedValue = p.Status
 
-                        promoUrl = p.PromoFile
-                        promodat = New PromoData(Server.MapPath("..\" & p.PromoFile)).Instance
+                            promoUrl = p.PromoFile
+                            promodat = New PromoData(Server.MapPath("..\" & p.PromoFile)).Instance
 
-                        txtEngTnC.Text = promodat.English
-                        txtChiTnC.Text = promodat.Chinese
-                        txtMysTnc.Text = promodat.Malay
+                            txtEngTnC.Text = promodat.English
+                            txtChiTnC.Text = promodat.Chinese
+                            txtMysTnc.Text = promodat.Malay
 
-                        imageUrl = p.PromoImage.Trim
-                        imgPromo.ImageUrl = If(p.PromoImage = Nothing, "", "..\" & p.PromoImage.Trim)
+                            imageUrl = p.PromoImage.Trim
+                            imgPromo.ImageUrl = If(p.PromoImage = Nothing, "", "..\" & p.PromoImage.Trim)
 
-                        If AddNewPromotion(p.PromoImage.Trim) Then
-                            JsMsgBox("Promotion added successfully.")
-                            Response.Redirect("Promotions.aspx")
-                        Else
-                            JsMsgBox("Add promotion failed! Please contact Administrator.")
-                        End If
+                            If AddNewPromotion(p.PromoImage.Trim) Then
+                                JsMsgBox("Promotion added successfully.")
+                                Response.Redirect("Promotions.aspx")
+                            Else
+                                JsMsgBox("Add promotion failed! Please contact Administrator.")
+                            End If
+                        End Using
                     Catch ex As Exception
                         JsMsgBox("Promotion not found!")
                         btnSubmit.Enabled = False
@@ -131,22 +137,26 @@ Partial Class Admin_EditPromotion
     Private Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
         Select Case mode
             Case "edit"
-                Dim editPromo = db.TblPromotions.Single(Function(x) x.PromoID = CInt(pid))
+                Using db As New DataClassesDataContext
+                    Dim editPromo = db.TblPromotions.Single(Function(x) x.PromoID = CInt(pid))
 
-                If TryEditPromotion() Then
-                    JsMsgBox("Promotion " & editPromo.PromoName & " update successfully.")
-                    Response.Redirect("Promotions.aspx")
-                Else
-                    JsMsgBox("Promotion " & editPromo.PromoName & " edit failed! Please contact Administrator.")
-                End If
+                    If TryEditPromotion() Then
+                        JsMsgBox("Promotion " & editPromo.PromoName & " update successfully.")
+                        Response.Redirect("Promotions.aspx")
+                    Else
+                        JsMsgBox("Promotion " & editPromo.PromoName & " edit failed! Please contact Administrator.")
+                    End If
+                End Using
             Case "delete"
                 Try
-                    Dim promoToDelete = db.TblPromotions.Single(Function(x) x.PromoID = CInt(pid))
-                    db.TblPromotions.DeleteOnSubmit(promoToDelete)
-                    db.SubmitChanges()
+                    Using db As New DataClassesDataContext
+                        Dim promoToDelete = db.TblPromotions.Single(Function(x) x.PromoID = CInt(pid))
+                        db.TblPromotions.DeleteOnSubmit(promoToDelete)
+                        db.SubmitChanges()
 
-                    JsMsgBox("Promotion delete successfully.")
-                    Response.Redirect("Promotions.aspx")
+                        JsMsgBox("Promotion delete successfully.")
+                        Response.Redirect("Promotions.aspx")
+                    End Using
                 Catch ex As Exception
                     JsMsgBox("Delete product failed! Please contact Administrator.")
                 End Try
@@ -176,44 +186,46 @@ Partial Class Admin_EditPromotion
 
     Private Function TryEditPromotion() As Boolean
         Try
-            Dim editPromo = db.TblPromotions.Single(Function(x) x.PromoID = CInt(pid))
-            With editPromo
-                .PromoName = txtPromotion.Text.Trim
-                .EnglishName = txtEngName.Text.Trim
-                .ChineseName = txtChiName.Text.Trim
-                .MalayName = txtMysName.Text.Trim
-                .DisplayIndex = CInt(txtIndex.Text.Trim)
-                .PromoType = CInt(cmbType.SelectedValue)
-                .PromoPercent = CSng(txtValue.Text.Trim)
-                .MaxPayout = CSng(txtMaxPayout.Text.Trim)
-                .Status = CInt(cmbEnabled.SelectedValue)
-                .PromoFile = .PromoFile
+            Using db As New DataClassesDataContext
+                Dim editPromo = db.TblPromotions.Single(Function(x) x.PromoID = CInt(pid))
+                With editPromo
+                    .PromoName = txtPromotion.Text.Trim
+                    .EnglishName = txtEngName.Text.Trim
+                    .ChineseName = txtChiName.Text.Trim
+                    .MalayName = txtMysName.Text.Trim
+                    .DisplayIndex = CInt(txtIndex.Text.Trim)
+                    .PromoType = CInt(cmbType.SelectedValue)
+                    .PromoPercent = CSng(txtValue.Text.Trim)
+                    .MaxPayout = CSng(txtMaxPayout.Text.Trim)
+                    .Status = CInt(cmbEnabled.SelectedValue)
+                    .PromoFile = .PromoFile
 
-                promodat = New PromoData(Server.MapPath("..\" & .PromoFile))
-                promodat.English = txtEngTnC.Text.Trim
-                promodat.Chinese = txtChiTnC.Text.Trim
-                promodat.Malay = txtMysTnc.Text.Trim
-                promodat.FileName = Server.MapPath("..\" & .PromoFile)
-                promodat.Save()
+                    promodat = New PromoData(Server.MapPath("..\" & .PromoFile))
+                    promodat.English = txtEngTnC.Text.Trim
+                    promodat.Chinese = txtChiTnC.Text.Trim
+                    promodat.Malay = txtMysTnc.Text.Trim
+                    promodat.FileName = Server.MapPath("..\" & .PromoFile)
+                    promodat.Save()
 
-                If fileUploader.HasFile Then
-                    Dim file As String = Server.MapPath(upload & fileUploader.FileName)
-                    Dim fileUrl As String = (upload & fileUploader.FileName).Replace("~/", "")
-                    Dim ext = file.Substring(file.LastIndexOf(".") + 1).ToLower
-                    If IsImage(ext) Then
-                        If Not IO.Directory.Exists(Server.MapPath(upload)) Then IO.Directory.CreateDirectory(Server.MapPath(upload))
-                        fileUploader.SaveAs(file)
-                        .PromoImage = fileUrl
+                    If fileUploader.HasFile Then
+                        Dim file As String = Server.MapPath(upload & fileUploader.FileName)
+                        Dim fileUrl As String = (upload & fileUploader.FileName).Replace("~/", "")
+                        Dim ext = file.Substring(file.LastIndexOf(".") + 1).ToLower
+                        If IsImage(ext) Then
+                            If Not IO.Directory.Exists(Server.MapPath(upload)) Then IO.Directory.CreateDirectory(Server.MapPath(upload))
+                            fileUploader.SaveAs(file)
+                            .PromoImage = fileUrl
+                        Else
+                            JsMsgBox("Image upload failed, please try upload only supported image format.")
+                            .PromoImage = imageUrl
+                        End If
                     Else
-                        JsMsgBox("Image upload failed, please try upload only supported image format.")
                         .PromoImage = imageUrl
                     End If
-                Else
-                    .PromoImage = imageUrl
-                End If
-            End With
+                End With
 
-            db.SubmitChanges()
+                db.SubmitChanges()
+            End Using
         Catch ex As Exception
             Return False
         End Try
@@ -222,51 +234,53 @@ Partial Class Admin_EditPromotion
     End Function
 
     Private Function AddNewPromotion(Optional image As String = "images/empty_box.png") As Boolean
-        Dim newPromo As New TblPromotion
-        With newPromo
-            .DisplayIndex = CInt(txtIndex.Text.Trim)
-            .PromoName = txtPromotion.Text.Trim
-            .PromoType = cmbType.SelectedValue
-            .PromoPercent = CSng(txtValue.Text.Trim)
-            .MaxPayout = CSng(txtMaxPayout.Text.Trim)
-            .EnglishName = txtEngName.Text.Trim
-            .ChineseName = txtChiName.Text.Trim
-            .MalayName = txtMysName.Text.Trim
-            .Status = cmbEnabled.SelectedValue
-
-            Dim uniqueFileName As String = txtPromotion.Text.Trim.GetHashCode & ".xml"
-            Dim fileUrl2 As String = (promoTnc & uniqueFileName).Replace("~/", "")
-            If Not IO.Directory.Exists(Server.MapPath(promoTnc)) Then IO.Directory.CreateDirectory(Server.MapPath(promoTnc))
-            Dim promodat As New PromoData(Server.MapPath("..\" & fileUrl2))
-            With promodat
-                .English = txtEngTnC.Text.Trim
-                .Chinese = txtChiTnC.Text.Trim
-                .Malay = txtMysTnc.Text.Trim
-            End With
-            promodat.Save()
-
-            .PromoFile = fileUrl2
-
-            If fileUploader.HasFile Then
-                Dim file As String = Server.MapPath(upload & fileUploader.FileName)
-                Dim fileUrl As String = (upload & fileUploader.FileName).Replace("~/", "")
-                Dim ext = file.Substring(file.LastIndexOf(".") + 1).ToLower
-                If IsImage(ext) Then
-                    If Not IO.Directory.Exists(Server.MapPath(upload)) Then IO.Directory.CreateDirectory(Server.MapPath(upload))
-                    fileUploader.SaveAs(file)
-                    .PromoImage = fileUrl
-                Else
-                    JsMsgBox("Image upload failed, please try upload only supported image format.")
-                    .PromoImage = Nothing
-                End If
-            Else
-                .PromoImage = image
-            End If
-        End With
-
         Try
-            db.TblPromotions.InsertOnSubmit(newPromo)
-            db.SubmitChanges()
+            Using db As New DataClassesDataContext
+                Dim newPromo As New TblPromotion
+                With newPromo
+                    .DisplayIndex = CInt(txtIndex.Text.Trim)
+                    .PromoName = txtPromotion.Text.Trim
+                    .PromoType = cmbType.SelectedValue
+                    .PromoPercent = CSng(txtValue.Text.Trim)
+                    .MaxPayout = CSng(txtMaxPayout.Text.Trim)
+                    .EnglishName = txtEngName.Text.Trim
+                    .ChineseName = txtChiName.Text.Trim
+                    .MalayName = txtMysName.Text.Trim
+                    .Status = cmbEnabled.SelectedValue
+
+                    Dim uniqueFileName As String = txtPromotion.Text.Trim.GetHashCode & ".xml"
+                    Dim fileUrl2 As String = (promoTnc & uniqueFileName).Replace("~/", "")
+                    If Not IO.Directory.Exists(Server.MapPath(promoTnc)) Then IO.Directory.CreateDirectory(Server.MapPath(promoTnc))
+                    Dim promodat As New PromoData(Server.MapPath("..\" & fileUrl2))
+                    With promodat
+                        .English = txtEngTnC.Text.Trim
+                        .Chinese = txtChiTnC.Text.Trim
+                        .Malay = txtMysTnc.Text.Trim
+                    End With
+                    promodat.Save()
+
+                    .PromoFile = fileUrl2
+
+                    If fileUploader.HasFile Then
+                        Dim file As String = Server.MapPath(upload & fileUploader.FileName)
+                        Dim fileUrl As String = (upload & fileUploader.FileName).Replace("~/", "")
+                        Dim ext = file.Substring(file.LastIndexOf(".") + 1).ToLower
+                        If IsImage(ext) Then
+                            If Not IO.Directory.Exists(Server.MapPath(upload)) Then IO.Directory.CreateDirectory(Server.MapPath(upload))
+                            fileUploader.SaveAs(file)
+                            .PromoImage = fileUrl
+                        Else
+                            JsMsgBox("Image upload failed, please try upload only supported image format.")
+                            .PromoImage = Nothing
+                        End If
+                    Else
+                        .PromoImage = image
+                    End If
+                End With
+
+                db.TblPromotions.InsertOnSubmit(newPromo)
+                db.SubmitChanges()
+            End Using
         Catch ex As Exception
             Return False
         End Try

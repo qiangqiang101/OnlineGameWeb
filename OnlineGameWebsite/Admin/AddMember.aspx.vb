@@ -32,29 +32,31 @@ Partial Class Admin_AddMember
     End Sub
 
     Private Function RegisterMember() As Boolean
-        Dim newMember As New TblMember
-        With newMember
-            .UserName = txtUserID.Text.Trim
-            .Password = txtPassword.Text.Trim
-            .Email = txtEmail.Text.Trim
-            .PhoneNo = txtPhone.Text.Trim
-            .FullName = txtFullName.Text.Trim
-            .DateOfBirth = Date.ParseExact(txtBirthday.Text.Trim, "yyyy-MM-dd", System.Globalization.DateTimeFormatInfo.InvariantInfo)
-            .RefCode = txtUserID.Text.GetHashCode
-            .RefCodeReg = txtRegRefCode.Text.Trim
-            .VipLevel = CInt(cmbLevel.SelectedValue)
-            .Promotion = 0F
-            .DateCreated = Now
-            .LastModified = Now
-            .IPAddress = "127.0.0.1"
-            .GroupLeaderID = -1
-            .Enabled = CBool(cmbEnabled.SelectedValue)
-            .Remark = txtRemarks.Text.Trim
-        End With
-
         Try
-            db.TblMembers.InsertOnSubmit(newMember)
-            db.SubmitChanges()
+            Using db As New DataClassesDataContext
+                Dim newMember As New TblMember
+                With newMember
+                    .UserName = txtUserID.Text.Trim
+                    .Password = txtPassword.Text.Trim
+                    .Email = txtEmail.Text.Trim
+                    .PhoneNo = txtPhone.Text.Trim
+                    .FullName = txtFullName.Text.Trim
+                    .DateOfBirth = Date.ParseExact(txtBirthday.Text.Trim, "yyyy-MM-dd", System.Globalization.DateTimeFormatInfo.InvariantInfo)
+                    .RefCode = txtUserID.Text.GetHashCode
+                    .RefCodeReg = txtRegRefCode.Text.Trim
+                    .VipLevel = CInt(cmbLevel.SelectedValue)
+                    .Promotion = 0F
+                    .DateCreated = Now
+                    .LastModified = Now
+                    .IPAddress = "127.0.0.1"
+                    .GroupLeaderID = -1
+                    .Enabled = CBool(cmbEnabled.SelectedValue)
+                    .Remark = txtRemarks.Text.Trim
+                End With
+
+                db.TblMembers.InsertOnSubmit(newMember)
+                db.SubmitChanges()
+            End Using
         Catch ex As Exception
             Return False
         End Try
