@@ -30,7 +30,6 @@
                                     <li><a href="Withdrawal.aspx">Withdrawal</a></li>
                                     <li><a href="Transfer.aspx">Transfer</a></li>
                                     <li class="active"><a href="TransactionHistory.aspx">Transaction History</a></li>
-                                    <li><a href="TransferHistory.aspx">Transfer History</a></li>
                                     <li><a href="GameAccount.aspx">Game Account</a></li>
                                 </ul>
                             </div>
@@ -44,7 +43,7 @@
                                         <asp:TableHeaderCell>Payment Method</asp:TableHeaderCell>
                                         <asp:TableHeaderCell>Status</asp:TableHeaderCell>
                                         <asp:TableHeaderCell>Amount</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>Cancel</asp:TableHeaderCell>
+                                        <asp:TableHeaderCell>Action</asp:TableHeaderCell>
                                     </asp:TableHeaderRow>
                                 </asp:Table>
                                 <hr class="hr" />
@@ -56,7 +55,7 @@
                                         <asp:TableHeaderCell>Payment Method</asp:TableHeaderCell>
                                         <asp:TableHeaderCell>Status</asp:TableHeaderCell>
                                         <asp:TableHeaderCell>Amount</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>Cancel</asp:TableHeaderCell>
+                                        <asp:TableHeaderCell>Action</asp:TableHeaderCell>
                                     </asp:TableHeaderRow>
                                 </asp:Table>
                                 <hr class="hr" />
@@ -68,7 +67,19 @@
                                         <asp:TableHeaderCell>Payment Method</asp:TableHeaderCell>
                                         <asp:TableHeaderCell>Status</asp:TableHeaderCell>
                                         <asp:TableHeaderCell>Amount</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>Cancel</asp:TableHeaderCell>
+                                        <asp:TableHeaderCell>Action</asp:TableHeaderCell>
+                                    </asp:TableHeaderRow>
+                                </asp:Table>
+                                <hr class="hr" />
+                                <h4>Transfer</h4>
+                                <asp:Table CssClass="table" ID="tblTransfer" runat="server">
+                                    <asp:TableHeaderRow TableSection="TableHeader">
+                                        <asp:TableHeaderCell>Date</asp:TableHeaderCell>
+                                        <asp:TableHeaderCell>From</asp:TableHeaderCell>
+                                        <asp:TableHeaderCell>To</asp:TableHeaderCell>
+                                        <asp:TableHeaderCell>Status</asp:TableHeaderCell>
+                                        <asp:TableHeaderCell>Amount</asp:TableHeaderCell>
+                                        <asp:TableHeaderCell>Action</asp:TableHeaderCell>
                                     </asp:TableHeaderRow>
                                 </asp:Table>
                             </div>

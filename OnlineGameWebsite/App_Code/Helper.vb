@@ -10,16 +10,47 @@ Public Module Helper
     Public dateFormat As String = "yyyy-MM-dd HH:mm:ss"
     Public upload As String = "~/Upload/" & Now.Year & "/" & Now.Month & "/" & Now.Day & "/"
     Public promoTnc As String = "~/Promo/" & Now.Year & "/" & Now.Month & "/" & Now.Day & "/"
+    Public logPath As String = HttpContext.Current.ApplicationInstance.Server.MapPath("~\App_Data\")
 
     <Extension>
     Public Sub JsMsgBox(page As Page, text As String)
         page.Response.Write("<script>alert('" & text & "');</script>")
     End Sub
 
+    ''' <summary>
+    ''' And with a third argument, you can add an icon to your alert! There are 4 predefined ones: "warning", "error", "success" and "info".
+    ''' </summary>
+    ''' <param name="page"></param>
+    ''' <param name="texts"></param>
+    <Extension>
+    Public Sub swal(page As Page, ParamArray texts As String())
+        Dim texts2 As New List(Of String)
+        For Each txt In texts
+            texts2.Add("'" & txt & "'")
+        Next
+        Dim result = String.Join(", ", texts2)
+        page.ClientScript.RegisterStartupScript(page.GetType, "SweetAlert", "swalTheme.fire(" & result & ");", True)
+    End Sub
+
+    ''' <summary>
+    ''' And with a third argument, you can add an icon to your alert! There are 4 predefined ones: "warning", "error", "success" and "info".
+    ''' </summary>
+    ''' <param name="page"></param>
+    ''' <param name="redirect"></param>
+    ''' <param name="texts"></param>
+    <Extension>
+    Public Sub swalRedirect(page As Page, redirect As String, ParamArray texts As String())
+        Dim texts2 As New List(Of String)
+        For Each txt In texts
+            texts2.Add("'" & txt & "'")
+        Next
+        Dim result = String.Join(", ", texts2)
+        page.ClientScript.RegisterStartupScript(page.GetType, "SweetAlert", "swalTheme.fire(" & result & ").then(function() {window.location = '" & redirect & "';});", True)
+    End Sub
+
     <Extension>
     Public Sub LoginMsgBox(page As Page)
-        page.Response.Write("<script>alert('Please log in to continue.');</script>")
-        page.Response.Write("<script>window.location.href='Default.aspx';</script>")
+        swalRedirect(page, "Default.aspx", "Hello", "Please log in to continue.", "warning")
     End Sub
 
     <Extension>
@@ -125,6 +156,7 @@ Public Module Helper
                     End If
                 End Using
             Catch ex As Exception
+                Log(ex)
                 Return False
             End Try
         Else
@@ -142,6 +174,7 @@ Public Module Helper
                     End If
                 End Using
             Catch ex As Exception
+                Log(ex)
                 Return False
             End Try
         End If
@@ -171,8 +204,14 @@ Public Module Helper
         Return "<a href=""#" & id & """ data-toggle=""modal"" data-target=""" & target & """ class=""btn " & button & " btn-circle btn-sm""><i class=""" & css & """></i></a>"
     End Function
 
-    Public Function DeleteButton(action As String, Optional button As String = "fa-times") As String
-        Return String.Format("<a href={0}{1}{0}><i class={0}fa {2}{0}></i></a>", """", action, button)
+    Public Function DeleteButton(url As String, Optional button As String = "fa-times", Optional tooltip As String = Nothing) As String
+        Return "<a href=""javascript:swalTheme.fire({title: 'Are you sure?', text: 'Once cancelled, you will not be able to recover this transaction!', icon: 'warning', showCancelButton: true, confirmButtonText: 'Yes', cancelButtonText: 'No'})" &
+            ".then((result) => {if (result.isConfirmed) {swalTheme.fire('Successful', 'Your transaction has been cancelled.', 'success').then(function() {window.location = '" & url & "';})} else if (result.dismiss === swal.DismissReason.cancel)" &
+            " {swalTheme.fire('Okay', 'Your operation has not been cancelled.', 'success')}})"" data-toggle=""tooltip"" title=""" & tooltip & """><i class=""fa " & button & """></i></a>"
+    End Function
+
+    Public Function RRButton(swal As String, Optional button As String = "fa-times", Optional tooltip As String = Nothing) As String
+        Return String.Format("<a href={0}javascript:swalTheme.fire({1});{0} data-toggle={0}tooltip{0} title={0}{3}{0}><i class={0}fa {2}{0}></i></a>", """", swal, button, tooltip)
     End Function
 
     <Extension>
@@ -234,6 +273,8 @@ Public Module Helper
                 Return "Approved"
             Case 3
                 Return "Rejected"
+            Case 4
+                Return "Cancelled"
             Case Else
                 Return "Error"
         End Select
@@ -249,6 +290,7 @@ Public Module Helper
                 End If
             End Using
         Catch ex As Exception
+            Log(ex)
         End Try
     End Sub
 
@@ -259,6 +301,7 @@ Public Module Helper
     '            p.Balance += amount
     '        End Using
     '    Catch ex As Exception
+    '        Log(ex)
     '        Return False
     '    End Try
 
@@ -407,7 +450,7 @@ Public Module Helper
                 db.SubmitChanges()
             End Using
         Catch ex As Exception
-
+            Log(ex)
         End Try
     End Sub
 
@@ -418,6 +461,7 @@ Public Module Helper
                 Return log.LogIP.Trim
             End Using
         Catch ex As Exception
+            Log(ex)
             Return "127.0.0.1"
         End Try
     End Function
@@ -460,6 +504,7 @@ Public Module Helper
                 Return result.UserName.Trim
             End Using
         Catch ex As Exception
+            Log(ex)
             Return "ERROR"
         End Try
     End Function
@@ -471,6 +516,7 @@ Public Module Helper
                 Return result.ProductName.Trim
             End Using
         Catch ex As Exception
+            Log(ex)
             Return "ERROR"
         End Try
     End Function
@@ -490,8 +536,20 @@ Public Module Helper
                 End If
             End Using
         Catch ex As Exception
+            Log(ex)
             Return 0F
         End Try
+    End Function
+
+    Public Function RandomText(r As Random) As String
+        Dim s As String = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+        Dim sb As New StringBuilder
+        Dim cnt As Integer = r.Next(15, 33)
+        For i As Integer = 1 To cnt
+            Dim idx As Integer = r.Next(0, s.Length)
+            sb.Append(s.Substring(idx, 1))
+        Next
+        Return sb.ToString()
     End Function
 
 End Module

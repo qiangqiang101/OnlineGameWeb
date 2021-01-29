@@ -58,6 +58,7 @@ Partial Class Admin_AddMember
                 db.SubmitChanges()
             End Using
         Catch ex As Exception
+            Log(ex)
             Return False
         End Try
         Return True

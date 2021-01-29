@@ -16,6 +16,7 @@ Partial Class Admin_EditMember
                     Response.Redirect("EditMember.aspx?mode=" & mode & "&id=" & mm.UserID)
                 End Using
             Catch ex As Exception
+                Log(ex)
                 JsMsgBox("Member not found!")
                 btnSubmit.Enabled = False
                 Exit Sub
@@ -59,6 +60,7 @@ Partial Class Admin_EditMember
                     End If
                 End Using
             Catch ex As Exception
+                Log(ex)
                 JsMsgBox("Member not found!")
                 btnSubmit.Enabled = False
                 Exit Sub
@@ -93,6 +95,7 @@ Partial Class Admin_EditMember
                             End If
                         End Using
                     Catch ex As Exception
+                        Log(ex)
                         JsMsgBox("Member not found!")
                         btnSubmit.Enabled = False
                         Exit Sub
@@ -111,6 +114,7 @@ Partial Class Admin_EditMember
                             End If
                         End Using
                     Catch ex As Exception
+                        Log(ex)
                         JsMsgBox("Member not found!")
                         btnSubmit.Enabled = False
                         Exit Sub
@@ -165,6 +169,7 @@ Partial Class Admin_EditMember
                 db.SubmitChanges()
             End Using
         Catch ex As Exception
+            Log(ex)
             Return False
         End Try
 

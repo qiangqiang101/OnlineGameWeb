@@ -29,6 +29,7 @@ Partial Class Admin_EditUser
                             h1.InnerText = "My Profile"
                         End Using
                     Catch ex As Exception
+                        Log(ex)
                         JsMsgBox("User not found!")
                         btnSubmit.Enabled = False
                     End Try
@@ -47,6 +48,7 @@ Partial Class Admin_EditUser
                             h6.InnerText = "Edit " & u.UserID.ToString("00000")
                         End Using
                     Catch ex As Exception
+                        Log(ex)
                         JsMsgBox("User not found!")
                         btnSubmit.Enabled = False
                     End Try
@@ -72,6 +74,7 @@ Partial Class Admin_EditUser
                             btnSubmit.Text = "Delete"
                         End Using
                     Catch ex As Exception
+                        Log(ex)
                         JsMsgBox("User not found!")
                         btnSubmit.Enabled = False
                     End Try
@@ -117,6 +120,7 @@ Partial Class Admin_EditUser
                         Response.Redirect("Users.aspx")
                     End Using
                 Catch ex As Exception
+                    Log(ex)
                     JsMsgBox("Delete user failed! Please contact Administrator.")
                 End Try
             Case Else
@@ -154,6 +158,7 @@ Partial Class Admin_EditUser
                 db.SubmitChanges()
             End Using
         Catch ex As Exception
+            Log(ex)
             Return False
         End Try
 
@@ -180,6 +185,7 @@ Partial Class Admin_EditUser
                 db.SubmitChanges()
             End Using
         Catch ex As Exception
+            Log(ex)
             Return False
         End Try
 

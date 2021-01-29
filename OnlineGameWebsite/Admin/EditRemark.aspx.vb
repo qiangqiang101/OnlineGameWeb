@@ -20,6 +20,7 @@ Partial Class Admin_EditRemark
                             h6.InnerText = "Edit " & rr.TrID.ToString("00000")
                         End Using
                     Catch ex As Exception
+                        Log(ex)
                         JsMsgBox("Remark not found!")
                         btnSubmit.Enabled = False
                     End Try
@@ -27,16 +28,17 @@ Partial Class Admin_EditRemark
                     Try
                         Using db As New DataClassesDataContext
                             Dim rr = db.TblTransRemarks.Single(Function(x) x.TrID = rid)
-                        txtName.Text = rr.TRemark.Trim
-                        cmbEnabled.SelectedValue = rr.Status
+                            txtName.Text = rr.TRemark.Trim
+                            cmbEnabled.SelectedValue = rr.Status
 
-                        txtName.ReadOnly = True
-                        cmbEnabled.Enabled = False
+                            txtName.ReadOnly = True
+                            cmbEnabled.Enabled = False
 
-                        h6.InnerText = "Are you sure you want to delete " & rr.TRemark & " (" & rr.TrID.ToString("00000") & ")?"
+                            h6.InnerText = "Are you sure you want to delete " & rr.TRemark & " (" & rr.TrID.ToString("00000") & ")?"
                             btnSubmit.Text = "Delete"
                         End Using
                     Catch ex As Exception
+                        Log(ex)
                         JsMsgBox("Remark not found!")
                         btnSubmit.Enabled = False
                     End Try
@@ -58,6 +60,7 @@ Partial Class Admin_EditRemark
                             End If
                         End Using
                     Catch ex As Exception
+                        Log(ex)
                         JsMsgBox("Remark not found!")
                         btnSubmit.Enabled = False
                     End Try
@@ -92,6 +95,7 @@ Partial Class Admin_EditRemark
                     JsMsgBox("Remark delete successfully.")
                     Response.Redirect("Remarks.aspx")
                 Catch ex As Exception
+                    Log(ex)
                     JsMsgBox("Delete remark failed! Please contact Administrator.")
                 End Try
             Case Else
@@ -116,6 +120,7 @@ Partial Class Admin_EditRemark
                 db.SubmitChanges()
             End Using
         Catch ex As Exception
+            Log(ex)
             Return False
         End Try
 
@@ -135,6 +140,7 @@ Partial Class Admin_EditRemark
                 db.SubmitChanges()
             End Using
         Catch ex As Exception
+            Log(ex)
             Return False
         End Try
 

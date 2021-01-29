@@ -36,6 +36,7 @@ Partial Class Admin_EditProduct
                             h6.InnerText = "Edit " & p.ProductID.ToString("00000")
                         End Using
                     Catch ex As Exception
+                        Log(ex)
                         JsMsgBox("Product not found!")
                         btnSubmit.Enabled = False
                     End Try
@@ -81,6 +82,7 @@ Partial Class Admin_EditProduct
                             btnSubmit.Text = "Delete"
                         End Using
                     Catch ex As Exception
+                        Log(ex)
                         JsMsgBox("Product not found!")
                         btnSubmit.Enabled = False
                     End Try
@@ -118,6 +120,7 @@ Partial Class Admin_EditProduct
                             End If
                         End Using
                     Catch ex As Exception
+                        Log(ex)
                         JsMsgBox("Product not found!")
                         btnSubmit.Enabled = False
                     End Try
@@ -153,6 +156,7 @@ Partial Class Admin_EditProduct
                         Response.Redirect("Products.aspx")
                     End Using
                 Catch ex As Exception
+                    Log(ex)
                     JsMsgBox("Delete product failed! Please contact Administrator.")
                 End Try
             Case Else
@@ -212,6 +216,7 @@ Partial Class Admin_EditProduct
                 db.SubmitChanges()
             End Using
         Catch ex As Exception
+            Log(ex)
             Return False
         End Try
 
@@ -259,6 +264,7 @@ Partial Class Admin_EditProduct
                 db.SubmitChanges()
             End Using
         Catch ex As Exception
+            Log(ex)
             Return False
         End Try
         Return True

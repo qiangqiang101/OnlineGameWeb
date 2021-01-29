@@ -1,19 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="GameDB" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-9U8TJO4\SQLEXPRESS;Initial Catalog=GameDB;Persist Security Info=True;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="GameDBConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.TblTransfer" Member="TblTransfers">
-    <Type Name="TblTransfer">
-      <Column Name="TransferID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="TransferDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="UserName" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
-      <Column Name="FromProduct" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
-      <Column Name="FromUserName" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
-      <Column Name="ToProduct" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
-      <Column Name="ToUserName" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
-      <Column Name="Amount" Type="System.Single" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="Status" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="IPAddress" Type="System.String" DbType="NChar(20)" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.TblPromotion" Member="TblPromotions">
     <Type Name="TblPromotion">
       <Column Name="PromoID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -193,6 +179,24 @@
       <Column Name="Status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="LastLoginDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="LastLoginIP" Type="System.String" DbType="NChar(20)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TblTransfer" Member="TblTransfers">
+    <Type Name="TblTransfer">
+      <Column Name="TransferID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TransferDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="FromProductID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FromUserName" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="ToProductID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ToUserName" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Amount" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IPAddress" Type="System.String" DbType="NChar(20)" CanBeNull="true" />
+      <Column Name="Reason" Type="System.String" DbType="NChar(255)" CanBeNull="true" />
+      <Column Name="ApproveByUser" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="ApproveDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Remark" Type="System.String" DbType="NChar(255)" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.GetMembers" Method="GetMembers">

@@ -28,6 +28,7 @@ Partial Class Admin_EditBank
                             h6.InnerText = "Edit " & b.BankID.ToString("00000")
                         End Using
                     Catch ex As Exception
+                        Log(ex)
                         JsMsgBox("Bank not found!")
                         btnSubmit.Enabled = False
                     End Try
@@ -59,6 +60,7 @@ Partial Class Admin_EditBank
                             btnSubmit.Text = "Delete"
                         End Using
                     Catch ex As Exception
+                        Log(ex)
                         JsMsgBox("Bank not found!")
                         btnSubmit.Enabled = False
                     End Try
@@ -87,6 +89,7 @@ Partial Class Admin_EditBank
                             JsMsgBox("Duplicate bank failed! Please contact Administrator.")
                         End If
                     Catch ex As Exception
+                        Log(ex)
                         JsMsgBox("Bank not found!")
                         btnSubmit.Enabled = False
                     End Try
@@ -121,6 +124,7 @@ Partial Class Admin_EditBank
                     JsMsgBox("Bank delete successfully.")
                     Response.Redirect("Banks.aspx")
                 Catch ex As Exception
+                    Log(ex)
                     JsMsgBox("Delete bank failed! Please contact Administrator.")
                 End Try
             Case Else
@@ -152,6 +156,7 @@ Partial Class Admin_EditBank
                 db.SubmitChanges()
             End Using
         Catch ex As Exception
+            Log(ex)
             Return False
         End Try
 
@@ -178,6 +183,7 @@ Partial Class Admin_EditBank
                 db.SubmitChanges()
             End Using
         Catch ex As Exception
+            Log(ex)
             Return False
         End Try
 

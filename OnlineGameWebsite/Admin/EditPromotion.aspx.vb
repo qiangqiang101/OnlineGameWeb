@@ -40,6 +40,7 @@ Partial Class Admin_EditPromotion
                             h6.InnerText = "Edit " & p.PromoID.ToString("00000")
                         End Using
                     Catch ex As Exception
+                        Log(ex)
                         JsMsgBox("Promotion not found!")
                         btnSubmit.Enabled = False
                     End Try
@@ -84,6 +85,7 @@ Partial Class Admin_EditPromotion
                             btnSubmit.Text = "Delete"
                         End Using
                     Catch ex As Exception
+                        Log(ex)
                         JsMsgBox("Promotion not found!")
                         btnSubmit.Enabled = False
                     End Try
@@ -123,6 +125,7 @@ Partial Class Admin_EditPromotion
                             End If
                         End Using
                     Catch ex As Exception
+                        Log(ex)
                         JsMsgBox("Promotion not found!")
                         btnSubmit.Enabled = False
                     End Try
@@ -158,6 +161,7 @@ Partial Class Admin_EditPromotion
                         Response.Redirect("Promotions.aspx")
                     End Using
                 Catch ex As Exception
+                    Log(ex)
                     JsMsgBox("Delete product failed! Please contact Administrator.")
                 End Try
             Case Else
@@ -227,6 +231,7 @@ Partial Class Admin_EditPromotion
                 db.SubmitChanges()
             End Using
         Catch ex As Exception
+            Log(ex)
             Return False
         End Try
 
@@ -282,6 +287,7 @@ Partial Class Admin_EditPromotion
                 db.SubmitChanges()
             End Using
         Catch ex As Exception
+            Log(ex)
             Return False
         End Try
         Return True

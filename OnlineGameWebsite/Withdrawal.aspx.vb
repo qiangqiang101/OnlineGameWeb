@@ -8,12 +8,12 @@ Partial Class Withdrawal
         If txtVerification.Text.Trim.Equals(Session("captcha").ToString.Trim) Then
             If Withdrawal() Then
                 LogAction(Session("username").ToString.Trim, Request.UserHostAddress, eLogType.Debit)
-                JsMsgBoxRedirect("Withdrawal request sent.", "TransactionHistory.aspx")
+                swalRedirect("TransactionHistory.aspx", "Success", "Your withdrawal request has been submitted successfully.", "success")
             Else
-                JsMsgBox("Withdrawal failed! Please contact Customer Service.")
+                swal("Oops!", "Withdrawal failed! Please contact Customer Service.", "error")
             End If
         Else
-            JsMsgBox("Incorrect Verification code, please try again.")
+            swal("Oops!", "Incorrect captcha code, please try again.", "error")
         End If
     End Sub
 
@@ -31,7 +31,6 @@ Partial Class Withdrawal
                     cmbProduct.Items.Add(New ListItem(pdtName, pdt.ProductID))
                 Next
 
-                txtAmount.Text = "50.00"
                 txtBankAccountName.Text = Session("fullname").ToString.Trim
 
                 Try
@@ -39,7 +38,7 @@ Partial Class Withdrawal
                     txtBankAccountNo.Text = m.AccountNo.Trim
                     cmbBank.SelectedValue = m.BankName
                 Catch ex As Exception
-                    JsMsgBox(ex.Message & ex.StackTrace)
+                    Log(ex)
                 End Try
             End Using
         End If
@@ -83,6 +82,7 @@ Partial Class Withdrawal
                 db.SubmitChanges()
             End Using
         Catch ex As Exception
+            Log(ex)
             Return False
         End Try
         Return True

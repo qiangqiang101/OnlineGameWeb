@@ -8,12 +8,12 @@ Partial Class Deposit
         If txtVerification.Text.Trim.Equals(Session("captcha").ToString.Trim) Then
             If Deposit() AndAlso Promotion() Then
                 LogAction(Session("username").ToString.Trim, Request.UserHostAddress, eLogType.Credit)
-                JsMsgBoxRedirect("Deposit request sent.", "TransactionHistory.aspx")
+                swalRedirect("TransactionHistory.aspx", "Success", "Your Deposit request has been submitted successfully.", "success")
             Else
-                JsMsgBox("Deposit failed! Please contact Customer Service.")
+                swal("Oops!", "Deposit failed! Please contact Customer Service.", "error")
             End If
         Else
-            JsMsgBox("Incorrect Verification code, please try again.")
+            swal("Oops!", "Incorrect captcha code, please try again.", "error")
         End If
     End Sub
 
@@ -40,7 +40,6 @@ Partial Class Deposit
                 Next
             End Using
 
-            txtAmount.Text = "30.00"
             txtDepositDate.Text = Now.ToLocalTime().ToString("yyyy-MM-ddTHH:mm")
         End If
 
@@ -70,15 +69,16 @@ Partial Class Deposit
                     .Bank = Nothing
                     .BankAccount = Nothing
                     If fileUploader.HasFile Then
-                        Dim file As String = Server.MapPath(upload & fileUploader.FileName)
-                        Dim fileUrl As String = (upload & fileUploader.FileName).Replace("~/", "")
+                        Dim rdText As String = RandomText(New Random)
+                        Dim file As String = Server.MapPath(upload & rdText & fileUploader.FileName)
+                        Dim fileUrl As String = (upload & rdText & fileUploader.FileName).Replace("~/", "")
                         Dim ext = file.Substring(file.LastIndexOf(".") + 1).ToLower
                         If CanUpload(ext) Then
                             If Not IO.Directory.Exists(Server.MapPath(upload)) Then IO.Directory.CreateDirectory(Server.MapPath(upload))
                             fileUploader.SaveAs(file)
                             .UploadFile = fileUrl
                         Else
-                            JsMsgBox("Receipt upload failed, please try upload supported format.")
+                            swal("Oops!", "Receipt upload failed, please try upload supported format.", "error")
                             .UploadFile = Nothing
                         End If
                     Else
@@ -97,6 +97,7 @@ Partial Class Deposit
                 db.SubmitChanges()
             End Using
         Catch ex As Exception
+            Log(ex)
             Return False
         End Try
         Return True
@@ -137,6 +138,7 @@ Partial Class Deposit
                     db.SubmitChanges()
                 End Using
             Catch ex As Exception
+                Log(ex)
                 Return False
             End Try
             Return True

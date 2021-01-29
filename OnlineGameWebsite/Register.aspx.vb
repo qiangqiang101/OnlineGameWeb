@@ -6,44 +6,29 @@ Partial Class Register
     Public agent As String = ""
 
     Protected Sub btnRegister_Click(sender As Object, e As EventArgs) Handles btnRegister.Click
-        If txtFullName.Text = Nothing Then
-            JsMsgBox("Full Name is required!")
-        ElseIf txtBirthday.Text = Nothing Then
-            JsMsgBox("Birthday is required!")
-        ElseIf txtContact.Text = Nothing Then
-            JsMsgBox("Contact No. is required!")
-        ElseIf txtEmail.Text = Nothing Then
-            JsMsgBox("Email is required!")
-        ElseIf IsEmailExists(txtEmail.Text) Then
-            JsMsgBox("Email is already been registered!")
+        If IsEmailExists(txtEmail.Text) Then
+            swal("Oops!", "Email is already been registered!", "error")
         ElseIf Not IsEmailValid(txtEmail.Text) Then
-            JsMsgBox("Email is not valid!")
-        ElseIf txtUserID.Text = Nothing Then
-            JsMsgBox("UserID is required!")
+            swal("Oops!", "Email is not valid!", "error")
         ElseIf txtUserID.Text.Length < 6 Then
-            JsMsgBox("UserID is too short!")
+            swal("Oops!", "UserID is too short!", "error")
         ElseIf IsMemberExists(txtUserID.Text) Then
-            JsMsgBox("UserID already taken, please try another one.")
-        ElseIf txtPassword.Text = Nothing Then
-            JsMsgBox("Password is required!")
-        ElseIf txtPassword2.Text = Nothing Then
-            JsMsgBox("Please confirm your password.")
+            swal("Oops!", "UserID already taken, please try another one.", "error")
         ElseIf txtPassword.Text <> txtPassword2.Text Then
-            JsMsgBox("Your password did not match!")
+            swal("Oops!", "Your password do not match!", "error")
         ElseIf Not cb18yo.Checked Then
-            JsMsgBox("You have to be at least 18 years old to register.")
+            swal("Underage warning", "You have to be at least 18 years old to register.", "warning")
         ElseIf Not cbTnc.Checked Then
-            JsMsgBox("Please accept the Terms & Conditions.")
+            swal("Terms & Conditions", "Please accept the Terms & Conditions in order to continue.", "warning")
         Else
             If RegisterMember() Then
                 LogAction(txtUserID.Text.Trim, Request.UserHostAddress, eLogType.Register)
-                JsMsgBox("Registration completed!")
                 If IsMemberLoginSuccess(txtUserID.Text, txtPassword.Text, Page) Then
                     LogAction(txtUserID.Text.Trim, Request.UserHostAddress, eLogType.Login)
                     Response.Redirect("Default.aspx")
                 End If
             Else
-                JsMsgBox("Registration failed! Please contact Customer Service.")
+                swal("Oops!", "Registration failed! Please contact Customer Service.", "error")
             End If
         End If
     End Sub
@@ -76,6 +61,7 @@ Partial Class Register
                 db.SubmitChanges()
             End Using
         Catch ex As Exception
+            Log(ex)
             Return False
         End Try
         Return True

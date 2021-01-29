@@ -20,6 +20,7 @@ Partial Class Admin_EditRejectReason
                             h6.InnerText = "Edit " & rr.TrrID.ToString("00000")
                         End Using
                     Catch ex As Exception
+                        Log(ex)
                         JsMsgBox("Reject reason not found!")
                         btnSubmit.Enabled = False
                     End Try
@@ -37,6 +38,7 @@ Partial Class Admin_EditRejectReason
                             btnSubmit.Text = "Delete"
                         End Using
                     Catch ex As Exception
+                        Log(ex)
                         JsMsgBox("Reject reason not found!")
                         btnSubmit.Enabled = False
                     End Try
@@ -58,6 +60,7 @@ Partial Class Admin_EditRejectReason
                             JsMsgBox("Add reject reason failed! Please contact Administrator.")
                         End If
                     Catch ex As Exception
+                        Log(ex)
                         JsMsgBox("Reject reason not found!")
                         btnSubmit.Enabled = False
                     End Try
@@ -92,6 +95,7 @@ Partial Class Admin_EditRejectReason
                     JsMsgBox("Reject Reason delete successfully.")
                     Response.Redirect("RejectReasons.aspx")
                 Catch ex As Exception
+                    Log(ex)
                     JsMsgBox("Delete reject reason failed! Please contact Administrator.")
                 End Try
             Case Else
@@ -116,6 +120,7 @@ Partial Class Admin_EditRejectReason
                 db.SubmitChanges()
             End Using
         Catch ex As Exception
+            Log(ex)
             Return False
         End Try
 
@@ -135,6 +140,7 @@ Partial Class Admin_EditRejectReason
                 db.SubmitChanges()
             End Using
         Catch ex As Exception
+            Log(ex)
             Return False
         End Try
 

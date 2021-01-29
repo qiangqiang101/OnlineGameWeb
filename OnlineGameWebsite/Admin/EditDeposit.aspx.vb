@@ -4,7 +4,6 @@ Partial Class Admin_EditDeposit
 
     Public mode As String = "edit"
     Public tid As String = 0
-    Public bankList As New Dictionary(Of Integer, String)
 
     Private Sub Admin_EditTransaction_Load(sender As Object, e As EventArgs) Handles Me.Load
         mode = Request.QueryString("mode")
@@ -19,8 +18,11 @@ Partial Class Admin_EditDeposit
                         Using db As New DataClassesDataContext
                             Dim banks = db.TblBanks.Where(Function(x) x.Status = 1).ToList
                             For Each bank As TblBank In banks
-                                cmbPaymentMethod.Items.Add(New ListItem(bank.BankName.Trim & " (" & bank.AccountName.Trim & ")", bank.BankName.Trim))
-                                bankList.Add(bank.BankID, bank.BankName.Trim & " (" & bank.AccountName.Trim & ")")
+                                Dim li As New ListItem(bank.BankName.Trim & " (" & bank.AccountName.Trim & ")", bank.BankName.Trim)
+                                With li
+                                    .Attributes("bankid") = bank.BankID
+                                End With
+                                cmbPaymentMethod.Items.Add(li)
                             Next
                             Dim rejects = db.TblTRejectReasons.Where(Function(x) x.Status = True).ToList
                             cmbRejectReason.Items.Add(New ListItem("", ""))
@@ -69,6 +71,7 @@ Partial Class Admin_EditDeposit
                         End Using
                     Catch ex As Exception
                         JsMsgBox("Transaction not found!")
+                        Log(ex)
                         btnApprove.Enabled = False
                         btnReject.Enabled = False
                         Exit Sub
@@ -124,6 +127,7 @@ Partial Class Admin_EditDeposit
                         End Using
                     Catch ex As Exception
                         JsMsgBox("Transaction not found!")
+                        Log(ex)
                         btnApprove.Enabled = False
                         btnReject.Enabled = False
                         Exit Sub
@@ -157,19 +161,19 @@ Partial Class Admin_EditDeposit
                         If TryCreditToSummary() Then
                             Response.Redirect("Transactions.aspx")
                         Else
-                            JsMsgBox("Credit to summary failed! Please contact Administrator.")
+                            JsMsgBoxRedirect("Credit to summary failed! Please contact Administrator.", Request.RawUrl.ToString())
                         End If
                     Else
-                        JsMsgBox("Credit to bank record failed! Please contact Administrator.")
+                        JsMsgBoxRedirect("Credit to bank record failed! Please contact Administrator.", Request.RawUrl.ToString())
                     End If
                 Else
-                    JsMsgBox("Transaction failed to Approve! Please contact Administrator.")
+                    JsMsgBoxRedirect("Transaction failed to Approve! Please contact Administrator.", Request.RawUrl.ToString())
                 End If
             Case "promo"
                 If TryApprovePromotion() Then
                     Response.Redirect("Transactions.aspx")
                 Else
-                    JsMsgBox("Transaction failed to Approve! Please contact Administrator.")
+                    JsMsgBoxRedirect("Transaction failed to Approve! Please contact Administrator.", Request.RawUrl.ToString())
                 End If
         End Select
     End Sub
@@ -180,7 +184,7 @@ Partial Class Admin_EditDeposit
                 If TryRejectTransaction() Then
                     Response.Redirect("Transactions.aspx")
                 Else
-                    JsMsgBox("Transaction failed to Reject! Please contact Administrator.")
+                    JsMsgBoxRedirect("Transaction failed to Reject! Please contact Administrator.", Request.RawUrl.ToString())
                 End If
         End Select
     End Sub
@@ -200,6 +204,7 @@ Partial Class Admin_EditDeposit
                 db.SubmitChanges()
             End Using
         Catch ex As Exception
+            Log(ex)
             Return False
         End Try
 
@@ -221,6 +226,7 @@ Partial Class Admin_EditDeposit
                 db.SubmitChanges()
             End Using
         Catch ex As Exception
+            Log(ex)
             Return False
         End Try
 
@@ -241,6 +247,7 @@ Partial Class Admin_EditDeposit
                 db.SubmitChanges()
             End Using
         Catch ex As Exception
+            Log(ex)
             Return False
         End Try
 
@@ -254,7 +261,7 @@ Partial Class Admin_EditDeposit
 
                 Dim addBankRecord As New TblBankRecord
                 With addBankRecord
-                    .BankID = bankList.Single(Function(x) x.Value = cmbPaymentMethod.SelectedItem.Text).Key
+                    .BankID = CInt(cmbPaymentMethod.SelectedItem.Attributes("bankid"))
                     .TransactionID = CInt(tid)
                     .Credit = t.Credit
                     .Debit = t.Debit
@@ -266,6 +273,7 @@ Partial Class Admin_EditDeposit
                 db.SubmitChanges()
             End Using
         Catch ex As Exception
+            Log(ex)
             Return False
         End Try
 
@@ -292,6 +300,7 @@ Partial Class Admin_EditDeposit
                 db.SubmitChanges()
             End Using
         Catch ex As Exception
+            Log(ex)
             Return False
         End Try
 

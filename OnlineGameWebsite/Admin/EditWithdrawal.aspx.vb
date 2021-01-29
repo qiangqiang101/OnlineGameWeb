@@ -4,7 +4,6 @@ Partial Class Admin_EditWithdrawal
 
     Public mode As String = "edit"
     Public tid As String = 0
-    Public bankList As New Dictionary(Of Integer, String)
 
     Private Sub Admin_EditWithdrawal_Load(sender As Object, e As EventArgs) Handles Me.Load
         mode = Request.QueryString("mode")
@@ -19,8 +18,11 @@ Partial Class Admin_EditWithdrawal
                         Using db As New DataClassesDataContext
                             Dim banks = db.TblBanks.Where(Function(x) x.Status = 1).ToList
                             For Each bank As TblBank In banks
-                                cmbPaymentMethod.Items.Add(New ListItem(bank.BankName.Trim & " (" & bank.AccountName.Trim & ")", bank.BankName.Trim))
-                                bankList.Add(bank.BankID, bank.BankName.Trim & " (" & bank.AccountName.Trim & ")")
+                                Dim li As New ListItem(bank.BankName.Trim & " (" & bank.AccountName.Trim & ")", bank.BankName.Trim)
+                                With li
+                                    .Attributes("bankid") = bank.BankID
+                                End With
+                                cmbPaymentMethod.Items.Add(li)
                             Next
                             Dim rejects = db.TblTRejectReasons.Where(Function(x) x.Status = True).ToList
                             cmbRejectReason.Items.Add(New ListItem("", ""))
@@ -61,6 +63,7 @@ Partial Class Admin_EditWithdrawal
                             End If
                         End Using
                     Catch ex As Exception
+                        Log(ex)
                         JsMsgBox("Transaction not found!")
                         btnApprove.Enabled = False
                         btnReject.Enabled = False
@@ -119,6 +122,7 @@ Partial Class Admin_EditWithdrawal
                 db.SubmitChanges()
             End Using
         Catch ex As Exception
+            Log(ex)
             Return False
         End Try
 
@@ -140,6 +144,7 @@ Partial Class Admin_EditWithdrawal
                 db.SubmitChanges()
             End Using
         Catch ex As Exception
+            Log(ex)
             Return False
         End Try
 
@@ -153,7 +158,7 @@ Partial Class Admin_EditWithdrawal
 
                 Dim addBankRecord As New TblBankRecord
                 With addBankRecord
-                    .BankID = bankList.Single(Function(x) x.Value = cmbPaymentMethod.SelectedItem.Text).Key
+                    .BankID = CInt(cmbPaymentMethod.SelectedItem.Attributes("bankid"))
                     .TransactionID = CInt(tid)
                     .Credit = t.Credit
                     .Debit = t.Debit
@@ -165,6 +170,7 @@ Partial Class Admin_EditWithdrawal
                 db.SubmitChanges()
             End Using
         Catch ex As Exception
+            Log(ex)
             Return False
         End Try
 
@@ -191,6 +197,7 @@ Partial Class Admin_EditWithdrawal
                 db.SubmitChanges()
             End Using
         Catch ex As Exception
+            Log(ex)
             Return False
         End Try
 

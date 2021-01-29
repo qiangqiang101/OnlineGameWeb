@@ -31,12 +31,6 @@ Partial Public Class DataClassesDataContext
   #Region "Extensibility Method Definitions"
   Partial Private Sub OnCreated()
   End Sub
-  Partial Private Sub InsertTblTransfer(instance As TblTransfer)
-    End Sub
-  Partial Private Sub UpdateTblTransfer(instance As TblTransfer)
-    End Sub
-  Partial Private Sub DeleteTblTransfer(instance As TblTransfer)
-    End Sub
   Partial Private Sub InsertTblPromotion(instance As TblPromotion)
     End Sub
   Partial Private Sub UpdateTblPromotion(instance As TblPromotion)
@@ -115,6 +109,12 @@ Partial Public Class DataClassesDataContext
     End Sub
   Partial Private Sub DeleteTblUser(instance As TblUser)
     End Sub
+  Partial Private Sub InsertTblTransfer(instance As TblTransfer)
+    End Sub
+  Partial Private Sub UpdateTblTransfer(instance As TblTransfer)
+    End Sub
+  Partial Private Sub DeleteTblTransfer(instance As TblTransfer)
+    End Sub
   #End Region
 	
 	Public Sub New()
@@ -141,12 +141,6 @@ Partial Public Class DataClassesDataContext
 		MyBase.New(connection, mappingSource)
 		OnCreated
 	End Sub
-	
-	Public ReadOnly Property TblTransfers() As System.Data.Linq.Table(Of TblTransfer)
-		Get
-			Return Me.GetTable(Of TblTransfer)
-		End Get
-	End Property
 	
 	Public ReadOnly Property TblPromotions() As System.Data.Linq.Table(Of TblPromotion)
 		Get
@@ -226,6 +220,12 @@ Partial Public Class DataClassesDataContext
 		End Get
 	End Property
 	
+	Public ReadOnly Property TblTransfers() As System.Data.Linq.Table(Of TblTransfer)
+		Get
+			Return Me.GetTable(Of TblTransfer)
+		End Get
+	End Property
+	
 	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.GetMembers")>  _
 	Public Function GetMembers() As ISingleResult(Of GetMembersResult)
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
@@ -243,268 +243,6 @@ Partial Public Class DataClassesDataContext
 		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), productID)
 		Return CType(result.ReturnValue,ISingleResult(Of GetProductNameResult))
 	End Function
-End Class
-
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.TblTransfer")>  _
-Partial Public Class TblTransfer
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _TransferID As Integer
-	
-	Private _TransferDate As Date
-	
-	Private _UserName As String
-	
-	Private _FromProduct As String
-	
-	Private _FromUserName As String
-	
-	Private _ToProduct As String
-	
-	Private _ToUserName As String
-	
-	Private _Amount As Single
-	
-	Private _Status As System.Nullable(Of Integer)
-	
-	Private _IPAddress As String
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnTransferIDChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnTransferIDChanged()
-    End Sub
-    Partial Private Sub OnTransferDateChanging(value As Date)
-    End Sub
-    Partial Private Sub OnTransferDateChanged()
-    End Sub
-    Partial Private Sub OnUserNameChanging(value As String)
-    End Sub
-    Partial Private Sub OnUserNameChanged()
-    End Sub
-    Partial Private Sub OnFromProductChanging(value As String)
-    End Sub
-    Partial Private Sub OnFromProductChanged()
-    End Sub
-    Partial Private Sub OnFromUserNameChanging(value As String)
-    End Sub
-    Partial Private Sub OnFromUserNameChanged()
-    End Sub
-    Partial Private Sub OnToProductChanging(value As String)
-    End Sub
-    Partial Private Sub OnToProductChanged()
-    End Sub
-    Partial Private Sub OnToUserNameChanging(value As String)
-    End Sub
-    Partial Private Sub OnToUserNameChanged()
-    End Sub
-    Partial Private Sub OnAmountChanging(value As Single)
-    End Sub
-    Partial Private Sub OnAmountChanged()
-    End Sub
-    Partial Private Sub OnStatusChanging(value As System.Nullable(Of Integer))
-    End Sub
-    Partial Private Sub OnStatusChanged()
-    End Sub
-    Partial Private Sub OnIPAddressChanging(value As String)
-    End Sub
-    Partial Private Sub OnIPAddressChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TransferID", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
-	Public Property TransferID() As Integer
-		Get
-			Return Me._TransferID
-		End Get
-		Set
-			If ((Me._TransferID = value)  _
-						= false) Then
-				Me.OnTransferIDChanging(value)
-				Me.SendPropertyChanging
-				Me._TransferID = value
-				Me.SendPropertyChanged("TransferID")
-				Me.OnTransferIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TransferDate", DbType:="DateTime NOT NULL")>  _
-	Public Property TransferDate() As Date
-		Get
-			Return Me._TransferDate
-		End Get
-		Set
-			If ((Me._TransferDate = value)  _
-						= false) Then
-				Me.OnTransferDateChanging(value)
-				Me.SendPropertyChanging
-				Me._TransferDate = value
-				Me.SendPropertyChanged("TransferDate")
-				Me.OnTransferDateChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_UserName", DbType:="NChar(30) NOT NULL", CanBeNull:=false)>  _
-	Public Property UserName() As String
-		Get
-			Return Me._UserName
-		End Get
-		Set
-			If (String.Equals(Me._UserName, value) = false) Then
-				Me.OnUserNameChanging(value)
-				Me.SendPropertyChanging
-				Me._UserName = value
-				Me.SendPropertyChanged("UserName")
-				Me.OnUserNameChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FromProduct", DbType:="NChar(30) NOT NULL", CanBeNull:=false)>  _
-	Public Property FromProduct() As String
-		Get
-			Return Me._FromProduct
-		End Get
-		Set
-			If (String.Equals(Me._FromProduct, value) = false) Then
-				Me.OnFromProductChanging(value)
-				Me.SendPropertyChanging
-				Me._FromProduct = value
-				Me.SendPropertyChanged("FromProduct")
-				Me.OnFromProductChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FromUserName", DbType:="NChar(30) NOT NULL", CanBeNull:=false)>  _
-	Public Property FromUserName() As String
-		Get
-			Return Me._FromUserName
-		End Get
-		Set
-			If (String.Equals(Me._FromUserName, value) = false) Then
-				Me.OnFromUserNameChanging(value)
-				Me.SendPropertyChanging
-				Me._FromUserName = value
-				Me.SendPropertyChanged("FromUserName")
-				Me.OnFromUserNameChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ToProduct", DbType:="NChar(30) NOT NULL", CanBeNull:=false)>  _
-	Public Property ToProduct() As String
-		Get
-			Return Me._ToProduct
-		End Get
-		Set
-			If (String.Equals(Me._ToProduct, value) = false) Then
-				Me.OnToProductChanging(value)
-				Me.SendPropertyChanging
-				Me._ToProduct = value
-				Me.SendPropertyChanged("ToProduct")
-				Me.OnToProductChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ToUserName", DbType:="NChar(30) NOT NULL", CanBeNull:=false)>  _
-	Public Property ToUserName() As String
-		Get
-			Return Me._ToUserName
-		End Get
-		Set
-			If (String.Equals(Me._ToUserName, value) = false) Then
-				Me.OnToUserNameChanging(value)
-				Me.SendPropertyChanging
-				Me._ToUserName = value
-				Me.SendPropertyChanged("ToUserName")
-				Me.OnToUserNameChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Amount", DbType:="Float NOT NULL")>  _
-	Public Property Amount() As Single
-		Get
-			Return Me._Amount
-		End Get
-		Set
-			If ((Me._Amount = value)  _
-						= false) Then
-				Me.OnAmountChanging(value)
-				Me.SendPropertyChanging
-				Me._Amount = value
-				Me.SendPropertyChanged("Amount")
-				Me.OnAmountChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Status", DbType:="Int")>  _
-	Public Property Status() As System.Nullable(Of Integer)
-		Get
-			Return Me._Status
-		End Get
-		Set
-			If (Me._Status.Equals(value) = false) Then
-				Me.OnStatusChanging(value)
-				Me.SendPropertyChanging
-				Me._Status = value
-				Me.SendPropertyChanged("Status")
-				Me.OnStatusChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_IPAddress", DbType:="NChar(20)")>  _
-	Public Property IPAddress() As String
-		Get
-			Return Me._IPAddress
-		End Get
-		Set
-			If (String.Equals(Me._IPAddress, value) = false) Then
-				Me.OnIPAddressChanging(value)
-				Me.SendPropertyChanging
-				Me._IPAddress = value
-				Me.SendPropertyChanged("IPAddress")
-				Me.OnIPAddressChanged
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
 End Class
 
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.TblPromotion")>  _
@@ -3902,6 +3640,359 @@ Partial Public Class TblUser
 				Me._LastLoginIP = value
 				Me.SendPropertyChanged("LastLoginIP")
 				Me.OnLastLoginIPChanged
+			End If
+		End Set
+	End Property
+	
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
+	
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
+	
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
+	
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
+End Class
+
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.TblTransfer")>  _
+Partial Public Class TblTransfer
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
+	
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
+	
+	Private _TransferID As Integer
+	
+	Private _TransferDate As Date
+	
+	Private _UserName As String
+	
+	Private _FromProductID As Integer
+	
+	Private _FromUserName As String
+	
+	Private _ToProductID As Integer
+	
+	Private _ToUserName As String
+	
+	Private _Amount As Double
+	
+	Private _Status As System.Nullable(Of Integer)
+	
+	Private _IPAddress As String
+	
+	Private _Reason As String
+	
+	Private _ApproveByUser As String
+	
+	Private _ApproveDate As Date
+	
+	Private _Remark As String
+	
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnTransferIDChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnTransferIDChanged()
+    End Sub
+    Partial Private Sub OnTransferDateChanging(value As Date)
+    End Sub
+    Partial Private Sub OnTransferDateChanged()
+    End Sub
+    Partial Private Sub OnUserNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnUserNameChanged()
+    End Sub
+    Partial Private Sub OnFromProductIDChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnFromProductIDChanged()
+    End Sub
+    Partial Private Sub OnFromUserNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnFromUserNameChanged()
+    End Sub
+    Partial Private Sub OnToProductIDChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnToProductIDChanged()
+    End Sub
+    Partial Private Sub OnToUserNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnToUserNameChanged()
+    End Sub
+    Partial Private Sub OnAmountChanging(value As Double)
+    End Sub
+    Partial Private Sub OnAmountChanged()
+    End Sub
+    Partial Private Sub OnStatusChanging(value As System.Nullable(Of Integer))
+    End Sub
+    Partial Private Sub OnStatusChanged()
+    End Sub
+    Partial Private Sub OnIPAddressChanging(value As String)
+    End Sub
+    Partial Private Sub OnIPAddressChanged()
+    End Sub
+    Partial Private Sub OnReasonChanging(value As String)
+    End Sub
+    Partial Private Sub OnReasonChanged()
+    End Sub
+    Partial Private Sub OnApproveByUserChanging(value As String)
+    End Sub
+    Partial Private Sub OnApproveByUserChanged()
+    End Sub
+    Partial Private Sub OnApproveDateChanging(value As Date)
+    End Sub
+    Partial Private Sub OnApproveDateChanged()
+    End Sub
+    Partial Private Sub OnRemarkChanging(value As String)
+    End Sub
+    Partial Private Sub OnRemarkChanged()
+    End Sub
+    #End Region
+	
+	Public Sub New()
+		MyBase.New
+		OnCreated
+	End Sub
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TransferID", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
+	Public Property TransferID() As Integer
+		Get
+			Return Me._TransferID
+		End Get
+		Set
+			If ((Me._TransferID = value)  _
+						= false) Then
+				Me.OnTransferIDChanging(value)
+				Me.SendPropertyChanging
+				Me._TransferID = value
+				Me.SendPropertyChanged("TransferID")
+				Me.OnTransferIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TransferDate", DbType:="DateTime NOT NULL")>  _
+	Public Property TransferDate() As Date
+		Get
+			Return Me._TransferDate
+		End Get
+		Set
+			If ((Me._TransferDate = value)  _
+						= false) Then
+				Me.OnTransferDateChanging(value)
+				Me.SendPropertyChanging
+				Me._TransferDate = value
+				Me.SendPropertyChanged("TransferDate")
+				Me.OnTransferDateChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_UserName", DbType:="NChar(30) NOT NULL", CanBeNull:=false)>  _
+	Public Property UserName() As String
+		Get
+			Return Me._UserName
+		End Get
+		Set
+			If (String.Equals(Me._UserName, value) = false) Then
+				Me.OnUserNameChanging(value)
+				Me.SendPropertyChanging
+				Me._UserName = value
+				Me.SendPropertyChanged("UserName")
+				Me.OnUserNameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FromProductID", DbType:="Int NOT NULL")>  _
+	Public Property FromProductID() As Integer
+		Get
+			Return Me._FromProductID
+		End Get
+		Set
+			If ((Me._FromProductID = value)  _
+						= false) Then
+				Me.OnFromProductIDChanging(value)
+				Me.SendPropertyChanging
+				Me._FromProductID = value
+				Me.SendPropertyChanged("FromProductID")
+				Me.OnFromProductIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FromUserName", DbType:="NChar(30) NOT NULL", CanBeNull:=false)>  _
+	Public Property FromUserName() As String
+		Get
+			Return Me._FromUserName
+		End Get
+		Set
+			If (String.Equals(Me._FromUserName, value) = false) Then
+				Me.OnFromUserNameChanging(value)
+				Me.SendPropertyChanging
+				Me._FromUserName = value
+				Me.SendPropertyChanged("FromUserName")
+				Me.OnFromUserNameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ToProductID", DbType:="Int NOT NULL")>  _
+	Public Property ToProductID() As Integer
+		Get
+			Return Me._ToProductID
+		End Get
+		Set
+			If ((Me._ToProductID = value)  _
+						= false) Then
+				Me.OnToProductIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ToProductID = value
+				Me.SendPropertyChanged("ToProductID")
+				Me.OnToProductIDChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ToUserName", DbType:="NChar(30) NOT NULL", CanBeNull:=false)>  _
+	Public Property ToUserName() As String
+		Get
+			Return Me._ToUserName
+		End Get
+		Set
+			If (String.Equals(Me._ToUserName, value) = false) Then
+				Me.OnToUserNameChanging(value)
+				Me.SendPropertyChanging
+				Me._ToUserName = value
+				Me.SendPropertyChanged("ToUserName")
+				Me.OnToUserNameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Amount", DbType:="Float NOT NULL")>  _
+	Public Property Amount() As Double
+		Get
+			Return Me._Amount
+		End Get
+		Set
+			If ((Me._Amount = value)  _
+						= false) Then
+				Me.OnAmountChanging(value)
+				Me.SendPropertyChanging
+				Me._Amount = value
+				Me.SendPropertyChanged("Amount")
+				Me.OnAmountChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Status", DbType:="Int")>  _
+	Public Property Status() As System.Nullable(Of Integer)
+		Get
+			Return Me._Status
+		End Get
+		Set
+			If (Me._Status.Equals(value) = false) Then
+				Me.OnStatusChanging(value)
+				Me.SendPropertyChanging
+				Me._Status = value
+				Me.SendPropertyChanged("Status")
+				Me.OnStatusChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_IPAddress", DbType:="NChar(20)")>  _
+	Public Property IPAddress() As String
+		Get
+			Return Me._IPAddress
+		End Get
+		Set
+			If (String.Equals(Me._IPAddress, value) = false) Then
+				Me.OnIPAddressChanging(value)
+				Me.SendPropertyChanging
+				Me._IPAddress = value
+				Me.SendPropertyChanged("IPAddress")
+				Me.OnIPAddressChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Reason", DbType:="NChar(255)")>  _
+	Public Property Reason() As String
+		Get
+			Return Me._Reason
+		End Get
+		Set
+			If (String.Equals(Me._Reason, value) = false) Then
+				Me.OnReasonChanging(value)
+				Me.SendPropertyChanging
+				Me._Reason = value
+				Me.SendPropertyChanged("Reason")
+				Me.OnReasonChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApproveByUser", DbType:="NChar(30) NOT NULL", CanBeNull:=false)>  _
+	Public Property ApproveByUser() As String
+		Get
+			Return Me._ApproveByUser
+		End Get
+		Set
+			If (String.Equals(Me._ApproveByUser, value) = false) Then
+				Me.OnApproveByUserChanging(value)
+				Me.SendPropertyChanging
+				Me._ApproveByUser = value
+				Me.SendPropertyChanged("ApproveByUser")
+				Me.OnApproveByUserChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApproveDate", DbType:="DateTime NOT NULL")>  _
+	Public Property ApproveDate() As Date
+		Get
+			Return Me._ApproveDate
+		End Get
+		Set
+			If ((Me._ApproveDate = value)  _
+						= false) Then
+				Me.OnApproveDateChanging(value)
+				Me.SendPropertyChanging
+				Me._ApproveDate = value
+				Me.SendPropertyChanged("ApproveDate")
+				Me.OnApproveDateChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Remark", DbType:="NChar(255)")>  _
+	Public Property Remark() As String
+		Get
+			Return Me._Remark
+		End Get
+		Set
+			If (String.Equals(Me._Remark, value) = false) Then
+				Me.OnRemarkChanging(value)
+				Me.SendPropertyChanging
+				Me._Remark = value
+				Me.SendPropertyChanged("Remark")
+				Me.OnRemarkChanged
 			End If
 		End Set
 	End Property

@@ -27,6 +27,7 @@ Partial Class Admin_EditSlider
                             h6.InnerText = "Edit " & s.SliderID.ToString("00000")
                         End Using
                     Catch ex As Exception
+                        Log(ex)
                         JsMsgBox("Slider not found!")
                         btnSubmit.Enabled = False
                     End Try
@@ -34,22 +35,23 @@ Partial Class Admin_EditSlider
                     Try
                         Using db As New DataClassesDataContext
                             Dim s = db.TblSliders.Single(Function(x) x.SliderID = sid)
-                        txtIndex.Text = s.DisplayIndex
-                        txtName.Text = s.SliderName.Trim
-                        txtUrl.Text = s.LinkUrl.Trim
-                        cmbEnabled.SelectedValue = s.Status
-                        imageUrl = s.SliderImage.Trim
-                        imgSlide.ImageUrl = If(s.SliderImage = Nothing, "", "..\" & s.SliderImage.Trim)
+                            txtIndex.Text = s.DisplayIndex
+                            txtName.Text = s.SliderName.Trim
+                            txtUrl.Text = s.LinkUrl.Trim
+                            cmbEnabled.SelectedValue = s.Status
+                            imageUrl = s.SliderImage.Trim
+                            imgSlide.ImageUrl = If(s.SliderImage = Nothing, "", "..\" & s.SliderImage.Trim)
 
-                        txtIndex.ReadOnly = True
-                        txtName.ReadOnly = True
-                        txtUrl.ReadOnly = True
-                        cmbEnabled.Enabled = False
+                            txtIndex.ReadOnly = True
+                            txtName.ReadOnly = True
+                            txtUrl.ReadOnly = True
+                            cmbEnabled.Enabled = False
 
-                        h6.InnerText = "Are you sure you want to delete " & s.SliderName & " (" & s.SliderID.ToString("00000") & ")?"
+                            h6.InnerText = "Are you sure you want to delete " & s.SliderName & " (" & s.SliderID.ToString("00000") & ")?"
                             btnSubmit.Text = "Delete"
                         End Using
                     Catch ex As Exception
+                        Log(ex)
                         JsMsgBox("Slider not found!")
                         btnSubmit.Enabled = False
                     End Try
@@ -77,6 +79,7 @@ Partial Class Admin_EditSlider
                             JsMsgBox("Add slider failed! Please contact Administrator.")
                         End If
                     Catch ex As Exception
+                        Log(ex)
                         JsMsgBox("Slider not found!")
                         btnSubmit.Enabled = False
                     End Try
@@ -112,6 +115,7 @@ Partial Class Admin_EditSlider
                     JsMsgBox("Slider delete successfully.")
                     Response.Redirect("Sliders.aspx")
                 Catch ex As Exception
+                    Log(ex)
                     JsMsgBox("Delete slider failed! Please contact Administrator.")
                 End Try
             Case Else
@@ -159,6 +163,7 @@ Partial Class Admin_EditSlider
                 db.SubmitChanges()
             End Using
         Catch ex As Exception
+            Log(ex)
             Return False
         End Try
 
@@ -196,6 +201,7 @@ Partial Class Admin_EditSlider
                 db.SubmitChanges()
             End Using
         Catch ex As Exception
+            Log(ex)
             Return False
         End Try
         Return True

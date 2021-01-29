@@ -13,17 +13,11 @@
     End Sub
 
     Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
-        If txtUserID.Text = Nothing Then
-            JsMsgBox(Me.Page, "UserID is required!")
-        ElseIf txtPassword.Text = Nothing Then
-            JsMsgBox(Me.Page, "Password is required!")
+        If IsMemberLoginSuccess(txtUserID.Text.Trim, txtPassword.Text.Trim, Page) Then
+            LogAction(txtUserID.Text.Trim, Request.UserHostAddress, eLogType.Login)
+            Response.Redirect("Default.aspx")
         Else
-            If IsMemberLoginSuccess(txtUserID.Text.Trim, txtPassword.Text.Trim, Page) Then
-                LogAction(txtUserID.Text.Trim, Request.UserHostAddress, eLogType.Login)
-                Response.Redirect("Default.aspx")
-            Else
-                JsMsgBox(Me.Page, "Incorrect UserID or Password.")
-            End If
+            swal(Me.Page, "Oops!", "Incorrect UserID or Password.", "error")
         End If
     End Sub
 
@@ -140,44 +134,29 @@
     End Sub
 
     Private Sub btnRegister_Click(sender As Object, e As EventArgs) Handles btnRegister.Click
-        If txtFullName.Text = Nothing Then
-            JsMsgBox(Me.Page, "Full Name is required!")
-        ElseIf txtBirthday.Text = Nothing Then
-            JsMsgBox(Me.Page, "Birthday is required!")
-        ElseIf txtContact.Text = Nothing Then
-            JsMsgBox(Me.Page, "Contact No. is required!")
-        ElseIf txtEmail.Text = Nothing Then
-            JsMsgBox(Me.Page, "Email is required!")
-        ElseIf IsEmailExists(txtEmail.Text) Then
-            JsMsgBox(Me.Page, "Email is already been registered!")
+        If IsEmailExists(txtEmail.Text) Then
+            swal(Me.Page, "Oops!", "Email is already been registered!", "error")
         ElseIf Not IsEmailValid(txtEmail.Text) Then
-            JsMsgBox(Me.Page, "Email is not valid!")
-        ElseIf txtUserIDr.Text = Nothing Then
-            JsMsgBox(Me.Page, "UserID is required!")
-        ElseIf txtUserIDr.Text.Length < 6 Then
-            JsMsgBox(Me.Page, "UserID is too short!")
-        ElseIf IsMemberExists(txtUserIDr.Text) Then
-            JsMsgBox(Me.Page, "UserID already taken, please try another one.")
-        ElseIf txtPasswordr.Text = Nothing Then
-            JsMsgBox(Me.Page, "Password is required!")
-        ElseIf txtPasswordr2.Text = Nothing Then
-            JsMsgBox(Me.Page, "Please confirm your password.")
-        ElseIf txtPasswordr.Text <> txtPasswordr2.Text Then
-            JsMsgBox(Me.Page, "Your password did not match!")
+            swal(Me.Page, "Oops!", "Email is not valid!", "error")
+        ElseIf txtUserIDR.Text.Length < 6 Then
+            swal(Me.Page, "Oops!", "UserID is too short!", "error")
+        ElseIf IsMemberExists(txtUserIDR.Text) Then
+            swal(Me.Page, "Oops!", "UserID already taken, please try another one.", "error")
+        ElseIf txtPasswordR.Text <> txtPasswordR2.Text Then
+            swal(Me.Page, "Oops!", "Your password do not match!", "error")
         ElseIf Not cb18yo.Checked Then
-            JsMsgBox(Me.Page, "You have to be at least 18 years old to register.")
+            swal(Me.Page, "Underage warning", "You have to be at least 18 years old to register.", "warning")
         ElseIf Not cbTnc.Checked Then
-            JsMsgBox(Me.Page, "Please accept the Terms & Conditions.")
+            swal(Me.Page, "Terms & Conditions", "Please accept the Terms & Conditions in order to continue.", "warning")
         Else
             If RegisterMember() Then
                 LogAction(txtUserIDR.Text.Trim, Request.UserHostAddress, eLogType.Register)
-                JsMsgBox(Me.Page, "Registration completed!")
                 If IsMemberLoginSuccess(txtUserIDR.Text, txtPasswordR.Text, Page) Then
                     LogAction(txtUserIDR.Text.Trim, Request.UserHostAddress, eLogType.Login)
                     Response.Redirect("Default.aspx")
                 End If
             Else
-                JsMsgBox(Me.Page, "Registration failed! Please contact Customer Service.")
+                swal(Me.Page, "Oops!", "Registration failed! Please contact Customer Service.", "error")
             End If
         End If
     End Sub
@@ -210,6 +189,7 @@
                 db.SubmitChanges()
             End Using
         Catch ex As Exception
+            Log(ex)
             Return False
         End Try
         Return True

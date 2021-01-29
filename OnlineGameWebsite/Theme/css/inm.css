@@ -119,3 +119,24 @@
 .inm_img_border {
     border: 1px solid #eeeeee;
 }
+
+.header.standart_nav .top > div > div .social li.tiktok a:hover {
+    background-color: #000;
+    transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    -moz-transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in;
+}
+
+footer.footer .ftop .social li.tiktok a:hover,
+footer.footer .fbottom .social li.tiktok a:hover {
+    background-color: #000;
+    transition: all .2s ease-in;
+    -o-transition: all .2s ease-in;
+    -moz-transition: all .2s ease-in;
+    -webkit-transition: all .2s ease-in;
+}
+
+footer.footer .ftop .adress li a {
+    color: #999
+}

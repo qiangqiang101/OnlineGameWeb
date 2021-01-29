@@ -33,6 +33,7 @@ Partial Class Product
                             username.InnerText = "User Name: " & uproduct.UserName.Trim
                             password.InnerText = "Password: " & uproduct.Password.Trim
                         Catch ex As Exception
+                            Log(ex)
                             divUsername.Visible = False
                             divPassword.Visible = False
                         End Try
@@ -42,6 +43,7 @@ Partial Class Product
                     End If
                 End Using
             Catch ex As Exception
+                Log(ex)
                 Response.Redirect("404.aspx")
             End Try
         End If

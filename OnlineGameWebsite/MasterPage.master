@@ -1,6 +1,5 @@
 ﻿<%@ Master Language="VB" CodeFile="MasterPage.master.vb" Inherits="MasterPage" %>
 
-
 <!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
@@ -36,6 +35,9 @@
 
     <link rel="stylesheet" href="Theme/css/color/Default.css" id="color" />
 
+    <script src="https://kit.fontawesome.com/4fe85cae2a.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -52,11 +54,11 @@
                             <div class="col-md-6 col-sm-12 col-xs-12">
                                 <div class="pull-right hidden-sm hidden-xs">
                                     <ul class="social">
-                                        <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                        <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li class="instagram"><a href="#"><i class="fa fa-instagram"></i></a></li>
-                                        <li class="google"><a href="#"><i class="fa fa-google"></i></a></li>
-                                        <li class="youtube"><a href="#"><i class="fa fa-youtube"></i></a></li>
+                                        <li class="facebook"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                        <li class="twitter"><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                        <li class="instagram"><a href="#"><i class="fab fa-instagram"></i></a></li>
+                                        <li class="tiktok"><a href="#"><i class="fab fa-tiktok"></i></a></li>
+                                        <li class="youtube"><a href="#"><i class="fab fa-youtube"></i></a></li>
                                     </ul>
                                 </div>
                                 <div class="dropdown pull-right">
@@ -83,7 +85,7 @@
                                 <div class="rmenu" id="memberLogin" runat="server">
                                     <div id="account">
                                         <a href="#" class="dropdown">
-                                            <i class="fa fa-user-o">&nbsp</i>Log in /
+                                            <i class="far fa-user">&nbsp</i>Log in /
                                 <span>Register</span>
                                             <span class="caret"></span>
                                         </a>
@@ -203,7 +205,6 @@
                                         <li><a href="Withdrawal.aspx">Withdrawal</a></li>
                                         <li><a href="Transfer.aspx">Transfer</a></li>
                                         <li><a href="TransactionHistory.aspx">Transaction History</a></li>
-                                        <li><a href="TransferHistory.aspx">Transfer History</a></li>
                                         <li><a href="GameAccount.aspx">Game Accounts</a></li>
                                         <hr />
                                         <li><a href="#" id="logout" runat="server">Log out</a></li>
@@ -226,7 +227,7 @@
                             </div>
                             <div class="col-lg-2 col-md-2 hidden-sm hidden-xs info">
                                 <div>
-                                    <i class="fa fa-whatsapp"></i>
+                                    <i class="fab fa-whatsapp"></i>
                                 </div>
                                 <div>
                                     <strong>WHATSAPP</strong>
@@ -235,7 +236,7 @@
                             </div>
                             <div class="col-lg-2 col-md-2 hidden-sm hidden-xs info">
                                 <div>
-                                    <i class="fa fa-telegram"></i>
+                                    <i class="fab fa-telegram-plane"></i>
                                 </div>
                                 <div>
                                     <strong>TELEGRAM</strong>
@@ -244,7 +245,7 @@
                             </div>
                             <div class="col-lg-2 col-md-2 hidden-sm hidden-xs info">
                                 <div>
-                                    <i class="fa fa-weixin"></i>
+                                    <i class="fab fa-weixin"></i>
                                 </div>
                                 <div>
                                     <strong>WECHAT</strong>
@@ -263,7 +264,7 @@
                             <div class="col-md-12 col-sm-12 col-xs-12 rspnav">
                                 <nav class="collnav collapse">
                                     <ul class="nav nav-pills">
-                                        <li><a href="Default.aspx"><i class="fa fa-home">&nbsp</i>HOME</a></li>
+                                        <li><a href="Default.aspx"><i class="fas fa-home">&nbsp</i>HOME</a></li>
                                         <%--<li class="dropdown">
                                             <a class="dropdown-toggle" href="Index.html">HOME</a>
                                             <ul class="dropdown-menu">
@@ -292,7 +293,7 @@
                                             </ul>
                                         </li>--%>
                                         <li class="dropdown dropdown-mega" id="megaProduct" runat="server">
-                                            <a class="dropdown-toggle" href="Products.aspx?cat=all"><i class="fa fa-trophy">&nbsp</i>PRODUCTS</a>
+                                            <a class="dropdown-toggle" href="Products.aspx?cat=all"><i class="fas fa-dragon">&nbsp</i>PRODUCTS</a>
                                             <ul class="dropdown-menu">
                                                 <li>
                                                     <div class="mega-content">
@@ -347,7 +348,7 @@
                                             </ul>
                                         </li>
                                         <li class="dropdown" id="mobileProduct" runat="server">
-                                            <a class="dropdown-toggle" href="Products.aspx?cat=all"><i class="fa fa-trophy">&nbsp</i>PRODUCTS</a>
+                                            <a class="dropdown-toggle" href="Products.aspx?cat=all"><i class="fas fa-dragon">&nbsp</i>PRODUCTS</a>
                                             <ul class="dropdown-menu">
                                                 <li><a href="Products.aspx?cat=slot">Slot Game</a></li>
                                                 <li><a href="Products.aspx?cat=live">Live Casino</a></li>
@@ -386,17 +387,17 @@
                                                 <li><a href="Shop-Login.html">Shop Login</a></li>
                                             </ul>
                                         </li>--%>
-                                        <li><a href="LiveScore.aspx"><i class="fa fa-futbol-o">&nbsp</i>LIVE SCORE</a></li>
-                                        <li><a href="Download.aspx"><i class="fa fa-download">&nbsp</i>DOWNLOAD</a></li>
-                                        <li><a href="Promotion.aspx"><i class="fa fa-percent">&nbsp</i>PROMOTION</a></li>
-                                        <li><a href="Banking.aspx"><i class="fa fa-university">&nbsp</i>BANKING</a></li>
-                                        <li><a href="Contact.aspx"><i class="fa fa-phone">&nbsp</i>CONTACT</a></li>
+                                        <li><a href="LiveScore.aspx"><i class="fas fa-futbol">&nbsp</i>LIVE SCORE</a></li>
+                                        <li><a href="Download.aspx"><i class="fas fa-download">&nbsp</i>DOWNLOAD</a></li>
+                                        <li><a href="Promotion.aspx"><i class="fas fa-percentage">&nbsp</i>PROMOTION</a></li>
+                                        <li><a href="Banking.aspx"><i class="fas fa-university">&nbsp</i>BANKING</a></li>
+                                        <li><a href="Contact.aspx"><i class="fas fa-address-book">&nbsp</i>CONTACT</a></li>
                                     </ul>
                                 </nav>
                             </div>
                             <div class="col-sm-2 col-xs-2 hidden-lg hidden-md rspbtn">
                                 <button type="button" data-toggle="collapse" data-target=".collnav">
-                                    <i class="fa fa-bars"></i>
+                                    <i class="fas fa-bars"></i>
                                 </button>
                             </div>
                             <%--<div class="col-md-3 col-sm-10 col-xs-10">
@@ -1003,33 +1004,36 @@
                             <h4>About Us</h4>
                             <p>We are one of the most excellent and trusted online casino brands in Asia, we are manage by Billion Ace Investment Ltd Company, registered and certified by First Cagayan Leisure & Resort Corporation and officially approved by Philippines government. As a top online gambling sites, we provides a lot of online betting games such as casino games, online sports betting and slot games.</p>
                             <ul class="social">
-                                <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li class="instagram"><a href="#"><i class="fa fa-instagram"></i></a></li>
-                                <li class="google"><a href="#"><i class="fa fa-google"></i></a></li>
-                                <li class="youtube"><a href="#"><i class="fa fa-youtube"></i></a></li>
+                                <li class="facebook"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                <li class="twitter"><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                <li class="instagram"><a href="#"><i class="fab fa-instagram"></i></a></li>
+                                <li class="tiktok"><a href="#"><i class="fab fa-tiktok"></i></a></li>
+                                <li class="youtube"><a href="#"><i class="fab fa-youtube"></i></a></li>
                             </ul>
                         </div>
                         <div class="col-md-4">
                             <h4>Get In Touch</h4>
                             <ul class="adress">
-                                <li><i class="fa fa-telegram"></i>onlinegame</li>
-                                <li><i class="fa fa-whatsapp"></i>+6012-345 6789</li>
-                                <li><i class="fa fa-phone"></i>+6012-345 6789</li>
-                                <li><i class="fa fa-weixin"></i>wxid_123456789</li>
-                                <li><i class="fa fa-envelope"></i>contact@palovit.com</li>
-                                <li><i class="fa fa-support"></i>support@palovit.com</li>
+                                <li><a href="#"><i class="far fa-comment-dots"></i>Live Chat</a></li>
+                                <li><a href="#"><i class="fab fa-telegram-plane"></i>onlinegame</a></li>
+                                <li><a href="#"><i class="fab fa-whatsapp"></i>+6012-345 6789</a></li>
+                                <li><a href="#"><i class="fab fa-line"></i>onlinegame</a></li>
+                                <li><a href="#"><i class="fas fa-phone"></i>+6012-345 6789</a></li>
+                                <li><i class="fab fa-weixin"></i>wxid_123456789</li>
+                                <li><a href="#"><i class="fas fa-envelope"></i>contact@gmail.com</a></li>
+                                <li><a href="#"><i class="fas fa-support"></i>support@hotmail.com</a></li>
                             </ul>
                         </div>
                         <div class="col-md-4">
                             <h4>Latest Winners</h4>
                             <p>You can find our lastest winner here.</p>
                             <ul class="adress">
-                                <li><i class="fa fa-user-circle"></i>imnotmxxxxx MYR 1,000 just now</li>
-                                <li><i class="fa fa-user-circle"></i>closeoxxxxx MYR 300 1 minute ago</li>
-                                <li><i class="fa fa-user-circle"></i>crossnxxxxx MYR 250 5 minutes ago</li>
-                                <li><i class="fa fa-user-circle"></i>hantukaxxxx MYR 1,688 20 minutes ago</li>
-                                <li><i class="fa fa-user-circle"></i>unclerogxxx MYR 88 22 minutes ago</li>
+                                <li><i class="far fa-user-circle"></i>imnotmxxxxx MYR 1,000 just now</li>
+                                <li><i class="far fa-user-circle"></i>closeoxxxxx MYR 300 1 minute ago</li>
+                                <li><i class="far fa-user-circle"></i>crossnxxxxx MYR 250 5 minutes ago</li>
+                                <li><i class="far fa-user-circle"></i>hantukaxxxx MYR 1,688 20 minutes ago</li>
+                                <li><i class="far fa-user-circle"></i>unclerogxxx MYR 88 22 minutes ago</li>
+                                <li><i class="far fa-user-circle"></i>namewxxxxxx MYR 188 30 minutes ago</li>
                             </ul>
                         </div>
                     </div>
@@ -1060,7 +1064,7 @@
         </footer>
 
         <a class="pagetop" href="#">
-            <i class="fa fa-chevron-up"></i>
+            <i class="fas fa-chevron-up"></i>
         </a>
         <script src="Scripts/jquery-3.1.1.min.js"></script>
         <script src="Scripts/bootstrap.min.js"></script>
@@ -1073,10 +1077,12 @@
         <script src="Plugins/masterslider/jquery.easing.min.js"></script>
         <script src="Plugins/masterslider/masterslider.min.js"></script>
         <script src="Theme/js/Script.js"></script>
+        <script src="Theme/js/inm.js"></script>
 
         <script src="Scripts/jquery.cookie-1.4.1.min.js"></script>
         <link rel="stylesheet" href="Theme/demo/Demo.css" />
         <%--<script src="Theme/demo/Demo.js"></script>--%>
+        
     </form>
 </body>
 </html>
