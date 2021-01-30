@@ -42,7 +42,7 @@ Partial Class Admin_EditDeposit
                             lblFullName.InnerText = m.FullName.Trim
                             lblIpAddress.InnerText = t.IPAddress.Trim
                             lblTime.InnerText = t.TransactionDate.ToString(dateFormat)
-                            lblAmount.InnerText = t.Credit.ToString("0.00")
+                            lblAmount.InnerText = t.Credit.ToString("N")
                             lblMethod.InnerText = t.Method.Trim
                             lblChannel.InnerText = TransactionChannelToString(t.Channel)
                             lblDepositTime.InnerText = t.TransactionDateUser.ToString(dateFormat)
@@ -102,7 +102,7 @@ Partial Class Admin_EditDeposit
                             lblFullName.InnerText = m.FullName.Trim
                             lblIpAddress.InnerText = t.IPAddress.Trim
                             lblTime.InnerText = t.TransactionDate.ToString(dateFormat)
-                            lblAmount.InnerText = t.Promotion.ToString("0.00")
+                            lblAmount.InnerText = t.Promotion.ToString("N")
                             lblMethod.InnerText = t.Method.Trim
                             lblChannel.InnerText = TransactionChannelToString(t.Channel)
                             lblDepositTime.InnerText = t.TransactionDateUser.ToString(dateFormat)

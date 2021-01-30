@@ -31,16 +31,6 @@ Partial Class Action
                             Log(ex)
                             swalRedirect(GetRedirect, "Oops!", "Transaction not found!", "error")
                         End Try
-                    Case "reason"
-                        Try
-                            Using db As New DataClassesDataContext
-                                Dim t = db.TblTransactions.Single(Function(x) x.TransactionID = CInt(tid) And x.UserName = Session("username").ToString.Trim)
-                                swalRedirect(GetRedirect, "Reject Reason", t.Reason.Trim, "info")
-                            End Using
-                        Catch ex As Exception
-                            Log(ex)
-                            swalRedirect(GetRedirect, "Oops!", "Transaction not found!", "error")
-                        End Try
                     Case "cancel2"
                         Try
                             Using db As New DataClassesDataContext
@@ -51,16 +41,6 @@ Partial Class Action
                                 End If
                             End Using
                             Response.Redirect(GetRedirect)
-                        Catch ex As Exception
-                            Log(ex)
-                            swalRedirect(GetRedirect, "Oops!", "Transaction not found!", "error")
-                        End Try
-                    Case "reason2"
-                        Try
-                            Using db As New DataClassesDataContext
-                                Dim t = db.TblTransfers.Single(Function(x) x.TransferID = CInt(tid) And x.UserName = Session("username").ToString.Trim)
-                                swalRedirect(GetRedirect, "Reject Reason", t.Reason.Trim, "info")
-                            End Using
                         Catch ex As Exception
                             Log(ex)
                             swalRedirect(GetRedirect, "Oops!", "Transaction not found!", "error")

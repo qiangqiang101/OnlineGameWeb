@@ -44,11 +44,16 @@
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label>Amount</label>
-                                        <asp:TextBox CssClass="form-control" ID="txtAmount" runat="server" placeholder="30.00" TextMode="Number" required="Required" AutoCompleteType="None"></asp:TextBox>
+                                        <asp:UpdatePanel ID="updateAmount" runat="server">
+                                            <ContentTemplate>
+                                                <asp:ScriptManager ID="smUpdateAmount" runat="server"></asp:ScriptManager>
+                                                <asp:TextBox CssClass="form-control" ID="txtAmount" runat="server" placeholder="30.00" TextMode="Number" required="Required" AutoCompleteType="None" AutoPostBack="True" MaxLength="10"></asp:TextBox>
+                                            </ContentTemplate>
+                                        </asp:UpdatePanel>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label>Date</label>
-                                        <asp:TextBox CssClass="form-control" ID="txtDepositDate" runat="server" placeholder="dd/MM/yyyy" TextMode="DateTimeLocal" required="Required"></asp:TextBox>
+                                        <asp:TextBox CssClass="form-control" ID="txtDepositDate" runat="server" placeholder="dd/MM/yyyy" TextMode="DateTimeLocal" required="Required" AutoPostBack="False"></asp:TextBox>
                                     </div>
 
                                     <div class="form-group col-md-6">

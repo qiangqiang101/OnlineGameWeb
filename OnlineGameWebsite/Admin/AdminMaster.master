@@ -18,6 +18,7 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet" />
+    <link href="css/inm_admin.css" rel="stylesheet" />
 
     <asp:ContentPlaceHolder ID="head" runat="server">
 
@@ -75,7 +76,7 @@
                             <h6 class="collapse-header">Transactions:</h6>
                             <a class="collapse-item" href="#">Transaction Reminder</a>
                             <a class="collapse-item" href="Transactions.aspx">Transaction Enquiry</a>
-                            <a class="collapse-item" href="#">Transfer Enquiry</a>
+                            <a class="collapse-item" href="Transfers.aspx">Transfer Enquiry</a>
                             <h6 class="collapse-header">Adjustments:</h6>
                             <a class="collapse-item" href="#">Credit</a>
                             <a class="collapse-item" href="#">Debit</a>

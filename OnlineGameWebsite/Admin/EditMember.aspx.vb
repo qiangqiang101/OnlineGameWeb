@@ -49,11 +49,11 @@ Partial Class Admin_EditMember
                     If tns IsNot Nothing Then
                         For Each tn In tns
                             If tn.TransType = 1 Then
-                                dataTable3.AddTableItem(tn.TransactionID.ToString("00000"), tn.TransactionDate, GetProductName(tn.ProductID), tn.ProductUserName, tn.Method, tn.Debit.ToString("0.00"),
+                                dataTable3.AddTableItem(tn.TransactionID.ToString("00000"), tn.TransactionDate, GetProductName(tn.ProductID), tn.ProductUserName, tn.Method, tn.Debit.ToString("N"),
                                                                 "", StatusToString(tn.Status))
                             Else
                                 dataTable3.AddTableItem(tn.TransactionID.ToString("00000"), tn.TransactionDate, GetProductName(tn.ProductID), tn.ProductUserName, tn.Method, "",
-                                                                If(tn.Promotion = 0F, tn.Credit.ToString("0.00"), tn.Promotion.ToString("0.00")), StatusToString(tn.Status))
+                                                                If(tn.Promotion = 0F, tn.Credit.ToString("N"), tn.Promotion.ToString("N")), StatusToString(tn.Status))
                             End If
 
                         Next

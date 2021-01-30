@@ -224,14 +224,31 @@ Public Module Helper
     End Sub
 
     <Extension>
-    Public Sub AddTransactionTableItem(table As Table, id As Integer, tdate As Date, userid As String, fullname As String, productname As String, method As String, status As Integer, credit As Single, debit As Single, promo As Single, type As Integer, remark As String)
+    Public Sub AddTableFooter(table As Table, ParamArray items As Object())
+        Dim frow As New TableFooterRow() With {.TableSection = TableRowSection.TableFooter}
+        For Each item In items
+            If TypeOf item Is TableCell Then
+                frow.Cells.Add(item)
+            Else
+                frow.Cells.Add(New TableCell() With {.Text = ""})
+            End If
+        Next
+        frow.BackColor = Color.WhiteSmoke
+        table.Rows.Add(frow)
+    End Sub
+
+    <Extension>
+    Public Sub AddTransactionTableItem(table As Table, id As Integer, tdate As Date, userid As String, fullname As String, productname As String, productUN As String, method As String, status As Integer, credit As Single, debit As Single, promo As Single, type As Integer)
         Dim row As New TableRow()
         row.Cells.Add(New TableCell() With {.Text = id.ToString("00000")})
         row.Cells.Add(New TableCell() With {.Text = tdate.ToString(dateFormat)})
         row.Cells.Add(New TableCell() With {.Text = userid.Trim})
         row.Cells.Add(New TableCell() With {.Text = fullname.Trim})
-        row.Cells.Add(New TableCell() With {.Text = productname.Trim})
+        row.Cells.Add(New TableCell() With {.Text = productname.Trim & " (" & productUN.Trim & ")"})
         row.Cells.Add(New TableCell() With {.Text = method.Trim})
+        row.Cells.Add(New TableCell() With {.Text = If(credit <> 0F, credit.ToString("N"), If(promo <> 0F, promo.ToString("N"), "")), .HorizontalAlign = HorizontalAlign.Right, .ClientIDMode = ClientIDMode.Static, .ForeColor = Color.Blue})
+        row.Cells.Add(New TableCell() With {.Text = If(debit <> 0F, debit.ToString("N"), ""), .HorizontalAlign = HorizontalAlign.Right, .ClientIDMode = ClientIDMode.Static, .ForeColor = Color.Red})
+        row.Cells.Add(New TableCell() With {.Text = If(type = 0, "Credit", If(type = 2, "Promotion", "Debit"))})
         Dim statusColor As Color = Color.Blue
         Select Case status
             Case 0, 1
@@ -241,11 +258,7 @@ Public Module Helper
             Case Else
                 statusColor = Color.Red
         End Select
-        row.Cells.Add(New TableCell() With {.Text = StatusToString(status), .ForeColor = statusColor})
-        row.Cells.Add(New TableCell() With {.Text = If(credit <> 0F, credit.ToString("0.00"), If(promo <> 0F, promo.ToString("0.00"), ""))})
-        row.Cells.Add(New TableCell() With {.Text = If(debit <> 0F, debit.ToString("0.00"), "")})
-        row.Cells.Add(New TableCell() With {.Text = If(type = 0, "Credit", If(type = 2, "Promotion", "Debit"))})
-        row.Cells.Add(New TableCell() With {.Text = If(remark = Nothing, "", remark.Trim)})
+        row.Cells.Add(New TableCell() With {.Text = StatusToString(status), .BackColor = statusColor, .ForeColor = Color.White})
         Select Case type
             Case 0
                 row.Cells.Add(New TableCell() With {.Text = RB("EditDeposit.aspx?mode=edit&id=" & id, "fas fa-eye", tooltip:="Edit")})
@@ -260,6 +273,36 @@ Public Module Helper
                     row.Cells.Add(New TableCell() With {.Text = RB("EditDeposit.aspx?mode=promo&id=" & id, "fas fa-eye", tooltip:="Edit")})
                 End If
         End Select
+        table.Rows.Add(row)
+    End Sub
+
+    <Extension>
+    Public Sub AddTransferTableItem(table As Table, id As Integer, tdate As Date, userid As String, fullname As String, frPdtName As String, frPdtUN As String, toPdtName As String, toPdtUN As String, amount As Single, status As Integer)
+        Dim row As New TableRow()
+        row.Cells.Add(New TableCell() With {.Text = id.ToString("00000")})
+        row.Cells.Add(New TableCell() With {.Text = tdate.ToString(dateFormat)})
+        row.Cells.Add(New TableCell() With {.Text = userid.Trim})
+        row.Cells.Add(New TableCell() With {.Text = fullname.Trim})
+        row.Cells.Add(New TableCell() With {.Text = frPdtName.Trim & " (" & frPdtUN.Trim & ")"})
+        row.Cells.Add(New TableCell() With {.Text = toPdtName.Trim & " (" & toPdtUN.Trim & ")"})
+        row.Cells.Add(New TableCell() With {.Text = amount.ToString("N")})
+        Dim statusColor As Color = Color.Blue
+        Select Case status
+            Case 0, 1
+                statusColor = Color.Blue
+            Case 2
+                statusColor = Color.Green
+            Case Else
+                statusColor = Color.Red
+        End Select
+        row.Cells.Add(New TableCell() With {.Text = StatusToString(status), .BackColor = statusColor, .ForeColor = Color.White})
+        If status <= 1 Then
+            row.Cells.Add(New TableCell() With {.Text = RB("EditTransfer.aspx?mode=edit&id=" & id, "fas fa-eye", tooltip:="Edit") &
+                                  RB("EditTransfer.aspx?mode=approve&id=" & id, "fas fa-check", "btn-success", "Approve") &
+                                  RB("EditTransfer.aspx?mode=reject&id=" & id, "fas fa-times", "btn-danger", "Reject")})
+        Else
+            row.Cells.Add(New TableCell() With {.Text = RB("EditTransfer.aspx?mode=edit&id=" & id, "fas fa-eye", tooltip:="Edit")})
+        End If
         table.Rows.Add(row)
     End Sub
 
@@ -280,14 +323,28 @@ Public Module Helper
         End Select
     End Function
 
-    Public Sub Pending(tid As Integer)
+    Public Enum ePending
+        Transaction
+        Transfer
+    End Enum
+
+    Public Sub Pending(tid As Integer, Optional ePen As ePending = ePending.Transaction)
         Try
             Using db As New DataClassesDataContext
-                Dim t = db.TblTransactions.Single(Function(x) x.TransactionID = tid)
-                If t.Status = 0 Then
-                    t.Status = 1
-                    db.SubmitChanges()
-                End If
+                Select Case ePen
+                    Case ePending.Transaction
+                        Dim t = db.TblTransactions.Single(Function(x) x.TransactionID = tid)
+                        If t.Status = 0 Then
+                            t.Status = 1
+                            db.SubmitChanges()
+                        End If
+                    Case Else
+                        Dim t = db.TblTransfers.Single(Function(x) x.TransferID = tid)
+                        If t.Status = 0 Then
+                            t.Status = 1
+                            db.SubmitChanges()
+                        End If
+                End Select
             End Using
         Catch ex As Exception
             Log(ex)
@@ -478,7 +535,7 @@ Public Module Helper
 
     Public Function TextToImage(text As String) As String
         Dim bitmap As New Bitmap(1, 1)
-        Dim font As New Font("Arial", 40, FontStyle.Strikeout, GraphicsUnit.Pixel)
+        Dim font As New Font("Comic Sans MS, Verdana, Courier", 40, FontStyle.Regular, GraphicsUnit.Pixel)
         Dim graphics As Graphics = Graphics.FromImage(bitmap)
         Dim width As Integer = CInt(graphics.MeasureString(text, font).Width)
         Dim height As Integer = CInt(graphics.MeasureString(text, font).Height)
@@ -488,6 +545,8 @@ Public Module Helper
         graphics.SmoothingMode = SmoothingMode.AntiAlias
         graphics.TextRenderingHint = TextRenderingHint.AntiAlias
         graphics.DrawString(text, font, New SolidBrush(Color.FromArgb(255, 0, 0)), 0, 0)
+        graphics.FillRectangle(New HatchBrush(HatchStyle.BackwardDiagonal, Color.FromArgb(255, 0, 0, 0), Color.Transparent), graphics.ClipBounds)
+        graphics.FillRectangle(New HatchBrush(HatchStyle.ForwardDiagonal, Color.FromArgb(255, 0, 0, 0), Color.Transparent), graphics.ClipBounds)
         graphics.Flush()
         graphics.Dispose()
 
@@ -541,15 +600,19 @@ Public Module Helper
         End Try
     End Function
 
-    Public Function RandomText(r As Random) As String
+    Public Function RandomText(r As Random, Optional min As Integer = 15, Optional max As Integer = 33) As String
         Dim s As String = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
         Dim sb As New StringBuilder
-        Dim cnt As Integer = r.Next(15, 33)
+        Dim cnt As Integer = r.Next(min, max)
         For i As Integer = 1 To cnt
             Dim idx As Integer = r.Next(0, s.Length)
             sb.Append(s.Substring(idx, 1))
         Next
         Return sb.ToString()
+    End Function
+
+    Public Function Strong(str As String) As String
+        Return "<b>" & str & "</b>"
     End Function
 
 End Module

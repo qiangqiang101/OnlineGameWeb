@@ -23,31 +23,41 @@ Partial Class Withdrawal
         If role <> "user" Then
             LoginMsgBox
         Else
-            Using db As New DataClassesDataContext
-                Dim products = db.TblProducts.Where(Function(x) x.Status = True).ToList
-                For Each pdt As TblProduct In products
-                    Dim pdtName As String = Nothing
-                    If String.IsNullOrWhiteSpace(pdt.ProductAlias) Then pdtName = pdt.ProductName.Trim Else pdtName = pdt.ProductAlias.Trim
-                    cmbProduct.Items.Add(New ListItem(pdtName, pdt.ProductID))
-                Next
+            If Not IsPostBack Then
+                Using db As New DataClassesDataContext
+                    Dim products = db.TblProducts.Where(Function(x) x.Status = True).ToList
+                    For Each pdt As TblProduct In products
+                        Dim pdtName As String = Nothing
+                        If String.IsNullOrWhiteSpace(pdt.ProductAlias) Then pdtName = pdt.ProductName.Trim Else pdtName = pdt.ProductAlias.Trim
+                        cmbProduct.Items.Add(New ListItem(pdtName, pdt.ProductID))
+                    Next
 
-                txtBankAccountName.Text = Session("fullname").ToString.Trim
 
-                Try
-                    Dim m = db.TblMembers.Single(Function(x) x.UserID = Session("userid").ToString.Trim)
-                    txtBankAccountNo.Text = m.AccountNo.Trim
-                    cmbBank.SelectedValue = m.BankName
-                Catch ex As Exception
-                    Log(ex)
-                End Try
-            End Using
+                    txtBankAccountName.Text = Session("fullname").ToString.Trim
+
+                    Try
+                        Dim m = db.TblMembers.Single(Function(x) x.UserID = Session("userid").ToString.Trim)
+                        txtBankAccountNo.Text = m.AccountNo.Trim
+                        cmbBank.SelectedValue = m.BankName
+                    Catch ex As Exception
+                        Log(ex)
+                    End Try
+
+                End Using
+            End If
         End If
 
         If Not IsPostBack Then
-            captcha = New Random().Next(0, 999999)
+            captcha = RandomText(New Random, 6, 6)
             Session("captcha") = captcha
             captchaImg.Attributes("src") = "data:image/png;base64, " & TextToImage(captcha)
         End If
+    End Sub
+
+    Private Sub txtAmount_TextChanged(sender As Object, e As EventArgs) Handles txtAmount.TextChanged
+        If CInt(txtAmount.Text) < 0 Then txtAmount.Text = 0
+        If txtAmount.Text.Length >= 8 Then txtAmount.Text = 0
+        txtAmount.Text = CSng(txtAmount.Text).ToString("0.00")
     End Sub
 
     Private Function Withdrawal() As Boolean

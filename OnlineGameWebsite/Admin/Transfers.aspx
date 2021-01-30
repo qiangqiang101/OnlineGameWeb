@@ -1,20 +1,20 @@
-﻿<%@ Page Title="" Language="VB" MasterPageFile="~/Admin/AdminMaster.master" AutoEventWireup="true" CodeFile="Transactions.aspx.vb" Inherits="Admin_Transaction" %>
+﻿<%@ Page Title="" Language="VB" MasterPageFile="~/Admin/AdminMaster.master" AutoEventWireup="true" CodeFile="Transfers.aspx.vb" Inherits="Admin_Transfers" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="admincontent" runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="admincontent" Runat="Server">
     <!-- Main Content -->
     <div id="content">
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
             <!-- Page Heading -->
-            <h1 class="h3 mb-2 text-gray-800">Transaction Enquiry</h1>
+            <h1 class="h3 mb-2 text-gray-800">Transfer Enquiry</h1>
 
             <!-- DataTales Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Transactions</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Transfers</h6>
                 </div>
                 <div class="card-body">
                     <div class="form-group row">
@@ -50,18 +50,16 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <asp:Table CssClass="table table-bordered table-hover" ID="dataTable" ClientIDMode="Static" Width="100%" CellSpacing="0" runat="server">
+                        <asp:Table CssClass="table table-bordered" ID="dataTable" ClientIDMode="Static" width="100%" cellspacing="0" runat="server">
                             <asp:TableHeaderRow TableSection="TableHeader">
                                 <asp:TableHeaderCell>ID</asp:TableHeaderCell>
                                 <asp:TableHeaderCell>Date</asp:TableHeaderCell>
                                 <asp:TableHeaderCell>User ID</asp:TableHeaderCell>
                                 <asp:TableHeaderCell>Name</asp:TableHeaderCell>
-                                <asp:TableHeaderCell>Product</asp:TableHeaderCell>
-                                <asp:TableHeaderCell>Payment Method</asp:TableHeaderCell>
-                                <asp:TableHeaderCell HorizontalAlign="Right">Credit</asp:TableHeaderCell>
-                                <asp:TableHeaderCell HorizontalAlign="Right">Debit</asp:TableHeaderCell>
-                                <asp:TableHeaderCell>Type</asp:TableHeaderCell>
-                                <asp:TableHeaderCell>Status</asp:TableHeaderCell>
+                                <asp:TableHeaderCell>From Product</asp:TableHeaderCell>
+                                <asp:TableHeaderCell>To Product</asp:TableHeaderCell>
+                                <asp:TableHeaderCell HorizontalAlign="Right">Amount</asp:TableHeaderCell>
+                                <asp:TableHeaderCell>Status</asp:TableHeaderCell> 
                                 <asp:TableHeaderCell>Action</asp:TableHeaderCell>
                             </asp:TableHeaderRow>
                         </asp:Table>

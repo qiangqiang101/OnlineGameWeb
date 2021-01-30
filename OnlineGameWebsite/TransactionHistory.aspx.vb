@@ -9,7 +9,7 @@ Partial Class TransactionHistory
             LoginMsgBox
         Else
             Using db As New DataClassesDataContext
-                Dim trans = db.TblTransactions.Where(Function(x) x.UserName = Session("username").ToString.Trim And x.TransType = 0).OrderByDescending(Function(x) x.TransactionID).Take(5).ToList
+                Dim trans = db.TblTransactions.Where(Function(x) x.UserName = Session("username").ToString.Trim And x.TransType = 0).OrderByDescending(Function(x) x.TransactionID).Take(10).ToList
                 For Each t As TblTransaction In trans
                     Dim p As TblProduct = db.TblProducts.Single(Function(x) x.ProductID = t.ProductID)
                     Dim pdtName As String = Nothing
@@ -23,10 +23,10 @@ Partial Class TransactionHistory
                         Case Else
                             atnStr = String.Empty
                     End Select
-                    tblDeposit.AddTableItem(t.TransactionDate.ToString(dateFormat), pdtName, t.Method.Trim, StatusToString(t.Status), t.Credit.ToString("0.00"), atnStr)
+                    tblDeposit.AddTableItem(t.TransactionDate.ToString(dateFormat), pdtName, t.Method.Trim, StatusToString(t.Status), t.Credit.ToString("N"), atnStr)
                 Next
 
-                trans = db.TblTransactions.Where(Function(x) x.UserName = Session("username").ToString.Trim And x.TransType = 2).OrderByDescending(Function(x) x.TransactionID).Take(5).ToList
+                trans = db.TblTransactions.Where(Function(x) x.UserName = Session("username").ToString.Trim And x.TransType = 2).OrderByDescending(Function(x) x.TransactionID).Take(10).ToList
                 For Each t As TblTransaction In trans
                     Dim p As TblProduct = db.TblProducts.Single(Function(x) x.ProductID = t.ProductID)
                     Dim pdtName As String = Nothing
@@ -40,10 +40,10 @@ Partial Class TransactionHistory
                         Case Else
                             atnStr = String.Empty
                     End Select
-                    tblPromotion.AddTableItem(t.TransactionDate.ToString(dateFormat), pdtName, t.Method.Trim, StatusToString(t.Status), t.Promotion.ToString("0.00"), atnStr)
+                    tblPromotion.AddTableItem(t.TransactionDate.ToString(dateFormat), pdtName, t.Method.Trim, StatusToString(t.Status), t.Promotion.ToString("N"), atnStr)
                 Next
 
-                trans = db.TblTransactions.Where(Function(x) x.UserName = Session("username").ToString.Trim And x.TransType = 1).OrderByDescending(Function(x) x.TransactionID).Take(5).ToList
+                trans = db.TblTransactions.Where(Function(x) x.UserName = Session("username").ToString.Trim And x.TransType = 1).OrderByDescending(Function(x) x.TransactionID).Take(10).ToList
                 For Each t As TblTransaction In trans
                     Dim p As TblProduct = db.TblProducts.Single(Function(x) x.ProductID = t.ProductID)
                     Dim pdtName As String = Nothing
@@ -57,10 +57,10 @@ Partial Class TransactionHistory
                         Case Else
                             atnStr = String.Empty
                     End Select
-                    tblWithdraw.AddTableItem(t.TransactionDate.ToString(dateFormat), pdtName, t.Method.Trim, StatusToString(t.Status), t.Debit.ToString("0.00"), atnStr)
+                    tblWithdraw.AddTableItem(t.TransactionDate.ToString(dateFormat), pdtName, t.Method.Trim, StatusToString(t.Status), t.Debit.ToString("N"), atnStr)
                 Next
 
-                Dim tranf = db.TblTransfers.Where(Function(x) x.UserName = Session("username").ToString.Trim).OrderByDescending(Function(x) x.TransferID).Take(5).ToList
+                Dim tranf = db.TblTransfers.Where(Function(x) x.UserName = Session("username").ToString.Trim).OrderByDescending(Function(x) x.TransferID).Take(10).ToList
                 For Each t As TblTransfer In tranf
                     Dim pf As TblProduct = db.TblProducts.Single(Function(x) x.ProductID = t.FromProductID)
                     Dim pt As TblProduct = db.TblProducts.Single(Function(x) x.ProductID = t.ToProductID)
@@ -77,6 +77,7 @@ Partial Class TransactionHistory
                         Case Else
                             atnStr = String.Empty
                     End Select
+                    tblTransfer.AddTableItem(t.TransferDate.ToString(dateFormat), pfName & " (" & t.FromUserName.Trim & ")", ptName & " (" & t.ToUserName.Trim & ")", StatusToString(t.Status), t.Amount.ToString("N"), atnStr)
                 Next
             End Using
         End If

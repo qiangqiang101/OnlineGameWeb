@@ -44,6 +44,8 @@ Partial Class Admin_EditWithdrawal
                             lblTime.InnerText = t.TransactionDate.ToString(dateFormat)
                             lblAmount.InnerText = t.Debit.ToString("0.00")
                             lblMethod.InnerText = t.Method.Trim
+                            lblAccName.InnerText = t.Bank.Trim
+                            lblAccNo.InnerText = t.BankAccount.Trim
                             lblRemarks.InnerText = If(t.Reference = Nothing, "-", t.Reference.Trim)
                             lblAffiliate.InnerText = If(m.Affiliate = Nothing, "-", m.Affiliate.Trim)
                             lblStatus.InnerText = StatusToString(t.Status)

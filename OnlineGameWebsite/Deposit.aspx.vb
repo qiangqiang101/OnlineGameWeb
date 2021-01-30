@@ -23,31 +23,37 @@ Partial Class Deposit
         If role <> "user" Then
             LoginMsgBox
         Else
-            Using db As New DataClassesDataContext
-                Dim banks = db.TblBanks.Where(Function(x) x.Status = 1).ToList
-                For Each bank As TblBank In banks
-                    cmbBank.Items.Add(New ListItem(bank.BankName.Trim, bank.BankID))
-                Next
-                Dim promos = db.TblPromotions.Where(Function(x) x.Status = 1).ToList
-                For Each promo As TblPromotion In promos
-                    cmbPromotion.Items.Add(New ListItem(promo.EnglishName.Trim, promo.PromoID))
-                Next
-                Dim products = db.TblProducts.Where(Function(x) x.Status = True).ToList
-                For Each pdt As TblProduct In products
-                    Dim pdtName As String = Nothing
-                    If String.IsNullOrWhiteSpace(pdt.ProductAlias) Then pdtName = pdt.ProductName.Trim Else pdtName = pdt.ProductAlias.Trim
-                    cmbProduct.Items.Add(New ListItem(pdtName, pdt.ProductID))
-                Next
-            End Using
-
-            txtDepositDate.Text = Now.ToLocalTime().ToString("yyyy-MM-ddTHH:mm")
+            If Not IsPostBack Then
+                Using db As New DataClassesDataContext
+                    Dim banks = db.TblBanks.Where(Function(x) x.Status = 1).ToList
+                    For Each bank As TblBank In banks
+                        cmbBank.Items.Add(New ListItem(bank.BankName.Trim & " (" & bank.AccountName.Trim & ")", bank.BankID))
+                    Next
+                    Dim promos = db.TblPromotions.Where(Function(x) x.Status = 1).ToList
+                    For Each promo As TblPromotion In promos
+                        cmbPromotion.Items.Add(New ListItem(promo.EnglishName.Trim, promo.PromoID))
+                    Next
+                    Dim products = db.TblProducts.Where(Function(x) x.Status = True).ToList
+                    For Each pdt As TblProduct In products
+                        Dim pdtName As String = Nothing
+                        If String.IsNullOrWhiteSpace(pdt.ProductAlias) Then pdtName = pdt.ProductName.Trim Else pdtName = pdt.ProductAlias.Trim
+                        cmbProduct.Items.Add(New ListItem(pdtName, pdt.ProductID))
+                    Next
+                End Using
+            End If
         End If
 
         If Not IsPostBack Then
-            captcha = New Random().Next(0, 999999)
+            captcha = RandomText(New Random, 6, 6)
             Session("captcha") = captcha
             captchaImg.Attributes("src") = "data:image/png;base64, " & TextToImage(captcha)
         End If
+    End Sub
+
+    Private Sub txtAmount_TextChanged(sender As Object, e As EventArgs) Handles txtAmount.TextChanged
+        If CInt(txtAmount.Text) < 0 Then txtAmount.Text = 0
+        If txtAmount.Text.Length >= 8 Then txtAmount.Text = 0
+        txtAmount.Text = CSng(txtAmount.Text).ToString("0.00")
     End Sub
 
     Private Function Deposit() As Boolean
