@@ -19,43 +19,97 @@
                     </div>
                     <div class="card-body">
                         <div class="form-group row">
-                            <div class="col-sm-5 mb-3 mb-sm-0">
-                                <label>ID</label><br />
-                                <label>Product</label><br />
-                                <label>Product User Name</label><br />
-                                <label>User ID</label><br />
-                                <label>Name</label><br />
-                                <label>IP</label><br />
-                                <label>Time</label><br />
-                                <h4>
-                                    <label>Amount</label></h4>
-                                <label>Payment Method</label><br />
-                                <label>Channel</label><br />
-                                <label>Deposit Time</label>
-                                <hr />
-                                <label>Reference No.</label><br />
-                                <label>Affiliate</label><br />
-                                <label>Status</label><br />
-                                <label></label>
-                            </div>
-                            <div class="col-sm-7">
-                                <label id="lblID" runat="server">#99999</label><br />
-                                <label id="lblProduct" runat="server">#Product</label><br />
-                                <label id="lblProductUsername" runat="server">#ProductUsername</label><br />
-                                <label id="lblUserID" runat="server">#UserID</label><br />
-                                <label id="lblFullName" runat="server">#FullName</label><br />
-                                <label id="lblIpAddress" runat="server">#127.0.0.1</label><br />
-                                <label id="lblTime" runat="server">#1990-01-01 00:00:00</label><br />
-                                <h4><b>
-                                    <label id="lblAmount" runat="server" style="text-decoration: underline;">#100.00</label></b></h4>
-                                <label id="lblMethod" runat="server">#Maybank</label><br />
-                                <label id="lblChannel" runat="server">#Channel</label><br />
-                                <label id="lblDepositTime" runat="server">#1990-01-01 00:00:00</label>
-                                <hr />
-                                <label id="lblRefNo" runat="server">#RefNo</label><br />
-                                <label id="lblAffiliate" runat="server">#Affiliate</label><br />
-                                <label id="lblStatus" runat="server">#New</label><br />
-                                <a href="#" target="_blank" id="bankSlip" runat="server">Bank Slip</a>
+                            <div class="col-sm-12 mb-3 mb-sm-0">
+                                <table id="transTable1" width="100%" cellspacing="0">
+                                    <tbody>
+                                        <tr>
+                                            <td>ID</td>
+                                            <td>
+                                                <label id="lblID" runat="server"></label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Product</td>
+                                            <td>
+                                                <label id="lblProduct" runat="server"></label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Product User Name</td>
+                                            <td>
+                                                <label id="lblProductUsername" runat="server"></label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>User ID</td>
+                                            <td>
+                                                <label id="lblUserID" runat="server"></label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>
+                                                <label id="lblFullName" runat="server"></label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>IP</td>
+                                            <td>
+                                                <label id="lblIpAddress" runat="server"></label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Time</td>
+                                            <td>
+                                                <label id="lblTime" runat="server"></label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Amount</td>
+                                            <td>
+                                                <asp:Label ID="lblAmount" runat="server" ForeColor="Blue" Font-Size="Larger" Font-Bold="True"></asp:Label></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Payment Method</td>
+                                            <td>
+                                                <label id="lblMethod" runat="server"></label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Channel</td>
+                                            <td>
+                                                <label id="lblChannel" runat="server"></label>
+                                            </td>
+                                        </tr>
+                                        <tr class="bordered">
+                                            <td>Deposit Time</td>
+                                            <td>
+                                                <label id="lblDepositTime" runat="server"></label>
+                                            </td>
+                                        </tr>                                  
+                                        <tr>
+                                            <td>Reference No.</td>
+                                            <td>
+                                                <label id="lblRefNo" runat="server"></label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Affiliate</td>
+                                            <td>
+                                                <label id="lblAffiliate" runat="server"></label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Status</td>
+                                            <td>
+                                                <asp:Label ID="lblStatus" runat="server"></asp:Label></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td><a href="#" target="_blank" id="bankSlip" runat="server">Bank Slip</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -84,7 +138,7 @@
                         </div>
                         <div class="form-group">
                             <label>Remarks</label>
-                            <asp:TextBox class="form-control form-control-user" ID="txtRemarks" runat="server" TextMode="MultiLine" Height="60px"></asp:TextBox>
+                            <asp:TextBox class="form-control form-control-user" ID="txtRemarks" runat="server" TextMode="MultiLine" Height="44px"></asp:TextBox>
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-12 mb-3 mb-sm-0">

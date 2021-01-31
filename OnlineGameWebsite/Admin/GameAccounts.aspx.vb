@@ -1,4 +1,6 @@
 ﻿
+Imports System.IO
+
 Partial Class Admin_GameAccounts
     Inherits System.Web.UI.Page
 
@@ -7,20 +9,33 @@ Partial Class Admin_GameAccounts
             Dim gameAccounts = (From ga In db.TblGameAccounts Order By ga.GameID Descending)
             For Each ga As TblGameAccount In gameAccounts
                 dataTable.AddTableItem(ga.GameID.ToString("00000"), ga.DateCreated.ToString(dateFormat),
-                                       ga.UserName.Trim, ga.Password.Trim, GetProductName(ga.ProductID), ga.MemberUserName.Trim)
+                                       ga.UserName.Trim, ga.Password.Trim, GetProductName(ga.ProductID), If(String.IsNullOrWhiteSpace(ga.MemberUserName), "", ga.MemberUserName.Trim))
             Next
         End Using
+
+        If Not IsPostBack Then
+            Using db As New DataClassesDataContext
+                Dim products = db.TblProducts.Where(Function(x) x.Status = True).ToList
+                For Each p As TblProduct In products
+                    cmbProduct.Items.Add(New ListItem(p.ProductName.Trim, p.ProductID))
+                    cmbProduct2.Items.Add(New ListItem(p.ProductName.Trim, p.ProductID))
+                Next
+            End Using
+        End If
+    End Sub
+
+    Private Sub btnAddPdtUserName_Click(sender As Object, e As EventArgs) Handles btnAddPdtUserName.Click
+        InsertVault(cmbProduct.SelectedValue, txtUName.Text.Trim, txtPass.Text.Trim)
     End Sub
 
     Private Sub btnUpload_Click(sender As Object, e As EventArgs) Handles btnUpload.Click
         If fileUploader.HasFile Then
-            Dim file As String = Server.MapPath(upload & fileUploader.FileName)
-            Dim ext = file.Substring(file.LastIndexOf(".") + 1).ToLower
+            If Not Directory.Exists(Server.MapPath(upload)) Then Directory.CreateDirectory(Server.MapPath(upload))
+            Dim csvPath As String = Server.MapPath(upload) & Path.GetFileName(fileUploader.PostedFile.FileName)
+            Dim ext = csvPath.Substring(csvPath.LastIndexOf(".") + 1).ToLower
             If ext = "csv" Then
-                If Not IO.Directory.Exists(upload) Then IO.Directory.CreateDirectory(upload)
-                fileUploader.SaveAs(file)
-                BulkInsert(IO.File.ReadAllLines(file))
-                JsMsgBox("Uploaded successfully.")
+                fileUploader.SaveAs(csvPath)
+                BulkInsert(File.ReadAllLines(csvPath))
             Else
                 JsMsgBox("The file extension " & ext & " is not allowed!")
             End If
@@ -30,25 +45,46 @@ Partial Class Admin_GameAccounts
     End Sub
 
     Private Sub BulkInsert(lists() As String)
-        For i As Integer = 0 To lists.Count - 1
-            Dim accounts() As String = lists(i).Split(","c)
-            InsertVault(CInt(accounts(0).Trim), accounts(1).Trim, accounts(2).Trim)
-        Next
+        Try
+            Using db As New DataClassesDataContext
+                Dim al As New List(Of TblGameAccount)
+                For Each line In lists
+                    Dim accounts() As String = line.Split(","c)
+                    al.Add(New TblGameAccount() With {.UserName = accounts(0).Trim, .Password = accounts(1).Trim, .ProductID = cmbProduct2.SelectedValue, .DateCreated = Now, .MemberUserName = Nothing})
+                Next
+
+                db.TblGameAccounts.InsertAllOnSubmit(al)
+                db.SubmitChanges()
+            End Using
+
+            JsMsgBoxRedirect("Game Accounts import successfully.", "GameAccounts.aspx")
+        Catch ex As Exception
+            Log(ex)
+            JsMsgBox(ex.Message)
+        End Try
     End Sub
 
     Private Sub InsertVault(product As Integer, username As String, password As String)
-        Using db As New DataClassesDataContext
-            Dim newGameAcc As New TblGameAccount
-            With newGameAcc
-                .DateCreated = Now
-                .MemberUserName = Nothing
-                .UserName = username.Trim
-                .Password = password.Trim
-                .ProductID = product
-            End With
+        Try
+            Using db As New DataClassesDataContext
+                Dim newGameAcc As New TblGameAccount
+                With newGameAcc
+                    .DateCreated = Now
+                    .MemberUserName = Nothing
+                    .UserName = username.Trim
+                    .Password = password.Trim
+                    .ProductID = product
+                End With
 
-            db.TblGameAccounts.InsertOnSubmit(newGameAcc)
-            db.SubmitChanges()
-        End Using
+                db.TblGameAccounts.InsertOnSubmit(newGameAcc)
+                db.SubmitChanges()
+            End Using
+
+            Response.Redirect("GameAccounts.aspx")
+        Catch ex As Exception
+            Log(ex)
+            JsMsgBox(ex.Message)
+        End Try
     End Sub
+
 End Class

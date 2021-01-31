@@ -1,4 +1,6 @@
 ﻿
+Imports System.Drawing
+
 Partial Class Admin_EditDeposit
     Inherits System.Web.UI.Page
 
@@ -42,20 +44,27 @@ Partial Class Admin_EditDeposit
                             lblFullName.InnerText = m.FullName.Trim
                             lblIpAddress.InnerText = t.IPAddress.Trim
                             lblTime.InnerText = t.TransactionDate.ToString(dateFormat)
-                            lblAmount.InnerText = t.Credit.ToString("N")
+                            lblAmount.Text = t.Credit.ToString("N")
                             lblMethod.InnerText = t.Method.Trim
                             lblChannel.InnerText = TransactionChannelToString(t.Channel)
                             lblDepositTime.InnerText = t.TransactionDateUser.ToString(dateFormat)
                             lblRefNo.InnerText = If(t.Reference = Nothing, "-", t.Reference.Trim)
                             lblAffiliate.InnerText = If(m.Affiliate = Nothing, "-", m.Affiliate.Trim)
-                            lblStatus.InnerText = StatusToString(t.Status)
-                            If t.Status <= 1 Then
-                                btnApprove.Visible = True
-                                btnReject.Visible = True
-                            Else
-                                btnApprove.Visible = False
-                                btnReject.Visible = False
-                            End If
+                            lblStatus.Text = StatusToString(t.Status)
+                            Select Case t.Status
+                                Case 0, 1
+                                    lblStatus.ForeColor = Color.Blue
+                                    btnApprove.Visible = True
+                                    btnReject.Visible = True
+                                Case 2
+                                    lblStatus.ForeColor = Color.Green
+                                    btnApprove.Visible = False
+                                    btnReject.Visible = False
+                                Case Else
+                                    lblStatus.ForeColor = Color.Red
+                                    btnApprove.Visible = False
+                                    btnReject.Visible = False
+                            End Select
                             If t.UploadFile <> Nothing Then
                                 bankSlip.Attributes("href") = "..\" & t.UploadFile.Trim
                             Else
@@ -102,20 +111,28 @@ Partial Class Admin_EditDeposit
                             lblFullName.InnerText = m.FullName.Trim
                             lblIpAddress.InnerText = t.IPAddress.Trim
                             lblTime.InnerText = t.TransactionDate.ToString(dateFormat)
-                            lblAmount.InnerText = t.Promotion.ToString("N")
+                            lblAmount.Text = t.Promotion.ToString("N")
+                            lblAmount.ForeColor = Color.Purple
                             lblMethod.InnerText = t.Method.Trim
                             lblChannel.InnerText = TransactionChannelToString(t.Channel)
                             lblDepositTime.InnerText = t.TransactionDateUser.ToString(dateFormat)
                             lblRefNo.InnerText = If(t.Reference = Nothing, "-", t.Reference.Trim)
                             lblAffiliate.InnerText = If(m.Affiliate = Nothing, "-", m.Affiliate.Trim)
-                            lblStatus.InnerText = StatusToString(t.Status)
-                            If t.Status <= 1 Then
-                                btnApprove.Visible = True
-                                btnReject.Visible = True
-                            Else
-                                btnApprove.Visible = False
-                                btnReject.Visible = False
-                            End If
+                            lblStatus.Text = StatusToString(t.Status)
+                            Select Case t.Status
+                                Case 0, 1
+                                    lblStatus.ForeColor = Color.Blue
+                                    btnApprove.Visible = True
+                                    btnReject.Visible = True
+                                Case 2
+                                    lblStatus.ForeColor = Color.Green
+                                    btnApprove.Visible = False
+                                    btnReject.Visible = False
+                                Case Else
+                                    lblStatus.ForeColor = Color.Red
+                                    btnApprove.Visible = False
+                                    btnReject.Visible = False
+                            End Select
                             bankSlip.Visible = False
                             If Not t.ApproveBank = Nothing Then cmbPaymentMethod.SelectedValue = t.ApproveBank.Trim
                             If Not t.Reason = Nothing Then cmbRejectReason.SelectedValue = t.Reason.Trim
@@ -265,7 +282,7 @@ Partial Class Admin_EditDeposit
                     .TransactionID = CInt(tid)
                     .Credit = t.Credit
                     .Debit = t.Debit
-                    .Description = lblUserID.InnerText.Trim & " deposited " & lblAmount.InnerText & " to " & lblProduct.InnerText & "."
+                    .Description = lblUserID.InnerText.Trim & " deposited " & lblAmount.Text & " to " & lblProduct.InnerText & "."
                     .RecordDatetime = Now
                 End With
 

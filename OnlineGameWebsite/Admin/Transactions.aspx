@@ -21,7 +21,7 @@
                             <table id="searchTable">
                                 <tbody>
                                     <tr>
-                                        <td>Date: </td>
+                                        <td>Date </td>
                                         <td style="padding-left: 10px;">
                                             <asp:TextBox class="form-control form-control-user" ID="txtDateFrom" runat="server" TextMode="DateTimeLocal"></asp:TextBox></td>
                                         <td style="padding-left: 10px;">- </td>

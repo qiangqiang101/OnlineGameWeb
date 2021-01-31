@@ -21,7 +21,7 @@
                             <table id="searchTable">
                                 <tbody>
                                     <tr>
-                                        <td>Date: </td>
+                                        <td>Date </td>
                                         <td style="padding-left: 10px;">
                                             <asp:TextBox class="form-control form-control-user" ID="txtDateFrom" runat="server" TextMode="DateTimeLocal"></asp:TextBox></td>
                                         <td style="padding-left: 10px;">- </td>
@@ -47,7 +47,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="table-responsive">
+                    <div class="table-responsive">
                     <asp:Table CssClass="table table-bordered" ID="dataTable" ClientIDMode="Static" Width="100%" CellSpacing="0" runat="server">
                         <asp:TableHeaderRow TableSection="TableHeader">
                             <asp:TableHeaderCell>ID</asp:TableHeaderCell>
@@ -61,7 +61,7 @@
                             <asp:TableHeaderCell>Action</asp:TableHeaderCell>
                         </asp:TableHeaderRow>
                     </asp:Table>
-                </div>
+                </div>               
             </div>
         </div>
     </div>

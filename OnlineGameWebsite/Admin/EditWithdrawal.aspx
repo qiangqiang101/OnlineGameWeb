@@ -19,33 +19,69 @@
                     </div>
                     <div class="card-body">
                         <div class="form-group row">
-                            <div class="col-sm-5 mb-3 mb-sm-0">
-                                <label>ID</label><br />
-                                <label>Product</label><br />
-                                <label>Product User Name</label><br />
-                                <label>User ID</label><br />
-                                <label>Name</label><br />
-                                <label>IP</label><br />
-                                <label>Time</label><br />
-                                <h4>
-                                    <label>Amount</label></h4>
-                                <hr />
-                                <label>Affiliate</label><br />
-                                <label>Status</label>
-                            </div>
-                            <div class="col-sm-7">
-                                <label id="lblID" runat="server">#99999</label><br />
-                                <label id="lblProduct" runat="server">#Product</label><br />
-                                <label id="lblProductUsername" runat="server">#ProductUsername</label><br />
-                                <label id="lblUserID" runat="server">#UserID</label><br />
-                                <label id="lblFullName" runat="server">#FullName</label><br />
-                                <label id="lblIpAddress" runat="server">#127.0.0.1</label><br />
-                                <label id="lblTime" runat="server">#1990-01-01 00:00:00</label><br />
-                                <h4><b>
-                                    <label id="lblAmount" runat="server" style="text-decoration: underline;">#100.00</label></b></h4>
-                                <hr />
-                                <label id="lblAffiliate" runat="server">#Affiliate</label><br />
-                                <label id="lblStatus" runat="server">#New</label>
+                            <div class="col-sm-12 mb-3 mb-sm-0">
+                                <table width="100%" cellspacing="0">
+                                    <tbody>
+                                        <tr>
+                                            <td>ID</td>
+                                            <td>
+                                                <label id="lblID" runat="server"></label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Product</td>
+                                            <td>
+                                                <label id="lblProduct" runat="server"></label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Product User Name</td>
+                                            <td>
+                                                <label id="lblProductUsername" runat="server"></label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>User ID</td>
+                                            <td>
+                                                <label id="lblUserID" runat="server"></label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Name</td>
+                                            <td>
+                                                <label id="lblFullName" runat="server"></label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>IP</td>
+                                            <td>
+                                                <label id="lblIpAddress" runat="server"></label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Time</td>
+                                            <td>
+                                                <label id="lblTime" runat="server"></label>
+                                            </td>
+                                        </tr>
+                                        <tr class="bordered">
+                                            <td>Amount</td>
+                                            <td>
+                                                <asp:Label ID="lblAmount" runat="server" ForeColor="Red" Font-Size="Larger" Font-Bold="True"></asp:Label></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Affiliate</td>
+                                            <td>
+                                                <label id="lblAffiliate" runat="server"></label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Status</td>
+                                            <td>
+                                                <asp:Label ID="lblStatus" runat="server"></asp:Label></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -57,23 +93,40 @@
                     </div>
                     <div class="card-body">
                         <div class="form-group row">
-                            <div class="col-sm-5 mb-3 mb-sm-0">
-                                <label>Payment Method</label><br />
-                                <label>Account Name</label><br />
-                                <label>Account No.</label><br />
-                                <label>Remarks</label>
-                            </div>
-                            <div class="col-sm-7">
-                                <label id="lblMethod" runat="server">#Maybank</label><br />
-                                <label id="lblAccName" runat="server">#Tan Ah Beng</label><br />
-                                <label id="lblAccNo" runat="server">#112233445566</label><br />
-                                <label id="lblRemarks" runat="server">#Remarks</label>
+                            <div class="col-sm-12 mb-3 mb-sm-0">
+                                <table width="100%" cellspacing="0">
+                                    <tbody>
+                                        <tr>
+                                            <td>Payment Method</td>
+                                            <td>
+                                                <label id="lblMethod" runat="server"></label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Account Name</td>
+                                            <td>
+                                                <label id="lblAccName" runat="server"></label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Account No.</td>
+                                            <td>
+                                                <label id="lblAccNo" runat="server"></label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Remarks</td>
+                                            <td>
+                                                <label id="lblRemarks" runat="server"></label>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
             <div class="col-lg-6">
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
@@ -83,43 +136,43 @@
                         <div class="form-group row">
                             <div class="col-sm-12 mb-3 mb-sm-0">
                                 <label>Payment Method</label>
-                                <asp:dropdownlist cssclass="form-control form-control-user" id="cmbPaymentMethod" autopostback="True" runat="server" placeholder="">
-                                    </asp:dropdownlist>
+                                <asp:DropDownList CssClass="form-control form-control-user" ID="cmbPaymentMethod" AutoPostBack="True" runat="server" placeholder="">
+                                </asp:DropDownList>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-12 mb-3 mb-sm-0">
                                 <label>Reject Reason</label>
-                                <asp:dropdownlist cssclass="form-control form-control-user" id="cmbRejectReason" autopostback="True" runat="server" placeholder="">
-                                    </asp:dropdownlist>
+                                <asp:DropDownList CssClass="form-control form-control-user" ID="cmbRejectReason" AutoPostBack="True" runat="server" placeholder="">
+                                </asp:DropDownList>
                             </div>
                         </div>
                         <div class="form-group">
                             <label>Remarks</label>
-                            <asp:textbox class="form-control form-control-user" id="txtRemarks" runat="server" textmode="MultiLine" height="60px"></asp:textbox>
+                            <asp:TextBox class="form-control form-control-user" ID="txtRemarks" runat="server" TextMode="MultiLine" Height="145px"></asp:TextBox>
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-12 mb-3 mb-sm-0">
                                 <label>Confirm User</label>
-                                <asp:textbox class="form-control form-control-user" id="txtConfirmUser" runat="server" readonly="true" textmode="SingleLine"></asp:textbox>
+                                <asp:TextBox class="form-control form-control-user" ID="txtConfirmUser" runat="server" ReadOnly="true" TextMode="SingleLine"></asp:TextBox>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-12 mb-3 mb-sm-0">
                                 <label>Confirm Date</label>
-                                <asp:textbox class="form-control form-control-user" id="txtConfirmDate" runat="server" readonly="true" textmode="SingleLine"></asp:textbox>
+                                <asp:TextBox class="form-control form-control-user" ID="txtConfirmDate" runat="server" ReadOnly="true" TextMode="SingleLine"></asp:TextBox>
                             </div>
                         </div>
                         <hr />
                         <div class="form-group row">
                             <div class="col-sm-4 mb-3 mb-sm-0">
-                                <asp:button class="btn btn-success btn-user btn-block" id="btnApprove" runat="server" text="Approve" />
+                                <asp:Button class="btn btn-success btn-user btn-block" ID="btnApprove" runat="server" Text="Approve" />
                             </div>
                             <div class="col-sm-4">
-                                <asp:button class="btn btn-danger btn-user btn-block" id="btnReject" runat="server" text="Reject" />
+                                <asp:Button class="btn btn-danger btn-user btn-block" ID="btnReject" runat="server" Text="Reject" />
                             </div>
                             <div class="col-sm-4">
-                                <asp:button class="btn btn-primary btn-user btn-block" id="btnCancel" runat="server" text="Cancel" />
+                                <asp:Button class="btn btn-primary btn-user btn-block" ID="btnCancel" runat="server" Text="Cancel" />
                             </div>
                         </div>
                     </div>

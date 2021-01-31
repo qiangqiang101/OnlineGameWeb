@@ -1,4 +1,6 @@
 ﻿
+Imports System.Drawing
+
 Partial Class Admin_EditWithdrawal
     Inherits System.Web.UI.Page
 
@@ -42,20 +44,27 @@ Partial Class Admin_EditWithdrawal
                             lblFullName.InnerText = m.FullName.Trim
                             lblIpAddress.InnerText = t.IPAddress.Trim
                             lblTime.InnerText = t.TransactionDate.ToString(dateFormat)
-                            lblAmount.InnerText = t.Debit.ToString("0.00")
+                            lblAmount.Text = t.Debit.ToString("N")
                             lblMethod.InnerText = t.Method.Trim
                             lblAccName.InnerText = t.Bank.Trim
                             lblAccNo.InnerText = t.BankAccount.Trim
                             lblRemarks.InnerText = If(t.Reference = Nothing, "-", t.Reference.Trim)
                             lblAffiliate.InnerText = If(m.Affiliate = Nothing, "-", m.Affiliate.Trim)
-                            lblStatus.InnerText = StatusToString(t.Status)
-                            If t.Status <= 1 Then
-                                btnApprove.Visible = True
-                                btnReject.Visible = True
-                            Else
-                                btnApprove.Visible = False
-                                btnReject.Visible = False
-                            End If
+                            lblStatus.Text = StatusToString(t.Status)
+                            Select Case t.Status
+                                Case 0, 1
+                                    lblStatus.ForeColor = Color.Blue
+                                    btnApprove.Visible = True
+                                    btnReject.Visible = True
+                                Case 2
+                                    lblStatus.ForeColor = Color.Green
+                                    btnApprove.Visible = False
+                                    btnReject.Visible = False
+                                Case Else
+                                    lblStatus.ForeColor = Color.Red
+                                    btnApprove.Visible = False
+                                    btnReject.Visible = False
+                            End Select
                             If Not t.ApproveBank = Nothing Then cmbPaymentMethod.SelectedValue = t.ApproveBank.Trim
                             If Not t.Reason = Nothing Then cmbRejectReason.SelectedValue = t.Reason.Trim
                             If Not t.Remark = Nothing Then txtRemarks.Text = t.Remark.Trim
@@ -164,7 +173,7 @@ Partial Class Admin_EditWithdrawal
                     .TransactionID = CInt(tid)
                     .Credit = t.Credit
                     .Debit = t.Debit
-                    .Description = lblUserID.InnerText.Trim & " withdrew " & lblAmount.InnerText & " from " & lblProduct.InnerText & "."
+                    .Description = lblUserID.InnerText.Trim & " withdrew " & lblAmount.Text & " from " & lblProduct.InnerText & "."
                     .RecordDatetime = Now
                 End With
 
