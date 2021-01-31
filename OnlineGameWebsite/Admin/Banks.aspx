@@ -3,8 +3,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="admincontent" Runat="Server">
-    <!-- Main Content -->
-    <div id="content">
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
@@ -37,9 +35,6 @@
             </div>
         </div>
         <!-- /.container-fluid -->
-
-    </div>
-    <!-- End of Main Content -->
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>

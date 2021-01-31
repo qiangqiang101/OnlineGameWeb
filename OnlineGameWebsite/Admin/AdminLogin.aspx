@@ -21,23 +21,23 @@
 </head>
 <body class="bg-gradient-primary">
     <form class="user" id="form1" runat="server">
-    <div class="container">
+        <div class="container">
 
-        <!-- Outer Row -->
-        <div class="row justify-content-center">
+            <!-- Outer Row -->
+            <div class="row justify-content-center">
 
-            <div class="col-xl-10 col-lg-12 col-md-9">
+                <div class="col-xl-10 col-lg-12 col-md-9">
 
-                <div class="card o-hidden border-0 shadow-lg my-5">
-                    <div class="card-body p-0">
-                        <!-- Nested Row within Card Body -->
-                        <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
-                            <div class="col-lg-6">
-                                <div class="p-5">
-                                    <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
-                                    </div>
+                    <div class="card o-hidden border-0 shadow-lg my-5">
+                        <div class="card-body p-0">
+                            <!-- Nested Row within Card Body -->
+                            <div class="row">
+                                <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                                <div class="col-lg-6">
+                                    <div class="p-5">
+                                        <div class="text-center">
+                                            <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                        </div>
                                         <div class="form-group">
                                             <asp:TextBox class="form-control form-control-user" ID="txtUserID" runat="server" aria-describedby="emailHelp" placeholder="User ID / Email" required="Required"></asp:TextBox>
                                         </div>
@@ -50,12 +50,13 @@
                                             </div>
                                         </div>
                                         <asp:Button class="btn btn-primary btn-user btn-block" ID="btnLogin" runat="server" Text="Login" />
-                                    <hr>
-                                    <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
-                                    </div>
-                                    <div class="text-center">
-                                        <a class="small" href="../Default.aspx">Back to Homepage</a>
+                                        <hr>
+                                        <div class="text-center">
+                                            <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                        </div>
+                                        <div class="text-center">
+                                            <a class="small" href="../Default.aspx">Back to Homepage</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -64,17 +65,16 @@
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Bootstrap core JavaScript-->
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="js/sb-admin-2.min.js"></script>
     </form>
 </body>
 </html>

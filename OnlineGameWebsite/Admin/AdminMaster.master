@@ -21,7 +21,6 @@
     <link href="css/inm_admin.css" rel="stylesheet" />
 
     <asp:ContentPlaceHolder ID="head" runat="server">
-
     </asp:ContentPlaceHolder>
 </head>
 <body id="page-top">
@@ -107,7 +106,7 @@
                     </div>
                 </li>
 
-                 <!-- Nav Item - Report Collapse Menu -->
+                <!-- Nav Item - Report Collapse Menu -->
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReport" aria-expanded="true" aria-controls="collapseReport">
                         <i class="fas fa-fw fa-chart-area"></i><span>Report</span>
@@ -160,38 +159,18 @@
             <div id="content-wrapper" class="d-flex flex-column">
 
                 <!-- Main Content -->
-                <div id="main-content">
+                <div id="content">
 
                     <!-- Topbar -->
                     <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
                         <!-- Sidebar Toggle (Topbar) -->
-                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <button type="button" id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                             <i class="fa fa-bars"></i>
                         </button>
 
                         <!-- Topbar Navbar -->
                         <ul class="navbar-nav ml-auto">
-
-                            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                            <li class="nav-item dropdown no-arrow d-sm-none">
-                                <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-search fa-fw"></i>
-                                </a>
-                                <!-- Dropdown - Messages -->
-                                <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                    aria-labelledby="searchDropdown">
-                                    <div class="form-inline mr-auto w-100 navbar-search">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
-                                            <div class="input-group-append">
-                                                <button class="btn btn-primary" type="button"><i class="fas fa-search fa-sm"></i></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
 
                             <!-- Nav Item - Alerts -->
                             <li class="nav-item dropdown no-arrow mx-1">
@@ -334,12 +313,9 @@
                     <!-- End of Topbar -->
 
                     <!-- Begin Page Content -->
-                    <div class="container-fluid">
-                        <asp:ContentPlaceHolder ID="admincontent" runat="server">
-                        </asp:ContentPlaceHolder>
-                    </div>
+                    <asp:ContentPlaceHolder ID="admincontent" runat="server">
+                    </asp:ContentPlaceHolder>
                     <!-- /.container-fluid -->
-
                 </div>
                 <!-- End of Main Content -->
 

@@ -1,24 +1,22 @@
 ﻿<%@ Page Title="" Language="VB" MasterPageFile="~/Admin/AdminMaster.master" AutoEventWireup="true" CodeFile="IpTool.aspx.vb" Inherits="Admin_IpTool" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="admincontent" Runat="Server">
-    <!-- Main Content -->
-    <div id="content">
-        <!-- Begin Page Content -->
-        <div class="container-fluid">
+<asp:Content ID="Content2" ContentPlaceHolderID="admincontent" runat="Server">
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
 
-            <!-- Page Heading -->
-            <h1 class="h3 mb-2 text-gray-800">IP Lookup</h1>
+        <!-- Page Heading -->
+        <h1 class="h3 mb-2 text-gray-800">IP Lookup</h1>
 
-            <!-- DataTales Example -->
-            <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">IP Lookup</h6>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <asp:Table CssClass="table table-bordered" ID="dataTable" ClientIDMode="Static" width="100%" cellspacing="0" runat="server">
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">IP Lookup</h6>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <asp:table cssclass="table table-bordered" id="dataTable" clientidmode="Static" width="100%" cellspacing="0" runat="server">
                             <asp:TableHeaderRow TableSection="TableHeader">
                                 <asp:TableHeaderCell>ID</asp:TableHeaderCell>
                                 <asp:TableHeaderCell>User ID</asp:TableHeaderCell>
@@ -27,15 +25,12 @@
                                 <asp:TableHeaderCell>IP</asp:TableHeaderCell>
                                 <asp:TableHeaderCell>Actions</asp:TableHeaderCell>
                             </asp:TableHeaderRow>
-                        </asp:Table>
-                    </div>
+                        </asp:table>
                 </div>
             </div>
         </div>
-        <!-- /.container-fluid -->
-
     </div>
-    <!-- End of Main Content -->
+    <!-- /.container-fluid -->
 
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
