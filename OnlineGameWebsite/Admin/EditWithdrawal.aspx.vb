@@ -18,7 +18,7 @@ Partial Class Admin_EditWithdrawal
                         Pending(CInt(tid))
 
                         Using db As New DataClassesDataContext
-                            Dim banks = db.TblBanks.Where(Function(x) x.Status = 1).ToList
+                            Dim banks = db.TblBanks.Where(Function(x) x.Status = 1)
                             For Each bank As TblBank In banks
                                 Dim li As New ListItem(bank.BankName.Trim & " (" & bank.AccountName.Trim & ")", bank.BankName.Trim)
                                 With li
@@ -145,6 +145,7 @@ Partial Class Admin_EditWithdrawal
             Using db As New DataClassesDataContext
                 Dim editTransaction = db.TblTransactions.Single(Function(x) x.TransactionID = CInt(tid))
                 With editTransaction
+                    .Method = cmbPaymentMethod.SelectedItem.Text
                     .Remark = txtRemarks.Text.Trim
                     .Status = 2
                     .ApproveByUser = Session("username").ToString.Trim

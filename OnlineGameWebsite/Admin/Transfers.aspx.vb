@@ -38,14 +38,14 @@ Partial Class Admin_Transfers
 
     Private Sub all_Click(sender As Object, e As EventArgs) Handles all.Click
         Dim start As Date = Date.ParseExact("1990-01-01T00:00", "yyyy-MM-ddTHH:mm", System.Globalization.DateTimeFormatInfo.InvariantInfo)
-        Dim [end] As Date = Date.ParseExact(Now.Year & "-" & Now.Month.ToString("00") & "-" & DateTime.DaysInMonth(start.Year, start.Month).ToString("00") & "T00:00", "yyyy-MM-ddTHH:mm", System.Globalization.DateTimeFormatInfo.InvariantInfo)
+        Dim [end] As Date = Date.ParseExact(Now.Year & "-" & Now.Month.ToString("00") & "-" & DateTime.DaysInMonth(Now.Year, Now.Month).ToString("00") & "T00:00", "yyyy-MM-ddTHH:mm", System.Globalization.DateTimeFormatInfo.InvariantInfo)
         txtDateFrom.Text = start.ToString("yyyy-MM-ddTHH:mm")
         txtDateTo.Text = [end].ToString("yyyy-MM-ddTHH:mm")
     End Sub
 
     Private Sub mtl_Click(sender As Object, e As EventArgs) Handles mtl.Click
         Dim start As Date = Date.ParseExact(Now.Year & "-" & Now.Month.ToString("00") & "-01T00:00", "yyyy-MM-ddTHH:mm", System.Globalization.DateTimeFormatInfo.InvariantInfo)
-        Dim [end] As Date = Date.ParseExact(Now.Year & "-" & Now.Month.ToString("00") & "-" & DateTime.DaysInMonth(start.Year, start.Month).ToString("00") & "T00:00", "yyyy-MM-ddTHH:mm", System.Globalization.DateTimeFormatInfo.InvariantInfo)
+        Dim [end] As Date = Date.ParseExact(Now.Year & "-" & Now.Month.ToString("00") & "-" & DateTime.DaysInMonth(Now.Year, Now.Month).ToString("00") & "T00:00", "yyyy-MM-ddTHH:mm", System.Globalization.DateTimeFormatInfo.InvariantInfo)
         txtDateFrom.Text = start.ToString("yyyy-MM-ddTHH:mm")
         txtDateTo.Text = [end].ToString("yyyy-MM-ddTHH:mm")
     End Sub

@@ -9,3 +9,6 @@ tr.bordered {
 .custom-file-input ~ .custom-file-label::after {
     content: "Button Text";
 }
+
+option.select-hr { 
+    border-bottom: 1px dotted #000; }

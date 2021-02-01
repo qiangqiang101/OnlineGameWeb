@@ -82,6 +82,7 @@
                             <a class="collapse-item" href="#">Credit</a>
                             <a class="collapse-item" href="#">Debit</a>
                             <a class="collapse-item" href="#">Promotion</a>
+                            <a class="collapse-item" href="#">Transfer</a>
                         </div>
                     </div>
                 </li>

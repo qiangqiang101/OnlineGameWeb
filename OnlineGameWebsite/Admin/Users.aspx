@@ -16,7 +16,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <asp:table cssclass="table table-bordered" id="dataTable" clientidmode="Static" width="100%" cellspacing="0" runat="server">
+                    <asp:table cssclass="table table-bordered table-hover" id="dataTable" clientidmode="Static" width="100%" cellspacing="0" runat="server">
                             <asp:TableHeaderRow TableSection="TableHeader">
                                 <asp:TableHeaderCell>ID</asp:TableHeaderCell>
                                 <asp:TableHeaderCell>User ID</asp:TableHeaderCell>
@@ -31,8 +31,10 @@
                         </asp:table>
                 </div>
                 <hr />
-                <div class="col-sm-3 ml-auto">
-                    <asp:button class="btn btn-primary btn-user btn-block" id="btnAddUser" runat="server" text="Add User" />
+                <div class="form-group row">
+                    <div class="col-sm-2 ml-auto">
+                        <asp:button class="btn btn-primary btn-user btn-block" id="btnAddUser" runat="server" text="Add User" />
+                    </div>
                 </div>
             </div>
         </div>

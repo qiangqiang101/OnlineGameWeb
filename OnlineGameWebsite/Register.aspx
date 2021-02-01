@@ -61,7 +61,7 @@
                                     </div>
                                     <hr class="hr" />
                                     <div class="form-check-label col-md-12">
-                                        <asp:CheckBox class="form-check-input" ID="cbTnc" runat="Server" Text="&nbsp I understand and accept all the policies, Conditions, Rules and Privacy statement." /><br />
+                                        <asp:CheckBox class="form-check-input" ID="cbTnc" runat="Server" Text="&nbsp I understand and accept all the <a href='Terms.aspx' target='_blank'>Terms & Conditions</a> and <a href='Privacy.aspx' target='_blank'>Privacy Policy</a> statement." /><br />
                                         <asp:CheckBox class="form-check-input" ID="cb18yo" runat="Server" Text="&nbsp I declare that I am 18 years old or above." />
                                         <br />
                                         <br />

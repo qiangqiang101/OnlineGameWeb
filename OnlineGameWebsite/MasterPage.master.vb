@@ -4,12 +4,11 @@
     Private Sub btnHead_Click(sender As Object, e As EventArgs) Handles btnHead.Click
         Dim role As String = HttpContext.Current.Session("role")
 
-        Select Case role
-            Case "user", "admin"
-                Response.Redirect("Deposit.aspx")
-            Case Else
-                Response.Redirect("Register.aspx")
-        End Select
+        If role = "user" Then
+            Response.Redirect("Deposit.aspx")
+        Else
+            Response.Redirect("Register.aspx")
+        End If
     End Sub
 
     Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click

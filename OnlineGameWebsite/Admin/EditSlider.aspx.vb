@@ -153,10 +153,10 @@ Partial Class Admin_EditSlider
                             .SliderImage = fileUrl
                         Else
                             JsMsgBox("Image upload failed, please try upload only supported image format.")
-                            .SliderImage = imageUrl
+                            .SliderImage = imgSlide.ImageUrl
                         End If
                     Else
-                        .SliderImage = imageUrl
+                        .SliderImage = imgSlide.ImageUrl
                     End If
                 End With
 
@@ -170,7 +170,7 @@ Partial Class Admin_EditSlider
         Return True
     End Function
 
-    Private Function AddNewSlider(Optional image As String = "images/empty_box.png") As Boolean
+    Private Function AddNewSlider(Optional image As String = "Theme/img/empty_box.png") As Boolean
         Try
             Using db As New DataClassesDataContext
                 Dim newSlide As New TblSlider

@@ -3141,11 +3141,18 @@ blockquote {
         }
 
             .main article.shop-cart table.table tbody tr td:first-child img, .main article.shop-checkout table.table tbody tr td:first-child img {
-                top: 10px;
+                /*top: 10px;
                 left: 10px;
                 position: absolute;
                 height: 45px;
-                width: 45px;
+                width: 45px;*/
+                top: 0px;
+        left: 0px;
+        position: absolute;
+        height: 100%;
+        width: auto;
+        /*height: 45px;
+        width: 45px;*/
             }
 
         .main article.shop-cart table.table tbody tr td:last-child, .main article.shop-checkout table.table tbody tr td:last-child {

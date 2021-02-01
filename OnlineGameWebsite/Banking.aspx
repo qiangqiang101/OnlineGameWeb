@@ -18,139 +18,17 @@
             </div>
         </section>
 
-
         <section class="plans dotted-bg p-t-30 p-b-60">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 palovit-title m-b-20">
                         <p>You can make transactions with convenience and efficient, as there is a wide variety of withdrawal and deposit methods for you to pick and choose from. Please glance over at all of our banking options shown below, and choose a method that suits you best.</p>
                     </div>
-                    <div class="col-md-3">
-                        <div class="pricing">
-                            <ul class="price">
-                                <li>
-                                    <img src="Theme/img/bank-mbb.jpg" style="width: 100%; height: auto;" alt="" /></li>
-                                <hr>
-                            </ul>
-                            <h3>Maybank</h3>
-                            <ul class="plan-features">
-                                <li>ATM / Internet / Local Bank Transfer</li>
-                                <li>Deposit Min 30.00 MYR</li>
-                                <li>Withdrawal Min 50.00 MYR</li>
-                                <li>5 Minutes Deposit</li>
-                                <li>15 Minutes Withdrawal</li>
-                            </ul>
-                            <a class="btn btn-slider-black" href="Deposit.aspx">DEPOSIT NOW</a> 
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="pricing">
-                            <ul class="price">
-                                <li>
-                                    <img src="Theme/img/bank-cimb.jpg" style="width: 100%; height: auto;" alt="" /></li>
-                                <hr>
-                            </ul>
-                            <h3>CIMB Bank</h3>
-                            <ul class="plan-features">
-                                <li>ATM / Internet / Local Bank Transfer</li>
-                                <li>Deposit Min 30.00 MYR</li>
-                                <li>Withdrawal Min 50.00 MYR</li>
-                                <li>5 Minutes Deposit</li>
-                                <li>15 Minutes Withdrawal</li>
-                            </ul>
-                            <a class="btn btn-slider-black" href="Deposit.aspx">DEPOSIT NOW</a> 
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="pricing">
-                            <ul class="price">
-                                <li>
-                                    <img src="Theme/img/bank-pbb.jpg" style="width: 100%; height: auto;" alt="" /></li>
-                                <hr>
-                            </ul>
-                            <h3>Public Bank</h3>
-                            <ul class="plan-features">
-                                <li>ATM / Internet / Local Bank Transfer</li>
-                                <li>Deposit Min 30.00 MYR</li>
-                                <li>Withdrawal Min 50.00 MYR</li>
-                                <li>5 Minutes Deposit</li>
-                                <li>15 Minutes Withdrawal</li>
-                            </ul>
-                            <a class="btn btn-slider-black" href="Deposit.aspx">DEPOSIT NOW</a> 
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="pricing">
-                            <ul class="price">
-                                <li>
-                                    <img src="Theme/img/bank-rhb.jpg" style="width: 100%; height: auto;" alt="" /></li>
-                                <hr>
-                            </ul>
-                            <h3>RHB Bank</h3>
-                            <ul class="plan-features">
-                                <li>ATM / Internet / Local Bank Transfer</li>
-                                <li>Deposit Min 30.00 MYR</li>
-                                <li>Withdrawal Min 50.00 MYR</li>
-                                <li>5 Minutes Deposit</li>
-                                <li>15 Minutes Withdrawal</li>
-                            </ul>
-                            <a class="btn btn-slider-black" href="Deposit.aspx">DEPOSIT NOW</a> 
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="pricing">
-                            <ul class="price">
-                                <li>
-                                    <img src="Theme/img/bank-hlb.jpg" style="width: 100%; height: auto;" alt="" /></li>
-                                <hr>
-                            </ul>
-                            <h3>Hong Leong Bank</h3>
-                            <ul class="plan-features">
-                                <li>ATM / Internet / Local Bank Transfer</li>
-                                <li>Deposit Min 30.00 MYR</li>
-                                <li>Withdrawal Min 50.00 MYR</li>
-                                <li>5 Minutes Deposit</li>
-                                <li>15 Minutes Withdrawal</li>
-                            </ul>
-                            <a class="btn btn-slider-black" href="Deposit.aspx">DEPOSIT NOW</a> 
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="pricing">
-                            <ul class="price">
-                                <li>
-                                    <img src="Theme/img/bank-amb.jpg" style="width: 100%; height: auto;" alt="" /></li>
-                                <hr>
-                            </ul>
-                            <h3>AmBank</h3>
-                            <ul class="plan-features">
-                                <li>ATM / Internet / Local Bank Transfer</li>
-                                <li>Deposit Min 30.00 MYR</li>
-                                <li>Withdrawal Min 50.00 MYR</li>
-                                <li>5 Minutes Deposit</li>
-                                <li>15 Minutes Withdrawal</li>
-                            </ul>
-                            <a class="btn btn-slider-black" href="Deposit.aspx">DEPOSIT NOW</a> 
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="pricing">
-                            <ul class="price">
-                                <li>
-                                    <img src="Theme/img/bank-bsn.jpg" style="width: 100%; height: auto;" alt="" /></li>
-                                <hr>
-                            </ul>
-                            <h3>BSN</h3>
-                            <ul class="plan-features">
-                                <li>ATM / Internet / Local Bank Transfer</li>
-                                <li>Deposit Min 30.00 MYR</li>
-                                <li>Withdrawal Min 50.00 MYR</li>
-                                <li>5 Minutes Deposit</li>
-                                <li>15 Minutes Withdrawal</li>
-                            </ul>
-                            <a class="btn btn-slider-black" href="Deposit.aspx">DEPOSIT NOW</a> 
-                        </div>
-                    </div>
+                </div>
+                <div class="row" id="bankList" runat="server">
+                    <%-- Bank List will show here --%>
+                </div>
+                <div class="row">
                     <div class="col-md-12 m-b-20">
                         <p><strong>Please note: </strong></p>
                         <ul>

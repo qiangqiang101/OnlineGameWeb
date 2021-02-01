@@ -25,7 +25,7 @@ Partial Class Deposit
         Else
             If Not IsPostBack Then
                 Using db As New DataClassesDataContext
-                    Dim banks = db.TblBanks.Where(Function(x) x.Status = 1).ToList
+                    Dim banks = db.TblBanks.Where(Function(x) x.AllowCredit = True And x.Status = 1).ToList
                     For Each bank As TblBank In banks
                         cmbBank.Items.Add(New ListItem(bank.BankName.Trim & " (" & bank.AccountName.Trim & ")", bank.BankID))
                     Next
@@ -35,9 +35,12 @@ Partial Class Deposit
                     Next
                     Dim products = db.TblProducts.Where(Function(x) x.Status = True).ToList
                     For Each pdt As TblProduct In products
+                        Dim acc = db.TblGameAccounts.Where(Function(x) x.ProductID = pdt.ProductID And x.MemberUserName = Session("username").ToString.Trim)
                         Dim pdtName As String = Nothing
                         If String.IsNullOrWhiteSpace(pdt.ProductAlias) Then pdtName = pdt.ProductName.Trim Else pdtName = pdt.ProductAlias.Trim
-                        cmbProduct.Items.Add(New ListItem(pdtName, pdt.ProductID))
+                        If acc.Count <> 0 Then
+                            cmbProduct.Items.Add(New ListItem(pdtName, pdt.ProductID))
+                        End If
                     Next
                 End Using
             End If

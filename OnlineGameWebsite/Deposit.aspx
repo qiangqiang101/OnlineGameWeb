@@ -30,7 +30,6 @@
                                     <li><a href="Withdrawal.aspx">Withdrawal</a></li>
                                     <li><a href="Transfer.aspx">Transfer</a></li>
                                     <li><a href="TransactionHistory.aspx">Transaction History</a></li>
-                                    <li><a href="GameAccount.aspx">Game Account</a></li>
                                 </ul>
                             </div>
                             <div class="col-md-9">

@@ -221,10 +221,10 @@ Partial Class Admin_EditPromotion
                             .PromoImage = fileUrl
                         Else
                             JsMsgBox("Image upload failed, please try upload only supported image format.")
-                            .PromoImage = imageUrl
+                            .PromoImage = imgPromo.ImageUrl
                         End If
                     Else
-                        .PromoImage = imageUrl
+                        .PromoImage = imgPromo.ImageUrl
                     End If
                 End With
 
@@ -238,7 +238,7 @@ Partial Class Admin_EditPromotion
         Return True
     End Function
 
-    Private Function AddNewPromotion(Optional image As String = "images/empty_box.png") As Boolean
+    Private Function AddNewPromotion(Optional image As String = "Theme/img/empty_box.png") As Boolean
         Try
             Using db As New DataClassesDataContext
                 Dim newPromo As New TblPromotion

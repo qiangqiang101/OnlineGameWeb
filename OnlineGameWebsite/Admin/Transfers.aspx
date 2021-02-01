@@ -48,7 +48,7 @@
                     </div>
                 </div>
                     <div class="table-responsive">
-                    <asp:Table CssClass="table table-bordered" ID="dataTable" ClientIDMode="Static" Width="100%" CellSpacing="0" runat="server">
+                    <asp:Table CssClass="table table-bordered table-hover" ID="dataTable" ClientIDMode="Static" Width="100%" CellSpacing="0" runat="server">
                         <asp:TableHeaderRow TableSection="TableHeader">
                             <asp:TableHeaderCell>ID</asp:TableHeaderCell>
                             <asp:TableHeaderCell>Date</asp:TableHeaderCell>

@@ -3268,11 +3268,13 @@ html.boxed .body {
     }
     .main article.shop-cart table.table tbody tr td:first-child img,
     .main article.shop-checkout table.table tbody tr td:first-child img {
-        top: 10px;
-        left: 10px;
+        top: 0px;
+        left: 0px;
         position: absolute;
-        height: 45px;
-        width: 45px;
+        height: 100%;
+        width: auto;
+        /*height: 45px;
+        width: 45px;*/
     }
     .main article.shop-cart table.table tbody tr td:nth-last-child(-n+2),
     .main article.shop-checkout table.table tbody tr td:nth-last-child(-n+2) {

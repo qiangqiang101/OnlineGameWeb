@@ -31,9 +31,14 @@
                                 </div>
                             </div>
                             <hr />
-                            <div class="col-sm-3 ml-auto">
-                                <asp:Button class="btn btn-primary btn-user btn-block" ID="btnSubmit" runat="server" Text="Update" />
+                            <div class="form-group row">
+                            <div class="col-sm-2 ml-auto">
+                                <asp:Button class="btn btn-success btn-user btn-block" ID="btnSubmit" runat="server" Text="Update" />
                             </div>
+                            <div class="col-sm-2">
+                                <input type="button" class="btn btn-primary btn-user btn-block" onclick="window.location = 'Remarks.aspx'" value="Go Back" />
+                            </div>
+                        </div>
                         </div>
                     </div>
                 </div>

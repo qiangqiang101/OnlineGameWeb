@@ -11,46 +11,61 @@
 
         <!-- DataTales Example -->
         <div class="row">
-            <div class="col-lg-6">
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">General</h6>
-                    </div>
-                    <div class="card-body">
-                        <div class="form-group row">
-                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                <label>User ID</label>
-                                <asp:textbox class="form-control form-control-user" id="txtUserID" runat="server" placeholder="User ID" readonly="true"></asp:textbox>
-                            </div>
+            <div class="col-lg-12">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="genTab" data-toggle="tab" href="#general" role="tab" aria-controls="general" aria-selected="true">General</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pdtTab" data-toggle="tab" href="#product" role="tab" aria-controls="product" aria-selected="false">Product</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="transTab" data-toggle="tab" href="#transaction" role="tab" aria-controls="transaction" aria-selected="false">Transaction</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="tranfTab" data-toggle="tab" href="#transfer" role="tab" aria-controls="transfer" aria-selected="false">Transfer</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="genTab">
+                        <div class="row">
                             <div class="col-sm-6">
-                                <label>Password</label>
-                                <asp:textbox class="form-control form-control-user" id="txtPassword" runat="server" placeholder="Password"></asp:textbox>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                <label>Email</label>
-                                <asp:textbox class="form-control form-control-user" id="txtEmail" runat="server" placeholder="Email"></asp:textbox>
-                            </div>
-                            <div class="col-sm-6">
-                                <label>Phone No.</label>
-                                <asp:textbox class="form-control form-control-user" id="txtPhone" runat="server" placeholder="Phone No." textmode="Phone"></asp:textbox>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                <label>Full Name</label>
-                                <asp:textbox class="form-control form-control-user" id="txtFullName" runat="server" placeholder="Full Name"></asp:textbox>
-                            </div>
-                            <div class="col-sm-6">
-                                <label>Birthday</label>
-                                <asp:textbox class="form-control form-control-user" id="txtBirthday" runat="server" textmode="Date"></asp:textbox>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                <label>Member Level</label>
-                                <asp:dropdownlist cssclass="form-control form-control-user" id="cmbLevel" autopostback="True" runat="server" placeholder="">
+                                <div class="card shadow mb-4">
+                                    <div class="card-body">
+                                        <div class="form-group row">
+                                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                                <label>User ID</label>
+                                                <asp:textbox class="form-control form-control-user" id="txtUserID" runat="server" placeholder="User ID" readonly="true"></asp:textbox>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label>Password</label>
+                                                <asp:textbox class="form-control form-control-user" id="txtPassword" runat="server" placeholder="Password"></asp:textbox>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                                <label>Email</label>
+                                                <asp:textbox class="form-control form-control-user" id="txtEmail" runat="server" placeholder="Email"></asp:textbox>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label>Phone No.</label>
+                                                <asp:textbox class="form-control form-control-user" id="txtPhone" runat="server" placeholder="Phone No." textmode="Phone"></asp:textbox>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                                <label>Full Name</label>
+                                                <asp:textbox class="form-control form-control-user" id="txtFullName" runat="server" placeholder="Full Name"></asp:textbox>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label>Birthday</label>
+                                                <asp:textbox class="form-control form-control-user" id="txtBirthday" runat="server" textmode="Date"></asp:textbox>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                                <label>Member Level</label>
+                                                <asp:dropdownlist cssclass="form-control form-control-user" id="cmbLevel" autopostback="True" runat="server" placeholder="">
                                         <asp:ListItem Value="0">Registered</asp:ListItem>
                                         <asp:ListItem Value="1">New Member</asp:ListItem>
                                         <asp:ListItem Value="2">Normal</asp:ListItem>
@@ -63,19 +78,19 @@
                                         <asp:ListItem Value="9">Platinum</asp:ListItem>
                                         <asp:ListItem Value="10">Platinum+</asp:ListItem>
                                     </asp:dropdownlist>
-                            </div>
-                            <div class="col-sm-6">
-                                <label>Status</label>
-                                <asp:dropdownlist cssclass="form-control form-control-user" id="cmbEnabled" autopostback="True" runat="server" placeholder="">
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label>Status</label>
+                                                <asp:dropdownlist cssclass="form-control form-control-user" id="cmbEnabled" autopostback="True" runat="server" placeholder="">
                                         <asp:ListItem Value="True">Enabled</asp:ListItem>
                                         <asp:ListItem Value="False">Disabled</asp:ListItem>
                                     </asp:dropdownlist>
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                <label>Bank</label>
-                                <asp:dropdownlist cssclass="form-control form-control-user" id="cmbBank" autopostback="True" runat="server" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                                <label>Bank</label>
+                                                <asp:dropdownlist cssclass="form-control form-control-user" id="cmbBank" autopostback="True" runat="server" placeholder="">
                                         <asp:ListItem Value="-1">---</asp:ListItem>
                                         <asp:ListItem Value="0">Maybank</asp:ListItem>
                                         <asp:ListItem Value="1">CIMB Bank</asp:ListItem>
@@ -99,88 +114,147 @@
                                         <asp:ListItem Value="19">MBSB Bank</asp:ListItem>
                                         <asp:ListItem Value="20">Co-op Bank Pertama</asp:ListItem>
                                     </asp:dropdownlist>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label>Bank Account</label>
+                                                <asp:textbox class="form-control form-control-user" id="txtAccNo" runat="server" placeholder=""></asp:textbox>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Remarks</label>
+                                            <asp:textbox class="form-control form-control-user" id="txtRemarks" runat="server" textmode="MultiLine" height="116px"></asp:textbox>
+                                        </div>
+                                        <hr />
+                                        <div class="form-group row">
+                                            <div class="col-sm-3 ml-auto">
+                                                <asp:button class="btn btn-success btn-user btn-block" id="btnSubmit" runat="server" text="Update" />
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <input type="button" class="btn btn-primary btn-user btn-block" onclick="window.location = 'Members.aspx'" value="Go Back" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+
                             <div class="col-sm-6">
-                                <label>Bank Account</label>
-                                <asp:textbox class="form-control form-control-user" id="txtAccNo" runat="server" placeholder=""></asp:textbox>
+                                <div class="card shadow mb-4">
+                                    <div class="card-body">
+                                        <div class="form-group row">
+                                            <div class="col-sm-12 mb-3 mb-sm-0">
+                                                <table id="transTable1" width="100%" cellspacing="0">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Total Deposit</td>
+                                                            <td>
+                                                                <label id="lblTotalDeposit" runat="server">$0.00 (0)</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Total Withdrawal</td>
+                                                            <td>
+                                                                <label id="lblTotalWithdrawal" runat="server">$0.00 (0)</label></td>
+                                                        </tr>
+                                                        <tr class="bordered">
+                                                            <td>Total Promotion</td>
+                                                            <td>
+                                                                <label id="lblTotalPromotion" runat="server">$0.00 (0)</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Register</td>
+                                                            <td>
+                                                                <label id="lblRegisterDate" runat="server">1990-01-01 00:00:00</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Last Login</td>
+                                                            <td>
+                                                                <label id="lblLastLoginDate" runat="server">1990-01-01 00:00:00</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>First Deposit</td>
+                                                            <td>
+                                                                <label id="lbl1stDepDate" runat="server">1990-01-01 00:00:00</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Last Deposit</td>
+                                                            <td>
+                                                                <label id="lblLstDepDate" runat="server">1990-01-01 00:00:00</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>First Withdrawal</td>
+                                                            <td>
+                                                                <label id="lbl1stWtdDate" runat="server">1990-01-01 00:00:00</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Last Withdrawal</td>
+                                                            <td>
+                                                                <label id="lblLstWtdDate" runat="server">1990-01-01 00:00:00</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Last Product Request</td>
+                                                            <td>
+                                                                <label id="lblLastGADate" runat="server">1990-01-01 00:00:00</label></td>
+                                                        </tr>
+                                                        <tr class="bordered">
+                                                            <td>Last Modified</td>
+                                                            <td>
+                                                                <label id="lblLastModified" runat="server">1990-01-01 00:00:00</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Referral Code</td>
+                                                            <td>
+                                                                <label id="lblRefCode" runat="server">-</label></td>
+                                                        </tr>
+                                                        <tr class="bordered">
+                                                            <td>Register Ref Code</td>
+                                                            <td>
+                                                                <label id="lblRegRefCode" runat="server">-</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Register IP</td>
+                                                            <td>
+                                                                <label id="lblRegisterIP" runat="server">127.0.0.1</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Last Login IP</td>
+                                                            <td>
+                                                                <label id="lblLastLoginIP" runat="server">127.0.0.1</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Last Deposit IP</td>
+                                                            <td>
+                                                                <label id="lblLastDepIP" runat="server">127.0.0.1</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Last Withdrawal IP</td>
+                                                            <td>
+                                                                <label id="lblLastWtdIP" runat="server">127.0.0.1</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Last Transfer IP</td>
+                                                            <td>
+                                                                <label id="lblLastTrfIP" runat="server">127.0.0.1</label></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Last Product ID Request IP</td>
+                                                            <td>
+                                                                <label id="lblLastGAIP" runat="server">127.0.0.1</label></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label>Remarks</label>
-                            <asp:textbox class="form-control form-control-user" id="txtRemarks" runat="server" textmode="MultiLine" height="95px"></asp:textbox>
-                        </div>
-                        <hr />
-                        <div class="col-sm-3 ml-auto">
-                            <asp:button class="btn btn-primary btn-user btn-block" id="btnSubmit" runat="server" text="Update" />
-                        </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="col-lg-6">
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Member Details</h6>
-                    </div>
-                    <div class="card-body">
-                        <div class="form-group row">
-                            <div class="col-sm-5 mb-3 mb-sm-0">
-                                <label>Total Deposit</label><br />
-                                <label>Total Withdrawal</label><br />
-                                <label>Total Promotion</label>
-                                <hr />
-                                <label>Register</label><br />
-                                <label>First Deposit</label><br />
-                                <label>Last Deposit</label><br />
-                                <label>First Withdrawal</label><br />
-                                <label>Last Withdrawal</label><br />
-                                <label>Last Modified</label>
-                                <hr />
-                                <label>Referral Code</label><br />
-                                <label>Register Ref Code</label>
-                                <hr />
-                                <label>Register IP</label><br />
-                                <label>Last Login IP</label><br />
-                                <label>Last Deposit IP</label><br />
-                                <label>Last Withdrawal IP</label><br />
-                                <label>Last Transfer IP</label>
-                            </div>
-                            <div class="col-sm-7">
-                                <label id="lblTotalDeposit" runat="server">$0.00 (0)</label><br />
-                                <label id="lblTotalWithdrawal" runat="server">$0.00 (0)</label><br />
-                                <label id="lblTotalPromotion" runat="server">$0.00 (0)</label>
-                                <hr />
-                                <label id="lblRegisterDate" runat="server">1990-01-01 00:00:00</label><br />
-                                <label id="lbl1stDepDate" runat="server">1990-01-01 00:00:00</label><br />
-                                <label id="lblLstDepDate" runat="server">1990-01-01 00:00:00</label><br />
-                                <label id="lbl1stWtdDate" runat="server">1990-01-01 00:00:00</label><br />
-                                <label id="lblLstWtdDate" runat="server">1990-01-01 00:00:00</label><br />
-                                <label id="lblLastModified" runat="server">1990-01-01 00:00:00</label>
-                                <hr />
-                                <label id="lblRefCode" runat="server">-</label><br />
-                                <label id="lblRegRefCode" runat="server">-</label>
-                                <hr />
-                                <label id="lblRegisterIP" runat="server">127.0.0.1</label><br />
-                                <label id="lblLastLoginIP" runat="server">127.0.0.1</label><br />
-                                <label id="lblLastDepIP" runat="server">127.0.0.1</label><br />
-                                <label id="lblLastWtdIP" runat="server">127.0.0.1</label><br />
-                                <label id="lblLastTrfIP" runat="server">127.0.0.1</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Products</h6>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <asp:table cssclass="table table-bordered" id="dataTable1" clientidmode="Static" width="100%" cellspacing="0" runat="server">
+                    <div class="tab-pane fade" id="product" role="tabpanel" aria-labelledby="pdtTab">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="card shadow mb-4">
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <asp:table cssclass="table table-bordered table-hover" id="dataTable1" clientidmode="Static" width="100%" cellspacing="0" runat="server">
                                     <asp:TableHeaderRow TableSection="TableHeader">
                                         <asp:TableHeaderCell>ID</asp:TableHeaderCell>
                                         <asp:TableHeaderCell>User Name</asp:TableHeaderCell>
@@ -189,39 +263,61 @@
                                         <asp:TableHeaderCell>Actions</asp:TableHeaderCell>
                                     </asp:TableHeaderRow>
                                 </asp:table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Transactions</h6>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <asp:table cssclass="table table-bordered" id="dataTable3" clientidmode="Static" width="100%" cellspacing="0" runat="server">
+                    <div class="tab-pane fade" id="transaction" role="tabpanel" aria-labelledby="transTab">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="card shadow mb-4">
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <asp:table cssclass="table table-bordered table-hover" id="dataTable3" clientidmode="Static" width="100%" cellspacing="0" runat="server">
                                     <asp:TableHeaderRow TableSection="TableHeader">
                                         <asp:TableHeaderCell>ID</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>Transaction Date</asp:TableHeaderCell>
+                                        <asp:TableHeaderCell>Date</asp:TableHeaderCell>
                                         <asp:TableHeaderCell>Product</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>User Name</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>Method</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>Debit</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>Credit</asp:TableHeaderCell>
+                                        <asp:TableHeaderCell>Payment Method</asp:TableHeaderCell>
+                                        <asp:TableHeaderCell HorizontalAlign="Right">Credit</asp:TableHeaderCell>
+                                        <asp:TableHeaderCell HorizontalAlign="Right">Debit</asp:TableHeaderCell>
+                                        <asp:TableHeaderCell>Type</asp:TableHeaderCell>
                                         <asp:TableHeaderCell>Status</asp:TableHeaderCell>
                                     </asp:TableHeaderRow>
                                 </asp:table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="transfer" role="tabpanel" aria-labelledby="tranfTab">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="card shadow mb-4">
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <asp:table cssclass="table table-bordered table-hover" id="dataTable4" clientidmode="Static" width="100%" cellspacing="0" runat="server">
+                                    <asp:TableHeaderRow TableSection="TableHeader">
+                                        <asp:TableHeaderCell>ID</asp:TableHeaderCell>
+                                        <asp:TableHeaderCell>Date</asp:TableHeaderCell>
+                                        <asp:TableHeaderCell>From Product</asp:TableHeaderCell>
+                                        <asp:TableHeaderCell>To Product</asp:TableHeaderCell>
+                                        <asp:TableHeaderCell HorizontalAlign="Right">Amount</asp:TableHeaderCell>
+                                        <asp:TableHeaderCell>Status</asp:TableHeaderCell>
+                                    </asp:TableHeaderRow>
+                                </asp:table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-    </div>
     <!-- /.container-fluid -->
 
     <!-- Bootstrap core JavaScript-->
@@ -246,7 +342,13 @@
             $("table[id^='dataTable']").DataTable({
                 "scrollCollapse": true,
                 "searching": true,
-                "paging": true
+                "paging": true,
+                "language": {
+                    "lengthMenu": "<td>Display &nbsp</td><td> _MENU_ </td><td>&nbsp records</td>",
+                    "search": "<td>Search &nbsp</td><td> _INPUT_ </td>"
+                },
+                "lengthMenu": [[20, 40, 60, 100, 150, 200, -1], [20, 40, 60, 100, 150, 200, "All"]],
+                "order": [[0, "desc"]]
             });
         });
     </script>

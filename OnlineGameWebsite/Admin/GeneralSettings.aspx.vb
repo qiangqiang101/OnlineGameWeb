@@ -21,21 +21,21 @@ Partial Class Admin_GeneralSettings
     End Sub
 
     Private Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
-        If fileUpload.HasFile Then
-            Dim file As String = Server.MapPath(upload & fileUpload.FileName)
-            Dim fileUrl As String = (upload & fileUpload.FileName).Replace("~/", "")
+        If fileUploader.HasFile Then
+            Dim file As String = Server.MapPath(upload & fileUploader.FileName)
+            Dim fileUrl As String = (upload & fileUploader.FileName).Replace("~/", "")
             Dim ext = file.Substring(file.LastIndexOf(".") + 1).ToLower
             If IsImage(ext) Then
                 If Not IO.Directory.Exists(Server.MapPath(upload)) Then IO.Directory.CreateDirectory(Server.MapPath(upload))
-                fileUpload.SaveAs(file)
+                fileUploader.SaveAs(file)
                 _logo = fileUrl
             Else
                 JsMsgBox("Image upload failed, please try upload only supported image format.")
-                _logo = Nothing
+                _logo = imgLogo.ImageUrl
                 Exit Sub
             End If
         Else
-            _logo = _logo
+            _logo = imgLogo.ImageUrl
         End If
 
         ConfigSettings.WriteSettings(New CfgWrite("CompanyName", txtCompany.Text.Trim), New CfgWrite("CopyrightText", txtCopyright.Text.Trim), New CfgWrite("CompanyLogo", If(_logo = Nothing, _logo, _logo.Trim)),

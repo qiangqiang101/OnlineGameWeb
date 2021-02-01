@@ -23,10 +23,6 @@
                                     <asp:FileUpload CssClass="custom-file-input" ID="fileUploader" runat="server" ClientIDMode="Static" />
                                     <label class="custom-file-label" for="fileUploader" id="fileUploaderLabel" runat="server">Select CSV file</label>
                                 </div> 
-<%--                                <div class="custom-file" id="customFile" lang="en">
-                                    <asp:FileUpload CssClass="custom-file-input" ID="fileUploader" aria-describedby="fileHelp" runat="server" ClientIDMode="Static" />
-                                    <label class="custom-file-label" for="fileUploader">Select CSV file...</label>
-                                </div>--%>
                             </div>
                             <div class="col-sm-4">
                                 <label>Product</label>
@@ -80,7 +76,7 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <asp:Table CssClass="table table-bordered" ID="dataTable" ClientIDMode="Static" Width="100%" CellSpacing="0" runat="server">
+                    <asp:Table CssClass="table table-bordered table-hover" ID="dataTable" ClientIDMode="Static" Width="100%" CellSpacing="0" runat="server">
                         <asp:TableHeaderRow TableSection="TableHeader">
                             <asp:TableHeaderCell>ID</asp:TableHeaderCell>
                             <asp:TableHeaderCell>Date Created</asp:TableHeaderCell>
@@ -112,7 +108,6 @@
 
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
-
 
     <script>
         $('#fileUploader').on('change', function () {

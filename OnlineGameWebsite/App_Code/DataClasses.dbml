@@ -16,20 +16,6 @@
       <Column Name="PromoImage" Type="System.String" DbType="NChar(255) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
-  <Table Name="dbo.TblBank" Member="TblBanks">
-    <Type Name="TblBank">
-      <Column Name="BankID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="BankName" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
-      <Column Name="AccountName" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
-      <Column Name="AccountNo" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
-      <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="BankWeb" Type="System.String" DbType="NChar(255)" CanBeNull="true" />
-      <Column Name="MinCredit" Type="System.Single" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="MaxCredit" Type="System.Single" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="MinDebit" Type="System.Single" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="MaxDebit" Type="System.Single" DbType="Float NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
   <Table Name="dbo.TblSlider" Member="TblSliders">
     <Type Name="TblSlider">
       <Column Name="SliderID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -197,6 +183,23 @@
       <Column Name="ApproveByUser" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
       <Column Name="ApproveDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="Remark" Type="System.String" DbType="NChar(255)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TblBank" Member="TblBanks">
+    <Type Name="TblBank">
+      <Column Name="BankID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="BankName" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="AccountName" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="AccountNo" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BankWeb" Type="System.String" DbType="NChar(255)" CanBeNull="true" />
+      <Column Name="MinCredit" Type="System.Single" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="MaxCredit" Type="System.Single" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="MinDebit" Type="System.Single" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="MaxDebit" Type="System.Single" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="BankLogo" Type="System.String" DbType="NChar(255)" CanBeNull="true" />
+      <Column Name="AllowCredit" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="AllowDebit" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Function Name="dbo.GetMembers" Method="GetMembers">

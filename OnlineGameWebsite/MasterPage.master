@@ -201,11 +201,13 @@
                             <span class="caret"></span>
                                     </a>
                                     <ul class="dropdown-menu palovit-dropdown" aria-labelledby="memberArea">
+                                        <li><a href="MyProfile.aspx">My Profile</a></li>
+                                        <li><a href="MyAccounts.aspx">My Accounts</a></li>
+                                        <hr />
                                         <li><a href="Deposit.aspx">Deposit</a></li>
                                         <li><a href="Withdrawal.aspx">Withdrawal</a></li>
                                         <li><a href="Transfer.aspx">Transfer</a></li>
                                         <li><a href="TransactionHistory.aspx">Transaction History</a></li>
-                                        <li><a href="GameAccount.aspx">Game Accounts</a></li>
                                         <hr />
                                         <li><a href="#" id="logout" runat="server">Log out</a></li>
                                     </ul>

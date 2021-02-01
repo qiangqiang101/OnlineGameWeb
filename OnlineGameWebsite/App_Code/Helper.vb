@@ -32,6 +32,11 @@ Public Module Helper
         page.ClientScript.RegisterStartupScript(page.GetType, "SweetAlert", "swalTheme.fire(" & result & ");", True)
     End Sub
 
+    <Extension>
+    Public Sub swal(page As Page, text As String)
+        page.ClientScript.RegisterStartupScript(page.GetType, "SweetAlert", "swalTheme.fire(" & text & ");", True)
+    End Sub
+
     ''' <summary>
     ''' And with a third argument, you can add an icon to your alert! There are 4 predefined ones: "warning", "error", "success" and "info".
     ''' </summary>
@@ -207,11 +212,15 @@ Public Module Helper
     Public Function DeleteButton(url As String, Optional button As String = "fa-times", Optional tooltip As String = Nothing) As String
         Return "<a href=""javascript:swalTheme.fire({title: 'Are you sure?', text: 'Once cancelled, you will not be able to recover this transaction!', icon: 'warning', showCancelButton: true, confirmButtonText: 'Yes', cancelButtonText: 'No'})" &
             ".then((result) => {if (result.isConfirmed) {swalTheme.fire('Successful', 'Your transaction has been cancelled.', 'success').then(function() {window.location = '" & url & "';})} else if (result.dismiss === swal.DismissReason.cancel)" &
-            " {swalTheme.fire('Okay', 'Your operation has not been cancelled.', 'success')}})"" data-toggle=""tooltip"" title=""" & tooltip & """><i class=""fa " & button & """></i></a>"
+            " {swalTheme.fire('Okay', 'Your operation has not been cancelled.', 'success')}})"" data-toggle=""tooltip"" title=""" & tooltip & """><i class=""fas " & button & """></i></a>"
     End Function
 
     Public Function RRButton(swal As String, Optional button As String = "fa-times", Optional tooltip As String = Nothing) As String
-        Return String.Format("<a href={0}javascript:swalTheme.fire({1});{0} data-toggle={0}tooltip{0} title={0}{3}{0}><i class={0}fa {2}{0}></i></a>", """", swal, button, tooltip)
+        Return String.Format("<a href={0}javascript:swalTheme.fire({1});{0} data-toggle={0}tooltip{0} title={0}{3}{0}><i class={0}fas {2}{0}></i></a>", """", swal, button, tooltip)
+    End Function
+
+    Public Function GAButton(swal As String, Optional button As String = "fa-times", Optional tooltip As String = Nothing) As String
+        Return String.Format("<a href={0}javascript:swalTheme.fire({1});{0} data-toggle={0}tooltip{0} title={0}{3}{0}><i class={0}fas {2}{0}></i></a>", """", swal, button, tooltip)
     End Function
 
     <Extension>
@@ -277,6 +286,29 @@ Public Module Helper
     End Sub
 
     <Extension>
+    Public Sub AddTransactionTableItem(table As Table, id As Integer, tdate As Date, productname As String, productUN As String, method As String, status As Integer, credit As Single, debit As Single, promo As Single, type As Integer)
+        Dim row As New TableRow()
+        row.Cells.Add(New TableCell() With {.Text = id.ToString("00000")})
+        row.Cells.Add(New TableCell() With {.Text = tdate.ToString(dateFormat)})
+        row.Cells.Add(New TableCell() With {.Text = productname.Trim & " (" & productUN.Trim & ")"})
+        row.Cells.Add(New TableCell() With {.Text = method.Trim})
+        row.Cells.Add(New TableCell() With {.Text = If(credit <> 0F, credit.ToString("N"), If(promo <> 0F, promo.ToString("N"), "")), .HorizontalAlign = HorizontalAlign.Right, .ClientIDMode = ClientIDMode.Static, .ForeColor = Color.Blue})
+        row.Cells.Add(New TableCell() With {.Text = If(debit <> 0F, debit.ToString("N"), ""), .HorizontalAlign = HorizontalAlign.Right, .ClientIDMode = ClientIDMode.Static, .ForeColor = Color.Red})
+        row.Cells.Add(New TableCell() With {.Text = If(type = 0, "Credit", If(type = 2, "Promotion", "Debit"))})
+        Dim statusColor As Color = Color.Blue
+        Select Case status
+            Case 0, 1
+                statusColor = Color.Blue
+            Case 2
+                statusColor = Color.Green
+            Case Else
+                statusColor = Color.Red
+        End Select
+        row.Cells.Add(New TableCell() With {.Text = StatusToString(status), .BackColor = statusColor, .ForeColor = Color.White})
+        table.Rows.Add(row)
+    End Sub
+
+    <Extension>
     Public Sub AddTransferTableItem(table As Table, id As Integer, tdate As Date, userid As String, fullname As String, frPdtName As String, frPdtUN As String, toPdtName As String, toPdtUN As String, amount As Single, status As Integer)
         Dim row As New TableRow()
         row.Cells.Add(New TableCell() With {.Text = id.ToString("00000")})
@@ -303,6 +335,27 @@ Public Module Helper
         Else
             row.Cells.Add(New TableCell() With {.Text = RB("EditTransfer.aspx?mode=edit&id=" & id, "fas fa-eye", tooltip:="Edit")})
         End If
+        table.Rows.Add(row)
+    End Sub
+
+    <Extension>
+    Public Sub AddTransferTableItem(table As Table, id As Integer, tdate As Date, frPdtName As String, frPdtUN As String, toPdtName As String, toPdtUN As String, amount As Single, status As Integer)
+        Dim row As New TableRow()
+        row.Cells.Add(New TableCell() With {.Text = id.ToString("00000")})
+        row.Cells.Add(New TableCell() With {.Text = tdate.ToString(dateFormat)})
+        row.Cells.Add(New TableCell() With {.Text = frPdtName.Trim & " (" & frPdtUN.Trim & ")"})
+        row.Cells.Add(New TableCell() With {.Text = toPdtName.Trim & " (" & toPdtUN.Trim & ")"})
+        row.Cells.Add(New TableCell() With {.Text = amount.ToString("N")})
+        Dim statusColor As Color = Color.Blue
+        Select Case status
+            Case 0, 1
+                statusColor = Color.Blue
+            Case 2
+                statusColor = Color.Green
+            Case Else
+                statusColor = Color.Red
+        End Select
+        row.Cells.Add(New TableCell() With {.Text = StatusToString(status), .BackColor = statusColor, .ForeColor = Color.White})
         table.Rows.Add(row)
     End Sub
 
@@ -374,6 +427,7 @@ Public Module Helper
         If fish Then result.Add("Fish Hunter")
         If poker Then result.Add("Poker")
         If other Then result.Add("Other")
+        If slot And live And sport And rng And fish And poker And other Then result.Clear() : result.Add("All")
         Return String.Join(", ", result)
     End Function
 
@@ -511,15 +565,93 @@ Public Module Helper
         End Try
     End Sub
 
-    Public Function LastLoginIP(username As String) As String
+    Public Function LogIP(log As IQueryable(Of TblLog), type As eLogType) As String
         Try
-            Using db As New DataClassesDataContext
-                Dim log = db.TblLogs.Where(Function(x) x.LogMember = username And x.LogType = 1).OrderByDescending(Function(x) x.LogDate).FirstOrDefault
-                Return log.LogIP.Trim
-            End Using
+            Return log.Where(Function(x) x.LogType = type).OrderByDescending(Function(x) x.LogDate).First.LogIP.Trim
+        Catch ex As Exception
+            Logger.Log(ex)
+            Return "127.0.0.1"
+        End Try
+    End Function
+
+    Public Function LogDate(log As IQueryable(Of TblLog), type As eLogType) As Date
+        Try
+            Return log.Where(Function(x) x.LogType = type).OrderByDescending(Function(x) x.LogDate).First.LogDate
+        Catch ex As Exception
+            Logger.Log(ex)
+            Return Date.ParseExact("1990-01-01T00:00", "yyyy-MM-ddTHH:mm", System.Globalization.DateTimeFormatInfo.InvariantInfo)
+        End Try
+    End Function
+
+    Public Enum eSum
+        Credit
+        Debit
+        Promotion
+    End Enum
+
+    Public Function SumTransaction(mt As IQueryable(Of TblTransaction), sum As eSum) As Single
+        Try
+            Select Case sum
+                Case eSum.Credit
+                    Return mt.Sum(Function(x) x.Credit)
+                Case eSum.Debit
+                    Return mt.Sum(Function(x) x.Debit)
+                Case eSum.Promotion
+                    Return mt.Sum(Function(x) x.Promotion)
+                Case Else
+                    Return 0F
+            End Select
         Catch ex As Exception
             Log(ex)
-            Return "127.0.0.1"
+            Return 0F
+        End Try
+    End Function
+
+    Public Function CountTransaction(mt As IQueryable(Of TblTransaction), sum As eSum) As Integer
+        Try
+            Select Case sum
+                Case eSum.Credit
+                    Return mt.Count(Function(x) x.Credit)
+                Case eSum.Debit
+                    Return mt.Count(Function(x) x.Debit)
+                Case eSum.Promotion
+                    Return mt.Count(Function(x) x.Promotion)
+                Case Else
+                    Return 0
+            End Select
+        Catch ex As Exception
+            Log(ex)
+            Return 0
+        End Try
+    End Function
+
+    Public Function TransactionDate(mt As IQueryable(Of TblTransaction), sum As eSum, first As Boolean) As Date
+        Try
+            Select Case sum
+                Case eSum.Credit
+                    If first Then
+                        Return mt.Where(Function(x) x.TransType = 0).OrderBy(Function(x) x.TransactionDate).First.TransactionDate
+                    Else
+                        Return mt.Where(Function(x) x.TransType = 0).OrderByDescending(Function(x) x.TransactionDate).First.TransactionDate
+                    End If
+                Case eSum.Debit
+                    If first Then
+                        Return mt.Where(Function(x) x.TransType = 1).OrderBy(Function(x) x.TransactionDate).First.TransactionDate
+                    Else
+                        Return mt.Where(Function(x) x.TransType = 1).OrderByDescending(Function(x) x.TransactionDate).First.TransactionDate
+                    End If
+                Case eSum.Promotion
+                    If first Then
+                        Return mt.Where(Function(x) x.TransType = 2).OrderBy(Function(x) x.TransactionDate).First.TransactionDate
+                    Else
+                        Return mt.Where(Function(x) x.TransType = 2).OrderByDescending(Function(x) x.TransactionDate).First.TransactionDate
+                    End If
+                Case Else
+                    Return Date.ParseExact("1990-01-01T00:00", "yyyy-MM-ddTHH:mm", System.Globalization.DateTimeFormatInfo.InvariantInfo)
+            End Select
+        Catch ex As Exception
+            Log(ex)
+            Return Date.ParseExact("1990-01-01T00:00", "yyyy-MM-ddTHH:mm", System.Globalization.DateTimeFormatInfo.InvariantInfo)
         End Try
     End Function
 

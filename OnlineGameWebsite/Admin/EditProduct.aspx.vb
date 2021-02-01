@@ -223,7 +223,7 @@ Partial Class Admin_EditProduct
         Return True
     End Function
 
-    Private Function AddNewProduct(Optional image As String = "images/empty_box.png") As Boolean
+    Private Function AddNewProduct(Optional image As String = "Theme/img/empty_box.png") As Boolean
         Try
             Using db As New DataClassesDataContext
                 Dim newProduct As New TblProduct
@@ -253,10 +253,10 @@ Partial Class Admin_EditProduct
                             .ProductImage = fileUrl
                         Else
                             JsMsgBox("Image upload failed, please try upload only supported image format.")
-                            .ProductImage = Nothing
+                            .ProductImage = imgProduct.ImageUrl
                         End If
                     Else
-                        .ProductImage = image
+                        .ProductImage = imgProduct.ImageUrl
                     End If
                 End With
 

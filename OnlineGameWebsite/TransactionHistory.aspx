@@ -30,58 +30,77 @@
                                     <li><a href="Withdrawal.aspx">Withdrawal</a></li>
                                     <li><a href="Transfer.aspx">Transfer</a></li>
                                     <li class="active"><a href="TransactionHistory.aspx">Transaction History</a></li>
-                                    <li><a href="GameAccount.aspx">Game Account</a></li>
                                 </ul>
                             </div>
                             <div class="col-md-9">
                                 <hr class="hr" />
-                                <h4>Deposit</h4>
-                                <asp:Table CssClass="table" ID="tblDeposit" runat="server">
-                                    <asp:TableHeaderRow TableSection="TableHeader">
-                                        <asp:TableHeaderCell>Date</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>Product</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>Payment Method</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>Status</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>Amount</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>Action</asp:TableHeaderCell>
-                                    </asp:TableHeaderRow>
-                                </asp:Table>
-                                <hr class="hr" />
-                                <h4>Promotion</h4>
-                                <asp:Table CssClass="table" ID="tblPromotion" runat="server">
-                                    <asp:TableHeaderRow TableSection="TableHeader">
-                                        <asp:TableHeaderCell>Date</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>Product</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>Payment Method</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>Status</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>Amount</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>Action</asp:TableHeaderCell>
-                                    </asp:TableHeaderRow>
-                                </asp:Table>
-                                <hr class="hr" />
-                                <h4>Withdrawal</h4>
-                                <asp:Table CssClass="table" ID="tblWithdraw" runat="server">
-                                    <asp:TableHeaderRow TableSection="TableHeader">
-                                        <asp:TableHeaderCell>Date</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>Product</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>Payment Method</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>Status</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>Amount</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>Action</asp:TableHeaderCell>
-                                    </asp:TableHeaderRow>
-                                </asp:Table>
-                                <hr class="hr" />
-                                <h4>Transfer</h4>
-                                <asp:Table CssClass="table" ID="tblTransfer" runat="server">
-                                    <asp:TableHeaderRow TableSection="TableHeader">
-                                        <asp:TableHeaderCell>Date</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>From</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>To</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>Status</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>Amount</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>Action</asp:TableHeaderCell>
-                                    </asp:TableHeaderRow>
-                                </asp:Table>
+                                <h4>Transaction History</h4>
+                                <div class="palovit-tab">
+                                    <ul class="nav nav-tabs" role="tablist">
+                                        <li role="presentation" class="active">
+                                            <a href="#tabDeposit" aria-controls="tabDeposit" role="tab" data-toggle="tab">DEPOSIT</a>
+                                        </li>
+                                        <li role="presentation">
+                                            <a href="#tabPromotion" aria-controls="tabPromotion" role="tab" data-toggle="tab">PROMOTION</a>
+                                        </li>
+                                        <li role="presentation">
+                                            <a href="#tabWithdrawal" aria-controls="tabWithdrawal" role="tab" data-toggle="tab">WITHDRAWAL</a>
+                                        </li>
+                                        <li role="presentation">
+                                            <a href="#tabTransfer" aria-controls="tabTransfer" role="tab" data-toggle="tab">TRANSFER</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div role="tabpanel" class="tab-pane active p-15" id="tabDeposit">
+                                            <asp:Table CssClass="table table-hover" ID="tblDeposit" runat="server">
+                                                <asp:TableHeaderRow TableSection="TableHeader">
+                                                    <asp:TableHeaderCell>Date</asp:TableHeaderCell>
+                                                    <asp:TableHeaderCell>Product</asp:TableHeaderCell>
+                                                    <asp:TableHeaderCell>Payment Method</asp:TableHeaderCell>
+                                                    <asp:TableHeaderCell>Status</asp:TableHeaderCell>
+                                                    <asp:TableHeaderCell>Amount</asp:TableHeaderCell>
+                                                    <asp:TableHeaderCell>Action</asp:TableHeaderCell>
+                                                </asp:TableHeaderRow>
+                                            </asp:Table>
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane p-15" id="tabPromotion">
+                                            <asp:Table CssClass="table table-hover" ID="tblPromotion" runat="server">
+                                                <asp:TableHeaderRow TableSection="TableHeader">
+                                                    <asp:TableHeaderCell>Date</asp:TableHeaderCell>
+                                                    <asp:TableHeaderCell>Product</asp:TableHeaderCell>
+                                                    <asp:TableHeaderCell>Payment Method</asp:TableHeaderCell>
+                                                    <asp:TableHeaderCell>Status</asp:TableHeaderCell>
+                                                    <asp:TableHeaderCell>Amount</asp:TableHeaderCell>
+                                                    <asp:TableHeaderCell>Action</asp:TableHeaderCell>
+                                                </asp:TableHeaderRow>
+                                            </asp:Table>
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane p-15" id="tabWithdrawal">
+                                            <asp:Table CssClass="table table-hover" ID="tblWithdraw" runat="server">
+                                                <asp:TableHeaderRow TableSection="TableHeader">
+                                                    <asp:TableHeaderCell>Date</asp:TableHeaderCell>
+                                                    <asp:TableHeaderCell>Product</asp:TableHeaderCell>
+                                                    <asp:TableHeaderCell>Payment Method</asp:TableHeaderCell>
+                                                    <asp:TableHeaderCell>Status</asp:TableHeaderCell>
+                                                    <asp:TableHeaderCell>Amount</asp:TableHeaderCell>
+                                                    <asp:TableHeaderCell>Action</asp:TableHeaderCell>
+                                                </asp:TableHeaderRow>
+                                            </asp:Table>
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane p-15" id="tabTransfer">
+                                            <asp:Table CssClass="table table-hover" ID="tblTransfer" runat="server">
+                                                <asp:TableHeaderRow TableSection="TableHeader">
+                                                    <asp:TableHeaderCell>Date</asp:TableHeaderCell>
+                                                    <asp:TableHeaderCell>From</asp:TableHeaderCell>
+                                                    <asp:TableHeaderCell>To</asp:TableHeaderCell>
+                                                    <asp:TableHeaderCell>Status</asp:TableHeaderCell>
+                                                    <asp:TableHeaderCell>Amount</asp:TableHeaderCell>
+                                                    <asp:TableHeaderCell>Action</asp:TableHeaderCell>
+                                                </asp:TableHeaderRow>
+                                            </asp:Table>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </article>

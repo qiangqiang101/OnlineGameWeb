@@ -69,7 +69,6 @@
                                     </asp:dropdownlist>
                             </div>
                         </div>
-
                         <hr />
                         <div class="form-group row">
                             <div class="col-sm-12">
@@ -91,25 +90,25 @@
                         </div>
                         <hr />
                         <div class="form-group row">
-                            <div class="col-sm-12">
-                                <table width="100%" cellspacing="0">
-                                    <tbody>
-                                        <tr>
-                                            <td colspan="2">Select Image</td>
-                                            <td colspan="2">
-                                                <asp:fileupload id="fileUploader" runat="server" />
-                                            </td>
-                                            <td colspan="2">
-                                                <asp:image id="imgPromo" runat="server" width="200px" />
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <label>Image</label>
+                                <div class="custom-file">
+                                    <asp:FileUpload CssClass="custom-file-input" ID="fileUploader" runat="server" ClientIDMode="Static" />
+                                    <label class="custom-file-label" for="fileUploader" id="fileUploaderLabel" runat="server">Select promotion file</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <asp:Image ID="imgPromo" runat="server" CssClass="img-fluid" />
                             </div>
                         </div>
                         <hr />
-                        <div class="col-sm-3 ml-auto">
-                            <asp:button class="btn btn-primary btn-user btn-block" id="btnSubmit" runat="server" text="Update" />
+                        <div class="form-group row">
+                            <div class="col-sm-2 ml-auto">
+                                <asp:Button class="btn btn-success btn-user btn-block" ID="btnSubmit" runat="server" Text="Update" />
+                            </div>
+                            <div class="col-sm-2">
+                                <input type="button" class="btn btn-primary btn-user btn-block" onclick="window.location = 'Promotions.aspx'" value="Go Back" />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -134,5 +133,14 @@
 
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
+
+    <script>
+        $('#fileUploader').on('change', function () {
+            //get the file name
+            var fileName = $(this).val();
+            //replace the "Choose a file" label
+            $(this).next('.custom-file-label').html(fileName);
+        })
+    </script>
 </asp:Content>
 

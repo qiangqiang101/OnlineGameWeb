@@ -28,20 +28,15 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-sm-12">
-                                <label>Logo</label>
-                                <table width="100%" cellspacing="0">
-                                    <tbody>
-                                        <tr>
-                                            <td colspan="2">
-                                                <asp:fileupload id="fileUpload" runat="server" />
-                                            </td>
-                                            <td colspan="2">
-                                                <asp:image id="imgLogo" runat="server" height="50px" />
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <label>Image</label>
+                                <div class="custom-file">
+                                    <asp:fileupload cssclass="custom-file-input" id="fileUploader" runat="server" clientidmode="Static" />
+                                    <label class="custom-file-label" for="fileUploader" id="fileUploaderLabel" runat="server">Select logo file</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <asp:image id="imgLogo" runat="server" cssclass="img-fluid" />
                             </div>
                         </div>
                         <div class="form-group row">
@@ -55,8 +50,10 @@
                             </div>
                         </div>
                         <hr />
-                        <div class="col-sm-3 ml-auto">
-                            <asp:button class="btn btn-primary btn-user btn-block" id="btnSubmit" runat="server" text="Update" />
+                        <div class="form-group row">
+                            <div class="col-sm-3 ml-auto">
+                                <asp:Button class="btn btn-success btn-user btn-block" ID="btnSubmit" runat="server" Text="Submit" />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -92,8 +89,10 @@
                             </div>
                         </div>
                         <hr />
-                        <div class="col-sm-3 ml-auto">
-                            <asp:button class="btn btn-primary btn-user btn-block" id="btnSubmitTwilio" runat="server" text="Update" />
+                        <div class="form-group row">
+                            <div class="col-sm-3 ml-auto">
+                                <asp:Button class="btn btn-success btn-user btn-block" ID="btnSubmitTwilio" runat="server" Text="Submit" />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -119,5 +118,14 @@
 
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
+
+    <script>
+        $('#fileUploader').on('change', function () {
+            //get the file name
+            var fileName = $(this).val();
+            //replace the "Choose a file" label
+            $(this).next('.custom-file-label').html(fileName);
+        })
+    </script>
 </asp:Content>
 
