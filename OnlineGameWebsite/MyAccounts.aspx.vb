@@ -28,12 +28,12 @@ Partial Class MyAccounts
                     End If
                     Dim request As String = String.Empty
                     If accounts.Count = 0 Then
-                        request = "<a href=""Action.aspx?mode=account&redirect=account&id=" & product.ProductID & "&mid=" & Session("userid").ToString.Trim & """><i class=""fas fa-hand-paper"" data-toggle=""tooltip"" title=""Get ID"">&nbsp</i>Get ID</a>"
+                        request = "<a href=""Action.aspx?mode=account&redirect=account&id=" & product.ProductID & "&mid=" & Session("userid").ToString.Trim & """><i class=""fas fa-hand-paper"" data-toggle=""tooltip"" title=""Get ID""></i></a>"
                     End If
 
                     Dim pdtName As String = If(String.IsNullOrWhiteSpace(product.ProductAlias), product.ProductName.Trim, product.ProductAlias.Trim)
                     Dim image As String = "<img src=""" & product.ProductImage.Trim & """ class=""img-responsive"" alt=""" & pdtName & """ />"
-                    Dim download As String = "<a href=""Product.aspx?id=" & product.ProductID & """><i class=""fas fa-download"" data-toggle=""tooltip"" title=""Download"">&nbsp</i>Download</a> "
+                    Dim download As String = "<a href=""Product.aspx?id=" & product.ProductID & """><i class=""fas fa-download"" data-toggle=""tooltip"" title=""Download""></i></a> "
 
                     table.AddTableItem(image, pdtName, GenerateCategoryString(product.CatSlot, product.CatLive, product.CatSport, product.CatRNG, product.CatFish, product.CatPoker, product.CatOther), username, password, download & request)
                 Next

@@ -63,13 +63,13 @@ Partial Class Admin_EditTransfer
                     End Try
                 Case "approve"
                     If TryApproveTransfer() Then
-                        Response.Redirect("Transfer.aspx")
+                        Response.Redirect("Transfers.aspx")
                     Else
                         JsMsgBoxRedirect("Transfer failed to Approve! Please contact Administrator.", Request.RawUrl.ToString())
                     End If
                 Case "reject"
                     If TryRejectTransfer() Then
-                        Response.Redirect("Transfer.aspx")
+                        Response.Redirect("Transfers.aspx")
                     Else
                         JsMsgBoxRedirect("Transfer failed to Reject! Please contact Administrator.", Request.RawUrl.ToString())
                     End If
@@ -123,7 +123,7 @@ Partial Class Admin_EditTransfer
     Private Sub btnApprove_Click(sender As Object, e As EventArgs) Handles btnApprove.Click
         If mode = "edit" Then
             If TryApproveTransfer() Then
-                Response.Redirect("Transfer.aspx")
+                Response.Redirect("Transfers.aspx")
             Else
                 JsMsgBoxRedirect("Transfer failed to Approve! Please contact Administrator.", Request.RawUrl.ToString())
             End If
@@ -133,7 +133,7 @@ Partial Class Admin_EditTransfer
     Private Sub btnReject_Click(sender As Object, e As EventArgs) Handles btnReject.Click
         If mode = "edit" Then
             If TryRejectTransfer() Then
-                Response.Redirect("Transfer.aspx")
+                Response.Redirect("Transfers.aspx")
             Else
                 JsMsgBoxRedirect("Transfer failed to Reject! Please contact Administrator.", Request.RawUrl.ToString())
             End If
@@ -141,6 +141,6 @@ Partial Class Admin_EditTransfer
     End Sub
 
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
-        Response.Redirect("Transfer.aspx")
+        Response.Redirect("Transfers.aspx")
     End Sub
 End Class

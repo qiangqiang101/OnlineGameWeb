@@ -1,16 +1,6 @@
 ﻿Partial Class MasterPage
     Inherits System.Web.UI.MasterPage
 
-    Private Sub btnHead_Click(sender As Object, e As EventArgs) Handles btnHead.Click
-        Dim role As String = HttpContext.Current.Session("role")
-
-        If role = "user" Then
-            Response.Redirect("Deposit.aspx")
-        Else
-            Response.Redirect("Register.aspx")
-        End If
-    End Sub
-
     Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
         If IsMemberLoginSuccess(txtUserID.Text.Trim, txtPassword.Text.Trim, Page) Then
             LogAction(txtUserID.Text.Trim, Request.UserHostAddress, eLogType.Login)
@@ -38,10 +28,23 @@
         Return li
     End Function
 
+    Private Function GenerateLi(inHtml As String) As HtmlGenericControl
+        Dim li = New HtmlGenericControl("li")
+        With li
+            .InnerHtml = "<i class=""far fa-user-circle""></i>" & inHtml
+        End With
+
+        Return li
+    End Function
+
     Private Sub MasterPage_Load(sender As Object, e As EventArgs) Handles Me.Load
+        'Response.Cache.SetExpires(Now.AddHours(1))
+        'Response.Cache.SetCacheability(HttpCacheability.NoCache)
+        'Response.Cache.SetValidUntilExpires(True)
+
         Page.Title = ConfigSettings.ReadSetting(Of String)("CompanyName", "Online Game")
         siteLogo.Src = ConfigSettings.ReadSetting(Of String)("CompanyLogo", "Theme/img/logo.png")
-        siteLogo2.src = ConfigSettings.ReadSetting(Of String)("CompanyLogo", "Theme/img/logo.png")
+        siteLogo2.Src = ConfigSettings.ReadSetting(Of String)("CompanyLogo", "Theme/img/logo.png")
         siteTitle.InnerText = ConfigSettings.ReadSetting(Of String)("CompanyName", "Online Game")
         copyright.InnerText = ConfigSettings.ReadSetting(Of String)("CopyrightText", "Copyright 2020. All Rights Reserved.")
 
@@ -57,58 +60,78 @@
             mobileProduct.Visible = True
             megaProduct.Visible = False
         Else
-            Using db As New DataClassesDataContext
-                Dim slots = db.TblProducts.Where(Function(x) x.Status = True And x.CatSlot = True).Take(5).ToList
-                For Each slot As TblProduct In slots
-                    menuSlot.Controls.Add(LoadProductMenus(slot.ProductName, "Product.aspx?id=" & slot.ProductID))
-                Next
-                menuSlot.Controls.Add(LoadProductMenus("More Slot Game...", "Products.aspx?cat=slot"))
+            Dim productCache = "productCache"
+            Dim productsList As List(Of TblProduct) = HttpRuntime.Cache(productCache)
+            If productsList Is Nothing Then
+                Using db As New DataClassesDataContext
+                    productsList = db.TblProducts.Where(Function(x) x.Status = True).ToList
+                    HttpRuntime.Cache.Add(productCache, productsList, Nothing, Now.AddHours(8), TimeSpan.Zero, CacheItemPriority.Default, Nothing)
+                End Using
+            End If
 
-                Dim lcs = db.TblProducts.Where(Function(x) x.Status = True And x.CatLive = True).Take(5).ToList
-                For Each lc As TblProduct In lcs
-                    menuLive.Controls.Add(LoadProductMenus(lc.ProductName, "Product.aspx?id=" & lc.ProductID))
-                Next
-                menuLive.Controls.Add(LoadProductMenus("More Live Casino...", "Products.aspx?cat=live"))
+            Dim slots = productsList.Where(Function(x) x.Status = True And x.CatSlot = True).Take(5).ToList
+            For Each slot As TblProduct In slots
+                menuSlot.Controls.Add(LoadProductMenus(slot.ProductName, "Product.aspx?id=" & slot.ProductID))
+            Next
+            menuSlot.Controls.Add(LoadProductMenus("More Slot Game...", "Products.aspx?cat=slot"))
 
-                Dim sports = db.TblProducts.Where(Function(x) x.Status = True And x.CatSport = True).Take(5).ToList
-                For Each sport As TblProduct In sports
-                    menuSport.Controls.Add(LoadProductMenus(sport.ProductName, "Product.aspx?id=" & sport.ProductID))
-                Next
-                menuSport.Controls.Add(LoadProductMenus("More Sportsbook...", "Products.aspx?cat=sport"))
+            Dim lcs = productsList.Where(Function(x) x.Status = True And x.CatLive = True).Take(5).ToList
+            For Each lc As TblProduct In lcs
+                menuLive.Controls.Add(LoadProductMenus(lc.ProductName, "Product.aspx?id=" & lc.ProductID))
+            Next
+            menuLive.Controls.Add(LoadProductMenus("More Live Casino...", "Products.aspx?cat=live"))
 
-                Dim rngs = db.TblProducts.Where(Function(x) x.Status = True And x.CatRNG = True).Take(5).ToList
-                For Each rng As TblProduct In rngs
-                    menuRNG.Controls.Add(LoadProductMenus(rng.ProductName, "Product.aspx?id=" & rng.ProductID))
-                Next
-                menuRNG.Controls.Add(LoadProductMenus("More RNG...", "Products.aspx?cat=rng"))
+            Dim sports = productsList.Where(Function(x) x.Status = True And x.CatSport = True).Take(5).ToList
+            For Each sport As TblProduct In sports
+                menuSport.Controls.Add(LoadProductMenus(sport.ProductName, "Product.aspx?id=" & sport.ProductID))
+            Next
+            menuSport.Controls.Add(LoadProductMenus("More Sportsbook...", "Products.aspx?cat=sport"))
 
-                Dim fishes = db.TblProducts.Where(Function(x) x.Status = True And x.CatFish = True).Take(5).ToList
-                For Each fish As TblProduct In fishes
-                    menuFish.Controls.Add(LoadProductMenus(fish.ProductName, "Product.aspx?id=" & fish.ProductID))
-                Next
-                menuFish.Controls.Add(LoadProductMenus("More Fish Hunter...", "Products.aspx?cat=fish"))
+            Dim rngs = productsList.Where(Function(x) x.Status = True And x.CatRNG = True).Take(5).ToList
+            For Each rng As TblProduct In rngs
+                menuRNG.Controls.Add(LoadProductMenus(rng.ProductName, "Product.aspx?id=" & rng.ProductID))
+            Next
+            menuRNG.Controls.Add(LoadProductMenus("More RNG...", "Products.aspx?cat=rng"))
 
-                Dim pokers = db.TblProducts.Where(Function(x) x.Status = True And x.CatPoker = True).Take(5).ToList
-                For Each poker As TblProduct In pokers
-                    menuPoker.Controls.Add(LoadProductMenus(poker.ProductName, "Product.aspx?id=" & poker.ProductID))
-                Next
-                menuPoker.Controls.Add(LoadProductMenus("More Poker...", "Products.aspx?cat=poker"))
+            Dim fishes = productsList.Where(Function(x) x.Status = True And x.CatFish = True).Take(5).ToList
+            For Each fish As TblProduct In fishes
+                menuFish.Controls.Add(LoadProductMenus(fish.ProductName, "Product.aspx?id=" & fish.ProductID))
+            Next
+            menuFish.Controls.Add(LoadProductMenus("More Fish Hunter...", "Products.aspx?cat=fish"))
 
-                Dim others = db.TblProducts.Where(Function(x) x.Status = True And x.CatOther = True).Take(5).ToList
-                For Each other As TblProduct In others
-                    menuOther.Controls.Add(LoadProductMenus(other.ProductName, "Product.aspx?id=" & other.ProductID))
-                Next
-                menuOther.Controls.Add(LoadProductMenus("More Other...", "Products.aspx?cat=other"))
+            Dim pokers = productsList.Where(Function(x) x.Status = True And x.CatPoker = True).Take(5).ToList
+            For Each poker As TblProduct In pokers
+                menuPoker.Controls.Add(LoadProductMenus(poker.ProductName, "Product.aspx?id=" & poker.ProductID))
+            Next
+            menuPoker.Controls.Add(LoadProductMenus("More Poker...", "Products.aspx?cat=poker"))
 
-                Dim products = db.TblProducts.Where(Function(x) x.Status = True).Take(5).ToList
-                For Each product As TblProduct In products
-                    menuAll.Controls.Add(LoadProductMenus(product.ProductName, "Product.aspx?id=" & product.ProductID))
-                Next
-                menuAll.Controls.Add(LoadProductMenus("More...", "Products.aspx?cat=all"))
+            Dim others = productsList.Where(Function(x) x.Status = True And x.CatOther = True).Take(5).ToList
+            For Each other As TblProduct In others
+                menuOther.Controls.Add(LoadProductMenus(other.ProductName, "Product.aspx?id=" & other.ProductID))
+            Next
+            menuOther.Controls.Add(LoadProductMenus("More Other...", "Products.aspx?cat=other"))
 
-                mobileProduct.Visible = False
-                megaProduct.Visible = True
-            End Using
+            Dim products = productsList.Where(Function(x) x.Status = True).Take(5).ToList
+            For Each product As TblProduct In products
+                menuAll.Controls.Add(LoadProductMenus(product.ProductName, "Product.aspx?id=" & product.ProductID))
+            Next
+            menuAll.Controls.Add(LoadProductMenus("More...", "Products.aspx?cat=all"))
+
+            mobileProduct.Visible = False
+            megaProduct.Visible = True
+
+            Dim winnerCache = "winnerCache"
+            Dim winnersList As List(Of TblTransaction) = HttpRuntime.Cache(winnerCache)
+            If winnersList Is Nothing Then
+                Using db As New DataClassesDataContext
+                    winnersList = db.TblTransactions.Where(Function(x) x.TransType = 1 And x.Status = 2).OrderByDescending(Function(x) x.TransactionDate).Take(7).ToList
+                    HttpRuntime.Cache.Add(winnerCache, winnersList, Nothing, Now.AddMinutes(30), TimeSpan.Zero, CacheItemPriority.Default, Nothing)
+                End Using
+            End If
+
+            For Each w As TblTransaction In winnersList
+                wthdraw.Controls.Add(GenerateLi(Camoflauge(w.UserName.Trim) & " won " & w.Debit.ToString("N") & " MYR " & w.TransactionDate.HowLong))
+            Next
         End If
 
         If Not IsPostBack Then
@@ -118,18 +141,28 @@
         Dim role As String = HttpContext.Current.Session("role")
 
         Select Case role
-            Case "user", "admin"
+            Case "user"
                 memberLogin.Visible = False
                 memberMenu.Visible = True
                 memberName.Visible = True
                 memberName.InnerText = "Hello, " & Session("fullname")
-                btnHead.Text = "Deposit"
+                btnHeadAlt.InnerHtml = "Deposit<i class=""fas fa-caret-down"" style=""color: #FFF;""></i>"
+                btnHeadAlt.HRef = "#"
             Case Else
                 memberLogin.Visible = True
                 memberMenu.Visible = False
                 memberName.Visible = False
-                btnHead.Text = "Sign Up Now"
+                btnHeadAlt.Attributes("class") = "btn btn-slider-black"
+                btnHeadAlt.Attributes.Remove("aria-haspopup")
+                btnHeadAlt.Attributes.Remove("data-toggle")
+                btnHeadAlt.Attributes.Remove("aria-expanded")
+                btnHead.Attributes.Remove("class")
+
+                btnHeadControls.Visible = False
         End Select
+
+        htmlCode.InnerHtml = ConfigSettings.ReadSetting(Of String)("HTMLCode", "").Base64ToString
+
     End Sub
 
     Private Sub btnRegister_Click(sender As Object, e As EventArgs) Handles btnRegister.Click

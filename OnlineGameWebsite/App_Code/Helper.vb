@@ -420,7 +420,7 @@ Public Module Helper
 
     Public Function GenerateCategoryString(slot As Boolean, live As Boolean, sport As Boolean, rng As Boolean, fish As Boolean, poker As Boolean, other As Boolean) As String
         Dim result As New List(Of String)
-        If slot Then result.Add("Slot Games")
+        If slot Then result.Add("Slot Game")
         If live Then result.Add("Live Casino")
         If sport Then result.Add("Sportsbook")
         If rng Then result.Add("RNG")
@@ -498,6 +498,15 @@ Public Module Helper
                 Return "Full Administrator"
             Case Else
                 Return "Customer Serivce"
+        End Select
+    End Function
+
+    Public Function ContactTypeToString(type As Integer) As String
+        Select Case type
+            Case 0
+                Return "Chat App"
+            Case Else
+                Return "Social Media"
         End Select
     End Function
 
@@ -745,6 +754,131 @@ Public Module Helper
 
     Public Function Strong(str As String) As String
         Return "<b>" & str & "</b>"
+    End Function
+
+    Public Function Camoflauge(userid As String) As String
+        Try
+            Dim cutDown As String = userid.Substring(0, 5)
+            Return cutDown & "xxxxxx"
+        Catch ex As Exception
+            Return userid & "xxxxxx"
+        End Try
+    End Function
+
+    <Extension>
+    Public Function HowLong(start As Date, Optional [end] As Date = Nothing) As String
+        If [end] = Nothing Then [end] = Now
+
+        Dim result As String = String.Empty
+        Dim timeSpan = [end].Subtract(start)
+
+        If timeSpan <= TimeSpan.FromSeconds(20) Then
+            result = "just now"
+        ElseIf timeSpan <= TimeSpan.FromSeconds(60) Then
+            result = String.Format("{0} seconds ago", timeSpan.Seconds)
+        ElseIf timeSpan <= TimeSpan.FromMinutes(60) Then
+            result = If(timeSpan.Minutes > 1, String.Format("{0} minutes ago", timeSpan.Minutes), "a minute ago")
+        ElseIf timeSpan <= TimeSpan.FromHours(24) Then
+            result = If(timeSpan.Hours > 1, String.Format("{0} hours ago", timeSpan.Hours), "an hour ago")
+        ElseIf timeSpan <= TimeSpan.FromDays(30) Then
+            result = If(timeSpan.Days > 1, String.Format("{0} days ago", timeSpan.Days), "yesterday")
+        ElseIf timeSpan <= TimeSpan.FromDays(365) Then
+            result = If(timeSpan.Days > 30, String.Format("{0} months ago", timeSpan.Days / 30), "a month ago")
+        Else
+            result = If(timeSpan.Days > 365, String.Format("{0} years ago", timeSpan.Days / 365), "a year ago")
+        End If
+
+        Return result
+    End Function
+
+    Public Function GetContactPreset(value As Integer) As Tuple(Of Integer, String)
+        Select Case value
+            Case 0 'Telegram
+                Return New Tuple(Of Integer, String)(0, "fab fa-telegram-plane")
+            Case 1 'WhatsApp
+                Return New Tuple(Of Integer, String)(0, "fab fa-whatsapp")
+            Case 2 'phone
+                Return New Tuple(Of Integer, String)(0, "fas fa-phone")
+            Case 3 'QQ
+                Return New Tuple(Of Integer, String)(0, "fab fa-qq")
+            Case 4 'WeChat
+                Return New Tuple(Of Integer, String)(0, "fab fa-weixin")
+            Case 5 'Line
+                Return New Tuple(Of Integer, String)(0, "fab fa-line")
+            Case 6 'Skype
+                Return New Tuple(Of Integer, String)(0, "fab fa-skype")
+            Case 7 'Discord
+                Return New Tuple(Of Integer, String)(0, "fab fa-discord")
+            Case 8 'Facebook
+                Return New Tuple(Of Integer, String)(1, "fab fa-facebook-f")
+            Case 9 'Twitter
+                Return New Tuple(Of Integer, String)(1, "fab fa-twitter")
+            Case 10 'Youtube
+                Return New Tuple(Of Integer, String)(1, "fab fa-youtube")
+            Case 11 'Tiktok
+                Return New Tuple(Of Integer, String)(1, "fab fa-tiktok")
+            Case 12 'Instagram
+                Return New Tuple(Of Integer, String)(1, "fab fa-instagram")
+            Case 13 'Email
+                Return New Tuple(Of Integer, String)(1, "fas fa-envelope")
+            Case 14 'LiveChat
+                Return New Tuple(Of Integer, String)(1, "far fa-comment")
+            Case Else 'Custom
+                Return New Tuple(Of Integer, String)(1, "fas fa-wifi")
+        End Select
+    End Function
+
+    Public Function GetContactPresetFromCss(fafa As String) As Integer
+        Select Case fafa
+            Case "fab fa-telegram-plane"
+                Return 0
+            Case "fab fa-whatsapp"
+                Return 1
+            Case "fas fa-phone"
+                Return 2
+            Case "fab fa-qq"
+                Return 3
+            Case "fab fa-weixin"
+                Return 4
+            Case "fab fa-line"
+                Return 5
+            Case "fab fa-skype"
+                Return 6
+            Case "fab fa-discord"
+                Return 7
+            Case "fab fa-facebook-f"
+                Return 8
+            Case "fab fa-twitter"
+                Return 9
+            Case "fab fa-youtube"
+                Return 10
+            Case "fab fa-tiktok"
+                Return 11
+            Case "fab fa-instagram"
+                Return 12
+            Case "fas fa-envelope"
+                Return 13
+            Case "far fa-comment"
+                Return 14
+            Case Else
+                Return 15
+        End Select
+    End Function
+
+    <Extension>
+    Public Function ToBase64(text As String) As String
+        If text = Nothing Then Return text
+
+        Dim plainTextBytes = System.Text.Encoding.UTF8.GetBytes(text)
+        Return System.Convert.ToBase64String(plainTextBytes)
+    End Function
+
+    <Extension>
+    Public Function Base64ToString(base64 As String) As String
+        If base64 = Nothing Then Return base64
+
+        Dim base64Bytes = System.Convert.FromBase64String(base64)
+        Return System.Text.Encoding.UTF8.GetString(base64Bytes)
     End Function
 
 End Module

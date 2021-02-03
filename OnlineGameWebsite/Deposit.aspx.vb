@@ -53,6 +53,12 @@ Partial Class Deposit
         End If
     End Sub
 
+    Private Sub refreshCaptcha_ServerClick(sender As Object, e As EventArgs) Handles refreshCaptcha.ServerClick
+        captcha = RandomText(New Random, 6, 6)
+        Session("captcha") = captcha
+        captchaImg.Attributes("src") = "data:image/png;base64, " & TextToImage(captcha)
+    End Sub
+
     Private Sub txtAmount_TextChanged(sender As Object, e As EventArgs) Handles txtAmount.TextChanged
         If CInt(txtAmount.Text) < 0 Then txtAmount.Text = 0
         If txtAmount.Text.Length >= 8 Then txtAmount.Text = 0

@@ -115,6 +115,12 @@ Partial Public Class DataClassesDataContext
     End Sub
   Partial Private Sub DeleteTblBank(instance As TblBank)
     End Sub
+  Partial Private Sub InsertTblContact(instance As TblContact)
+    End Sub
+  Partial Private Sub UpdateTblContact(instance As TblContact)
+    End Sub
+  Partial Private Sub DeleteTblContact(instance As TblContact)
+    End Sub
   #End Region
 	
 	Public Sub New()
@@ -226,23 +232,11 @@ Partial Public Class DataClassesDataContext
 		End Get
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.GetMembers")>  _
-	Public Function GetMembers() As ISingleResult(Of GetMembersResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
-		Return CType(result.ReturnValue,ISingleResult(Of GetMembersResult))
-	End Function
-	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.GetTransactions")>  _
-	Public Function GetTransactions() As ISingleResult(Of GetTransactionsResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo))
-		Return CType(result.ReturnValue,ISingleResult(Of GetTransactionsResult))
-	End Function
-	
-	<Global.System.Data.Linq.Mapping.FunctionAttribute(Name:="dbo.GetProductName")>  _
-	Public Function GetProductName(<Global.System.Data.Linq.Mapping.ParameterAttribute(DbType:="Int")> ByVal productID As System.Nullable(Of Integer)) As ISingleResult(Of GetProductNameResult)
-		Dim result As IExecuteResult = Me.ExecuteMethodCall(Me, CType(MethodInfo.GetCurrentMethod,MethodInfo), productID)
-		Return CType(result.ReturnValue,ISingleResult(Of GetProductNameResult))
-	End Function
+	Public ReadOnly Property TblContacts() As System.Data.Linq.Table(Of TblContact)
+		Get
+			Return Me.GetTable(Of TblContact)
+		End Get
+	End Property
 End Class
 
 <Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.TblPromotion")>  _
@@ -2786,7 +2780,7 @@ Partial Public Class TblTransaction
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Method", DbType:="NChar(30) NOT NULL", CanBeNull:=false)>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Method", DbType:="NChar(120) NOT NULL", CanBeNull:=false)>  _
 	Public Property Method() As String
 		Get
 			Return Me._Method
@@ -4015,7 +4009,7 @@ Partial Public Class TblBank
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_BankLogo", DbType:="NChar(255)")>  _
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_BankLogo", DbType:="NChar(255) NOT NULL", CanBeNull:=false)>  _
 	Public Property BankLogo() As String
 		Get
 			Return Me._BankLogo
@@ -4084,552 +4078,140 @@ Partial Public Class TblBank
 	End Sub
 End Class
 
-Partial Public Class GetMembersResult
+<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.TblContact")>  _
+Partial Public Class TblContact
+	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
 	
-	Private _UserID As Integer
+	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
 	
-	Private _UserName As String
+	Private _ContactID As Integer
 	
-	Private _Password As String
+	Private _ContactType As Integer
 	
-	Private _Email As String
+	Private _ContactName As String
 	
-	Private _FullName As String
+	Private _Website As String
 	
-	Private _RefCode As String
-	
-	Private _RefCodeReg As String
-	
-	Private _Enabled As Boolean
-	
-	Private _Affiliate As String
-	
-	Private _BankName As Integer
-	
-	Private _AccountNo As String
-	
-	Public Sub New()
-		MyBase.New
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_UserID", DbType:="Int NOT NULL")>  _
-	Public Property UserID() As Integer
-		Get
-			Return Me._UserID
-		End Get
-		Set
-			If ((Me._UserID = value)  _
-						= false) Then
-				Me._UserID = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_UserName", DbType:="NChar(30) NOT NULL", CanBeNull:=false)>  _
-	Public Property UserName() As String
-		Get
-			Return Me._UserName
-		End Get
-		Set
-			If (String.Equals(Me._UserName, value) = false) Then
-				Me._UserName = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Password", DbType:="NChar(30) NOT NULL", CanBeNull:=false)>  _
-	Public Property Password() As String
-		Get
-			Return Me._Password
-		End Get
-		Set
-			If (String.Equals(Me._Password, value) = false) Then
-				Me._Password = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Email", DbType:="NChar(255) NOT NULL", CanBeNull:=false)>  _
-	Public Property Email() As String
-		Get
-			Return Me._Email
-		End Get
-		Set
-			If (String.Equals(Me._Email, value) = false) Then
-				Me._Email = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FullName", DbType:="NChar(255) NOT NULL", CanBeNull:=false)>  _
-	Public Property FullName() As String
-		Get
-			Return Me._FullName
-		End Get
-		Set
-			If (String.Equals(Me._FullName, value) = false) Then
-				Me._FullName = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RefCode", DbType:="NChar(30) NOT NULL", CanBeNull:=false)>  _
-	Public Property RefCode() As String
-		Get
-			Return Me._RefCode
-		End Get
-		Set
-			If (String.Equals(Me._RefCode, value) = false) Then
-				Me._RefCode = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_RefCodeReg", DbType:="NChar(30)")>  _
-	Public Property RefCodeReg() As String
-		Get
-			Return Me._RefCodeReg
-		End Get
-		Set
-			If (String.Equals(Me._RefCodeReg, value) = false) Then
-				Me._RefCodeReg = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Enabled", DbType:="Bit NOT NULL")>  _
-	Public Property Enabled() As Boolean
-		Get
-			Return Me._Enabled
-		End Get
-		Set
-			If ((Me._Enabled = value)  _
-						= false) Then
-				Me._Enabled = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Affiliate", DbType:="NChar(30)")>  _
-	Public Property Affiliate() As String
-		Get
-			Return Me._Affiliate
-		End Get
-		Set
-			If (String.Equals(Me._Affiliate, value) = false) Then
-				Me._Affiliate = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_BankName", DbType:="Int NOT NULL")>  _
-	Public Property BankName() As Integer
-		Get
-			Return Me._BankName
-		End Get
-		Set
-			If ((Me._BankName = value)  _
-						= false) Then
-				Me._BankName = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AccountNo", DbType:="NChar(30)")>  _
-	Public Property AccountNo() As String
-		Get
-			Return Me._AccountNo
-		End Get
-		Set
-			If (String.Equals(Me._AccountNo, value) = false) Then
-				Me._AccountNo = value
-			End If
-		End Set
-	End Property
-End Class
-
-Partial Public Class GetTransactionsResult
-	
-	Private _TransactionID As Integer
-	
-	Private _TransactionDate As Date
-	
-	Private _UserName As String
-	
-	Private _Method As String
-	
-	Private _TransType As Integer
-	
-	Private _Debit As Double
-	
-	Private _Credit As Double
-	
-	Private _Promotion As Double
-	
-	Private _Reason As String
-	
-	Private _ProductID As Integer
-	
-	Private _ProductUserName As String
-	
-	Private _Bank As String
-	
-	Private _BankAccount As String
-	
-	Private _UploadFile As String
-	
-	Private _Reference As String
-	
-	Private _Status As Integer
-	
-	Private _ApproveByUser As String
-	
-	Private _ApproveDate As Date
-	
-	Private _Remark As String
-	
-	Private _ApproveBank As String
-	
-	Public Sub New()
-		MyBase.New
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TransactionID", DbType:="Int NOT NULL")>  _
-	Public Property TransactionID() As Integer
-		Get
-			Return Me._TransactionID
-		End Get
-		Set
-			If ((Me._TransactionID = value)  _
-						= false) Then
-				Me._TransactionID = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TransactionDate", DbType:="DateTime NOT NULL")>  _
-	Public Property TransactionDate() As Date
-		Get
-			Return Me._TransactionDate
-		End Get
-		Set
-			If ((Me._TransactionDate = value)  _
-						= false) Then
-				Me._TransactionDate = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_UserName", DbType:="NChar(30) NOT NULL", CanBeNull:=false)>  _
-	Public Property UserName() As String
-		Get
-			Return Me._UserName
-		End Get
-		Set
-			If (String.Equals(Me._UserName, value) = false) Then
-				Me._UserName = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Method", DbType:="NChar(30) NOT NULL", CanBeNull:=false)>  _
-	Public Property Method() As String
-		Get
-			Return Me._Method
-		End Get
-		Set
-			If (String.Equals(Me._Method, value) = false) Then
-				Me._Method = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TransType", DbType:="Int NOT NULL")>  _
-	Public Property TransType() As Integer
-		Get
-			Return Me._TransType
-		End Get
-		Set
-			If ((Me._TransType = value)  _
-						= false) Then
-				Me._TransType = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Debit", DbType:="Float NOT NULL")>  _
-	Public Property Debit() As Double
-		Get
-			Return Me._Debit
-		End Get
-		Set
-			If ((Me._Debit = value)  _
-						= false) Then
-				Me._Debit = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Credit", DbType:="Float NOT NULL")>  _
-	Public Property Credit() As Double
-		Get
-			Return Me._Credit
-		End Get
-		Set
-			If ((Me._Credit = value)  _
-						= false) Then
-				Me._Credit = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Promotion", DbType:="Float NOT NULL")>  _
-	Public Property Promotion() As Double
-		Get
-			Return Me._Promotion
-		End Get
-		Set
-			If ((Me._Promotion = value)  _
-						= false) Then
-				Me._Promotion = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Reason", DbType:="NChar(255)")>  _
-	Public Property Reason() As String
-		Get
-			Return Me._Reason
-		End Get
-		Set
-			If (String.Equals(Me._Reason, value) = false) Then
-				Me._Reason = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ProductID", DbType:="Int NOT NULL")>  _
-	Public Property ProductID() As Integer
-		Get
-			Return Me._ProductID
-		End Get
-		Set
-			If ((Me._ProductID = value)  _
-						= false) Then
-				Me._ProductID = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ProductUserName", DbType:="NChar(30) NOT NULL", CanBeNull:=false)>  _
-	Public Property ProductUserName() As String
-		Get
-			Return Me._ProductUserName
-		End Get
-		Set
-			If (String.Equals(Me._ProductUserName, value) = false) Then
-				Me._ProductUserName = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Bank", DbType:="NChar(30)")>  _
-	Public Property Bank() As String
-		Get
-			Return Me._Bank
-		End Get
-		Set
-			If (String.Equals(Me._Bank, value) = false) Then
-				Me._Bank = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_BankAccount", DbType:="NChar(30)")>  _
-	Public Property BankAccount() As String
-		Get
-			Return Me._BankAccount
-		End Get
-		Set
-			If (String.Equals(Me._BankAccount, value) = false) Then
-				Me._BankAccount = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_UploadFile", DbType:="NChar(255)")>  _
-	Public Property UploadFile() As String
-		Get
-			Return Me._UploadFile
-		End Get
-		Set
-			If (String.Equals(Me._UploadFile, value) = false) Then
-				Me._UploadFile = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Reference", DbType:="NChar(30)")>  _
-	Public Property Reference() As String
-		Get
-			Return Me._Reference
-		End Get
-		Set
-			If (String.Equals(Me._Reference, value) = false) Then
-				Me._Reference = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Status", DbType:="Int NOT NULL")>  _
-	Public Property Status() As Integer
-		Get
-			Return Me._Status
-		End Get
-		Set
-			If ((Me._Status = value)  _
-						= false) Then
-				Me._Status = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApproveByUser", DbType:="NChar(30) NOT NULL", CanBeNull:=false)>  _
-	Public Property ApproveByUser() As String
-		Get
-			Return Me._ApproveByUser
-		End Get
-		Set
-			If (String.Equals(Me._ApproveByUser, value) = false) Then
-				Me._ApproveByUser = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApproveDate", DbType:="DateTime NOT NULL")>  _
-	Public Property ApproveDate() As Date
-		Get
-			Return Me._ApproveDate
-		End Get
-		Set
-			If ((Me._ApproveDate = value)  _
-						= false) Then
-				Me._ApproveDate = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Remark", DbType:="NChar(255)")>  _
-	Public Property Remark() As String
-		Get
-			Return Me._Remark
-		End Get
-		Set
-			If (String.Equals(Me._Remark, value) = false) Then
-				Me._Remark = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ApproveBank", DbType:="NChar(30)")>  _
-	Public Property ApproveBank() As String
-		Get
-			Return Me._ApproveBank
-		End Get
-		Set
-			If (String.Equals(Me._ApproveBank, value) = false) Then
-				Me._ApproveBank = value
-			End If
-		End Set
-	End Property
-End Class
-
-Partial Public Class GetProductNameResult
-	
-	Private _ProductID As Integer
-	
-	Private _ProductName As String
-	
-	Private _ProductAlias As String
-	
-	Private _Balance As Double
+	Private _FaIcon As String
 	
 	Private _Status As Boolean
 	
-	Private _AndroidLink As String
-	
-	Private _iOSLink As String
-	
-	Private _WindowsLink As String
-	
-	Private _WebsiteUrl As String
-	
-	Private _ProductImage As String
-	
-	Private _CatSlot As Boolean
-	
-	Private _CatLive As Boolean
-	
-	Private _CatSport As Boolean
-	
-	Private _CatFish As Boolean
-	
-	Private _CatPoker As Boolean
-	
-	Private _CatRNG As Boolean
-	
-	Private _CatOther As Boolean
+    #Region "Extensibility Method Definitions"
+    Partial Private Sub OnLoaded()
+    End Sub
+    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
+    End Sub
+    Partial Private Sub OnCreated()
+    End Sub
+    Partial Private Sub OnContactIDChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnContactIDChanged()
+    End Sub
+    Partial Private Sub OnContactTypeChanging(value As Integer)
+    End Sub
+    Partial Private Sub OnContactTypeChanged()
+    End Sub
+    Partial Private Sub OnContactNameChanging(value As String)
+    End Sub
+    Partial Private Sub OnContactNameChanged()
+    End Sub
+    Partial Private Sub OnWebsiteChanging(value As String)
+    End Sub
+    Partial Private Sub OnWebsiteChanged()
+    End Sub
+    Partial Private Sub OnFaIconChanging(value As String)
+    End Sub
+    Partial Private Sub OnFaIconChanged()
+    End Sub
+    Partial Private Sub OnStatusChanging(value As Boolean)
+    End Sub
+    Partial Private Sub OnStatusChanged()
+    End Sub
+    #End Region
 	
 	Public Sub New()
 		MyBase.New
+		OnCreated
 	End Sub
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ProductID", DbType:="Int NOT NULL")>  _
-	Public Property ProductID() As Integer
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ContactID", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
+	Public Property ContactID() As Integer
 		Get
-			Return Me._ProductID
+			Return Me._ContactID
 		End Get
 		Set
-			If ((Me._ProductID = value)  _
+			If ((Me._ContactID = value)  _
 						= false) Then
-				Me._ProductID = value
+				Me.OnContactIDChanging(value)
+				Me.SendPropertyChanging
+				Me._ContactID = value
+				Me.SendPropertyChanged("ContactID")
+				Me.OnContactIDChanged
 			End If
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ProductName", DbType:="NChar(30) NOT NULL", CanBeNull:=false)>  _
-	Public Property ProductName() As String
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ContactType", DbType:="Int NOT NULL")>  _
+	Public Property ContactType() As Integer
 		Get
-			Return Me._ProductName
+			Return Me._ContactType
 		End Get
 		Set
-			If (String.Equals(Me._ProductName, value) = false) Then
-				Me._ProductName = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ProductAlias", DbType:="NChar(30)")>  _
-	Public Property ProductAlias() As String
-		Get
-			Return Me._ProductAlias
-		End Get
-		Set
-			If (String.Equals(Me._ProductAlias, value) = false) Then
-				Me._ProductAlias = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Balance", DbType:="Float NOT NULL")>  _
-	Public Property Balance() As Double
-		Get
-			Return Me._Balance
-		End Get
-		Set
-			If ((Me._Balance = value)  _
+			If ((Me._ContactType = value)  _
 						= false) Then
-				Me._Balance = value
+				Me.OnContactTypeChanging(value)
+				Me.SendPropertyChanging
+				Me._ContactType = value
+				Me.SendPropertyChanged("ContactType")
+				Me.OnContactTypeChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ContactName", DbType:="NChar(30) NOT NULL", CanBeNull:=false)>  _
+	Public Property ContactName() As String
+		Get
+			Return Me._ContactName
+		End Get
+		Set
+			If (String.Equals(Me._ContactName, value) = false) Then
+				Me.OnContactNameChanging(value)
+				Me.SendPropertyChanging
+				Me._ContactName = value
+				Me.SendPropertyChanged("ContactName")
+				Me.OnContactNameChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Website", DbType:="NChar(255)")>  _
+	Public Property Website() As String
+		Get
+			Return Me._Website
+		End Get
+		Set
+			If (String.Equals(Me._Website, value) = false) Then
+				Me.OnWebsiteChanging(value)
+				Me.SendPropertyChanging
+				Me._Website = value
+				Me.SendPropertyChanged("Website")
+				Me.OnWebsiteChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_FaIcon", DbType:="NChar(30) NOT NULL", CanBeNull:=false)>  _
+	Public Property FaIcon() As String
+		Get
+			Return Me._FaIcon
+		End Get
+		Set
+			If (String.Equals(Me._FaIcon, value) = false) Then
+				Me.OnFaIconChanging(value)
+				Me.SendPropertyChanging
+				Me._FaIcon = value
+				Me.SendPropertyChanged("FaIcon")
+				Me.OnFaIconChanged
 			End If
 		End Set
 	End Property
@@ -4642,159 +4224,30 @@ Partial Public Class GetProductNameResult
 		Set
 			If ((Me._Status = value)  _
 						= false) Then
+				Me.OnStatusChanging(value)
+				Me.SendPropertyChanging
 				Me._Status = value
+				Me.SendPropertyChanged("Status")
+				Me.OnStatusChanged
 			End If
 		End Set
 	End Property
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_AndroidLink", DbType:="NChar(255)")>  _
-	Public Property AndroidLink() As String
-		Get
-			Return Me._AndroidLink
-		End Get
-		Set
-			If (String.Equals(Me._AndroidLink, value) = false) Then
-				Me._AndroidLink = value
-			End If
-		End Set
-	End Property
+	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_iOSLink", DbType:="NChar(255)")>  _
-	Public Property iOSLink() As String
-		Get
-			Return Me._iOSLink
-		End Get
-		Set
-			If (String.Equals(Me._iOSLink, value) = false) Then
-				Me._iOSLink = value
-			End If
-		End Set
-	End Property
+	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_WindowsLink", DbType:="NChar(255)")>  _
-	Public Property WindowsLink() As String
-		Get
-			Return Me._WindowsLink
-		End Get
-		Set
-			If (String.Equals(Me._WindowsLink, value) = false) Then
-				Me._WindowsLink = value
-			End If
-		End Set
-	End Property
+	Protected Overridable Sub SendPropertyChanging()
+		If ((Me.PropertyChangingEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
+		End If
+	End Sub
 	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_WebsiteUrl", DbType:="NChar(255)")>  _
-	Public Property WebsiteUrl() As String
-		Get
-			Return Me._WebsiteUrl
-		End Get
-		Set
-			If (String.Equals(Me._WebsiteUrl, value) = false) Then
-				Me._WebsiteUrl = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ProductImage", DbType:="NChar(255) NOT NULL", CanBeNull:=false)>  _
-	Public Property ProductImage() As String
-		Get
-			Return Me._ProductImage
-		End Get
-		Set
-			If (String.Equals(Me._ProductImage, value) = false) Then
-				Me._ProductImage = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CatSlot", DbType:="Bit NOT NULL")>  _
-	Public Property CatSlot() As Boolean
-		Get
-			Return Me._CatSlot
-		End Get
-		Set
-			If ((Me._CatSlot = value)  _
-						= false) Then
-				Me._CatSlot = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CatLive", DbType:="Bit NOT NULL")>  _
-	Public Property CatLive() As Boolean
-		Get
-			Return Me._CatLive
-		End Get
-		Set
-			If ((Me._CatLive = value)  _
-						= false) Then
-				Me._CatLive = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CatSport", DbType:="Bit NOT NULL")>  _
-	Public Property CatSport() As Boolean
-		Get
-			Return Me._CatSport
-		End Get
-		Set
-			If ((Me._CatSport = value)  _
-						= false) Then
-				Me._CatSport = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CatFish", DbType:="Bit NOT NULL")>  _
-	Public Property CatFish() As Boolean
-		Get
-			Return Me._CatFish
-		End Get
-		Set
-			If ((Me._CatFish = value)  _
-						= false) Then
-				Me._CatFish = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CatPoker", DbType:="Bit NOT NULL")>  _
-	Public Property CatPoker() As Boolean
-		Get
-			Return Me._CatPoker
-		End Get
-		Set
-			If ((Me._CatPoker = value)  _
-						= false) Then
-				Me._CatPoker = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CatRNG", DbType:="Bit NOT NULL")>  _
-	Public Property CatRNG() As Boolean
-		Get
-			Return Me._CatRNG
-		End Get
-		Set
-			If ((Me._CatRNG = value)  _
-						= false) Then
-				Me._CatRNG = value
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_CatOther", DbType:="Bit NOT NULL")>  _
-	Public Property CatOther() As Boolean
-		Get
-			Return Me._CatOther
-		End Get
-		Set
-			If ((Me._CatOther = value)  _
-						= false) Then
-				Me._CatOther = value
-			End If
-		End Set
-	End Property
+	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
+		If ((Me.PropertyChangedEvent Is Nothing)  _
+					= false) Then
+			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
+		End If
+	End Sub
 End Class

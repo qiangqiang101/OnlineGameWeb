@@ -101,4 +101,9 @@ Partial Class Withdrawal
         Return True
     End Function
 
+    Private Sub refreshCaptcha_ServerClick(sender As Object, e As EventArgs) Handles refreshCaptcha.ServerClick
+        captcha = RandomText(New Random, 6, 6)
+        Session("captcha") = captcha
+        captchaImg.Attributes("src") = "data:image/png;base64, " & TextToImage(captcha)
+    End Sub
 End Class

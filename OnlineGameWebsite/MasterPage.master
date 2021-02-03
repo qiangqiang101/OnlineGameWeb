@@ -67,15 +67,15 @@
                                     <a href="#" class="dropdown" id="language" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">中文
                             <span class="caret"></span>
                                     </a>
-                                            <% Case 2 %>
+                                    <% Case 2 %>
                                     <a href="#" class="dropdown" id="language" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Malay
                             <span class="caret"></span>
                                     </a>
-                                           <% Case Else %>
+                                    <% Case Else %>
                                     <a href="#" class="dropdown" id="language" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">English
                             <span class="caret"></span>
                                     </a>
-                                      <%  End Select %>
+                                    <% End Select %>
                                     <ul class="dropdown-menu palovit-dropdown" aria-labelledby="language">
                                         <li><a href="#" id="langEn" runat="server">English</a></li>
                                         <li><a href="#" id="langZh" runat="server">中文</a></li>
@@ -155,11 +155,11 @@
                                                                 <div class="row">
                                                                     <div class="col-xs-6">
                                                                         <label>Contact No</label>
-                                                                <asp:TextBox CssClass="form-control" ID="txtContact" runat="server" placeholder="+60123456789" TextMode="Phone" required="Required" AutoCompleteType="HomePhone"></asp:TextBox>
+                                                                        <asp:TextBox CssClass="form-control" ID="txtContact" runat="server" placeholder="+60123456789" TextMode="Phone" required="Required" AutoCompleteType="HomePhone"></asp:TextBox>
                                                                     </div>
                                                                     <div class="col-xs-6">
                                                                         <label>Date of Birth</label>
-                                                                <asp:TextBox CssClass="form-control" ID="txtBirthday" runat="server" placeholder="dd/MM/yyyy" TextMode="Date" required="Required"></asp:TextBox>
+                                                                        <asp:TextBox CssClass="form-control" ID="txtBirthday" runat="server" placeholder="dd/MM/yyyy" TextMode="Date" required="Required"></asp:TextBox>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -255,7 +255,15 @@
                                 </div>
                             </div>
                             <div class="col-lg-2 col-md-2 hidden-md hidden-sm hidden-xs info">
-                                <asp:Button class="btn btn-slider-black" ID="btnHead" runat="server" Text="Sign Up Now" />
+                                <div class="dropdown" id="btnHead" runat="server">
+                                    <a href="Register.aspx" class="btn btn-slider-black dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="btnHeadAlt" runat="server">Sign Up Now<i class="fas fa-user-plus" style="color: #FFF;"></i></a>
+                                    <ul class="dropdown-menu palovit-dropdown" aria-labelledby="btnHeadAlt" id="btnHeadControls" runat="server">
+                                        <li><a class="dropdown-item" href="Deposit.aspx">Deposit</a></li>
+                                        <li><a class="dropdown-item" href="Withdrawal.aspx">Withdrawal</a></li>
+                                        <li><a class="dropdown-item" href="Transfer.aspx">Transfer</a></li>
+                                        <li><a class="dropdown-item" href="TransactionHistory.aspx">Transaction History</a></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1029,13 +1037,8 @@
                         <div class="col-md-4">
                             <h4>Latest Winners</h4>
                             <p>You can find our lastest winner here.</p>
-                            <ul class="adress">
-                                <li><i class="far fa-user-circle"></i>imnotmxxxxx MYR 1,000 just now</li>
-                                <li><i class="far fa-user-circle"></i>closeoxxxxx MYR 300 1 minute ago</li>
-                                <li><i class="far fa-user-circle"></i>crossnxxxxx MYR 250 5 minutes ago</li>
-                                <li><i class="far fa-user-circle"></i>hantukaxxxx MYR 1,688 20 minutes ago</li>
-                                <li><i class="far fa-user-circle"></i>unclerogxxx MYR 88 22 minutes ago</li>
-                                <li><i class="far fa-user-circle"></i>namewxxxxxx MYR 188 30 minutes ago</li>
+                            <ul class="wthdraw" id="wthdraw" runat="server">
+                                <%--Winner List will show here--%>
                             </ul>
                         </div>
                     </div>
@@ -1084,7 +1087,22 @@
         <script src="Scripts/jquery.cookie-1.4.1.min.js"></script>
         <link rel="stylesheet" href="Theme/demo/Demo.css" />
         <%--<script src="Theme/demo/Demo.js"></script>--%>
-        
+
+        <%--<!--Start of Tawk.to Script-->
+        <script type="text/javascript">
+            var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+            (function () {
+                var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+                s1.async = true;
+                s1.src = 'https://embed.tawk.to/60199bdea9a34e36b9731930/1eti0hnv5';
+                s1.charset = 'UTF-8';
+                s1.setAttribute('crossorigin', '*');
+                s0.parentNode.insertBefore(s1, s0);
+            })();
+        </script>
+        <!--End of Tawk.to Script-->--%>
+
+        <div id="htmlCode" runat="server"></div>
     </form>
 </body>
 </html>

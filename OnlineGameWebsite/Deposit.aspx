@@ -89,7 +89,12 @@
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label></label>
-                                            <img src="#" id="captchaImg" runat="server" class="img-responsive" alt="" style="height: 50px;" />
+                                            <asp:UpdatePanel ID="upCaptcha" runat="server">
+                                                <ContentTemplate>
+                                                    <a href="#" id="refreshCaptcha" runat="server">
+                                                        <img src="#" id="captchaImg" runat="server" class="img-responsive" alt="" style="height: 50px;" /></a>
+                                                </ContentTemplate>
+                                            </asp:UpdatePanel>
                                         </div>
                                     </div>
                                     <div class="form-group m-t-30 col-md-12">

@@ -140,6 +140,7 @@
                             <a class="collapse-item" href="Sliders.aspx">Slider</a>
                             <a class="collapse-item" href="Promotions.aspx">Promotion</a>
                             <a class="collapse-item" href="Products.aspx">Product</a>
+                            <a class="collapse-item" href="Contacts.aspx">Contact</a>
                             <div class="collapse-divider"></div>
                             <h6 class="collapse-header">Transaction Settings:</h6>
                             <a class="collapse-item" href="RejectReasons.aspx">Reject Reason</a>

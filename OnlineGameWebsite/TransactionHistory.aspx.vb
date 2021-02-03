@@ -23,7 +23,7 @@ Partial Class TransactionHistory
                         Case Else
                             atnStr = String.Empty
                     End Select
-                    tblDeposit.AddTableItem(t.TransactionDate.ToString(dateFormat), pdtName, t.Method.Trim, StatusToString(t.Status), t.Credit.ToString("N"), atnStr)
+                    tblDeposit.AddTableItem(t.TransactionDate.ToString(dateFormat), pdtName & " (" & t.ProductUserName.Trim & ")", t.Method.Trim, StatusToString(t.Status), t.Credit.ToString("N"), atnStr)
                 Next
 
                 trans = db.TblTransactions.Where(Function(x) x.UserName = Session("username").ToString.Trim And x.TransType = 2).OrderByDescending(Function(x) x.TransactionID).Take(30).ToList
@@ -40,7 +40,7 @@ Partial Class TransactionHistory
                         Case Else
                             atnStr = String.Empty
                     End Select
-                    tblPromotion.AddTableItem(t.TransactionDate.ToString(dateFormat), pdtName, t.Method.Trim, StatusToString(t.Status), t.Promotion.ToString("N"), atnStr)
+                    tblPromotion.AddTableItem(t.TransactionDate.ToString(dateFormat), pdtName & " (" & t.ProductUserName.Trim & ")", t.Method.Trim, StatusToString(t.Status), t.Promotion.ToString("N"), atnStr)
                 Next
 
                 trans = db.TblTransactions.Where(Function(x) x.UserName = Session("username").ToString.Trim And x.TransType = 1).OrderByDescending(Function(x) x.TransactionID).Take(30).ToList
@@ -57,7 +57,7 @@ Partial Class TransactionHistory
                         Case Else
                             atnStr = String.Empty
                     End Select
-                    tblWithdraw.AddTableItem(t.TransactionDate.ToString(dateFormat), pdtName, t.Method.Trim, StatusToString(t.Status), t.Debit.ToString("N"), atnStr)
+                    tblWithdraw.AddTableItem(t.TransactionDate.ToString(dateFormat), pdtName & " (" & t.ProductUserName.Trim & ")", t.Method.Trim, StatusToString(t.Status), t.Debit.ToString("N"), atnStr)
                 Next
 
                 Dim tranf = db.TblTransfers.Where(Function(x) x.UserName = Session("username").ToString.Trim).OrderByDescending(Function(x) x.TransferID).Take(30).ToList

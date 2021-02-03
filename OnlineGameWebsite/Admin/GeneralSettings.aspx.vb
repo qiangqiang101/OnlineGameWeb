@@ -17,7 +17,21 @@ Partial Class Admin_GeneralSettings
             txtTwilioPhone.Text = ConfigSettings.ReadSetting(Of String)("TwilioPhone", "")
             txtTwilioSID.Text = ConfigSettings.ReadSetting(Of String)("TwilioSID", "")
             txtTwilioToken.Text = ConfigSettings.ReadSetting(Of String)("TwilioAuthToken", "")
+
+            txtHTML.Text = ConfigSettings.ReadSetting(Of String)("HTMLCode", "").Base64ToString
         End If
+    End Sub
+
+    Private Sub btnHTML_Click(sender As Object, e As EventArgs) Handles btnHTML.Click
+        Try
+            Dim encoded As String = txtHTML.Text.ToBase64
+
+            ConfigSettings.WriteSetting(Of String)("HTMLCode", encoded)
+            JsMsgBox("HTML saved successfully.")
+        Catch ex As Exception
+            Log(ex)
+            JsMsgBox(ex.Message)
+        End Try
     End Sub
 
     Private Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
