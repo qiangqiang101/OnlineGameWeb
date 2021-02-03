@@ -8,10 +8,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1>LIVE SCORE</h1>
+                        <h1><%=Resources.Resource.LiveScoreMenu %></h1>
                         <ul class="breadcrumb">
-                            <li><a href="Default.aspx">Home</a></li>
-                            <li class="active">Live Score</li>
+                            <li><a href="Default.aspx"><%=Resources.Resource.Home %></a></li>
+                            <li class="active"><%=Resources.Resource.LiveScore %></li>
                         </ul>
                     </div>
                 </div>

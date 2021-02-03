@@ -1,5 +1,5 @@
 ﻿
 Partial Class LiveScore
-    Inherits System.Web.UI.Page
+    Inherits BasePage
 
 End Class

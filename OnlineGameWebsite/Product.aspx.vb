@@ -1,6 +1,6 @@
 ﻿
 Partial Class Product
-    Inherits System.Web.UI.Page
+    Inherits BasePage
 
     Public pid As String = "-1"
 
@@ -20,10 +20,10 @@ Partial Class Product
                     imgURL.Attributes("href") = product.ProductImage.Trim
                     imgURL2.Attributes("src") = product.ProductImage.Trim
 
-                    If String.IsNullOrWhiteSpace(product.AndroidLink) Then divAndroid.Visible = False Else btnAndroid.Attributes("href") = product.AndroidLink
-                    If String.IsNullOrWhiteSpace(product.iOSLink) Then divApple.Visible = False Else btnApple.Attributes("href") = product.iOSLink
-                    If String.IsNullOrWhiteSpace(product.WindowsLink) Then divWindows.Visible = False Else btnWindows.Attributes("href") = product.WindowsLink
-                    If String.IsNullOrWhiteSpace(product.WebsiteUrl) Then divWebsite.Visible = False Else btnWebsite.Attributes("href") = product.WebsiteUrl
+                    If String.IsNullOrWhiteSpace(product.AndroidLink) Then divAndroid.Visible = False Else btnAndroid.Attributes("href") = product.AndroidLink : btnAndroid.InnerHtml = Resources.Resource.AndroidDownload & "<i class=""fa fa-android""></i>"
+                    If String.IsNullOrWhiteSpace(product.iOSLink) Then divApple.Visible = False Else btnApple.Attributes("href") = product.iOSLink : btnApple.InnerHtml = Resources.Resource.iOSDownload & "<i class=""fa fa-apple""></i>"
+                    If String.IsNullOrWhiteSpace(product.WindowsLink) Then divWindows.Visible = False Else btnWindows.Attributes("href") = product.WindowsLink : btnWindows.InnerHtml = Resources.Resource.WindowsDownload & "<i class=""fa fa-windows""></i>"
+                    If String.IsNullOrWhiteSpace(product.WebsiteUrl) Then divWebsite.Visible = False Else btnWebsite.Attributes("href") = product.WebsiteUrl : btnWebsite.InnerHtml = Resources.Resource.VisitWebsite & "<i class=""fa fa-html5""></i>"
 
                     Dim role As String = HttpContext.Current.Session("role")
                     If role = "user" Then

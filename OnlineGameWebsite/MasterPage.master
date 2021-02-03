@@ -54,142 +54,131 @@
                             <div class="col-md-6 col-sm-12 col-xs-12">
                                 <div class="pull-right hidden-sm hidden-xs">
                                     <ul class="social">
-                                        <li class="facebook"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li class="twitter"><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                        <li class="instagram"><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                        <li class="tiktok"><a href="#"><i class="fab fa-tiktok"></i></a></li>
-                                        <li class="youtube"><a href="#"><i class="fab fa-youtube"></i></a></li>
+                                        <li class="facebook"><a href="#" id="hFb" runat="server"><i class="fab fa-facebook-f"></i></a></li>
+                                        <li class="twitter"><a href="#" id="hTw" runat="server"><i class="fab fa-twitter"></i></a></li>
+                                        <li class="instagram"><a href="#" id="hIg" runat="server"><i class="fab fa-instagram"></i></a></li>
+                                        <li class="tiktok"><a href="#" id="hTt" runat="server"><i class="fab fa-tiktok"></i></a></li>
+                                        <li class="youtube"><a href="#" id="hYt" runat="server"><i class="fab fa-youtube"></i></a></li>
                                     </ul>
                                 </div>
                                 <div class="dropdown pull-right">
-                                    <% Select Case Request.Cookies("Lang").Value
-                                            Case 1 %>
-                                    <a href="#" class="dropdown" id="language" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">中文
+                                    <a href="#" class="dropdown" id="ddlLanguages" runat="server" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><%=Resources.Resource.Language %>
                             <span class="caret"></span>
                                     </a>
-                                    <% Case 2 %>
-                                    <a href="#" class="dropdown" id="language" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Malay
-                            <span class="caret"></span>
-                                    </a>
-                                    <% Case Else %>
-                                    <a href="#" class="dropdown" id="language" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">English
-                            <span class="caret"></span>
-                                    </a>
-                                    <% End Select %>
                                     <ul class="dropdown-menu palovit-dropdown" aria-labelledby="language">
                                         <li><a href="#" id="langEn" runat="server">English</a></li>
                                         <li><a href="#" id="langZh" runat="server">中文</a></li>
-                                        <li><a href="#" id="langMy" runat="server">Malay</a></li>
+                                        <li><a href="#" id="langMy" runat="server">Bahasa Malaysia</a></li>
                                     </ul>
                                 </div>
                                 <div class="rmenu" id="memberLogin" runat="server">
                                     <div id="account">
                                         <a href="#" class="dropdown">
-                                            <i class="far fa-user">&nbsp</i>Log in /
-                                <span>Register</span>
+                                            <i class="far fa-user">&nbsp</i><%=Resources.Resource.LoginFs %>
+                                <span><%=Resources.Resource.Register %></span>
                                             <span class="caret"></span>
                                         </a>
                                         <ul class="dropdown-menu">
                                             <li>
                                                 <div class="account">
                                                     <div class="signin">
-                                                        <h4>Sign In</h4>
+                                                        <h4><%=Resources.Resource.SignIn %></h4>
                                                         <hr />
                                                         <form action="#" method="post">
                                                             <div class="form-group">
-                                                                <label>User ID / E-mail</label>
-                                                                <asp:TextBox class="form-control" ID="txtUserID" runat="server" placeholder="User ID / Email" required="Required"></asp:TextBox>
+                                                                <label><%=Resources.Resource.UserIdEmail %></label>
+                                                                <asp:TextBox class="form-control" ID="txtUserID" runat="server" placeholder="<%$Resources:Resource, UserIdEmail %>" required="Required"></asp:TextBox>
                                                             </div>
                                                             <div class="form-group">
-                                                                <a class="pull-right" id="Recover" href="#">Reset Password</a>
-                                                                <label>Password</label>
-                                                                <asp:TextBox class="form-control" ID="txtPassword" runat="server" placeholder="Password" TextMode="Password" required="Required"></asp:TextBox>
+                                                                <a class="pull-right" id="Recover" href="#"><%=Resources.Resource.ResetPassword %></a>
+                                                                <label><%=Resources.Resource.Password %></label>
+                                                                <asp:TextBox class="form-control" ID="txtPassword" runat="server" placeholder="<%$Resources:Resource, Password %>" TextMode="Password" required="Required"></asp:TextBox>
                                                             </div>
                                                             <div class="form-group">
                                                                 <div class="row">
                                                                     <div class="col-xs-6">
                                                                         <span class="remember-box checkbox">
                                                                             <label for="rememberme">
-                                                                                <input type="checkbox" id="rememberme" name="rememberme">Remember Me
+                                                                                <input type="checkbox" id="rememberme" name="rememberme"><%=Resources.Resource.RememberMe %>
                                                                             </label>
                                                                         </span>
                                                                     </div>
                                                                     <div class="col-xs-6">
-                                                                        <asp:Button class="btn btn-palovit palovit35 pull-right" ID="btnLogin" runat="server" Text="Login" />
+                                                                        <asp:Button class="btn btn-palovit palovit35 pull-right" ID="btnLogin" runat="server" Text="<%$Resources:Resource, Login %>" />
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </form>
-                                                        <p>Don't have an account yet? <a href="#" id="SignUp">Sign Up</a></p>
+                                                        <p><%=Resources.Resource.DontHaveAccountYet %><a href="#" id="SignUp"><%=Resources.Resource.SignUp %></a></p>
                                                     </div>
                                                     <div class="signup">
-                                                        <h4>Create Account</h4>
+                                                        <h4><%=Resources.Resource.CreateAccount %></h4>
                                                         <hr />
                                                         <form action="#" method="post">
 
                                                             <div class="form-group">
-                                                                <label>User ID</label>
-                                                                <asp:TextBox class="form-control" ID="txtUserIDR" runat="server" placeholder="User ID" required="Required"></asp:TextBox>
+                                                                <label><%=Resources.Resource.UserID %></label>
+                                                                <asp:TextBox class="form-control" ID="txtUserIDR" runat="server" placeholder="<%$Resources:Resource, RememberMe %>" required="Required"></asp:TextBox>
                                                             </div>
                                                             <div class="form-group">
                                                                 <div class="row">
                                                                     <div class="col-xs-6">
-                                                                        <label>Password</label>
-                                                                        <asp:TextBox class="form-control" ID="txtPasswordR" runat="server" placeholder="Password" TextMode="Password" required="Required"></asp:TextBox>
+                                                                        <label><%=Resources.Resource.Password %></label>
+                                                                        <asp:TextBox class="form-control" ID="txtPasswordR" runat="server" placeholder="<%$Resources:Resource, RememberMe %>" TextMode="Password" required="Required"></asp:TextBox>
                                                                     </div>
                                                                     <div class="col-xs-6">
-                                                                        <label>Confirm Password</label>
-                                                                        <asp:TextBox class="form-control" ID="txtPasswordR2" runat="server" placeholder="Password" TextMode="Password" required="Required"></asp:TextBox>
+                                                                        <label><%=Resources.Resource.ConfirmPassword %></label>
+                                                                        <asp:TextBox class="form-control" ID="txtPasswordR2" runat="server" placeholder="<%$Resources:Resource, RememberMe %>" TextMode="Password" required="Required"></asp:TextBox>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
-                                                                <label>Full Name</label>
+                                                                <label><%=Resources.Resource.FullName %></label>
                                                                 <asp:TextBox CssClass="form-control" ID="txtFullName" runat="server" placeholder="Tan Ah Kow" required="Required" AutoCompleteType="DisplayName"></asp:TextBox>
                                                             </div>
                                                             <div class="form-group">
-                                                                <label>Email</label>
+                                                                <label><%=Resources.Resource.Email %></label>
                                                                 <asp:TextBox CssClass="form-control" ID="txtEmail" AutoCompleteType="Email" runat="server" placeholder="user@email.com" TextMode="Email" required="Required"></asp:TextBox>
                                                             </div>
                                                             <div class="form-group">
                                                                 <div class="row">
                                                                     <div class="col-xs-6">
-                                                                        <label>Contact No</label>
+                                                                        <label><%=Resources.Resource.ContactNo %></label>
                                                                         <asp:TextBox CssClass="form-control" ID="txtContact" runat="server" placeholder="+60123456789" TextMode="Phone" required="Required" AutoCompleteType="HomePhone"></asp:TextBox>
                                                                     </div>
                                                                     <div class="col-xs-6">
-                                                                        <label>Date of Birth</label>
+                                                                        <label><%=Resources.Resource.DateOfBirth %></label>
                                                                         <asp:TextBox CssClass="form-control" ID="txtBirthday" runat="server" placeholder="dd/MM/yyyy" TextMode="Date" required="Required"></asp:TextBox>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <hr />
                                                             <div class="form-check-label">
-                                                                <asp:CheckBox class="form-check-input" ID="cbTnc" runat="Server" Text="&nbsp I accept all the Terms & Conditions." /><br />
-                                                                <asp:CheckBox class="form-check-input" ID="cb18yo" runat="Server" Text="&nbsp I declare that I am 18 years old or above." />
+                                                                <asp:CheckBox class="form-check-input" ID="cbTnc" runat="Server" Text="<%$Resources:Resource, IAcceptTnC %>" /><br />
+                                                                <asp:CheckBox class="form-check-input" ID="cb18yo" runat="Server" Text="<%$Resources:Resource, IDeclare18YearsOld %>" />
                                                                 <br />
                                                                 <br />
                                                             </div>
                                                             <div class="form-group clearfix">
-                                                                <asp:Button class="btn btn-palovit palovit35 pull-left" ID="btnRegister" runat="server" Text="CREATE ACCOUNT" />
+                                                                <asp:Button class="btn btn-palovit palovit35 pull-left" ID="btnRegister" runat="server" Text="<%$Resources:Resource, CreateAccount %>" />
                                                             </div>
                                                         </form>
-                                                        <p>Already have an account? <a href="#" id="SignIn">Log In</a></p>
+                                                        <p><%=Resources.Resource.AlreadyHaveAccount %><a href="#" id="SignIn"><%=Resources.Resource.Login %></a></p>
                                                     </div>
                                                     <div class="recover">
-                                                        <h4>Reset My Password</h4>
+                                                        <h4><%=Resources.Resource.ForgotPassword %></h4>
                                                         <hr />
-                                                        <p>Complete the form below to receive an email with the authorization code needed to reset your password.</p>
+                                                        <p><%=Resources.Resource.CompleteTheFormBelowResetPassword %></p>
                                                         <form action="#" method="post">
                                                             <div class="form-group">
-                                                                <label>E-mail</label>
+                                                                <label><%=Resources.Resource.Email %></label>
                                                                 <input type="text" value="" class="form-control">
                                                             </div>
                                                             <div class="form-group clearfix">
-                                                                <input type="submit" value="Submit" class="btn btn-palovit palovit35 pull-left" />
+                                                                <input type="submit" value="<%=Resources.Resource.Login %>" class="btn btn-palovit palovit35 pull-left" />
                                                             </div>
                                                         </form>
-                                                        <p>Already have an account? <a href="#" id="RecoverCancel">Log In</a></p>
+                                                        <p><%=Resources.Resource.AlreadyHaveAccount %><a href="#" id="RecoverCancel"><%=Resources.Resource.Login %></a></p>
                                                     </div>
                                                 </div>
                                             </li>
@@ -197,19 +186,19 @@
                                     </div>
                                 </div>
                                 <div class="dropdown pull-right" id="memberMenu" runat="server">
-                                    <a href="#" class="dropdown" id="memberArea" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">My Account
+                                    <a href="#" class="dropdown" id="memberArea" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><%=Resources.Resource.MyAccount %>
                             <span class="caret"></span>
                                     </a>
                                     <ul class="dropdown-menu palovit-dropdown" aria-labelledby="memberArea">
-                                        <li><a href="MyProfile.aspx">My Profile</a></li>
-                                        <li><a href="MyAccounts.aspx">My Accounts</a></li>
+                                        <li><a href="MyProfile.aspx"><%=Resources.Resource.MyProfile %></a></li>
+                                        <li><a href="MyAccounts.aspx"><%=Resources.Resource.MyAccounts %></a></li>
                                         <hr />
-                                        <li><a href="Deposit.aspx">Deposit</a></li>
-                                        <li><a href="Withdrawal.aspx">Withdrawal</a></li>
-                                        <li><a href="Transfer.aspx">Transfer</a></li>
-                                        <li><a href="TransactionHistory.aspx">Transaction History</a></li>
+                                        <li><a href="Deposit.aspx"><%=Resources.Resource.Deposit %></a></li>
+                                        <li><a href="Withdrawal.aspx"><%=Resources.Resource.Withdrawal %></a></li>
+                                        <li><a href="Transfer.aspx"><%=Resources.Resource.Transfer %></a></li>
+                                        <li><a href="TransactionHistory.aspx"><%=Resources.Resource.TransactionHistory %></a></li>
                                         <hr />
-                                        <li><a href="#" id="logout" runat="server">Log out</a></li>
+                                        <li><a href="#" id="logout" runat="server"><%=Resources.Resource.Logout %></a></li>
                                     </ul>
                                 </div>
                                 <div class="rmenu" id="memberName" runat="server">
@@ -233,7 +222,7 @@
                                 </div>
                                 <div>
                                     <strong>WHATSAPP</strong>
-                                    <span>+6012-345 6789</span>
+                                    <span id="hWs" runat="server">+6012-345 6789</span>
                                 </div>
                             </div>
                             <div class="col-lg-2 col-md-2 hidden-sm hidden-xs info">
@@ -242,7 +231,7 @@
                                 </div>
                                 <div>
                                     <strong>TELEGRAM</strong>
-                                    <span>onlinegame</span>
+                                    <span id="hTg" runat="server">onlinegame</span>
                                 </div>
                             </div>
                             <div class="col-lg-2 col-md-2 hidden-sm hidden-xs info">
@@ -251,17 +240,18 @@
                                 </div>
                                 <div>
                                     <strong>WECHAT</strong>
-                                    <span>wxid_0123456789</span>
+                                    <span id="hWc" runat="server">wxid_0123456789</span>
                                 </div>
                             </div>
                             <div class="col-lg-2 col-md-2 hidden-md hidden-sm hidden-xs info">
+                                <a href="Register.aspx" class="btn btn-slider-black dropdown-toggle" id="btnHeadReg" runat="server"><%=Resources.Resource.SignUpNow %><i class="fas fa-user-plus" style="color: #FFF;"></i></a>
                                 <div class="dropdown" id="btnHead" runat="server">
-                                    <a href="Register.aspx" class="btn btn-slider-black dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="btnHeadAlt" runat="server">Sign Up Now<i class="fas fa-user-plus" style="color: #FFF;"></i></a>
+                                    <a href="#" class="btn btn-slider-black dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="btnHeadAlt" runat="server"><%=Resources.Resource.Deposit %><i class="fas fa-caret-down" style="color: #FFF;"></i></a>
                                     <ul class="dropdown-menu palovit-dropdown" aria-labelledby="btnHeadAlt" id="btnHeadControls" runat="server">
-                                        <li><a class="dropdown-item" href="Deposit.aspx">Deposit</a></li>
-                                        <li><a class="dropdown-item" href="Withdrawal.aspx">Withdrawal</a></li>
-                                        <li><a class="dropdown-item" href="Transfer.aspx">Transfer</a></li>
-                                        <li><a class="dropdown-item" href="TransactionHistory.aspx">Transaction History</a></li>
+                                        <li><a class="dropdown-item" href="Deposit.aspx"><%=Resources.Resource.Deposit %></a></li>
+                                        <li><a class="dropdown-item" href="Withdrawal.aspx"><%=Resources.Resource.Withdrawal %></a></li>
+                                        <li><a class="dropdown-item" href="Transfer.aspx"><%=Resources.Resource.Transfer %></a></li>
+                                        <li><a class="dropdown-item" href="TransactionHistory.aspx"><%=Resources.Resource.TransactionHistory %></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -274,57 +264,30 @@
                             <div class="col-md-12 col-sm-12 col-xs-12 rspnav">
                                 <nav class="collnav collapse">
                                     <ul class="nav nav-pills">
-                                        <li><a href="Default.aspx"><i class="fas fa-home">&nbsp</i>HOME</a></li>
-                                        <%--<li class="dropdown">
-                                            <a class="dropdown-toggle" href="Index.html">HOME</a>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="Home-1.html">Home 1</a></li>
-                                                <li><a href="Home-2.html">Home 2</a></li>
-                                                <li><a href="Home-3.html">Home 3</a></li>
-                                                <li><a href="Home-4.html">Home 4</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="dropdown">
-                                            <a class="dropdown-toggle" href="#">SERVICES</a>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="Services.html">Services</a></li>
-                                                <li><a href="Services-Detail.html">Services Detail</a></li>
-                                                <li><a href="Services-Detail-Two.html">Services Detail Two</a></li>
-                                                <li><a href="Services-Detail-Three.html">Services Detail Three</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="dropdown">
-                                            <a class="dropdown-toggle" href="#">PROJECTS</a>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="Project-Grid-2-Columns.html">Project Grid 2 Columns</a></li>
-                                                <li><a href="Project-Grid-3-Columns.html">Project Grid 3 Columns</a></li>
-                                                <li><a href="Project-Grid-4-Columns.html">Project Grid 4 Columns</a></li>
-                                                <li><a href="Single-Project.html">Single Project</a></li>
-                                            </ul>
-                                        </li>--%>
+                                        <li><a href="Default.aspx"><i class="fas fa-home">&nbsp</i><%=Resources.Resource.HomeMenu %></a></li>
                                         <li class="dropdown dropdown-mega" id="megaProduct" runat="server">
-                                            <a class="dropdown-toggle" href="Products.aspx?cat=all"><i class="fas fa-dragon">&nbsp</i>PRODUCTS</a>
+                                            <a class="dropdown-toggle" href="Products.aspx?cat=all"><i class="fas fa-dragon">&nbsp</i><%=Resources.Resource.ProductsMenu %></a>
                                             <ul class="dropdown-menu">
                                                 <li>
                                                     <div class="mega-content">
                                                         <div class="row">
                                                             <div class="col-md-3">
-                                                                <span class="mega-sub-title">SLOT GAME</span>
+                                                                <span class="mega-sub-title"><%=Resources.Resource.SlotGameMenu %></span>
                                                                 <ul class="mega-sub-nav" id="menuSlot" runat="server">
                                                                 </ul>
                                                             </div>
                                                             <div class="col-md-3">
-                                                                <span class="mega-sub-title">LIVE CASINO</span>
+                                                                <span class="mega-sub-title"><%=Resources.Resource.LiveCasinoMenu %></span>
                                                                 <ul class="mega-sub-nav" id="menuLive" runat="server">
                                                                 </ul>
                                                             </div>
                                                             <div class="col-md-3">
-                                                                <span class="mega-sub-title">SPORTSBOOK</span>
+                                                                <span class="mega-sub-title"><%=Resources.Resource.SportsbookMenu %></span>
                                                                 <ul class="mega-sub-nav" id="menuSport" runat="server">
                                                                 </ul>
                                                             </div>
                                                             <div class="col-md-3">
-                                                                <span class="mega-sub-title">RNG</span>
+                                                                <span class="mega-sub-title"><%=Resources.Resource.RngMenu %></span>
                                                                 <ul class="mega-sub-nav" id="menuRNG" runat="server">
                                                                 </ul>
                                                             </div>
@@ -332,24 +295,23 @@
                                                         <hr />
                                                         <div class="row">
                                                             <div class="col-md-3">
-                                                                <span class="mega-sub-title">FISH HUNTER</span>
+                                                                <span class="mega-sub-title"><%=Resources.Resource.FishHunterMenu %></span>
                                                                 <ul class="mega-sub-nav" id="menuFish" runat="server">
                                                                 </ul>
                                                             </div>
                                                             <div class="col-md-3">
-                                                                <span class="mega-sub-title">POKER</span>
+                                                                <span class="mega-sub-title"><%=Resources.Resource.PokerMenu %></span>
                                                                 <ul class="mega-sub-nav" id="menuPoker" runat="server">
                                                                 </ul>
                                                             </div>
                                                             <div class="col-md-3">
-                                                                <span class="mega-sub-title">OTHER</span>
+                                                                <span class="mega-sub-title"><%=Resources.Resource.OtherMenu %></span>
                                                                 <ul class="mega-sub-nav" id="menuOther" runat="server">
                                                                 </ul>
                                                             </div>
                                                             <div class="col-md-3">
-                                                                <span class="mega-sub-title">ALL</span>
+                                                                <span class="mega-sub-title"><%=Resources.Resource.AllMenu %></span>
                                                                 <ul class="mega-sub-nav" id="menuAll" runat="server">
-                                                                    <%--<li><a href="Accordion.html">Accordion</a></li>--%>
                                                                 </ul>
                                                             </div>
                                                         </div>
@@ -358,50 +320,23 @@
                                             </ul>
                                         </li>
                                         <li class="dropdown" id="mobileProduct" runat="server">
-                                            <a class="dropdown-toggle" href="Products.aspx?cat=all"><i class="fas fa-dragon">&nbsp</i>PRODUCTS</a>
+                                            <a class="dropdown-toggle" href="Products.aspx?cat=all"><i class="fas fa-dragon">&nbsp</i><%=Resources.Resource.ProductsMenu %></a>
                                             <ul class="dropdown-menu">
-                                                <li><a href="Products.aspx?cat=slot">Slot Game</a></li>
-                                                <li><a href="Products.aspx?cat=live">Live Casino</a></li>
-                                                <li><a href="Products.aspx?cat=sport">Sportsbook</a></li>
-                                                <li><a href="Products.aspx?cat=rng">RNG</a></li>
-                                                <li><a href="Products.aspx?cat=fish">Fish Hunter</a></li>
-                                                <li><a href="Products.aspx?cat=poker">Poker</a></li>
-                                                <li><a href="Products.aspx?cat=other">Other</a></li>
-                                                <li><a href="Products.aspx?cat=all">All Products</a></li>
+                                                <li><a href="Products.aspx?cat=slot"><%=Resources.Resource.SlotGameMenu %></a></li>
+                                                <li><a href="Products.aspx?cat=live"><%=Resources.Resource.LiveCasinoMenu %></a></li>
+                                                <li><a href="Products.aspx?cat=sport"><%=Resources.Resource.SportsbookMenu %></a></li>
+                                                <li><a href="Products.aspx?cat=rng"><%=Resources.Resource.RngMenu %></a></li>
+                                                <li><a href="Products.aspx?cat=fish"><%=Resources.Resource.FishHunterMenu %></a></li>
+                                                <li><a href="Products.aspx?cat=poker"><%=Resources.Resource.PokerMenu %></a></li>
+                                                <li><a href="Products.aspx?cat=other"><%=Resources.Resource.OtherMenu %></a></li>
+                                                <li><a href="Products.aspx?cat=all"><%=Resources.Resource.AllMenu %></a></li>
                                             </ul>
                                         </li>
-                                        <%--<li class="dropdown">
-                                            <a class="dropdown-toggle" href="#">BLOG</a>
-                                            <ul class="dropdown-menu">
-                                                <li class="dropdown-submenu">
-                                                    <a href="#">Blog Grid Layouts</a>
-                                                    <ul class="dropdown-menu">
-                                                        <li><a href="Blog-Grid-Left-Sidebar.html">Blog Grid Left Sidebar</a></li>
-                                                        <li><a href="Blog-Grid-Right-Sidebar.html">Blog Grid Right Sidebar</a></li>
-                                                        <li><a href="Blog-Grid-Full-Width.html">Blog Grid Full Width</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li><a href="Blog-List-Style.html">Blog List Style</a></li>
-                                                <li><a href="Blog-Post-Single.html">Blog Post Single</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class="dropdown">
-                                            <a class="dropdown-toggle" href="#">SHOP</a>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="Shop-Grid-Left-Sidebar.html">Shop Grid Left Sidebar</a></li>
-                                                <li><a href="Shop-Grid-Right-Sidebar.html">Shop Grid Right Sidebar</a></li>
-                                                <li><a href="Shop-Grid-Full-Width.html">Shop Grid Full Width</a></li>
-                                                <li><a href="Shop-Single-Product.html">Shop Single Product</a></li>
-                                                <li><a href="Shop-Cart.html">Shop Cart</a></li>
-                                                <li><a href="Shop-Checkout.html">Shop Checkout</a></li>
-                                                <li><a href="Shop-Login.html">Shop Login</a></li>
-                                            </ul>
-                                        </li>--%>
-                                        <li><a href="LiveScore.aspx"><i class="fas fa-futbol">&nbsp</i>LIVE SCORE</a></li>
-                                        <li><a href="Download.aspx"><i class="fas fa-download">&nbsp</i>DOWNLOAD</a></li>
-                                        <li><a href="Promotion.aspx"><i class="fas fa-percentage">&nbsp</i>PROMOTION</a></li>
-                                        <li><a href="Banking.aspx"><i class="fas fa-university">&nbsp</i>BANKING</a></li>
-                                        <li><a href="Contact.aspx"><i class="fas fa-address-book">&nbsp</i>CONTACT</a></li>
+                                        <li><a href="LiveScore.aspx"><i class="fas fa-futbol">&nbsp</i><%=Resources.Resource.LiveScoreMenu %></a></li>
+                                        <li><a href="Download.aspx"><i class="fas fa-download">&nbsp</i><%=Resources.Resource.DownloadMenu %></a></li>
+                                        <li><a href="Promotion.aspx"><i class="fas fa-percentage">&nbsp</i><%=Resources.Resource.PromotionMenu %></a></li>
+                                        <li><a href="Banking.aspx"><i class="fas fa-university">&nbsp</i><%=Resources.Resource.BankingMenu %></a></li>
+                                        <li><a href="Contact.aspx"><i class="fas fa-address-book">&nbsp</i><%=Resources.Resource.ContactMenu %></a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -410,597 +345,11 @@
                                     <i class="fas fa-bars"></i>
                                 </button>
                             </div>
-                            <%--<div class="col-md-3 col-sm-10 col-xs-10">
-                                <div class="search">
-                                    <form action="#">
-                                        <div class="input-group">
-                                            <input type="text" placeholder="Search...">
-                                            <span class="input-group-btn">
-                                                <button type="submit"><i class="fa fa-search"></i></button>
-                                            </span>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>--%>
                         </div>
                     </div>
                 </div>
             </header>
             <div class="main">
-
-
-                <!-- end of template -->
-                <%--<section class="archive2 p-t-60 p-b-20">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-4 m-b-30 item">
-                                <div><i data-icon="O" class="icon"></i></div>
-                                <div>
-                                    <h4>CONSTRUCTION</h4>
-                                    <p>Bringing so sociable felicity supplied mr. September suspicion far him two acuteness perfectly.</p>
-                                </div>
-                            </div>
-                            <div class="col-md-4 m-b-30 item">
-                                <div><i data-icon=";" class="icon"></i></div>
-                                <div>
-                                    <h4>ARCHITECTURE</h4>
-                                    <p>Bringing so sociable felicity supplied mr. September suspicion far him two acuteness perfectly.</p>
-                                </div>
-                            </div>
-                            <div class="col-md-4 m-b-30 item">
-                                <div><i data-icon="!" class="icon"></i></div>
-                                <div>
-                                    <h4>PROJECT MANAGEMENT</h4>
-                                    <p>Bringing so sociable felicity supplied mr. September suspicion far him two acuteness perfectly.</p>
-                                </div>
-                            </div>
-                            <div class="col-md-4 m-b-30 item">
-                                <div><i data-icon="P" class="icon"></i></div>
-                                <div>
-                                    <h4>INTERIOR DESIGN</h4>
-                                    <p>Bringing so sociable felicity supplied mr. September suspicion far him two acuteness perfectly.</p>
-                                </div>
-                            </div>
-                            <div class="col-md-4 m-b-30 item">
-                                <div><i data-icon="^" class="icon"></i></div>
-                                <div>
-                                    <h4>RENOVATION</h4>
-                                    <p>Bringing so sociable felicity supplied mr. September suspicion far him two acuteness perfectly.</p>
-                                </div>
-                            </div>
-                            <div class="col-md-4 m-b-30 item">
-                                <div><i data-icon="V" class="icon"></i></div>
-                                <div>
-                                    <h4>REPORTING</h4>
-                                    <p>Bringing so sociable felicity supplied mr. September suspicion far him two acuteness perfectly.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>--%>
-                <%--<section class="company border-top p-t-30 p-b-50">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12 palovit-title m-b-20">
-                                <hr class="hr" />
-                                <h2>ABOUT OUR COMPANY</h2>
-                                <p>We diminution preference thoroughly if. Joy deal pain view much her time. Led young gay would now state. Pronounce we attention admitting on assurance of suspicion conveying</p>
-                            </div>
-                            <div class="col-md-12 owl-carousel" data-items="1" data-autoplay="3000" data-pagination="true">
-                                <div class="item">
-                                    <div class="col-md-6 p-t-30">
-                                        <h4>Our Company Mission</h4>
-                                        <p>Certainly elsewhere my do allowance at. The address farther six hearted hundred towards husband. Are securing off occasion remember daughter replying. Held that feel his see own yet. Strangers ye to he sometimes propriety in. She right plate seven has. Bed who perceive judgment did marianne. </p>
-                                        <ul class="hidden-sm hidden-xs">
-                                            <li>Possession her thoroughly remarkably terminated man continuing</li>
-                                            <li>Can friendly laughter goodness man him appetite carriage</li>
-                                            <li>Sportsman delighted improving dashwoods gay instantly happiness</li>
-                                            <li>Demesne mention promise you justice arrived way</li>
-                                            <li>As departure at no propriety zealously my</li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <img src="Theme/img/about-1.jpg" class="img-responsive" alt="" />
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="col-md-6 p-t-30">
-                                        <h4>Our Company Mission</h4>
-                                        <p>Certainly elsewhere my do allowance at. The address farther six hearted hundred towards husband. Are securing off occasion remember daughter replying. Held that feel his see own yet. Strangers ye to he sometimes propriety in. She right plate seven has. Bed who perceive judgment did marianne. </p>
-                                        <ul class="hidden-sm hidden-xs">
-                                            <li>Possession her thoroughly remarkably terminated man continuing</li>
-                                            <li>Can friendly laughter goodness man him appetite carriage</li>
-                                            <li>Sportsman delighted improving dashwoods gay instantly happiness</li>
-                                            <li>Demesne mention promise you justice arrived way</li>
-                                            <li>As departure at no propriety zealously my</li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <img src="Theme/img/about-1.jpg" class="img-responsive" alt="" />
-                                    </div>
-                                </div>
-                                <div class="item">
-                                    <div class="col-md-6 p-t-30">
-                                        <h4>Our Company Mission</h4>
-                                        <p>Certainly elsewhere my do allowance at. The address farther six hearted hundred towards husband. Are securing off occasion remember daughter replying. Held that feel his see own yet. Strangers ye to he sometimes propriety in. She right plate seven has. Bed who perceive judgment did marianne. </p>
-                                        <ul class="hidden-sm hidden-xs">
-                                            <li>Possession her thoroughly remarkably terminated man continuing</li>
-                                            <li>Can friendly laughter goodness man him appetite carriage</li>
-                                            <li>Sportsman delighted improving dashwoods gay instantly happiness</li>
-                                            <li>Demesne mention promise you justice arrived way</li>
-                                            <li>As departure at no propriety zealously my</li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <img src="Theme/img/about-1.jpg" class="img-responsive" alt="" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>--%>
-                <%--<section class="form2">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12 palovit-title m-b-30">
-                                <hr class="hr" />
-                                <h2>GET A QUOTE</h2>
-                                <p>We diminution preference thoroughly if. Joy deal pain view much her time. Led young gay would now state. Pronounce we attention admitting on assurance of suspicion conveying </p>
-                            </div>
-                            <div class="col-md-8 col-md-offset-2">
-                                <form>
-                                    <div class="row item">
-                                        <div class="col-md-6">
-                                            <div class="append-icon">
-                                                <input type="text" class="form-control" placeholder="Name" />
-                                                <i class="fa fa-user"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="append-icon">
-                                                <input type="text" class="form-control" placeholder="Email Address" />
-                                                <i class="fa fa-envelope-open-o"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="append-icon">
-                                                <input type="text" class="form-control" placeholder="Phone Number" />
-                                                <i class="fa fa-phone"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="append-icon">
-                                                <select class="form-control">
-                                                    <option>Category</option>
-                                                </select>
-                                                <i class="fa fa-caret-down"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <textarea rows="7" class="form-control" placeholder="Message"></textarea>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <button type="button" class="btn btn-palovit center-block">SEND MESSAGE</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </section>--%>
-                <%--<section class="accordion p-t-50 p-b-50">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-6 left">
-                                <hr class="hr" />
-                                <h4>Our Company Mission</h4>
-                                <div class="panel-group m-t-30" id="accordion" role="tablist" aria-multiselectable="true">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading" role="tab" id="heading1">
-                                            <h3 class="panel-title">
-                                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="true" aria-controls="collapse1">
-                                                    <i class="fa fa-chevron-up"></i>
-                                                    Quality materials and quality workmanship
-                                                </a>
-                                            </h3>
-                                        </div>
-                                        <div id="collapse1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading1">
-                                            <div class="panel-body">
-                                                <p>Are securing off occasion remember daughter replying. Held that feel his see own yet. Strangers ye to he sometimes propriety in. She right plate seven has. Bed who perceive judgment did marianne. </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading" role="tab" id="heading2">
-                                            <h3 class="panel-title">
-                                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse2" aria-expanded="false" aria-controls="collapse2">
-                                                    <i class="fa fa-chevron-down"></i>
-                                                    Appropriate for small and large construction companies
-                                                </a>
-                                            </h3>
-                                        </div>
-                                        <div id="collapse2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading2">
-                                            <div class="panel-body">
-                                                <p>Are securing off occasion remember daughter replying. Held that feel his see own yet. Strangers ye to he sometimes propriety in. She right plate seven has. Bed who perceive judgment did marianne. </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading" role="tab" id="heading3">
-                                            <h3 class="panel-title">
-                                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse3" aria-expanded="false" aria-controls="collapse3">
-                                                    <i class="fa fa-chevron-down"></i>
-                                                    Unlimited materials options plus predefined materials combinations
-                                                </a>
-                                            </h3>
-                                        </div>
-                                        <div id="collapse3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading3">
-                                            <div class="panel-body">
-                                                <p>Are securing off occasion remember daughter replying. Held that feel his see own yet. Strangers ye to he sometimes propriety in. She right plate seven has. Bed who perceive judgment did marianne. </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading" role="tab" id="heading4">
-                                            <h3 class="panel-title">
-                                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse4" aria-expanded="false" aria-controls="collapse4">
-                                                    <i class="fa fa-chevron-down"></i>
-                                                    Simple and clean construction, architecture template
-                                                </a>
-                                            </h3>
-                                        </div>
-                                        <div id="collapse4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading4">
-                                            <div class="panel-body">
-                                                <p>Are securing off occasion remember daughter replying. Held that feel his see own yet. Strangers ye to he sometimes propriety in. She right plate seven has. Bed who perceive judgment did marianne. </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 right">
-                                <hr class="hr" />
-                                <h4>What The People Say</h4>
-                                <div id="carousel-example-generic" class="carousel slide m-t-30" data-ride="carousel">
-                                    <div class="carousel-inner" role="listbox">
-                                        <div class="item active">
-                                            <div class="row">
-                                                <div class="col-xs-3">
-                                                    <img src="Theme/img/testimonial-1.jpg" alt="" />
-                                                </div>
-                                                <div class="col-xs-9 p-t-30">
-                                                    <strong>Dustin F. Barnett</strong>
-                                                    <br />
-                                                    <span>Ceo & Founder</span>
-                                                </div>
-                                            </div>
-                                            <hr />
-                                            <p>"He unaffected sympathize discovered at no am conviction principles. Girl ham very how yet hill four show. Meet lain on he only size. Branched learning so subjects mistress do appetite jennings be in. Esteems up lasting no village morning do offices. Settled wishing ability musical may another set age. Diminution my apartments he attachment is entreaties announcing estimating."</p>
-                                        </div>
-                                        <div class="item">
-                                            <div class="row">
-                                                <div class="col-xs-3">
-                                                    <img src="Theme/img/testimonial-2.jpg" alt="" />
-                                                </div>
-                                                <div class="col-xs-9 p-t-30">
-                                                    <strong>Dustin F. Barnett</strong>
-                                                    <br />
-                                                    <span>Ceo & Founder</span>
-                                                </div>
-                                            </div>
-                                            <hr />
-                                            <p>"He unaffected sympathize discovered at no am conviction principles. Girl ham very how yet hill four show. Meet lain on he only size. Branched learning so subjects mistress do appetite jennings be in. Esteems up lasting no village morning do offices. Settled wishing ability musical may another set age. Diminution my apartments he attachment is entreaties announcing estimating."</p>
-                                        </div>
-                                    </div>
-                                    <a class="carousel-control left hidden-xs" href="#carousel-example-generic" role="button" data-slide="prev">
-                                        <i class="fa fa-chevron-left"></i>
-                                    </a>
-                                    <a class="carousel-control right hidden-xs" href="#carousel-example-generic" role="button" data-slide="next">
-                                        <i class="fa fa-chevron-right"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>--%>
-                <%--<section class="projets3 border-top p-t-30 p-b-50">
-                    <div class="row">
-                        <div class="col-md-12 palovit-title">
-                            <hr class="hr" />
-                            <h2>FEATURED PROJECTS</h2>
-                            <ul class="filter">
-                                <li class="active" data-filter="*">All Projets</li>
-                                <li data-filter=".item1">Buildings</li>
-                                <li data-filter=".item2">Decoration</li>
-                                <li data-filter=".item3">Architecture</li>
-                                <li data-filter=".item1">Renovation</li>
-                            </ul>
-                        </div>
-                        <div class="col-md-12 p-t-30">
-                            <div class="grid">
-                                <div class="col-lg-2 col-md-3 col-sm-4 item item3">
-                                    <div class="grid-box">
-                                        <div class="grid-box-wrapper">
-                                            <img src="Theme/img/lightbox-1.jpg" class="img-responsive" alt="" />
-                                            <a href="#" class="grid-box-title">
-                                                <div class="grid-box-category">Architecture</div>
-                                                <div class="grid-box-detail">DUBAI : DUBAI PARK CENTER</div>
-                                            </a>
-                                            <div class="grid-box-action">
-                                                <a href="#">
-                                                    <span class="box-action-icon"><i class="fa fa-link"></i></span>
-                                                </a>
-                                                <a href="Theme/img/lightbox-1.jpg" class="image-link">
-                                                    <span class="box-action-icon"><i class="fa fa-search"></i></span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-md-3 col-sm-4 item item2">
-                                    <div class="grid-box">
-                                        <div class="grid-box-wrapper">
-                                            <img src="Theme/img/lightbox-2.jpg" class="img-responsive" alt="" />
-                                            <a href="#" class="grid-box-title">
-                                                <div class="grid-box-category">Decoration</div>
-                                                <div class="grid-box-detail">KITCHEN DECORATION</div>
-                                            </a>
-                                            <div class="grid-box-action">
-                                                <a href="#">
-                                                    <span class="box-action-icon"><i class="fa fa-link"></i></span>
-                                                </a>
-                                                <a href="Theme/img/lightbox-2.jpg" class="image-link">
-                                                    <span class="box-action-icon"><i class="fa fa-search"></i></span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-md-3 col-sm-4 item item1">
-                                    <div class="grid-box">
-                                        <div class="grid-box-wrapper">
-                                            <img src="Theme/img/lightbox-3.jpg" class="img-responsive" alt="" />
-                                            <a href="#" class="grid-box-title">
-                                                <div class="grid-box-category">Buildings</div>
-                                                <div class="grid-box-detail">HOME BUILDINGS</div>
-                                            </a>
-                                            <div class="grid-box-action">
-                                                <a href="#">
-                                                    <span class="box-action-icon"><i class="fa fa-link"></i></span>
-                                                </a>
-                                                <a href="Theme/img/lightbox-3.jpg" class="image-link">
-                                                    <span class="box-action-icon"><i class="fa fa-search"></i></span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-md-3 col-sm-4 item item1">
-                                    <div class="grid-box">
-                                        <div class="grid-box-wrapper">
-                                            <img src="Theme/img/lightbox-4.jpg" class="img-responsive" alt="" />
-                                            <a href="#" class="grid-box-title">
-                                                <div class="grid-box-category">Buildings</div>
-                                                <div class="grid-box-detail">GARDEN BUILDINGS</div>
-                                            </a>
-                                            <div class="grid-box-action">
-                                                <a href="#">
-                                                    <span class="box-action-icon"><i class="fa fa-link"></i></span>
-                                                </a>
-                                                <a href="Theme/img/lightbox-4.jpg" class="image-link">
-                                                    <span class="box-action-icon"><i class="fa fa-search"></i></span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-md-3 col-sm-4 item item2">
-                                    <div class="grid-box">
-                                        <div class="grid-box-wrapper">
-                                            <img src="Theme/img/lightbox-5.jpg" class="img-responsive" alt="" />
-                                            <a href="#" class="grid-box-title">
-                                                <div class="grid-box-category">Decoration</div>
-                                                <div class="grid-box-detail">LIVING ROOM DECORATION</div>
-                                            </a>
-                                            <div class="grid-box-action">
-                                                <a href="#">
-                                                    <span class="box-action-icon"><i class="fa fa-link"></i></span>
-                                                </a>
-                                                <a href="Theme/img/lightbox-5.jpg" class="image-link">
-                                                    <span class="box-action-icon"><i class="fa fa-search"></i></span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-md-3 col-sm-4 item item3">
-                                    <div class="grid-box">
-                                        <div class="grid-box-wrapper">
-                                            <img src="Theme/img/lightbox-6.jpg" class="img-responsive" alt="" />
-                                            <a href="#" class="grid-box-title">
-                                                <div class="grid-box-category">Architecture</div>
-                                                <div class="grid-box-detail">GARDEN PARK CENTER</div>
-                                            </a>
-                                            <div class="grid-box-action">
-                                                <a href="#">
-                                                    <span class="box-action-icon"><i class="fa fa-link"></i></span>
-                                                </a>
-                                                <a href="Theme/img/lightbox-6.jpg" class="image-link">
-                                                    <span class="box-action-icon"><i class="fa fa-search"></i></span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-md-3 col-sm-4 item item3">
-                                    <div class="grid-box">
-                                        <div class="grid-box-wrapper">
-                                            <img src="Theme/img/lightbox-7.jpg" class="img-responsive" alt="" />
-                                            <a href="#" class="grid-box-title">
-                                                <div class="grid-box-category">Architecture</div>
-                                                <div class="grid-box-detail">CHILDREN ROOM</div>
-                                            </a>
-                                            <div class="grid-box-action">
-                                                <a href="#">
-                                                    <span class="box-action-icon"><i class="fa fa-link"></i></span>
-                                                </a>
-                                                <a href="Theme/img/lightbox-7.jpg" class="image-link">
-                                                    <span class="box-action-icon"><i class="fa fa-search"></i></span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-md-3 col-sm-4 item item2">
-                                    <div class="grid-box">
-                                        <div class="grid-box-wrapper">
-                                            <img src="Theme/img/lightbox-8.jpg" class="img-responsive" alt="" />
-                                            <a href="#" class="grid-box-title">
-                                                <div class="grid-box-category">Decoration</div>
-                                                <div class="grid-box-detail">LIVING ROOM DECURATION</div>
-                                            </a>
-                                            <div class="grid-box-action">
-                                                <a href="#">
-                                                    <span class="box-action-icon"><i class="fa fa-link"></i></span>
-                                                </a>
-                                                <a href="Theme/img/lightbox-8.jpg" class="image-link">
-                                                    <span class="box-action-icon"><i class="fa fa-search"></i></span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-md-3 col-sm-4 item item1">
-                                    <div class="grid-box">
-                                        <div class="grid-box-wrapper">
-                                            <img src="Theme/img/lightbox-9.jpg" class="img-responsive" alt="" />
-                                            <a href="#" class="grid-box-title">
-                                                <div class="grid-box-category">Buildings</div>
-                                                <div class="grid-box-detail">HOME BUILDINGS</div>
-                                            </a>
-                                            <div class="grid-box-action">
-                                                <a href="#">
-                                                    <span class="box-action-icon"><i class="fa fa-link"></i></span>
-                                                </a>
-                                                <a href="Theme/img/lightbox-9.jpg" class="image-link">
-                                                    <span class="box-action-icon"><i class="fa fa-search"></i></span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-md-3 col-sm-4 item item3">
-                                    <div class="grid-box">
-                                        <div class="grid-box-wrapper">
-                                            <img src="Theme/img/lightbox-10.jpg" class="img-responsive" alt="" />
-                                            <a href="#" class="grid-box-title">
-                                                <div class="grid-box-category">Architecture</div>
-                                                <div class="grid-box-detail">CREATIVE DECORATION</div>
-                                            </a>
-                                            <div class="grid-box-action">
-                                                <a href="#">
-                                                    <span class="box-action-icon"><i class="fa fa-link"></i></span>
-                                                </a>
-                                                <a href="Theme/img/lightbox-10.jpg" class="image-link">
-                                                    <span class="box-action-icon"><i class="fa fa-search"></i></span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-md-3 col-sm-4 item item2">
-                                    <div class="grid-box">
-                                        <div class="grid-box-wrapper">
-                                            <img src="Theme/img/lightbox-11.jpg" class="img-responsive" alt="" />
-                                            <a href="#" class="grid-box-title">
-                                                <div class="grid-box-category">Decoration</div>
-                                                <div class="grid-box-detail">LIVING ROOM</div>
-                                            </a>
-                                            <div class="grid-box-action">
-                                                <a href="#">
-                                                    <span class="box-action-icon"><i class="fa fa-link"></i></span>
-                                                </a>
-                                                <a href="Theme/img/lightbox-11.jpg" class="image-link">
-                                                    <span class="box-action-icon"><i class="fa fa-search"></i></span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-md-3 col-sm-4 item item1">
-                                    <div class="grid-box">
-                                        <div class="grid-box-wrapper">
-                                            <img src="Theme/img/lightbox-12.jpg" class="img-responsive" alt="" />
-                                            <a href="#" class="grid-box-title">
-                                                <div class="grid-box-category">Architecture</div>
-                                                <div class="grid-box-detail">BATHROOM DESIGN</div>
-                                            </a>
-                                            <div class="grid-box-action">
-                                                <a href="#">
-                                                    <span class="box-action-icon"><i class="fa fa-link"></i></span>
-                                                </a>
-                                                <a href="Theme/img/lightbox-12.jpg" class="image-link">
-                                                    <span class="box-action-icon"><i class="fa fa-search"></i></span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-12 button">
-                            <a href="#" class="btn btn-slider-black">READ MORE</a>
-                        </div>
-                    </div>
-                </section>--%>
-                <%--<section class="news3 border-top p-t-30 p-b-50">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12 palovit-title m-b-20">
-                                <hr class="hr" />
-                                <h2>LATEST NEWS</h2>
-                                <p>We diminution preference thoroughly if. Joy deal pain view much her time. Led young gay would now state. Pronounce we attention admitting on assurance of suspicion conveying</p>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="row">
-                                    <div class="col-md-4 item">
-                                        <img src="Theme/img/blog-1.jpg" class="img-responsive" alt="" />
-                                        <div>
-                                            <span>Jeff D. Stutler - 16 September 2016</span>
-                                            <a href="#">
-                                                <h4>Sportsman delIghted improvIng dashwoods gay Instantly happiness six</h4>
-                                            </a>
-                                            <p>Sportsman delighted improving dashwoods gay instantly happiness six. Ham now amounted absolute not mistaken way pleasant whatever. At an these still no dried folly stood thing.</p>
-                                            <a href="#" class="read">READ MORE</a>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 item">
-                                        <img src="Theme/img/blog-2.jpg" class="img-responsive" alt="" />
-                                        <div>
-                                            <span>Jeff D. Stutler - 16 September 2016</span>
-                                            <a href="#">
-                                                <h4>In excuse hardly summer in basket misery. By rent an part need </h4>
-                                            </a>
-                                            <p>Sportsman delighted improving dashwoods gay instantly happiness six. Ham now amounted absolute not mistaken way pleasant whatever. At an these still no dried folly stood thing.</p>
-                                            <a href="#" class="read">READ MORE</a>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4 item">
-                                        <img src="Theme/img/blog-3.jpg" class="img-responsive" alt="" />
-                                        <div>
-                                            <span>Jeff D. Stutler - 16 September 2016</span>
-                                            <a href="#">
-                                                <h4>Needed oppose seemed how all. Very mrs shed shew gave you</h4>
-                                            </a>
-                                            <p>Sportsman delighted improving dashwoods gay instantly happiness six. Ham now amounted absolute not mistaken way pleasant whatever. At an these still no dried folly stood thing.</p>
-                                            <a href="#" class="read">READ MORE</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>--%>
-
                 <asp:ContentPlaceHolder ID="dvcontent" runat="server">
                 </asp:ContentPlaceHolder>
             </div>
@@ -1011,32 +360,25 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-4">
-                            <h4>About Us</h4>
+                            <h4><%=Resources.Resource.AboutUs %></h4>
                             <p>We are one of the most excellent and trusted online casino brands in Asia, we are manage by Billion Ace Investment Ltd Company, registered and certified by First Cagayan Leisure & Resort Corporation and officially approved by Philippines government. As a top online gambling sites, we provides a lot of online betting games such as casino games, online sports betting and slot games.</p>
                             <ul class="social">
-                                <li class="facebook"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                                <li class="twitter"><a href="#"><i class="fab fa-twitter"></i></a></li>
-                                <li class="instagram"><a href="#"><i class="fab fa-instagram"></i></a></li>
-                                <li class="tiktok"><a href="#"><i class="fab fa-tiktok"></i></a></li>
-                                <li class="youtube"><a href="#"><i class="fab fa-youtube"></i></a></li>
+                                <li class="facebook"><a href="#" id="fFb" runat="server"><i class="fab fa-facebook-f"></i></a></li>
+                                <li class="twitter"><a href="#" id="fTw" runat="server"><i class="fab fa-twitter"></i></a></li>
+                                <li class="instagram"><a href="#" id="fIg" runat="server"><i class="fab fa-instagram"></i></a></li>
+                                <li class="tiktok"><a href="#" id="fTt" runat="server"><i class="fab fa-tiktok"></i></a></li>
+                                <li class="youtube"><a href="#" id="fYt" runat="server"><i class="fab fa-youtube"></i></a></li>
                             </ul>
                         </div>
                         <div class="col-md-4">
-                            <h4>Get In Touch</h4>
-                            <ul class="adress">
-                                <li><a href="#"><i class="far fa-comment-dots"></i>Live Chat</a></li>
-                                <li><a href="#"><i class="fab fa-telegram-plane"></i>onlinegame</a></li>
-                                <li><a href="#"><i class="fab fa-whatsapp"></i>+6012-345 6789</a></li>
-                                <li><a href="#"><i class="fab fa-line"></i>onlinegame</a></li>
-                                <li><a href="#"><i class="fas fa-phone"></i>+6012-345 6789</a></li>
-                                <li><i class="fab fa-weixin"></i>wxid_123456789</li>
-                                <li><a href="#"><i class="fas fa-envelope"></i>contact@gmail.com</a></li>
-                                <li><a href="#"><i class="fas fa-support"></i>support@hotmail.com</a></li>
+                            <h4><%=Resources.Resource.GetInTouch %></h4>
+                            <ul class="adress" id="contactList" runat="server">
+                               <%--Contact List will show here--%>
                             </ul>
                         </div>
                         <div class="col-md-4">
-                            <h4>Latest Winners</h4>
-                            <p>You can find our lastest winner here.</p>
+                            <h4><%=Resources.Resource.LatestWinners %></h4>
+                            <p><%=Resources.Resource.YouCanFindOurLatestWinner %></p>
                             <ul class="wthdraw" id="wthdraw" runat="server">
                                 <%--Winner List will show here--%>
                             </ul>
@@ -1057,10 +399,10 @@
                         </div>
                         <div class="col-md-6 clearfix fmenu">
                             <ul>
-                                <li><a href="Faqs.aspx">FAQ's</a></li>
-                                <li><a href="Contact.aspx">Contact</a></li>
-                                <li><a href="Terms.aspx">Terms & Conditions</a></li>
-                                <li><a href="Privacy.aspx">Privacy Policy</a></li>
+                                <li><a href="Faqs.aspx"><%=Resources.Resource.FAQMenuBtm %></a></li>
+                                <li><a href="Contact.aspx"><%=Resources.Resource.ContactMenuBtm %></a></li>
+                                <li><a href="Terms.aspx"><%=Resources.Resource.TnCMenuBtm %></a></li>
+                                <li><a href="Privacy.aspx"><%=Resources.Resource.PrivacyMenuBtm %></a></li>
                             </ul>
                         </div>
                     </div>
@@ -1068,7 +410,7 @@
             </div>
         </footer>
 
-        <a class="pagetop" href="#">
+        <a class="pagetop center" href="#">
             <i class="fas fa-chevron-up"></i>
         </a>
         <script src="Scripts/jquery-3.1.1.min.js"></script>
@@ -1086,21 +428,6 @@
 
         <script src="Scripts/jquery.cookie-1.4.1.min.js"></script>
         <link rel="stylesheet" href="Theme/demo/Demo.css" />
-        <%--<script src="Theme/demo/Demo.js"></script>--%>
-
-        <%--<!--Start of Tawk.to Script-->
-        <script type="text/javascript">
-            var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-            (function () {
-                var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
-                s1.async = true;
-                s1.src = 'https://embed.tawk.to/60199bdea9a34e36b9731930/1eti0hnv5';
-                s1.charset = 'UTF-8';
-                s1.setAttribute('crossorigin', '*');
-                s0.parentNode.insertBefore(s1, s0);
-            })();
-        </script>
-        <!--End of Tawk.to Script-->--%>
 
         <div id="htmlCode" runat="server"></div>
     </form>

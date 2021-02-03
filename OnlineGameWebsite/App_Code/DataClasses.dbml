@@ -207,9 +207,13 @@
       <Column Name="ContactID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="ContactType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="ContactName" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="ContactTitle" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
       <Column Name="Website" Type="System.String" DbType="NChar(255)" CanBeNull="true" />
       <Column Name="FaIcon" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
       <Column Name="Status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="ShowFooter" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="ShowContactPage" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="ShowProductPage" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
 </Database>

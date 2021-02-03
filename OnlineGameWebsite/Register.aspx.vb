@@ -1,6 +1,6 @@
 ﻿
 Partial Class Register
-    Inherits System.Web.UI.Page
+    Inherits BasePage
 
     Public ref As String = ""
     Public agent As String = ""

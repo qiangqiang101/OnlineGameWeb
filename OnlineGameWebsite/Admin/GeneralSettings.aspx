@@ -104,13 +104,80 @@
                     <div class="card-body">
                         <div class="form-group row">
                             <div class="col-sm-12 mb-3 mb-sm-0">
-                                <asp:TextBox class="form-control form-control-user" ID="txtHTML" runat="server" placeholder="" TextMode="MultiLine" Height="635"></asp:TextBox>
+                                <asp:TextBox class="form-control form-control-user" ID="txtHTML" runat="server" placeholder="" TextMode="MultiLine" Height="350"></asp:TextBox> <%--Height="635"--%>
                             </div>
                         </div>
                         <hr />
                         <div class="form-group row">
                             <div class="col-sm-3 ml-auto">
                                 <asp:Button class="btn btn-success btn-user btn-block" ID="btnHTML" runat="server" Text="Submit" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Contacts</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <div class="col-sm-12 mb-3 mb-sm-0">
+                                <h6>Header & Footer Social Buttons</h6>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <label>Facebook</label>
+                                <asp:TextBox class="form-control form-control-user" ID="txtFacebook" runat="server" placeholder="https://www.facebook.com" TextMode="Url"></asp:TextBox>
+                            </div>
+                            <div class="col-sm-6">
+                                <label>Twitter</label>
+                                <asp:TextBox class="form-control form-control-user" ID="txtTwitter" runat="server" placeholder="https://www.twitter.com" TextMode="Url"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <label>Instagram</label>
+                                <asp:TextBox class="form-control form-control-user" ID="txtInstagram" runat="server" placeholder="https://www.instagram.com" TextMode="Url"></asp:TextBox>
+                            </div>
+                            <div class="col-sm-6">
+                                <label>TikTok</label>
+                                <asp:TextBox class="form-control form-control-user" ID="txtTikTok" runat="server" placeholder="https://www.tiktok.com" TextMode="Url"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <label>Youtube</label>
+                                <asp:TextBox class="form-control form-control-user" ID="txtYoutube" runat="server" placeholder="https://www.youtube.com/" TextMode="Url"></asp:TextBox>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="form-group row">
+                            <div class="col-sm-12 mb-3 mb-sm-0">
+                                <h6>Sub Header Contacts</h6>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <label>WhatsApp Number</label>
+                                <asp:TextBox class="form-control form-control-user" ID="txtWhatsapp" runat="server" placeholder="+6012-345 6789"></asp:TextBox>
+                            </div>
+                            <div class="col-sm-6">
+                                <label>Telegram Username</label>
+                                <asp:TextBox class="form-control form-control-user" ID="txtTelegram" runat="server" placeholder="@username"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <label>WeChat ID</label>
+                                <asp:TextBox class="form-control form-control-user" ID="txtWechat" runat="server" placeholder="wxid_012345678987"></asp:TextBox>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="form-group row">
+                            <div class="col-sm-3 ml-auto">
+                                <asp:Button class="btn btn-success btn-user btn-block" ID="btnSubmitSocial" runat="server" Text="Submit" />
                             </div>
                         </div>
                     </div>

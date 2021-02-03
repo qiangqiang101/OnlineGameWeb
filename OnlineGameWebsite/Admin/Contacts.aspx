@@ -21,6 +21,7 @@
                             <asp:TableHeaderCell>ID</asp:TableHeaderCell>
                             <asp:TableHeaderCell>Type</asp:TableHeaderCell>
                             <asp:TableHeaderCell>Name</asp:TableHeaderCell>
+                            <asp:TableHeaderCell>Title</asp:TableHeaderCell>
                             <asp:TableHeaderCell>Website URL</asp:TableHeaderCell>
                             <asp:TableHeaderCell>Icon</asp:TableHeaderCell>
                             <asp:TableHeaderCell>Status</asp:TableHeaderCell>

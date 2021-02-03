@@ -1,6 +1,6 @@
 ﻿
 Partial Class Action
-    Inherits System.Web.UI.Page
+    Inherits BasePage
 
     Public mode As String = "cancel"
     Public redirect As String = "history"

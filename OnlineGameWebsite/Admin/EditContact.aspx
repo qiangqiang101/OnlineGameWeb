@@ -54,13 +54,35 @@
                             </div>
                             <div class="col-sm-6">
                                 <label>Website URL</label>
-                                <asp:TextBox class="form-control form-control-user" ID="txtAccNo" runat="server" placeholder="username" required="Required"></asp:TextBox>
+                                <asp:TextBox class="form-control form-control-user" ID="txtAccNo" runat="server" placeholder="https://www.facebook.com/facebook" required="Required"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <label>Title</label>
+                                <asp:TextBox class="form-control form-control-user" ID="txtTitle" runat="server" placeholder="Facebook" required="Required"></asp:TextBox>
+                            </div>
+                            <div class="col-sm-6">
+                                <label>Show on</label>
+                                <div class="custom-control custom-checkbox small">
+                                    <div class="form-group row">
+                                        <div class="col-sm-4 mb-3 mb-sm-0">
+                                            <asp:checkbox class="form-check-input form-control-user" id="cbFooter" runat="server" text="&nbsp Footer" />
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <asp:checkbox class="form-check-input form-control-user" id="cbContactPage" runat="server" text="&nbsp Contact Page" />
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <asp:checkbox class="form-check-input form-control-user" id="cbProductPage" runat="server" text="&nbsp Products Page" />
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <label>Icon CSS</label>
-                               <asp:TextBox class="form-control form-control-user" ID="txtFaIcon" runat="server" placeholder="fab fa-facebook-f" required="Required"></asp:TextBox>
+                                <asp:TextBox class="form-control form-control-user" ID="txtFaIcon" runat="server" placeholder="fab fa-facebook-f" required="Required"></asp:TextBox>
                             </div>
                             <div class="col-sm-6">
                                 <label>Status</label>

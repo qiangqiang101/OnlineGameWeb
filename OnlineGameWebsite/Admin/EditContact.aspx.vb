@@ -19,7 +19,11 @@ Partial Class Admin_EditContact
                             cmbType.SelectedValue = c.ContactType
                             txtName.Text = c.ContactName.Trim
                             txtAccNo.Text = c.Website.Trim
+                            txtTitle.Text = If(c.ContactTitle = Nothing, "", c.ContactTitle.Trim)
                             txtFaIcon.Text = c.FaIcon.Trim
+                            cbFooter.Checked = c.ShowFooter
+                            cbProductPage.Checked = c.ShowProductPage
+                            cbContactPage.Checked = c.ShowContactPage
                             cmbEnabled.SelectedValue = c.Status
 
                             h6.InnerText = "Edit " & c.ContactID.ToString("00000")
@@ -37,14 +41,22 @@ Partial Class Admin_EditContact
                             cmbType.SelectedValue = c.ContactType
                             txtName.Text = c.ContactName.Trim
                             txtAccNo.Text = c.Website.Trim
+                            txtTitle.Text = If(c.ContactTitle = Nothing, "", c.ContactTitle.Trim)
                             txtFaIcon.Text = c.FaIcon.Trim
+                            cbFooter.Checked = c.ShowFooter
+                            cbProductPage.Checked = c.ShowProductPage
+                            cbContactPage.Checked = c.ShowContactPage
                             cmbEnabled.SelectedValue = c.Status
 
                             cmbList.Enabled = False
                             cmbType.Enabled = False
                             txtName.ReadOnly = True
                             txtAccNo.ReadOnly = True
+                            txtTitle.ReadOnly = True
                             txtFaIcon.ReadOnly = True
+                            cbFooter.Enabled = False
+                            cbProductPage.Enabled = False
+                            cbContactPage.Enabled = False
                             cmbEnabled.Enabled = False
 
                             h6.InnerText = "Edit " & c.ContactID.ToString("00000")
@@ -63,7 +75,11 @@ Partial Class Admin_EditContact
                             cmbType.SelectedValue = c.ContactType
                             txtName.Text = c.ContactName.Trim
                             txtAccNo.Text = c.Website.Trim
+                            txtTitle.Text = If(c.ContactTitle = Nothing, "", c.ContactTitle.Trim)
                             txtFaIcon.Text = c.FaIcon.Trim
+                            cbFooter.Checked = c.ShowFooter
+                            cbProductPage.Checked = c.ShowProductPage
+                            cbContactPage.Checked = c.ShowContactPage
                             cmbEnabled.SelectedValue = c.Status
 
                             h6.InnerText = "Edit " & c.ContactID.ToString("00000")
@@ -134,7 +150,11 @@ Partial Class Admin_EditContact
                     .ContactType = cmbType.SelectedValue
                     .ContactName = txtName.Text.Trim
                     .Website = txtAccNo.Text.Trim
+                    .ContactTitle = If(txtTitle.Text = Nothing, "", txtTitle.Text.Trim)
                     .FaIcon = txtFaIcon.Text.Trim
+                    .ShowFooter = cbFooter.Checked
+                    .ShowProductPage = cbProductPage.Checked
+                    .ShowContactPage = cbContactPage.Checked
                     .Status = cmbEnabled.SelectedValue
                 End With
 
@@ -156,7 +176,11 @@ Partial Class Admin_EditContact
                     .ContactType = cmbType.SelectedValue
                     .ContactName = txtName.Text.Trim
                     .Website = txtAccNo.Text.Trim
+                    .ContactTitle = If(txtTitle.Text = Nothing, "", txtTitle.Text.Trim)
                     .FaIcon = txtFaIcon.Text.Trim
+                    .ShowFooter = cbFooter.Checked
+                    .ShowProductPage = cbProductPage.Checked
+                    .ShowContactPage = cbContactPage.Checked
                     .Status = cmbEnabled.SelectedValue
                 End With
 

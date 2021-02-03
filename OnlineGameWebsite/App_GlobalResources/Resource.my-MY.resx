@@ -1,0 +1,594 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutUs" xml:space="preserve">
+    <value>Mengenai Kami</value>
+  </data>
+  <data name="Accounts" xml:space="preserve">
+    <value>Akaun</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>Tindakan</value>
+  </data>
+  <data name="AffinBank" xml:space="preserve">
+    <value>Affin Bank</value>
+  </data>
+  <data name="AgroBank" xml:space="preserve">
+    <value>Agro Bank</value>
+  </data>
+  <data name="AllianceBank" xml:space="preserve">
+    <value>Alliance Bank</value>
+  </data>
+  <data name="AllMenu" xml:space="preserve">
+    <value>SEMUA</value>
+  </data>
+  <data name="AllProducts" xml:space="preserve">
+    <value>Semua Produk</value>
+  </data>
+  <data name="AlRajhi" xml:space="preserve">
+    <value>Al Rajhi</value>
+  </data>
+  <data name="AlreadyHaveAccount" xml:space="preserve">
+    <value>Sudah mempunyai akaun? </value>
+  </data>
+  <data name="AmBank" xml:space="preserve">
+    <value>AmBank</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>Jumlah</value>
+  </data>
+  <data name="AndroidDownload" xml:space="preserve">
+    <value>ANDROID DOWNLOAD </value>
+  </data>
+  <data name="ATMTransfer" xml:space="preserve">
+    <value>Pemindahan ATM</value>
+  </data>
+  <data name="Bank" xml:space="preserve">
+    <value>Bank</value>
+  </data>
+  <data name="BankAccountNo" xml:space="preserve">
+    <value>Nombor Akaun Bank</value>
+  </data>
+  <data name="Banking" xml:space="preserve">
+    <value>Perbankan</value>
+  </data>
+  <data name="BankingMenu" xml:space="preserve">
+    <value>PERBANKAN</value>
+  </data>
+  <data name="BankingPleaseNote" xml:space="preserve">
+    <value>Harap maklum:</value>
+  </data>
+  <data name="BankingPN1" xml:space="preserve">
+    <value>Semua jumlah maksimum didasarkan pada setiap transaksi setiap hari.</value>
+  </data>
+  <data name="BankingPN2" xml:space="preserve">
+    <value>Anda boleh menghubungi Perkhidmatan Pelanggan kami untuk maklumat lebih lanjut mengenai bank panel kami.</value>
+  </data>
+  <data name="BankingPN3" xml:space="preserve">
+    <value>Sila simpan sebarang resit bank atau nombor rujukan transaksi kerana kami memerlukan bukti transaksi.</value>
+  </data>
+  <data name="BankingPN4" xml:space="preserve">
+    <value>Melampirkan bukti deposit anda bersama dengan tiket deposit anda akan mengurangkan kelewatan transaksi deposit.</value>
+  </data>
+  <data name="BankingPN5" xml:space="preserve">
+    <value>Pengesahan standard akan diminta semasa memproses sebarang pengeluaran dari eWallet anda.</value>
+  </data>
+  <data name="BankingPN6" xml:space="preserve">
+    <value>Jumlah pengeluaran atau pengeluaran yang besar melebihi had harian mungkin lebih lama untuk diproses.</value>
+  </data>
+  <data name="BankingPN7" xml:space="preserve">
+    <value>Sekiranya bonus / promosi digunakan, Mohon perhatikan syarat perolehan yang berkaitan sebelum meminta penarikan.</value>
+  </data>
+  <data name="BankingSubtitle" xml:space="preserve">
+    <value>Anda boleh melakukan transaksi dengan mudah dan cekap, kerana terdapat banyak kaedah pengeluaran dan deposit untuk anda pilih dan pilih. Sila lihat semua pilihan perbankan kami seperti di bawah, dan pilih kaedah yang paling sesuai dengan anda.</value>
+  </data>
+  <data name="BankIslam" xml:space="preserve">
+    <value>Bank Islam</value>
+  </data>
+  <data name="BankMuamalat" xml:space="preserve">
+    <value>Bank Muamalat</value>
+  </data>
+  <data name="BankRakyat" xml:space="preserve">
+    <value>Bank Rakyat</value>
+  </data>
+  <data name="BankSN" xml:space="preserve">
+    <value>Bank Simpanan Nasional</value>
+  </data>
+  <data name="Captcha" xml:space="preserve">
+    <value>Captcha</value>
+  </data>
+  <data name="CashDepositMachine" xml:space="preserve">
+    <value>Mesin Deposit Tunai (CDM)</value>
+  </data>
+  <data name="Categories" xml:space="preserve">
+    <value>Kategori</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Kategori</value>
+  </data>
+  <data name="CimbBank" xml:space="preserve">
+    <value>CIMB Bank</value>
+  </data>
+  <data name="CitiBank" xml:space="preserve">
+    <value>CitiBank</value>
+  </data>
+  <data name="CompleteTheFormBelowResetPassword" xml:space="preserve">
+    <value>Lengkapkan borang di bawah untuk menerima e-mel dengan kod kebenaran yang diperlukan untuk menetapkan semula kata laluan anda.</value>
+  </data>
+  <data name="ConfirmNewPassword" xml:space="preserve">
+    <value>Sahkan Kata Laluan Baru</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Sahkan Kata Laluan</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Hubungi</value>
+  </data>
+  <data name="ContactInformation" xml:space="preserve">
+    <value>Maklumat Perhubungan</value>
+  </data>
+  <data name="ContactMenu" xml:space="preserve">
+    <value>HUBUNGI</value>
+  </data>
+  <data name="ContactMenuBtm" xml:space="preserve">
+    <value>Hubungi</value>
+  </data>
+  <data name="ContactNo" xml:space="preserve">
+    <value>Nombor Telefon</value>
+  </data>
+  <data name="ContactSubtitle" xml:space="preserve">
+    <value>Pegawai Perkhidmatan Pelanggan kami ada 24 jam sehari, 7 hari seminggu untuk melayani anda dengan lebih baik.</value>
+  </data>
+  <data name="CoopBank" xml:space="preserve">
+    <value>Co-opbank Pertama</value>
+  </data>
+  <data name="CreateAccount" xml:space="preserve">
+    <value>Buat Akaun</value>
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>Kata Laluan Semasa</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Tarikh</value>
+  </data>
+  <data name="DateOfBirth" xml:space="preserve">
+    <value>Tarikh Lahir</value>
+  </data>
+  <data name="Deposit" xml:space="preserve">
+    <value>Deposit</value>
+  </data>
+  <data name="DepositType" xml:space="preserve">
+    <value>Jenis Deposit</value>
+  </data>
+  <data name="DepositU" xml:space="preserve">
+    <value>DEPOSIT</value>
+  </data>
+  <data name="DontHaveAccountYet" xml:space="preserve">
+    <value>Belum ada akaun? </value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>Muat Turun</value>
+  </data>
+  <data name="DownloadMenu" xml:space="preserve">
+    <value>MUAT TURUN</value>
+  </data>
+  <data name="DownloadOurApp" xml:space="preserve">
+    <value>MUAT TURUN APPLIKASI SEKARANG</value>
+  </data>
+  <data name="DownloadOurAppSubtitle" xml:space="preserve">
+    <value>Untuk iPad, iPhone dan Android.</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Emel</value>
+  </data>
+  <data name="FAQMenuBtm" xml:space="preserve">
+    <value>Soalan Lazim</value>
+  </data>
+  <data name="FishHunter" xml:space="preserve">
+    <value>Fish Hunter</value>
+  </data>
+  <data name="FishHunterMenu" xml:space="preserve">
+    <value>FISH HUNTER</value>
+  </data>
+  <data name="FishHunterSubtitle" xml:space="preserve">
+    <value>Pengembaraan permainan memancing yang sangat sederhana namun menarik dengan banyak ciri yang pasti akan disukai ramai.</value>
+  </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>Lupa Kata Laluan</value>
+  </data>
+  <data name="FullName" xml:space="preserve">
+    <value>Nama Penuh</value>
+  </data>
+  <data name="GetInTouch" xml:space="preserve">
+    <value>Hubungi</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Laman Utama</value>
+  </data>
+  <data name="HomeMenu" xml:space="preserve">
+    <value>LAMAN UTAMA</value>
+  </data>
+  <data name="HongLeongBank" xml:space="preserve">
+    <value>Hong Leong Bank</value>
+  </data>
+  <data name="HSBCBank" xml:space="preserve">
+    <value>HSBC Bank</value>
+  </data>
+  <data name="IAcceptTnC" xml:space="preserve">
+    <value>Saya menerima semua Terma &amp; Syarat.</value>
+  </data>
+  <data name="IDeclare18YearsOld" xml:space="preserve">
+    <value>Saya menyatakan bahawa saya berumur 18 tahun ke atas.</value>
+  </data>
+  <data name="InternetTransfer" xml:space="preserve">
+    <value>Pemindahan Internet</value>
+  </data>
+  <data name="iOSDownload" xml:space="preserve">
+    <value>iOS DOWNLOAD </value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Bahasa Malaysia</value>
+  </data>
+  <data name="LatestWinners" xml:space="preserve">
+    <value>Pemenang Terkini</value>
+  </data>
+  <data name="LiveCasino" xml:space="preserve">
+    <value>Kasino</value>
+  </data>
+  <data name="LiveCasinoMenu" xml:space="preserve">
+    <value>KASINO</value>
+  </data>
+  <data name="LiveCasinoSubtitle" xml:space="preserve">
+    <value>Rasakan pengalaman yang sama dan adrenalin seperti di kasino sebenar.</value>
+  </data>
+  <data name="LiveScore" xml:space="preserve">
+    <value>Skor</value>
+  </data>
+  <data name="LiveScoreMenu" xml:space="preserve">
+    <value>SKOR</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Log Masuk</value>
+  </data>
+  <data name="LoginFs" xml:space="preserve">
+    <value>Log Masuk /</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Log Keluar</value>
+  </data>
+  <data name="Maybank" xml:space="preserve">
+    <value>Maybank</value>
+  </data>
+  <data name="MBSBBank" xml:space="preserve">
+    <value>MBSB Bank</value>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>Lebih lagi </value>
+  </data>
+  <data name="MyAccount" xml:space="preserve">
+    <value>Akaun</value>
+  </data>
+  <data name="MyAccounts" xml:space="preserve">
+    <value>Akaun Saya</value>
+  </data>
+  <data name="MyAccountsU" xml:space="preserve">
+    <value>AKAUN SAYA</value>
+  </data>
+  <data name="MyPasswordU" xml:space="preserve">
+    <value>KATA LALUAN SAYA</value>
+  </data>
+  <data name="MyProfile" xml:space="preserve">
+    <value>Profil Saya</value>
+  </data>
+  <data name="MyProfileU" xml:space="preserve">
+    <value>PROFIL SAYA</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nama</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>Kata Laluan Baru</value>
+  </data>
+  <data name="NoThanks" xml:space="preserve">
+    <value>Tidak, Terima kasih</value>
+  </data>
+  <data name="OCBCBank" xml:space="preserve">
+    <value>OCBC Bank</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>Lain</value>
+  </data>
+  <data name="OtherMenu" xml:space="preserve">
+    <value>LAIN</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Kata Laluan</value>
+  </data>
+  <data name="PasswordDetails" xml:space="preserve">
+    <value>Perincian Kata Laluan</value>
+  </data>
+  <data name="Poker" xml:space="preserve">
+    <value>Poker</value>
+  </data>
+  <data name="PokerMenu" xml:space="preserve">
+    <value>POKER</value>
+  </data>
+  <data name="PokerSubtitle" xml:space="preserve">
+    <value>Hoskan hingga 10 permainan P2P yang luar biasa dengan pemain sebenar dan tanpa bot.</value>
+  </data>
+  <data name="PrivacyMenuBtm" xml:space="preserve">
+    <value>Dasar Privasi</value>
+  </data>
+  <data name="Product" xml:space="preserve">
+    <value>Produk</value>
+  </data>
+  <data name="ProductsMenu" xml:space="preserve">
+    <value>PRODUK</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profil</value>
+  </data>
+  <data name="ProfileDetails" xml:space="preserve">
+    <value>Maklumat Profil</value>
+  </data>
+  <data name="Promotion" xml:space="preserve">
+    <value>Promosi</value>
+  </data>
+  <data name="PromotionMenu" xml:space="preserve">
+    <value>PROMOSI</value>
+  </data>
+  <data name="PublicBank" xml:space="preserve">
+    <value>Public Bank</value>
+  </data>
+  <data name="Receipt" xml:space="preserve">
+    <value>Resit</value>
+  </data>
+  <data name="RefCode" xml:space="preserve">
+    <value>Nombor Rujukan</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Daftar</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Ingat Saya</value>
+  </data>
+  <data name="ResetPassword" xml:space="preserve">
+    <value>Tukar Kata Lalaun</value>
+  </data>
+  <data name="RHBBank" xml:space="preserve">
+    <value>RHB Bank</value>
+  </data>
+  <data name="Rng" xml:space="preserve">
+    <value>RNG</value>
+  </data>
+  <data name="RngMenu" xml:space="preserve">
+    <value>RNG</value>
+  </data>
+  <data name="RngSubtitle" xml:space="preserve">
+    <value>Menang lebih banyak dengan bertaruh dengan lebih banyak pilihan nombor di keno klasik dan utama kami!</value>
+  </data>
+  <data name="SaveChangesU" xml:space="preserve">
+    <value>SIMPAN PERUBAHAN</value>
+  </data>
+  <data name="SCBank" xml:space="preserve">
+    <value>Standard Chartered Bank</value>
+  </data>
+  <data name="SignIn" xml:space="preserve">
+    <value>Log Masuk</value>
+  </data>
+  <data name="SignUp" xml:space="preserve">
+    <value>Daftar</value>
+  </data>
+  <data name="SignUpNow" xml:space="preserve">
+    <value>Daftar Sekarang</value>
+  </data>
+  <data name="SlotGame" xml:space="preserve">
+    <value>Slot</value>
+  </data>
+  <data name="SlotGameMenu" xml:space="preserve">
+    <value>SLOT</value>
+  </data>
+  <data name="SlotGameSubtitle" xml:space="preserve">
+    <value>Lebih daripada 10 jenama slot terkenal untuk dipilih dengan lebih dari 1000+ permainan slot dengan sistem suara dan grafik yang realistik.</value>
+  </data>
+  <data name="SocialMedia" xml:space="preserve">
+    <value>Media Sosial</value>
+  </data>
+  <data name="Sportsbook" xml:space="preserve">
+    <value>Olahraga</value>
+  </data>
+  <data name="SportsbookMenu" xml:space="preserve">
+    <value>OLAHRAGA</value>
+  </data>
+  <data name="SportsbookSubtitle" xml:space="preserve">
+    <value>Beribu-ribu peluang setiap hari untuk semua jenis pertaruhan sukan di seluruh dunia.</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Hantar</value>
+  </data>
+  <data name="TnCMenuBtm" xml:space="preserve">
+    <value>Terma &amp; Syarat</value>
+  </data>
+  <data name="TransactionHistory" xml:space="preserve">
+    <value>Rekod Transaksi</value>
+  </data>
+  <data name="Transfer" xml:space="preserve">
+    <value>Pemindahan</value>
+  </data>
+  <data name="UOBBank" xml:space="preserve">
+    <value>UOB Bank</value>
+  </data>
+  <data name="UserID" xml:space="preserve">
+    <value>ID Pengguna</value>
+  </data>
+  <data name="UserIdEmail" xml:space="preserve">
+    <value>User ID / Emel</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>Nama Pengguna</value>
+  </data>
+  <data name="VisitWebsite" xml:space="preserve">
+    <value>VISIT WEBSITE </value>
+  </data>
+  <data name="WCUAcc1S" xml:space="preserve">
+    <value>Kami membina kepercayaan di kalangan pemain kami dengan secara konsisten menyediakan platform yang boleh dipercayai yang memberikan proses transaksi terpantas dengan keselamatan yang utuh.</value>
+  </data>
+  <data name="WCUAcc1T" xml:space="preserve">
+    <value>BERTANGGUNGJAWAB</value>
+  </data>
+  <data name="WCUAcc2S" xml:space="preserve">
+    <value>Untuk memberikan perasaan kasino masa nyata di kalangan pemain kami, kami sangat menekankan sistem dalaman kami, membentuk pasukan terbaik untuk memastikan waktu deposit dan pengeluaran terpantas.</value>
+  </data>
+  <data name="WCUAcc2T" xml:space="preserve">
+    <value>PEMBAYARAN CEPAT</value>
+  </data>
+  <data name="WCUAcc3S" xml:space="preserve">
+    <value>Untuk menjalin hubungan yang boleh dipercayai dengan pemain, kami meletakkan kepuasan anda di atas segalanya. Kami memberikan kembali yang termampu, melakukan yang terbaik untuk memberikan nilai yang besar dan menjadikan hidup lebih bahagia, lebih mudah, lebih menyeronokkan, lebih bernilai.</value>
+  </data>
+  <data name="WCUAcc3T" xml:space="preserve">
+    <value>PELANGGAN PERTAMA</value>
+  </data>
+  <data name="WCUAcc4S" xml:space="preserve">
+    <value>Kami selalu mencari cara baru untuk mencabar konvensyen, menginovasi perkhidmatan kami untuk memberikan pengalaman kasino terbaik di pasaran teras kami.</value>
+  </data>
+  <data name="WCUAcc4T" xml:space="preserve">
+    <value>IMAGINATIF</value>
+  </data>
+  <data name="WCUAcc5S" xml:space="preserve">
+    <value>Bukan sahaja grafik yang menakjubkan, tetapi setiap permainan dalam talian juga memberikan hadiah bonus kasino yang besar kepada pemenang dengan perkhidmatan pelanggan 24 jam. Hingga berjuta-juta ringgit menunggu setiap pemain, dan anda boleh menjadi salah satu daripadanya!</value>
+  </data>
+  <data name="WCUAcc5T" xml:space="preserve">
+    <value>BONUS DAN GANJARAN BESAR</value>
+  </data>
+  <data name="WhyChooseUs" xml:space="preserve">
+    <value>KENAPA PILIH KAMI</value>
+  </data>
+  <data name="WhyChooseUsSubtitle" xml:space="preserve">
+    <value>Kami menyediakan kemudahan hiburan yang positif dan menyokong perjudian dalam talian yang bertanggungjawab di mana tindakan apa pun adalah tanggungjawab pemain. Keselamatan dan keselamatan maklumat anda sangat penting bagi kami dan kami komited terhadap keselamatan dan perlindungan anda. Semua sistem yang digunakan di syarikat kami dilindungi dan dilindungi.</value>
+  </data>
+  <data name="WindowsDownload" xml:space="preserve">
+    <value>WINDOWS DOWNLOAD </value>
+  </data>
+  <data name="Withdrawal" xml:space="preserve">
+    <value>Pengeluaran</value>
+  </data>
+  <data name="YouCanFindOurLatestWinner" xml:space="preserve">
+    <value>Anda boleh mencari pemenang terkini kami di sini.</value>
+  </data>
+</root>

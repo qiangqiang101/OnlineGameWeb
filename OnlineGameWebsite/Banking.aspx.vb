@@ -1,6 +1,6 @@
 ﻿
 Partial Class Banking
-    Inherits System.Web.UI.Page
+    Inherits BasePage
 
     Private Sub Banking_Load(sender As Object, e As EventArgs) Handles Me.Load
         Dim role As String = HttpContext.Current.Session("role")

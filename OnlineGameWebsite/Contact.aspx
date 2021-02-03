@@ -8,10 +8,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1>CONTACT</h1>
+                        <h1><%=Resources.Resource.ContactMenu %></h1>
                         <ul class="breadcrumb">
-                            <li><a href="Default.aspx">Home</a></li>
-                            <li class="active">Contact</li>
+                            <li><a href="Default.aspx"><%=Resources.Resource.Home %></a></li>
+                            <li class="active"><%=Resources.Resource.Contact %></li>
                         </ul>
                     </div>
                 </div>
@@ -28,28 +28,15 @@
                             </div>
                             <div class="col-md-7">
                                 <hr class="hr" />
-                                <h4>Contact Information</h4>
-                                <ul class="adress m-t-30 m-b-30">
-                                    <li><i class="far fa-commenting"></i>Our Customer Service officers are available 24 hours a day, 7 days a week to serve you better.<br /><a class="btn btn-arrow slider20 m-r-10" href="#" target="_blank">Live Chat <i class="fa fa-chevron-right"></i></a></li>
-                                    <li><i class="fab fa-telegram-plane"></i><a href="#">bibitelegram</a> - Bibi<br />
-                                        <a href="#">deboratelegram</a> - Debora</li>
-                                    <li><i class="fab fa-whatsapp"></i><a href="#">+6012-345 6789</a> - Bibi<br />
-                                        <a href="#">+6013-456 7890</a> - Debora</li>
-                                    <li><i class="fas fa-phone"></i><a href="tel:+6012-345 6789">+6012-345 6789</a> - Bibi<br />
-                                        <a href="tel:+6013-456 7890">+6013-456 7890</a> - Debora</li>
-                                    <li><i class="fab fa-weixin"></i>wxid_0123456789 - Bibi<br />
-                                        wxid_9876543210 - Debora</li>
-                                    <li><i class="fas fa-envelope"></i>contact@gmail.com<br />
-                                        support@hotmail.com</li>
+                                <h4><%=Resources.Resource.ContactInformation %></h4>
+                                <p><%=Resources.Resource.ContactSubtitle %></p>
+                                <ul class="adress m-t-30 m-b-30" id="chatList" runat="server">
+                                    <%-- Contact will show here --%>
                                 </ul>
                                 <hr class="hr" />
-                                <h4>Social Media</h4>
-                                <ul class="adress m-t-30 m-b-30">
-                                    <li><i class="fab fa-facebook-f"></i><a href="#" target="_blank">Facebook</a></li>
-                                    <li><i class="fab fa-twitter"></i><a href="#" target="_blank">Twitter</a></li>
-                                    <li><i class="fab fa-youtube"></i><a href="#" target="_blank">Youtube</a></li>
-                                    <li><i class="fab fa-tiktok"></i><a href="#" target="_blank">Tiktok</a></li>
-                                    <li><i class="fa fa-instagram"></i><a href="#" target="_blank">Instagram</a></li>
+                                <h4><%=Resources.Resource.SocialMedia %></h4>
+                                <ul class="adress m-t-30 m-b-30" id="socialList" runat="server">
+                                    <%-- Social links will show here --%>
                                 </ul>
                             </div>
                         </div>

@@ -1,0 +1,594 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutUs" xml:space="preserve">
+    <value>关于我们</value>
+  </data>
+  <data name="Accounts" xml:space="preserve">
+    <value>帐号</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>行动</value>
+  </data>
+  <data name="AffinBank" xml:space="preserve">
+    <value>艾芬银行 Affin Bank</value>
+  </data>
+  <data name="AgroBank" xml:space="preserve">
+    <value>农业银行 Agro Bank</value>
+  </data>
+  <data name="AllianceBank" xml:space="preserve">
+    <value>安联银行 Alliance Bank</value>
+  </data>
+  <data name="AllMenu" xml:space="preserve">
+    <value>全部</value>
+  </data>
+  <data name="AllProducts" xml:space="preserve">
+    <value>全部</value>
+  </data>
+  <data name="AlRajhi" xml:space="preserve">
+    <value>拉杰赫银行 Al Rajhi</value>
+  </data>
+  <data name="AlreadyHaveAccount" xml:space="preserve">
+    <value>已经有帐号了？ </value>
+  </data>
+  <data name="AmBank" xml:space="preserve">
+    <value>大马银行 AmBank</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>额</value>
+  </data>
+  <data name="AndroidDownload" xml:space="preserve">
+    <value>安卓版下载 </value>
+  </data>
+  <data name="ATMTransfer" xml:space="preserve">
+    <value>ATM转账</value>
+  </data>
+  <data name="Bank" xml:space="preserve">
+    <value>银行</value>
+  </data>
+  <data name="BankAccountNo" xml:space="preserve">
+    <value>银行户口</value>
+  </data>
+  <data name="Banking" xml:space="preserve">
+    <value>银行</value>
+  </data>
+  <data name="BankingMenu" xml:space="preserve">
+    <value>银行</value>
+  </data>
+  <data name="BankingPleaseNote" xml:space="preserve">
+    <value>请注意：</value>
+  </data>
+  <data name="BankingPN1" xml:space="preserve">
+    <value>所有最大金额均基于每天的每笔交易。</value>
+  </data>
+  <data name="BankingPN2" xml:space="preserve">
+    <value>您可以联系我们的客户服务，以获取有关面板银行的更多信息。</value>
+  </data>
+  <data name="BankingPN3" xml:space="preserve">
+    <value>请保留所有银行收据或交易参考号，因为我们需要交易证明。</value>
+  </data>
+  <data name="BankingPN4" xml:space="preserve">
+    <value>附上您的存款证明和您的存款票将减少存款交易的延迟。</value>
+  </data>
+  <data name="BankingPN5" xml:space="preserve">
+    <value>处理从您的电子钱包提款时，将要求进行标准验证。</value>
+  </data>
+  <data name="BankingPN6" xml:space="preserve">
+    <value>大额提款或超过每日限额的提款金额可能需要更长的处理时间。</value>
+  </data>
+  <data name="BankingPN7" xml:space="preserve">
+    <value>如果使用了红利，请在提款前了解其相关的流水要求。</value>
+  </data>
+  <data name="BankingSubtitle" xml:space="preserve">
+    <value>您可以方便高效地进行交易，因为提款和存款方法多种多样，供您选择。 请浏览下面显示的所有银行选项，然后选择最适合您的方法。</value>
+  </data>
+  <data name="BankIslam" xml:space="preserve">
+    <value>马来西亚伊斯兰银行 Bank Islam</value>
+  </data>
+  <data name="BankMuamalat" xml:space="preserve">
+    <value>回教教义银行 Bank Muamalat</value>
+  </data>
+  <data name="BankRakyat" xml:space="preserve">
+    <value>国民银行 Bank Rakyat</value>
+  </data>
+  <data name="BankSN" xml:space="preserve">
+    <value>国民储蓄银行 Bank Simpanan Nasional</value>
+  </data>
+  <data name="Captcha" xml:space="preserve">
+    <value>验证码</value>
+  </data>
+  <data name="CashDepositMachine" xml:space="preserve">
+    <value>现金存款机 (CDM)</value>
+  </data>
+  <data name="Categories" xml:space="preserve">
+    <value>分类</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>类型</value>
+  </data>
+  <data name="CimbBank" xml:space="preserve">
+    <value>联昌银行 CIMB Bank</value>
+  </data>
+  <data name="CitiBank" xml:space="preserve">
+    <value>花旗银行 CitiBank</value>
+  </data>
+  <data name="CompleteTheFormBelowResetPassword" xml:space="preserve">
+    <value>填写下面的表格，以接收带有重置密码所需授权码的电子邮件。</value>
+  </data>
+  <data name="ConfirmNewPassword" xml:space="preserve">
+    <value>确认新密码</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>确认密码</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>联系</value>
+  </data>
+  <data name="ContactInformation" xml:space="preserve">
+    <value>联系信息</value>
+  </data>
+  <data name="ContactMenu" xml:space="preserve">
+    <value>联系</value>
+  </data>
+  <data name="ContactMenuBtm" xml:space="preserve">
+    <value>联系</value>
+  </data>
+  <data name="ContactNo" xml:space="preserve">
+    <value>联络号码</value>
+  </data>
+  <data name="ContactSubtitle" xml:space="preserve">
+    <value>我们的客户服务专员每周7天，每天24小时为您服务，以为您提供更好的服务。</value>
+  </data>
+  <data name="CoopBank" xml:space="preserve">
+    <value>CBP银行 Co-opbank Pertama</value>
+  </data>
+  <data name="CreateAccount" xml:space="preserve">
+    <value>创建帐号</value>
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>当前密码</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>日期</value>
+  </data>
+  <data name="DateOfBirth" xml:space="preserve">
+    <value>生日日期</value>
+  </data>
+  <data name="Deposit" xml:space="preserve">
+    <value>存款</value>
+  </data>
+  <data name="DepositType" xml:space="preserve">
+    <value>存款类型</value>
+  </data>
+  <data name="DepositU" xml:space="preserve">
+    <value>存款</value>
+  </data>
+  <data name="DontHaveAccountYet" xml:space="preserve">
+    <value>还没有帐号？ </value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>下载</value>
+  </data>
+  <data name="DownloadMenu" xml:space="preserve">
+    <value>下载</value>
+  </data>
+  <data name="DownloadOurApp" xml:space="preserve">
+    <value>下载我们的APP</value>
+  </data>
+  <data name="DownloadOurAppSubtitle" xml:space="preserve">
+    <value>适用于iPad，iPhone和安卓。</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>电子邮件</value>
+  </data>
+  <data name="FAQMenuBtm" xml:space="preserve">
+    <value>常见问题</value>
+  </data>
+  <data name="FishHunter" xml:space="preserve">
+    <value>钓鱼</value>
+  </data>
+  <data name="FishHunterMenu" xml:space="preserve">
+    <value>钓鱼</value>
+  </data>
+  <data name="FishHunterSubtitle" xml:space="preserve">
+    <value>非常简单却令人兴奋的钓鱼游戏冒险，其中包含许多功能，很多人会喜欢玩。</value>
+  </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>忘记密码</value>
+  </data>
+  <data name="FullName" xml:space="preserve">
+    <value>全名</value>
+  </data>
+  <data name="GetInTouch" xml:space="preserve">
+    <value>保持联系</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>主页</value>
+  </data>
+  <data name="HomeMenu" xml:space="preserve">
+    <value>主页</value>
+  </data>
+  <data name="HongLeongBank" xml:space="preserve">
+    <value>丰隆银行 Hong Leong Bank</value>
+  </data>
+  <data name="HSBCBank" xml:space="preserve">
+    <value>汇丰银行 HSBC Bank</value>
+  </data>
+  <data name="IAcceptTnC" xml:space="preserve">
+    <value>我接受所有条规。</value>
+  </data>
+  <data name="IDeclare18YearsOld" xml:space="preserve">
+    <value>我声明我今年18岁或以上。</value>
+  </data>
+  <data name="InternetTransfer" xml:space="preserve">
+    <value>线上转账</value>
+  </data>
+  <data name="iOSDownload" xml:space="preserve">
+    <value>苹果版下载 </value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>中文</value>
+  </data>
+  <data name="LatestWinners" xml:space="preserve">
+    <value>最新的幸运儿</value>
+  </data>
+  <data name="LiveCasino" xml:space="preserve">
+    <value>真人娱乐城</value>
+  </data>
+  <data name="LiveCasinoMenu" xml:space="preserve">
+    <value>真人娱乐场</value>
+  </data>
+  <data name="LiveCasinoSubtitle" xml:space="preserve">
+    <value>体验与真实赌场一样的体验和肾上腺素激增。</value>
+  </data>
+  <data name="LiveScore" xml:space="preserve">
+    <value>即时比分</value>
+  </data>
+  <data name="LiveScoreMenu" xml:space="preserve">
+    <value>即时比分</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>登入</value>
+  </data>
+  <data name="LoginFs" xml:space="preserve">
+    <value>登入 /</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>登出</value>
+  </data>
+  <data name="Maybank" xml:space="preserve">
+    <value>马来亚银行 Maybank</value>
+  </data>
+  <data name="MBSBBank" xml:space="preserve">
+    <value>MBSB银行 MBSB Bank</value>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>更多</value>
+  </data>
+  <data name="MyAccount" xml:space="preserve">
+    <value>帐户</value>
+  </data>
+  <data name="MyAccounts" xml:space="preserve">
+    <value>我的帐户</value>
+  </data>
+  <data name="MyAccountsU" xml:space="preserve">
+    <value>我的帐户</value>
+  </data>
+  <data name="MyPasswordU" xml:space="preserve">
+    <value>我的密码</value>
+  </data>
+  <data name="MyProfile" xml:space="preserve">
+    <value>我的简历</value>
+  </data>
+  <data name="MyProfileU" xml:space="preserve">
+    <value>我的个人资料</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>名字</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>新密码</value>
+  </data>
+  <data name="NoThanks" xml:space="preserve">
+    <value>不了，谢谢</value>
+  </data>
+  <data name="OCBCBank" xml:space="preserve">
+    <value>华侨银行 OCBC Bank</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>其它</value>
+  </data>
+  <data name="OtherMenu" xml:space="preserve">
+    <value>其它</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>密码</value>
+  </data>
+  <data name="PasswordDetails" xml:space="preserve">
+    <value>密码详情</value>
+  </data>
+  <data name="Poker" xml:space="preserve">
+    <value>扑克</value>
+  </data>
+  <data name="PokerMenu" xml:space="preserve">
+    <value>扑克</value>
+  </data>
+  <data name="PokerSubtitle" xml:space="preserve">
+    <value>拥有多达10个出色的P2P游戏，其中包含真实玩家且没有机器人。</value>
+  </data>
+  <data name="PrivacyMenuBtm" xml:space="preserve">
+    <value>隐私政策</value>
+  </data>
+  <data name="Product" xml:space="preserve">
+    <value>产品</value>
+  </data>
+  <data name="ProductsMenu" xml:space="preserve">
+    <value>产品</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>个人资料</value>
+  </data>
+  <data name="ProfileDetails" xml:space="preserve">
+    <value>个人资料</value>
+  </data>
+  <data name="Promotion" xml:space="preserve">
+    <value>红利</value>
+  </data>
+  <data name="PromotionMenu" xml:space="preserve">
+    <value>优惠</value>
+  </data>
+  <data name="PublicBank" xml:space="preserve">
+    <value>大众银行 Public Bank</value>
+  </data>
+  <data name="Receipt" xml:space="preserve">
+    <value>上传收据</value>
+  </data>
+  <data name="RefCode" xml:space="preserve">
+    <value>参考编码</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>注册</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>记住我</value>
+  </data>
+  <data name="ResetPassword" xml:space="preserve">
+    <value>重设密码</value>
+  </data>
+  <data name="RHBBank" xml:space="preserve">
+    <value>兴业银行 RHB Bank</value>
+  </data>
+  <data name="Rng" xml:space="preserve">
+    <value>RNG</value>
+  </data>
+  <data name="RngMenu" xml:space="preserve">
+    <value>RNG</value>
+  </data>
+  <data name="RngSubtitle" xml:space="preserve">
+    <value>通过在我们的经典和终极基诺游戏中投注更多号码来赢取更多大奖！</value>
+  </data>
+  <data name="SaveChangesU" xml:space="preserve">
+    <value>保存更改</value>
+  </data>
+  <data name="SCBank" xml:space="preserve">
+    <value>渣打银行 Standard Chartered Bank</value>
+  </data>
+  <data name="SignIn" xml:space="preserve">
+    <value>登入</value>
+  </data>
+  <data name="SignUp" xml:space="preserve">
+    <value>注册</value>
+  </data>
+  <data name="SignUpNow" xml:space="preserve">
+    <value>立即注册</value>
+  </data>
+  <data name="SlotGame" xml:space="preserve">
+    <value>老虎机</value>
+  </data>
+  <data name="SlotGameMenu" xml:space="preserve">
+    <value>老虎机</value>
+  </data>
+  <data name="SlotGameSubtitle" xml:space="preserve">
+    <value>超过10个著名的老虎机品牌供您选择，超过1000种具有逼真的声音系统和图形的老虎机游戏。</value>
+  </data>
+  <data name="SocialMedia" xml:space="preserve">
+    <value>社交媒体</value>
+  </data>
+  <data name="Sportsbook" xml:space="preserve">
+    <value>体育</value>
+  </data>
+  <data name="SportsbookMenu" xml:space="preserve">
+    <value>体育</value>
+  </data>
+  <data name="SportsbookSubtitle" xml:space="preserve">
+    <value>每天，世界各地的各种体育博彩赔率都很高。</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>提交</value>
+  </data>
+  <data name="TnCMenuBtm" xml:space="preserve">
+    <value>条款及细则</value>
+  </data>
+  <data name="TransactionHistory" xml:space="preserve">
+    <value>交易记录</value>
+  </data>
+  <data name="Transfer" xml:space="preserve">
+    <value>转账</value>
+  </data>
+  <data name="UOBBank" xml:space="preserve">
+    <value>大华银行 UOB Bank</value>
+  </data>
+  <data name="UserID" xml:space="preserve">
+    <value>用户ID</value>
+  </data>
+  <data name="UserIdEmail" xml:space="preserve">
+    <value>帐号ID / 电子邮件</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>用户名</value>
+  </data>
+  <data name="VisitWebsite" xml:space="preserve">
+    <value>打开网站  </value>
+  </data>
+  <data name="WCUAcc1S" xml:space="preserve">
+    <value>我们通过始终如一地提供可靠的平台，在提供完整安全性的情况下提供最快的交易流程，从而在我们的参与者之间建立信任。</value>
+  </data>
+  <data name="WCUAcc1T" xml:space="preserve">
+    <value>可靠</value>
+  </data>
+  <data name="WCUAcc2S" xml:space="preserve">
+    <value>为了在玩家之间提供实时的赌场感觉，我们非常重视内部系统，组建了一支最佳团队，以确保最快的存款和提款时间。</value>
+  </data>
+  <data name="WCUAcc2T" xml:space="preserve">
+    <value>快速付款</value>
+  </data>
+  <data name="WCUAcc3S" xml:space="preserve">
+    <value>为了与玩家建立可信赖的关系，我们将您的满意放在首位。 我们竭尽所能地回报，尽最大努力提供巨大的价值，让生活变得更加幸福，轻松，有趣和更多。</value>
+  </data>
+  <data name="WCUAcc3T" xml:space="preserve">
+    <value>客户至上</value>
+  </data>
+  <data name="WCUAcc4S" xml:space="preserve">
+    <value>我们一直在寻找挑战常规的新方法，创新我们的服务以在我们的核心市场中提供最佳的赌场体验。</value>
+  </data>
+  <data name="WCUAcc4T" xml:space="preserve">
+    <value>富有想象力</value>
+  </data>
+  <data name="WCUAcc5S" xml:space="preserve">
+    <value>不仅惊人的图形，而且每个在线游戏还为24小时客户服务的获胜者提供巨大的赌场奖金奖励。 多达数百万林吉特正在等待每位玩家，您可以成为其中一员！</value>
+  </data>
+  <data name="WCUAcc5T" xml:space="preserve">
+    <value>巨大的奖金和奖励</value>
+  </data>
+  <data name="WhyChooseUs" xml:space="preserve">
+    <value>为什么选择我们</value>
+  </data>
+  <data name="WhyChooseUsSubtitle" xml:space="preserve">
+    <value>我们提供积极的娱乐设施，并支持负责任的在线赌博，其中任何行为都是玩家的责任。 您信息的安全对我们非常重要，我们致力于您的安全和保护。 我们公司使用的所有系统均受到保护。</value>
+  </data>
+  <data name="WindowsDownload" xml:space="preserve">
+    <value>电脑版下载 </value>
+  </data>
+  <data name="Withdrawal" xml:space="preserve">
+    <value>提款</value>
+  </data>
+  <data name="YouCanFindOurLatestWinner" xml:space="preserve">
+    <value>您可以在这里找到我们的最新的赢家。</value>
+  </data>
+</root>

@@ -1,4 +1,7 @@
-﻿Partial Class MasterPage
+﻿Imports System.Globalization
+Imports System.Threading
+
+Partial Class MasterPage
     Inherits System.Web.UI.MasterPage
 
     Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
@@ -38,9 +41,15 @@
     End Function
 
     Private Sub MasterPage_Load(sender As Object, e As EventArgs) Handles Me.Load
-        'Response.Cache.SetExpires(Now.AddHours(1))
-        'Response.Cache.SetCacheability(HttpCacheability.NoCache)
-        'Response.Cache.SetValidUntilExpires(True)
+        hFb.HRef = ConfigSettings.ReadSetting(Of String)("HeadFacebook", "#")
+        hTw.HRef = ConfigSettings.ReadSetting(Of String)("HeadTwitter", "#")
+        hIg.HRef = ConfigSettings.ReadSetting(Of String)("HeadInstagram", "#")
+        hTt.HRef = ConfigSettings.ReadSetting(Of String)("HeadTikTok", "#")
+        hYt.HRef = ConfigSettings.ReadSetting(Of String)("HeadYoutube", "#")
+
+        hWs.InnerText = ConfigSettings.ReadSetting(Of String)("HeadWhatsApp", "#")
+        hTg.InnerText = ConfigSettings.ReadSetting(Of String)("HeadTelegram", "#")
+        hWc.InnerText = ConfigSettings.ReadSetting(Of String)("HeadWeChat", "#")
 
         Page.Title = ConfigSettings.ReadSetting(Of String)("CompanyName", "Online Game")
         siteLogo.Src = ConfigSettings.ReadSetting(Of String)("CompanyLogo", "Theme/img/logo.png")
@@ -48,12 +57,23 @@
         siteTitle.InnerText = ConfigSettings.ReadSetting(Of String)("CompanyName", "Online Game")
         copyright.InnerText = ConfigSettings.ReadSetting(Of String)("CopyrightText", "Copyright 2020. All Rights Reserved.")
 
+        Dim socialCache = "socialCache"
+        Dim socialList As List(Of TblContact) = HttpRuntime.Cache(socialCache)
+        If socialList Is Nothing Then
+            Using db As New DataClassesDataContext
+                socialList = db.TblContacts.Where(Function(x) x.Status = True And x.ShowFooter = True And x.ContactType = 0).Take(8).ToList
+                HttpRuntime.Cache.Add(socialCache, socialList, Nothing, Now.AddHours(8), TimeSpan.Zero, CacheItemPriority.Default, Nothing)
+            End Using
+        End If
+        For Each s As TblContact In socialList
+            contactList.Controls.Add(GenerateContact(s.FaIcon.Trim, s.Website.Trim, s.ContactTitle.Trim))
+        Next
+
         If Request.Cookies("Lang") Is Nothing Then
             With Response.Cookies("Lang")
-                .Value = 0
+                .Value = "en"
                 .Expires = Now.AddYears(1)
             End With
-
         End If
 
         If IsClientOnMobileDevice(Request) Then
@@ -69,53 +89,53 @@
                 End Using
             End If
 
-            Dim slots = productsList.Where(Function(x) x.Status = True And x.CatSlot = True).Take(5).ToList
+            Dim slots = productsList.Where(Function(x) x.CatSlot = True).Take(5).ToList
             For Each slot As TblProduct In slots
                 menuSlot.Controls.Add(LoadProductMenus(slot.ProductName, "Product.aspx?id=" & slot.ProductID))
             Next
-            menuSlot.Controls.Add(LoadProductMenus("More Slot Game...", "Products.aspx?cat=slot"))
+            menuSlot.Controls.Add(LoadProductMenus(Resources.Resource.More & Resources.Resource.SlotGame & "...", "Products.aspx?cat=slot"))
 
-            Dim lcs = productsList.Where(Function(x) x.Status = True And x.CatLive = True).Take(5).ToList
+            Dim lcs = productsList.Where(Function(x) x.CatLive = True).Take(5).ToList
             For Each lc As TblProduct In lcs
                 menuLive.Controls.Add(LoadProductMenus(lc.ProductName, "Product.aspx?id=" & lc.ProductID))
             Next
-            menuLive.Controls.Add(LoadProductMenus("More Live Casino...", "Products.aspx?cat=live"))
+            menuLive.Controls.Add(LoadProductMenus(Resources.Resource.More & Resources.Resource.LiveCasino & "...", "Products.aspx?cat=live"))
 
-            Dim sports = productsList.Where(Function(x) x.Status = True And x.CatSport = True).Take(5).ToList
+            Dim sports = productsList.Where(Function(x) x.CatSport = True).Take(5).ToList
             For Each sport As TblProduct In sports
                 menuSport.Controls.Add(LoadProductMenus(sport.ProductName, "Product.aspx?id=" & sport.ProductID))
             Next
-            menuSport.Controls.Add(LoadProductMenus("More Sportsbook...", "Products.aspx?cat=sport"))
+            menuSport.Controls.Add(LoadProductMenus(Resources.Resource.More & Resources.Resource.Sportsbook & "...", "Products.aspx?cat=sport"))
 
-            Dim rngs = productsList.Where(Function(x) x.Status = True And x.CatRNG = True).Take(5).ToList
+            Dim rngs = productsList.Where(Function(x) x.CatRNG = True).Take(5).ToList
             For Each rng As TblProduct In rngs
                 menuRNG.Controls.Add(LoadProductMenus(rng.ProductName, "Product.aspx?id=" & rng.ProductID))
             Next
-            menuRNG.Controls.Add(LoadProductMenus("More RNG...", "Products.aspx?cat=rng"))
+            menuRNG.Controls.Add(LoadProductMenus(Resources.Resource.More & Resources.Resource.Rng & "...", "Products.aspx?cat=rng"))
 
-            Dim fishes = productsList.Where(Function(x) x.Status = True And x.CatFish = True).Take(5).ToList
+            Dim fishes = productsList.Where(Function(x) x.CatFish = True).Take(5).ToList
             For Each fish As TblProduct In fishes
                 menuFish.Controls.Add(LoadProductMenus(fish.ProductName, "Product.aspx?id=" & fish.ProductID))
             Next
-            menuFish.Controls.Add(LoadProductMenus("More Fish Hunter...", "Products.aspx?cat=fish"))
+            menuFish.Controls.Add(LoadProductMenus(Resources.Resource.More & Resources.Resource.FishHunter & "...", "Products.aspx?cat=fish"))
 
-            Dim pokers = productsList.Where(Function(x) x.Status = True And x.CatPoker = True).Take(5).ToList
+            Dim pokers = productsList.Where(Function(x) x.CatPoker = True).Take(5).ToList
             For Each poker As TblProduct In pokers
                 menuPoker.Controls.Add(LoadProductMenus(poker.ProductName, "Product.aspx?id=" & poker.ProductID))
             Next
-            menuPoker.Controls.Add(LoadProductMenus("More Poker...", "Products.aspx?cat=poker"))
+            menuPoker.Controls.Add(LoadProductMenus(Resources.Resource.More & Resources.Resource.Poker & "...", "Products.aspx?cat=poker"))
 
-            Dim others = productsList.Where(Function(x) x.Status = True And x.CatOther = True).Take(5).ToList
+            Dim others = productsList.Where(Function(x) x.CatOther = True).Take(5).ToList
             For Each other As TblProduct In others
                 menuOther.Controls.Add(LoadProductMenus(other.ProductName, "Product.aspx?id=" & other.ProductID))
             Next
-            menuOther.Controls.Add(LoadProductMenus("More Other...", "Products.aspx?cat=other"))
+            menuOther.Controls.Add(LoadProductMenus(Resources.Resource.More & Resources.Resource.Other & "...", "Products.aspx?cat=other"))
 
-            Dim products = productsList.Where(Function(x) x.Status = True).Take(5).ToList
+            Dim products = productsList.Take(5).ToList
             For Each product As TblProduct In products
                 menuAll.Controls.Add(LoadProductMenus(product.ProductName, "Product.aspx?id=" & product.ProductID))
             Next
-            menuAll.Controls.Add(LoadProductMenus("More...", "Products.aspx?cat=all"))
+            menuAll.Controls.Add(LoadProductMenus(Resources.Resource.More & "...", "Products.aspx?cat=all"))
 
             mobileProduct.Visible = False
             megaProduct.Visible = True
@@ -146,8 +166,9 @@
                 memberMenu.Visible = True
                 memberName.Visible = True
                 memberName.InnerText = "Hello, " & Session("fullname")
-                btnHeadAlt.InnerHtml = "Deposit<i class=""fas fa-caret-down"" style=""color: #FFF;""></i>"
-                btnHeadAlt.HRef = "#"
+                'btnHeadAlt.InnerHtml = "Deposit<i class=""fas fa-caret-down"" style=""color: #FFF;""></i>"
+                'btnHeadAlt.HRef = "#"
+                btnHeadReg.Visible = False
             Case Else
                 memberLogin.Visible = True
                 memberMenu.Visible = False
@@ -157,12 +178,18 @@
                 btnHeadAlt.Attributes.Remove("data-toggle")
                 btnHeadAlt.Attributes.Remove("aria-expanded")
                 btnHead.Attributes.Remove("class")
+                btnHead.Visible = False
 
                 btnHeadControls.Visible = False
         End Select
 
-        htmlCode.InnerHtml = ConfigSettings.ReadSetting(Of String)("HTMLCode", "").Base64ToString
+        fFb.HRef = ConfigSettings.ReadSetting(Of String)("HeadFacebook", "#")
+        fTw.HRef = ConfigSettings.ReadSetting(Of String)("HeadTwitter", "#")
+        fIg.HRef = ConfigSettings.ReadSetting(Of String)("HeadInstagram", "#")
+        fTt.HRef = ConfigSettings.ReadSetting(Of String)("HeadTikTok", "#")
+        fYt.HRef = ConfigSettings.ReadSetting(Of String)("HeadYoutube", "#")
 
+        htmlCode.InnerHtml = ConfigSettings.ReadSetting(Of String)("HTMLCode", "").Base64ToString
     End Sub
 
     Private Sub btnRegister_Click(sender As Object, e As EventArgs) Handles btnRegister.Click
@@ -228,18 +255,40 @@
     End Function
 
     Private Sub langEn_ServerClick(sender As Object, e As EventArgs) Handles langEn.ServerClick
-        Response.Cookies("Lang").Value = 0
+        Dim language As String = "en-US"
+
+        Response.Cookies("Lang").Value = language
+
+        Thread.CurrentThread.CurrentCulture = New CultureInfo(language)
+        Thread.CurrentThread.CurrentUICulture = New CultureInfo(language)
+
         Response.Redirect(Request.RawUrl.ToString())
     End Sub
 
     Private Sub langZh_ServerClick(sender As Object, e As EventArgs) Handles langZh.ServerClick
-        Response.Cookies("Lang").Value = 1
+        Dim language As String = "zh-CN"
+
+        Response.Cookies("Lang").Value = language
+
+        Thread.CurrentThread.CurrentCulture = New CultureInfo(language)
+        Thread.CurrentThread.CurrentUICulture = New CultureInfo(language)
+
         Response.Redirect(Request.RawUrl.ToString())
     End Sub
 
     Private Sub langMy_ServerClick(sender As Object, e As EventArgs) Handles langMy.ServerClick
-        Response.Cookies("Lang").Value = 2
+        Dim language As String = "my-MY"
+
+        Response.Cookies("Lang").Value = language
+
+        Thread.CurrentThread.CurrentCulture = New CultureInfo(language)
+        Thread.CurrentThread.CurrentUICulture = New CultureInfo(language)
+
         Response.Redirect(Request.RawUrl.ToString())
     End Sub
+
+    Private Function GenerateContact(faicon As String, href As String, title As String) As HtmlGenericControl
+        Return New HtmlGenericControl("li") With {.InnerHtml = "<i class=""" & faicon & """></i><a href=""" & href & """ target=""_blank"">" & title & "</a>"}
+    End Function
 End Class
 

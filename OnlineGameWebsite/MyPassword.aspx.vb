@@ -1,6 +1,6 @@
 ﻿
 Partial Class MyPassword
-    Inherits System.Web.UI.Page
+    Inherits BasePage
 
     Private Sub MyPassword_Load(sender As Object, e As EventArgs) Handles Me.Load
         Dim role As String = HttpContext.Current.Session("role")

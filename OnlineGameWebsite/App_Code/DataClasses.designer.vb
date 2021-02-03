@@ -4090,11 +4090,19 @@ Partial Public Class TblContact
 	
 	Private _ContactName As String
 	
+	Private _ContactTitle As String
+	
 	Private _Website As String
 	
 	Private _FaIcon As String
 	
 	Private _Status As Boolean
+	
+	Private _ShowFooter As Boolean
+	
+	Private _ShowContactPage As Boolean
+	
+	Private _ShowProductPage As Boolean
 	
     #Region "Extensibility Method Definitions"
     Partial Private Sub OnLoaded()
@@ -4115,6 +4123,10 @@ Partial Public Class TblContact
     End Sub
     Partial Private Sub OnContactNameChanged()
     End Sub
+    Partial Private Sub OnContactTitleChanging(value As String)
+    End Sub
+    Partial Private Sub OnContactTitleChanged()
+    End Sub
     Partial Private Sub OnWebsiteChanging(value As String)
     End Sub
     Partial Private Sub OnWebsiteChanged()
@@ -4126,6 +4138,18 @@ Partial Public Class TblContact
     Partial Private Sub OnStatusChanging(value As Boolean)
     End Sub
     Partial Private Sub OnStatusChanged()
+    End Sub
+    Partial Private Sub OnShowFooterChanging(value As Boolean)
+    End Sub
+    Partial Private Sub OnShowFooterChanged()
+    End Sub
+    Partial Private Sub OnShowContactPageChanging(value As Boolean)
+    End Sub
+    Partial Private Sub OnShowContactPageChanged()
+    End Sub
+    Partial Private Sub OnShowProductPageChanging(value As Boolean)
+    End Sub
+    Partial Private Sub OnShowProductPageChanged()
     End Sub
     #End Region
 	
@@ -4184,6 +4208,22 @@ Partial Public Class TblContact
 		End Set
 	End Property
 	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ContactTitle", DbType:="NChar(30)")>  _
+	Public Property ContactTitle() As String
+		Get
+			Return Me._ContactTitle
+		End Get
+		Set
+			If (String.Equals(Me._ContactTitle, value) = false) Then
+				Me.OnContactTitleChanging(value)
+				Me.SendPropertyChanging
+				Me._ContactTitle = value
+				Me.SendPropertyChanged("ContactTitle")
+				Me.OnContactTitleChanged
+			End If
+		End Set
+	End Property
+	
 	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Website", DbType:="NChar(255)")>  _
 	Public Property Website() As String
 		Get
@@ -4229,6 +4269,57 @@ Partial Public Class TblContact
 				Me._Status = value
 				Me.SendPropertyChanged("Status")
 				Me.OnStatusChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ShowFooter", DbType:="Bit NOT NULL")>  _
+	Public Property ShowFooter() As Boolean
+		Get
+			Return Me._ShowFooter
+		End Get
+		Set
+			If ((Me._ShowFooter = value)  _
+						= false) Then
+				Me.OnShowFooterChanging(value)
+				Me.SendPropertyChanging
+				Me._ShowFooter = value
+				Me.SendPropertyChanged("ShowFooter")
+				Me.OnShowFooterChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ShowContactPage", DbType:="Bit NOT NULL")>  _
+	Public Property ShowContactPage() As Boolean
+		Get
+			Return Me._ShowContactPage
+		End Get
+		Set
+			If ((Me._ShowContactPage = value)  _
+						= false) Then
+				Me.OnShowContactPageChanging(value)
+				Me.SendPropertyChanging
+				Me._ShowContactPage = value
+				Me.SendPropertyChanged("ShowContactPage")
+				Me.OnShowContactPageChanged
+			End If
+		End Set
+	End Property
+	
+	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_ShowProductPage", DbType:="Bit NOT NULL")>  _
+	Public Property ShowProductPage() As Boolean
+		Get
+			Return Me._ShowProductPage
+		End Get
+		Set
+			If ((Me._ShowProductPage = value)  _
+						= false) Then
+				Me.OnShowProductPageChanging(value)
+				Me.SendPropertyChanging
+				Me._ShowProductPage = value
+				Me.SendPropertyChanged("ShowProductPage")
+				Me.OnShowProductPageChanged
 			End If
 		End Set
 	End Property

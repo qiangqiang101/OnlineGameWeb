@@ -1,6 +1,6 @@
 ﻿
 Partial Class MyAccounts
-    Inherits System.Web.UI.Page
+    Inherits BasePage
 
     Public qsSwal As String = ""
 

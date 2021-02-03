@@ -8,10 +8,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1>DOWNLOAD</h1>
+                        <h1><%=Resources.Resource.DownloadMenu %></h1>
                         <ul class="breadcrumb">
-                            <li><a href="Default.aspx">Home</a></li>
-                            <li class="active">Download</li>
+                            <li><a href="Default.aspx"><%=Resources.Resource.Home %></a></li>
+                            <li class="active"><%=Resources.Resource.Download %></li>
                         </ul>
                     </div>
                 </div>
@@ -22,17 +22,17 @@
                 <div class="row">
                     <div class="col-md-12 palovit-title m-b-30">
                         <hr class="hr" />
-                        <h2>DOWNLOAD OUR APP NOW</h2>
-                        <p>For iPad, iPhone, and Android.</p>
+                        <h2><%=Resources.Resource.DownloadOurApp %></h2>
+                        <p><%=Resources.Resource.DownloadOurAppSubtitle %></p>
                     </div>
                     <div class="col-md-8 col-md-offset-2">
                         <div>
                             <img src="Theme/img/iphone12s.png" class="img-responsive" alt="" />
                             <div class="col-md-6">
-                                <button type="button" onclick="window.location.href='#'" class="btn btn-slider-black center-block">DOWNLOAD<i class="fa fa-android"></i></button>
+                                <button type="button" onclick="window.location.href='#'" class="btn btn-slider-black center-block"><%=Resources.Resource.DownloadMenu %><i class="fa fa-android"></i></button>
                             </div>
                             <div class="col-md-6">
-                                <button type="button" onclick="window.location.href='#'" class="btn btn-slider-black center-block">DOWNLOAD<i class="fa fa-apple"></i></button>
+                                <button type="button" onclick="window.location.href='#'" class="btn btn-slider-black center-block"><%=Resources.Resource.DownloadMenu %><i class="fa fa-apple"></i></button>
                             </div>
                         </div>
                     </div>

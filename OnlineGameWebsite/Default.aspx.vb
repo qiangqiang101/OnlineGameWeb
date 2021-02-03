@@ -1,5 +1,5 @@
 ﻿Partial Class _Default
-    Inherits System.Web.UI.Page
+    Inherits BasePage
 
     Private Sub _Default_Load(sender As Object, e As EventArgs) Handles Me.Load
         Using db As New DataClassesDataContext

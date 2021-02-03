@@ -1,6 +1,6 @@
 ﻿
 Partial Class TransactionHistory
-    Inherits System.Web.UI.Page
+    Inherits BasePage
 
     Private Sub TransactionHistory_Load(sender As Object, e As EventArgs) Handles Me.Load
         Dim role As String = HttpContext.Current.Session("role")

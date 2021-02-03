@@ -19,6 +19,15 @@ Partial Class Admin_GeneralSettings
             txtTwilioToken.Text = ConfigSettings.ReadSetting(Of String)("TwilioAuthToken", "")
 
             txtHTML.Text = ConfigSettings.ReadSetting(Of String)("HTMLCode", "").Base64ToString
+
+            txtFacebook.Text = ConfigSettings.ReadSetting(Of String)("HeadFacebook", "#")
+            txtTwitter.Text = ConfigSettings.ReadSetting(Of String)("HeadTwitter", "#")
+            txtInstagram.Text = ConfigSettings.ReadSetting(Of String)("HeadInstagram", "#")
+            txtTikTok.Text = ConfigSettings.ReadSetting(Of String)("HeadTikTok", "#")
+            txtYoutube.Text = ConfigSettings.ReadSetting(Of String)("HeadYoutube", "#")
+            txtWhatsapp.Text = ConfigSettings.ReadSetting(Of String)("HeadWhatsApp", "")
+            txtTelegram.Text = ConfigSettings.ReadSetting(Of String)("HeadTelegram", "")
+            txtWechat.Text = ConfigSettings.ReadSetting(Of String)("HeadWeChat", "")
         End If
     End Sub
 
@@ -56,6 +65,12 @@ Partial Class Admin_GeneralSettings
                                      New CfgWrite("RecPercent", CSng(txtRecBonusPercent.Text.Trim)), New CfgWrite("RecMinAmmount", CSng(txtRecBonusMinAmount.Text.Trim)))
 
         JsMsgBox("Settings saved successfully.")
+    End Sub
+
+    Private Sub btnSubmitSocial_Click(sender As Object, e As EventArgs) Handles btnSubmitSocial.Click
+        ConfigSettings.WriteSettings(New CfgWrite("HeadFacebook", txtFacebook.Text.Trim), New CfgWrite("HeadTwitter", txtTwitter.Text.Trim), New CfgWrite("HeadInstagram", txtInstagram.Text.Trim), New CfgWrite("HeadTikTok", txtTikTok.Text.Trim), New CfgWrite("HeadYoutube", txtYoutube.Text.Trim),
+                                     New CfgWrite("HeadWhatsApp", txtWhatsapp.Text.Trim), New CfgWrite("HeadTelegram", txtTelegram.Text.Trim), New CfgWrite("HeadWeChat", txtWechat.Text.Trim))
+        JsMsgBox("Social settings saved successfully.")
     End Sub
 
     Private Sub btnSubmitTwilio_Click(sender As Object, e As EventArgs) Handles btnSubmitTwilio.Click

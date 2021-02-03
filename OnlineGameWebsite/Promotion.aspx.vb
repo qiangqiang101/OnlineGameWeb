@@ -1,6 +1,6 @@
 ﻿
 Partial Class Promotion
-    Inherits System.Web.UI.Page
+    Inherits BasePage
 
     Private Sub Promotion_Load(sender As Object, e As EventArgs) Handles Me.Load
         Using db As New DataClassesDataContext

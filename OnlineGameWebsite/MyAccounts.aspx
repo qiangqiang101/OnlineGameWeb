@@ -8,10 +8,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1>MY ACCOUNTS</h1>
+                        <h1><%=Resources.Resource.MyAccountsU %></h1>
                         <ul class="breadcrumb">
-                            <li><a href="Default.aspx">Home</a></li>
-                            <li class="active">My Accounts</li>
+                            <li><a href="Default.aspx"><%=Resources.Resource.Home %></a></li>
+                            <li class="active"><%=Resources.Resource.MyAccounts %></li>
                         </ul>
                     </div>
                 </div>
@@ -22,28 +22,27 @@
                 <div class="row">
                     <div class="col-md-3">
                         <hr class="hr" />
-                        <h4>Categories</h4>
+                        <h4><%=Resources.Resource.Categories %></h4>
                         <ul class="category m-b-60">
-                            <li><a href="MyProfile.aspx">Profile</a></li>
-                            <li><a href="MyPassword.aspx">Password</a></li>
-                            <li class="active"><a href="MyAccounts.aspx">Accounts</a></li>
-                            <%--<li><a href="TransactionHistory.aspx">Transaction History</a></li>--%>
+                            <li><a href="MyProfile.aspx"><%=Resources.Resource.Profile %></a></li>
+                            <li><a href="MyPassword.aspx"><%=Resources.Resource.Password %></a></li>
+                            <li class="active"><a href="MyAccounts.aspx"><%=Resources.Resource.Accounts %></a></li>
                         </ul>
                     </div>
                     <div class="col-md-9">
                         <hr class="hr" />
-                        <h4>Accounts</h4>
+                        <h4><%=Resources.Resource.Accounts %></h4>
                         <article class="shop-cart">
                             <div class="row">
                                 <div class="col-md-12">
                                     <asp:Table CssClass="table" ID="table" runat="server">
                                         <asp:TableHeaderRow TableSection="TableHeader">
-                                            <asp:TableHeaderCell>Product</asp:TableHeaderCell>
-                                            <asp:TableHeaderCell>Name</asp:TableHeaderCell>
-                                            <asp:TableHeaderCell>Category</asp:TableHeaderCell>
-                                            <asp:TableHeaderCell>User Name</asp:TableHeaderCell>
-                                            <asp:TableHeaderCell>Password</asp:TableHeaderCell>
-                                            <asp:TableHeaderCell>Action</asp:TableHeaderCell>
+                                            <asp:TableHeaderCell Text="<%$Resources:Resource, Product%>"></asp:TableHeaderCell>
+                                            <asp:TableHeaderCell Text="<%$Resources:Resource, Name%>"></asp:TableHeaderCell>
+                                            <asp:TableHeaderCell Text="<%$Resources:Resource, Category%>"></asp:TableHeaderCell>
+                                            <asp:TableHeaderCell Text="<%$Resources:Resource, UserName%>"></asp:TableHeaderCell>
+                                            <asp:TableHeaderCell Text="<%$Resources:Resource, Password%>"></asp:TableHeaderCell>
+                                            <asp:TableHeaderCell Text="<%$Resources:Resource, Action%>"></asp:TableHeaderCell>
                                         </asp:TableHeaderRow>
                                     </asp:Table>
                                 </div>

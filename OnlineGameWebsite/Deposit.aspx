@@ -8,10 +8,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1>DEPOSIT</h1>
+                        <h1><%=Resources.Resource.DepositU %></h1>
                         <ul class="breadcrumb">
-                            <li><a href="Default.aspx">Home</a></li>
-                            <li class="active">Deposit</li>
+                            <li><a href="Default.aspx"><%=Resources.Resource.Home %></a></li>
+                            <li class="active"><%=Resources.Resource.Deposit %></li>
                         </ul>
                     </div>
                 </div>
@@ -24,25 +24,25 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <hr class="hr" />
-                                <h4>Categories</h4>
+                                <h4><%=Resources.Resource.Categories %></h4>
                                 <ul class="category m-b-60">
-                                    <li class="active"><a href="Deposit.aspx">Deposit</a></li>
-                                    <li><a href="Withdrawal.aspx">Withdrawal</a></li>
-                                    <li><a href="Transfer.aspx">Transfer</a></li>
-                                    <li><a href="TransactionHistory.aspx">Transaction History</a></li>
+                                    <li class="active"><a href="Deposit.aspx"><%=Resources.Resource.Deposit %></a></li>
+                                    <li><a href="Withdrawal.aspx"><%=Resources.Resource.Withdrawal %></a></li>
+                                    <li><a href="Transfer.aspx"><%=Resources.Resource.Transfer %></a></li>
+                                    <li><a href="TransactionHistory.aspx"><%=Resources.Resource.TransactionHistory %></a></li>
                                 </ul>
                             </div>
                             <div class="col-md-9">
                                 <hr class="hr" />
-                                <h4>Deposit</h4>
+                                <h4><%=Resources.Resource.Deposit %></h4>
                                 <form action="#" class="m-t-30">
                                     <div class="form-group col-md-6">
-                                        <label>Bank</label>
+                                        <label><%=Resources.Resource.Bank %></label>
                                         <asp:DropDownList CssClass="form-control" ID="cmbBank" AutoPostBack="False" runat="server" placeholder="">
                                         </asp:DropDownList>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label>Amount</label>
+                                        <label><%=Resources.Resource.Amount %></label>
                                         <asp:UpdatePanel ID="updateAmount" runat="server">
                                             <ContentTemplate>
                                                 <asp:ScriptManager ID="smUpdateAmount" runat="server"></asp:ScriptManager>
@@ -51,40 +51,40 @@
                                         </asp:UpdatePanel>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label>Date</label>
+                                        <label><%=Resources.Resource.Date %></label>
                                         <asp:TextBox CssClass="form-control" ID="txtDepositDate" runat="server" placeholder="dd/MM/yyyy" TextMode="DateTimeLocal" required="Required" AutoPostBack="False"></asp:TextBox>
                                     </div>
 
                                     <div class="form-group col-md-6">
-                                        <label>Deposit Type</label>
+                                        <label><%=Resources.Resource.DepositType %></label>
                                         <asp:DropDownList CssClass="form-control" ID="cmbDepositType" AutoPostBack="False" runat="server" placeholder="">
-                                            <asp:ListItem Value="0">Cash Deposit Machine</asp:ListItem>
-                                            <asp:ListItem Value="1">ATM Transfer</asp:ListItem>
-                                            <asp:ListItem Value="2">Internet Transfer</asp:ListItem>
+                                            <asp:ListItem Value="0" Text="<%$Resources:Resource, CashDepositMachine%>"></asp:ListItem>
+                                            <asp:ListItem Value="1" Text="<%$Resources:Resource, ATMTransfer%>"></asp:ListItem>
+                                            <asp:ListItem Value="2" Text="<%$Resources:Resource, InternetTransfer%>"></asp:ListItem>
                                         </asp:DropDownList>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label>Receipt</label>
+                                        <label><%=Resources.Resource.Receipt %></label>
                                         <asp:FileUpload CssClass="form-control" ID="fileUploader" runat="server" />
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label>Referral Code</label>
+                                        <label><%=Resources.Resource.RefCode %></label>
                                         <asp:TextBox CssClass="form-control" ID="txtRefCode" runat="server" placeholder=""></asp:TextBox>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label>Promotion</label>
+                                        <label><%=Resources.Resource.Promotion %></label>
                                         <asp:DropDownList CssClass="form-control" ID="cmbPromotion" AutoPostBack="False" runat="server" placeholder="">
-                                            <asp:ListItem Value="-1">No Thanks</asp:ListItem>
+                                            <asp:ListItem Value="-1" Text="<%$Resources:Resource, NoThanks%>"></asp:ListItem>
                                         </asp:DropDownList>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label>Product</label>
+                                        <label><%=Resources.Resource.Product %></label>
                                         <asp:DropDownList CssClass="form-control" ID="cmbProduct" AutoPostBack="False" runat="server" placeholder="">
                                         </asp:DropDownList>
                                     </div>
                                     <div class="form-group m-t-30">
                                         <div class="form-group col-md-6">
-                                            <label>Captcha</label>
+                                            <label><%=Resources.Resource.Captcha %></label>
                                             <asp:TextBox class="form-control" ID="txtVerification" runat="server" placeholder="" TextMode="SingleLine" ClientIDMode="Static"></asp:TextBox>
                                         </div>
                                         <div class="form-group col-md-6">
@@ -98,7 +98,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group m-t-30 col-md-12">
-                                        <asp:Button class="btn btn-palovit center-block" ID="btnSubmit" runat="server" Text="SUBMIT" />
+                                        <asp:Button class="btn btn-palovit center-block" ID="btnSubmit" runat="server" Text="<%$Resources:Resource, Submit %>" />
                                     </div>
                                 </form>
                             </div>

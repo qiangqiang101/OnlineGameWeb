@@ -1,6 +1,6 @@
 ﻿
 Partial Class Transfer
-    Inherits System.Web.UI.Page
+    Inherits BasePage
 
     Dim captcha As String = String.Empty
 

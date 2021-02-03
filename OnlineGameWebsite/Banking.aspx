@@ -8,10 +8,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1>BANKING</h1>
+                        <h1><%=Resources.Resource.BankingMenu %></h1>
                         <ul class="breadcrumb">
-                            <li><a href="Default.aspx">Home</a></li>
-                            <li class="active">Banking</li>
+                            <li><a href="Default.aspx"><%=Resources.Resource.Home %></a></li>
+                            <li class="active"><%=Resources.Resource.Banking %></li>
                         </ul>
                     </div>
                 </div>
@@ -22,7 +22,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 palovit-title m-b-20">
-                        <p>You can make transactions with convenience and efficient, as there is a wide variety of withdrawal and deposit methods for you to pick and choose from. Please glance over at all of our banking options shown below, and choose a method that suits you best.</p>
+                        <p><%=Resources.Resource.BankingSubtitle %></p>
                     </div>
                 </div>
                 <div class="row" id="bankList" runat="server">
@@ -30,15 +30,15 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12 m-b-20">
-                        <p><strong>Please note: </strong></p>
+                        <p><strong><%=Resources.Resource.BankingPleaseNote %></strong></p>
                         <ul>
-                            <li>All maximum amounts are based on per transaction per day.</li>
-                            <li>You may contact our Customer Service for more information on our panel banks.</li>
-                            <li>Please keep any bank receipts or transaction reference numbers as we require a proof of transaction</li>
-                            <li>Attaching your proof of deposit along with your deposit ticket will reduce the delay of the deposit transaction.</li>
-                            <li>Standard verification will be requested upon processing any withdrawals from your eWallet.</li>
-                            <li>Large withdrawals or withdrawal amounts above the daily limit might a longer time to process.</li>
-                            <li>If a bonus/promotion is utilized, Kindly be aware of its related turnover requirements before requesting for a withdrawal.</li>
+                            <li><%=Resources.Resource.BankingPN1 %></li>
+                            <li><%=Resources.Resource.BankingPN2 %></li>
+                            <li><%=Resources.Resource.BankingPN3 %></li>
+                            <li><%=Resources.Resource.BankingPN4 %></li>
+                            <li><%=Resources.Resource.BankingPN5 %></li>
+                            <li><%=Resources.Resource.BankingPN6 %></li>
+                            <li><%=Resources.Resource.BankingPN7 %></li>
                         </ul>
                     </div>
                 </div>

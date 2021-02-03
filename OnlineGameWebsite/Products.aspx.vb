@@ -1,6 +1,6 @@
 ﻿
 Partial Class _Products
-    Inherits System.Web.UI.Page
+    Inherits BasePage
 
     Public cat As String = "all"
 
