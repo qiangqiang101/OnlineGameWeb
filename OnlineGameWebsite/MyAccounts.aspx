@@ -37,9 +37,9 @@
                                 <div class="col-md-12">
                                     <asp:Table CssClass="table" ID="table" runat="server">
                                         <asp:TableHeaderRow TableSection="TableHeader">
-                                            <asp:TableHeaderCell Text="<%$Resources:Resource, Product%>"></asp:TableHeaderCell>
+                                            <asp:TableHeaderCell Text="<%$Resources:Resource, Product%>" ID="imgCol" runat="server"></asp:TableHeaderCell>
                                             <asp:TableHeaderCell Text="<%$Resources:Resource, Name%>"></asp:TableHeaderCell>
-                                            <asp:TableHeaderCell Text="<%$Resources:Resource, Category%>"></asp:TableHeaderCell>
+                                            <asp:TableHeaderCell Text="<%$Resources:Resource, Category%>" ID="catCol" runat="server"></asp:TableHeaderCell>
                                             <asp:TableHeaderCell Text="<%$Resources:Resource, UserName%>"></asp:TableHeaderCell>
                                             <asp:TableHeaderCell Text="<%$Resources:Resource, Password%>"></asp:TableHeaderCell>
                                             <asp:TableHeaderCell Text="<%$Resources:Resource, Action%>"></asp:TableHeaderCell>

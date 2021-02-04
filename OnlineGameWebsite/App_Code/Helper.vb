@@ -55,7 +55,7 @@ Public Module Helper
 
     <Extension>
     Public Sub LoginMsgBox(page As Page)
-        swalRedirect(page, "Default.aspx", "Hello", "Please log in to continue.", "warning")
+        swalRedirect(page, "Default.aspx", Resources.Resource.LoginHello, Resources.Resource.PleaseLogin, "warning")
     End Sub
 
     <Extension>
@@ -210,9 +210,9 @@ Public Module Helper
     End Function
 
     Public Function DeleteButton(url As String, Optional button As String = "fa-times", Optional tooltip As String = Nothing) As String
-        Return "<a href=""javascript:swalTheme.fire({title: 'Are you sure?', text: 'Once cancelled, you will not be able to recover this transaction!', icon: 'warning', showCancelButton: true, confirmButtonText: 'Yes', cancelButtonText: 'No'})" &
-            ".then((result) => {if (result.isConfirmed) {swalTheme.fire('Successful', 'Your transaction has been cancelled.', 'success').then(function() {window.location = '" & url & "';})} else if (result.dismiss === swal.DismissReason.cancel)" &
-            " {swalTheme.fire('Okay', 'Your operation has not been cancelled.', 'success')}})"" data-toggle=""tooltip"" title=""" & tooltip & """><i class=""fas " & button & """></i></a>"
+        Return "<a href=""javascript:swalTheme.fire({title: '" & Resources.Resource.RuSure & "', text: '" & Resources.Resource.OnceCancelled & "', icon: 'warning', showCancelButton: true, confirmButtonText: '" & Resources.Resource.Yes & "', cancelButtonText: '" & Resources.Resource.No & "'})" &
+            ".then((result) => {if (result.isConfirmed) {swalTheme.fire('Successful', '" & Resources.Resource.TransactionCancelled & "', 'success').then(function() {window.location = '" & url & "';})} else if (result.dismiss === swal.DismissReason.cancel)" &
+            " {swalTheme.fire('Okay', '" & Resources.Resource.OperationCancelled & "', 'success')}})"" data-toggle=""tooltip"" title=""" & tooltip & """><i class=""fas " & button & """></i></a>"
     End Function
 
     Public Function RRButton(swal As String, Optional button As String = "fa-times", Optional tooltip As String = Nothing) As String
@@ -420,14 +420,14 @@ Public Module Helper
 
     Public Function GenerateCategoryString(slot As Boolean, live As Boolean, sport As Boolean, rng As Boolean, fish As Boolean, poker As Boolean, other As Boolean) As String
         Dim result As New List(Of String)
-        If slot Then result.Add("Slot Game")
-        If live Then result.Add("Live Casino")
-        If sport Then result.Add("Sportsbook")
-        If rng Then result.Add("RNG")
-        If fish Then result.Add("Fish Hunter")
-        If poker Then result.Add("Poker")
-        If other Then result.Add("Other")
-        If slot And live And sport And rng And fish And poker And other Then result.Clear() : result.Add("All")
+        If slot Then result.Add(Resources.Resource.SlotGame)
+        If live Then result.Add(Resources.Resource.LiveCasino)
+        If sport Then result.Add(Resources.Resource.Sportsbook)
+        If rng Then result.Add(Resources.Resource.Rng)
+        If fish Then result.Add(Resources.Resource.FishHunter)
+        If poker Then result.Add(Resources.Resource.Poker)
+        If other Then result.Add(Resources.Resource.Other)
+        If slot And live And sport And rng And fish And poker And other Then result.Clear() : result.Add(Resources.Resource.AllProducts)
         Return String.Join(", ", result)
     End Function
 
@@ -773,19 +773,19 @@ Public Module Helper
         Dim timeSpan = [end].Subtract(start)
 
         If timeSpan <= TimeSpan.FromSeconds(20) Then
-            result = "just now"
+            result = Resources.Resource.JustNow
         ElseIf timeSpan <= TimeSpan.FromSeconds(60) Then
-            result = String.Format("{0} seconds ago", timeSpan.Seconds)
+            result = String.Format("{0}{1}", timeSpan.Seconds, Resources.Resource.SecsAgo)
         ElseIf timeSpan <= TimeSpan.FromMinutes(60) Then
-            result = If(timeSpan.Minutes > 1, String.Format("{0} minutes ago", timeSpan.Minutes), "a minute ago")
+            result = If(timeSpan.Minutes > 1, String.Format("{0}{1}", timeSpan.Minutes, Resources.Resource.MinsAgo), Resources.Resource.AMinAgo)
         ElseIf timeSpan <= TimeSpan.FromHours(24) Then
-            result = If(timeSpan.Hours > 1, String.Format("{0} hours ago", timeSpan.Hours), "an hour ago")
+            result = If(timeSpan.Hours > 1, String.Format("{0}{1}", timeSpan.Hours, Resources.Resource.HoursAgo), Resources.Resource.AnHourAgo)
         ElseIf timeSpan <= TimeSpan.FromDays(30) Then
-            result = If(timeSpan.Days > 1, String.Format("{0} days ago", timeSpan.Days), "yesterday")
+            result = If(timeSpan.Days > 1, String.Format("{0}{1}", timeSpan.Days, Resources.Resource.DaysAgo), Resources.Resource.Yesterday)
         ElseIf timeSpan <= TimeSpan.FromDays(365) Then
-            result = If(timeSpan.Days > 30, String.Format("{0} months ago", timeSpan.Days / 30), "a month ago")
+            result = If(timeSpan.Days > 30, String.Format("{0}{1}", timeSpan.Days / 30, Resources.Resource.MonsAgo), Resources.Resource.AMonAgo)
         Else
-            result = If(timeSpan.Days > 365, String.Format("{0} years ago", timeSpan.Days / 365), "a year ago")
+            result = If(timeSpan.Days > 365, String.Format("{0}{1}", timeSpan.Days / 365, Resources.Resource.YearsAgo), Resources.Resource.AYearAgo)
         End If
 
         Return result
@@ -877,8 +877,12 @@ Public Module Helper
     Public Function Base64ToString(base64 As String) As String
         If base64 = Nothing Then Return base64
 
-        Dim base64Bytes = System.Convert.FromBase64String(base64)
-        Return System.Text.Encoding.UTF8.GetString(base64Bytes)
+        Try
+            Dim base64Bytes = System.Convert.FromBase64String(base64)
+            Return System.Text.Encoding.UTF8.GetString(base64Bytes)
+        Catch ex As Exception
+            Return Nothing
+        End Try
     End Function
 
 End Module

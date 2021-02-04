@@ -7,19 +7,19 @@ Partial Class Register
 
     Protected Sub btnRegister_Click(sender As Object, e As EventArgs) Handles btnRegister.Click
         If IsEmailExists(txtEmail.Text) Then
-            swal("Oops!", "Email is already been registered!", "error")
+            swal(Resources.Resource.Oops, Resources.Resource.EmailAlreadyRegister, "error")
         ElseIf Not IsEmailValid(txtEmail.Text) Then
-            swal("Oops!", "Email is not valid!", "error")
+            swal(Resources.Resource.Oops, Resources.Resource.EmailNotValid, "error")
         ElseIf txtUserID.Text.Length < 6 Then
-            swal("Oops!", "UserID is too short!", "error")
+            swal(Resources.Resource.Oops, Resources.Resource.UserIdTooShort, "error")
         ElseIf IsMemberExists(txtUserID.Text) Then
-            swal("Oops!", "UserID already taken, please try another one.", "error")
+            swal(Resources.Resource.Oops, Resources.Resource.UserIdTaken, "error")
         ElseIf txtPassword.Text <> txtPassword2.Text Then
-            swal("Oops!", "Your password do not match!", "error")
+            swal(Resources.Resource.Oops, Resources.Resource.PasswordNotMatch, "error")
         ElseIf Not cb18yo.Checked Then
-            swal("Underage warning", "You have to be at least 18 years old to register.", "warning")
+            swal(Resources.Resource.UnderAge, Resources.Resource.TooYoung, "warning")
         ElseIf Not cbTnc.Checked Then
-            swal("Terms & Conditions", "Please accept the Terms & Conditions in order to continue.", "warning")
+            swal(Resources.Resource.TnC, Resources.Resource.AcceptTnC, "warning")
         Else
             If RegisterMember() Then
                 LogAction(txtUserID.Text.Trim, Request.UserHostAddress, eLogType.Register)
@@ -28,7 +28,7 @@ Partial Class Register
                     Response.Redirect("Default.aspx")
                 End If
             Else
-                swal("Oops!", "Registration failed! Please contact Customer Service.", "error")
+                swal(Resources.Resource.Oops, Resources.Resource.RegFailed, "error")
             End If
         End If
     End Sub
@@ -89,7 +89,15 @@ Partial Class Register
         Using db As New DataClassesDataContext
             Dim promos = db.TblPromotions.Where(Function(x) x.Status = 1).ToList
             For Each promo As TblPromotion In promos
-                benefitsList.Controls.Add(LoadPromotions(promo.EnglishName, "star"))
+                Select Case Request.Cookies("Lang").Value
+                    Case "zh-CN"
+                        benefitsList.Controls.Add(LoadPromotions(promo.ChineseName, "star"))
+                    Case "my-MY"
+                        benefitsList.Controls.Add(LoadPromotions(promo.MalayName, "star"))
+                    Case Else
+                        benefitsList.Controls.Add(LoadPromotions(promo.EnglishName, "star"))
+                End Select
+
             Next
         End Using
     End Sub

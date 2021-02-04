@@ -591,4 +591,241 @@
   <data name="YouCanFindOurLatestWinner" xml:space="preserve">
     <value>您可以在这里找到我们的最新的赢家。</value>
   </data>
+  <data name="HowCanWeHelpYou" xml:space="preserve">
+    <value>我们该怎样帮助你？ 点击立即与我们联系。</value>
+  </data>
+  <data name="ReadMoreU" xml:space="preserve">
+    <value>阅读更多</value>
+  </data>
+  <data name="AcceptTnC" xml:space="preserve">
+    <value>请接受条款和条件以继续。</value>
+  </data>
+  <data name="AMinAgo" xml:space="preserve">
+    <value>1分钟前</value>
+  </data>
+  <data name="AMonAgo" xml:space="preserve">
+    <value>1个月前</value>
+  </data>
+  <data name="AnHourAgo" xml:space="preserve">
+    <value>1小时前</value>
+  </data>
+  <data name="AYearAgo" xml:space="preserve">
+    <value>1年前</value>
+  </data>
+  <data name="BackToHomeU" xml:space="preserve">
+    <value>返回首页</value>
+  </data>
+  <data name="BankAccountName" xml:space="preserve">
+    <value>银行户口名</value>
+  </data>
+  <data name="CannotTransferSameProduct" xml:space="preserve">
+    <value>不能转账同一个账号。</value>
+  </data>
+  <data name="CreateAccNow" xml:space="preserve">
+    <value>立即建立帐户</value>
+  </data>
+  <data name="DaysAgo" xml:space="preserve">
+    <value>天前</value>
+  </data>
+  <data name="DepositFailed" xml:space="preserve">
+    <value>存款失败！ 请联系客户服务。</value>
+  </data>
+  <data name="DepositMinMaxP1" xml:space="preserve">
+    <value>存款最低 </value>
+  </data>
+  <data name="DepositMinMaxP2" xml:space="preserve">
+    <value> MYR, 最高 </value>
+  </data>
+  <data name="DepositMinMaxP3" xml:space="preserve">
+    <value> MYR</value>
+  </data>
+  <data name="DepositMinMaxP4" xml:space="preserve">
+    <value>提款最低 </value>
+  </data>
+  <data name="DepositNowU" xml:space="preserve">
+    <value>立即存款</value>
+  </data>
+  <data name="DepositSubmitted" xml:space="preserve">
+    <value>您的存款请求已成功提交。</value>
+  </data>
+  <data name="DepositTime" xml:space="preserve">
+    <value>5分钟存款</value>
+  </data>
+  <data name="EmailAlreadyRegister" xml:space="preserve">
+    <value>电子邮件已经被注册！</value>
+  </data>
+  <data name="EmailNotValid" xml:space="preserve">
+    <value>电子邮件无效！</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>从</value>
+  </data>
+  <data name="FromProduct" xml:space="preserve">
+    <value>从</value>
+  </data>
+  <data name="Hello" xml:space="preserve">
+    <value>欢迎，</value>
+  </data>
+  <data name="HoursAgo" xml:space="preserve">
+    <value>小时前</value>
+  </data>
+  <data name="IncorrectCaptcha" xml:space="preserve">
+    <value>验证码错误，请重试。</value>
+  </data>
+  <data name="IncorrectUserIdPassword" xml:space="preserve">
+    <value>用户ID或者密码错误。</value>
+  </data>
+  <data name="JustNow" xml:space="preserve">
+    <value>刚刚</value>
+  </data>
+  <data name="LoginHello" xml:space="preserve">
+    <value>你好</value>
+  </data>
+  <data name="MemberBenefits" xml:space="preserve">
+    <value>会员权益</value>
+  </data>
+  <data name="MinsAgo" xml:space="preserve">
+    <value>分钟前</value>
+  </data>
+  <data name="MonsAgo" xml:space="preserve">
+    <value>个月前</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="OnceCancelled" xml:space="preserve">
+    <value>取消后，您将无法恢复该交易！</value>
+  </data>
+  <data name="Oops" xml:space="preserve">
+    <value>糟糕！</value>
+  </data>
+  <data name="OperationCancelled" xml:space="preserve">
+    <value>您的操作已被取消。</value>
+  </data>
+  <data name="PageNotFound" xml:space="preserve">
+    <value>找不到该页面</value>
+  </data>
+  <data name="PageNotFoundAlso" xml:space="preserve">
+    <value>找不到网页</value>
+  </data>
+  <data name="PageNotFoundToo" xml:space="preserve">
+    <value>404页</value>
+  </data>
+  <data name="PasswordNotMatch" xml:space="preserve">
+    <value>您的密码不匹配！</value>
+  </data>
+  <data name="PaymentMethod" xml:space="preserve">
+    <value>付款方法</value>
+  </data>
+  <data name="PaymentMethods" xml:space="preserve">
+    <value>ATM转账 / 线上转账 / 银行转帐</value>
+  </data>
+  <data name="PleaseLogin" xml:space="preserve">
+    <value>请先登入。</value>
+  </data>
+  <data name="PnfSubtitle" xml:space="preserve">
+    <value>我们对不便表示抱歉。这是我们的问题，不是你的电脑或网络连接问题。</value>
+  </data>
+  <data name="ReceiptUploadFailed" xml:space="preserve">
+    <value>收据上传失败，请尝试上传支持的格式。</value>
+  </data>
+  <data name="RegFailed" xml:space="preserve">
+    <value>注册失败！ 请联系客户服务。</value>
+  </data>
+  <data name="RegisterTnCP1" xml:space="preserve">
+    <value>我理解并接受所有</value>
+  </data>
+  <data name="RegisterTnCP2" xml:space="preserve">
+    <value>和</value>
+  </data>
+  <data name="RegisterTncP3" xml:space="preserve">
+    <value>声明。</value>
+  </data>
+  <data name="RegisterU" xml:space="preserve">
+    <value>注册</value>
+  </data>
+  <data name="RejectReason" xml:space="preserve">
+    <value>拒绝理由</value>
+  </data>
+  <data name="Remarks" xml:space="preserve">
+    <value>备注</value>
+  </data>
+  <data name="RuSure" xml:space="preserve">
+    <value>你确定吗？</value>
+  </data>
+  <data name="SecsAgo" xml:space="preserve">
+    <value>秒前</value>
+  </data>
+  <data name="SomethingWrong" xml:space="preserve">
+    <value>出问题了！ 请联系客服。</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>状态</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>完成</value>
+  </data>
+  <data name="TnC" xml:space="preserve">
+    <value>条款及细则</value>
+  </data>
+  <data name="To" xml:space="preserve">
+    <value>到</value>
+  </data>
+  <data name="TooYoung" xml:space="preserve">
+    <value>您必须年满18岁才能注册。</value>
+  </data>
+  <data name="ToProduct" xml:space="preserve">
+    <value>到</value>
+  </data>
+  <data name="TransactionCancelled" xml:space="preserve">
+    <value>您的交易已被取消。</value>
+  </data>
+  <data name="TransactionHistoryU" xml:space="preserve">
+    <value>交易记录</value>
+  </data>
+  <data name="TransactionNotFound" xml:space="preserve">
+    <value>找不到交易！</value>
+  </data>
+  <data name="TransferFailed" xml:space="preserve">
+    <value>转账失败！ 请联系客户服务。</value>
+  </data>
+  <data name="TransferSubmitted" xml:space="preserve">
+    <value>您的转账请求已成功提交。</value>
+  </data>
+  <data name="TransferU" xml:space="preserve">
+    <value>转账</value>
+  </data>
+  <data name="UnderAge" xml:space="preserve">
+    <value>未成年警告</value>
+  </data>
+  <data name="UserIdTaken" xml:space="preserve">
+    <value>用户ID已被其他人使用，请尝试另一个。</value>
+  </data>
+  <data name="UserIdTooShort" xml:space="preserve">
+    <value>用户ID太短！最少为6字符。</value>
+  </data>
+  <data name="WithdrawalFailed" xml:space="preserve">
+    <value>提款失败！请联络客户服务。</value>
+  </data>
+  <data name="WithdrawalSubmitted" xml:space="preserve">
+    <value>您的提款请求已成功提交。</value>
+  </data>
+  <data name="WithdrawalTime" xml:space="preserve">
+    <value>15分钟提款</value>
+  </data>
+  <data name="WithdrawalU" xml:space="preserve">
+    <value>提款</value>
+  </data>
+  <data name="Won" xml:space="preserve">
+    <value> 赢取 </value>
+  </data>
+  <data name="YearsAgo" xml:space="preserve">
+    <value>年前</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>是</value>
+  </data>
+  <data name="Yesterday" xml:space="preserve">
+    <value>昨天</value>
+  </data>
 </root>

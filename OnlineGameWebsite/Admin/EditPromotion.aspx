@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="VB" MasterPageFile="~/Admin/AdminMaster.master" AutoEventWireup="true" CodeFile="EditPromotion.aspx.vb" Inherits="Admin_EditPromotion" %>
+﻿<%@ Page Title="" Language="VB" MasterPageFile="~/Admin/AdminMaster.master" AutoEventWireup="true" ValidateRequest="false" CodeFile="EditPromotion.aspx.vb" Inherits="Admin_EditPromotion" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
@@ -20,72 +20,72 @@
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <label>Promotion</label>
-                                <asp:textbox class="form-control form-control-user" id="txtPromotion" runat="server" placeholder="Promotion Name" required="Required"></asp:textbox>
+                                <asp:TextBox class="form-control form-control-user" ID="txtPromotion" runat="server" placeholder="Promotion Name" required="Required"></asp:TextBox>
                             </div>
                             <div class="col-sm-6">
                                 <label>English Name</label>
-                                <asp:textbox class="form-control form-control-user" id="txtEngName" runat="server" placeholder="English Name" required="Required"></asp:textbox>
+                                <asp:TextBox class="form-control form-control-user" ID="txtEngName" runat="server" placeholder="English Name" required="Required"></asp:TextBox>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <label>Chinese Name</label>
-                                <asp:textbox class="form-control form-control-user" id="txtChiName" runat="server" placeholder="Chinese Name" required="Required"></asp:textbox>
+                                <asp:TextBox class="form-control form-control-user" ID="txtChiName" runat="server" placeholder="Chinese Name" required="Required"></asp:TextBox>
                             </div>
                             <div class="col-sm-6">
                                 <label>Malay Name</label>
-                                <asp:textbox class="form-control form-control-user" id="txtMysName" runat="server" placeholder="Malay Name" required="Required"></asp:textbox>
+                                <asp:TextBox class="form-control form-control-user" ID="txtMysName" runat="server" placeholder="Malay Name" required="Required"></asp:TextBox>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <label>Display Index</label>
-                                <asp:textbox class="form-control form-control-user" id="txtIndex" runat="server" placeholder="1" required="Required" textmode="Number"></asp:textbox>
+                                <asp:TextBox class="form-control form-control-user" ID="txtIndex" runat="server" placeholder="1" required="Required" TextMode="Number"></asp:TextBox>
                             </div>
                             <div class="col-sm-6">
                                 <label>Type</label>
-                                <asp:dropdownlist cssclass="form-control form-control-user" id="cmbType" autopostback="True" runat="server" placeholder="">
-                                        <asp:ListItem Value="0">Percentage</asp:ListItem>
-                                        <asp:ListItem Value="1">Fixed Amount</asp:ListItem>
-                                    </asp:dropdownlist>
+                                <asp:DropDownList CssClass="form-control form-control-user" ID="cmbType" AutoPostBack="True" runat="server" placeholder="">
+                                    <asp:ListItem Value="0">Percentage</asp:ListItem>
+                                    <asp:ListItem Value="1">Fixed Amount</asp:ListItem>
+                                </asp:DropDownList>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <label>Value</label>
-                                <asp:textbox class="form-control form-control-user" id="txtValue" runat="server" placeholder="0.00" textmode="Number" required="Required"></asp:textbox>
+                                <asp:TextBox class="form-control form-control-user" ID="txtValue" runat="server" placeholder="0.00" TextMode="SingleLine" required="Required"></asp:TextBox>
                             </div>
                             <div class="col-sm-6">
                                 <label>Max Payout</label>
-                                <asp:textbox class="form-control form-control-user" id="txtMaxPayout" runat="server" placeholder="0.00" textmode="Number" required="Required"></asp:textbox>
+                                <asp:TextBox class="form-control form-control-user" ID="txtMaxPayout" runat="server" placeholder="0.00" TextMode="Number" required="Required"></asp:TextBox>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <label>Status</label>
-                                <asp:dropdownlist cssclass="form-control form-control-user" id="cmbEnabled" autopostback="True" runat="server" placeholder="">
-                                        <asp:ListItem Value="1">Enabled</asp:ListItem>
-                                        <asp:ListItem Value="0">Disabled</asp:ListItem>
-                                    </asp:dropdownlist>
+                                <asp:DropDownList CssClass="form-control form-control-user" ID="cmbEnabled" AutoPostBack="True" runat="server" placeholder="">
+                                    <asp:ListItem Value="1">Enabled</asp:ListItem>
+                                    <asp:ListItem Value="0">Disabled</asp:ListItem>
+                                </asp:DropDownList>
                             </div>
                         </div>
                         <hr />
                         <div class="form-group row">
                             <div class="col-sm-12">
                                 <label>English Terms</label>
-                                <asp:textbox class="form-control form-control-user" id="txtEngTnC" runat="server" placeholder="" textmode="MultiLine"></asp:textbox>
+                                <asp:TextBox class="form-control form-control-user" ID="txtEngTnC" runat="server" placeholder="" TextMode="MultiLine" ClientIDMode="Static" Height="500"></asp:TextBox>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-12">
                                 <label>Chinese Terms</label>
-                                <asp:textbox class="form-control form-control-user" id="txtChiTnC" runat="server" placeholder="" textmode="MultiLine"></asp:textbox>
+                                <asp:TextBox class="form-control form-control-user" ID="txtChiTnC" runat="server" placeholder="" TextMode="MultiLine" ClientIDMode="Static" Height="500"></asp:TextBox>
                             </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-12">
                                 <label>Malay Terms</label>
-                                <asp:textbox class="form-control form-control-user" id="txtMysTnc" runat="server" placeholder="" textmode="MultiLine"></asp:textbox>
+                                <asp:TextBox class="form-control form-control-user" ID="txtMysTnc" runat="server" placeholder="" TextMode="MultiLine" ClientIDMode="Static" Height="500"></asp:TextBox>
                             </div>
                         </div>
                         <hr />
@@ -141,6 +141,18 @@
             //replace the "Choose a file" label
             $(this).next('.custom-file-label').html(fileName);
         })
+    </script>
+
+    <script src="https://cdn.tiny.cloud/1/9ev4id5u9hj7nuearoa2rrjyhohgz9p783l7rs5vkwppaf4d/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+    <script>
+        tinymce.init({
+            selector: 'textarea',
+            skin: 'bootstrap',
+            plugins: 'lists, link, image, media, code',
+            toolbar: 'h1 h2 h3 h4 h5 h6 bold italic strikethrough blockquote bullist numlist backcolor | link image media | removeformat code help',
+            menubar: 'tools'
+        });
     </script>
 </asp:Content>
 

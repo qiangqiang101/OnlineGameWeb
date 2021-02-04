@@ -35,9 +35,16 @@ Partial Class MyAccounts
                     Dim image As String = "<img src=""" & product.ProductImage.Trim & """ class=""img-responsive"" alt=""" & pdtName & """ />"
                     Dim download As String = "<a href=""Product.aspx?id=" & product.ProductID & """><i class=""fas fa-download"" data-toggle=""tooltip"" title=""Download""></i></a> "
 
-                    table.AddTableItem(image, pdtName, GenerateCategoryString(product.CatSlot, product.CatLive, product.CatSport, product.CatRNG, product.CatFish, product.CatPoker, product.CatOther), username, password, download & request)
+                    If IsClientOnMobileDevice(Page.Request) Then
+                        imgCol.Visible = False
+                        catCol.Visible = False
+                        table.AddTableItem(pdtName, username, password, download & request)
+                    Else
+                        table.AddTableItem(image, pdtName, GenerateCategoryString(product.CatSlot, product.CatLive, product.CatSport, product.CatRNG, product.CatFish, product.CatPoker, product.CatOther), username, password, download & request)
+                    End If
                 Next
             End Using
         End If
+
     End Sub
 End Class

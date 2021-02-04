@@ -5,15 +5,19 @@ Partial Class Deposit
     Dim captcha As String = String.Empty
 
     Private Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
+        If txtDepositDate.Text = Nothing Then
+            txtDepositDate.Text = Now.ToString("yyyy-MM-ddTHH:mm")
+        End If
+
         If txtVerification.Text.Trim.Equals(Session("captcha").ToString.Trim) Then
             If Deposit() AndAlso Promotion() Then
                 LogAction(Session("username").ToString.Trim, Request.UserHostAddress, eLogType.Credit)
-                swalRedirect("TransactionHistory.aspx", "Success", "Your Deposit request has been submitted successfully.", "success")
+                swalRedirect("TransactionHistory.aspx", Resources.Resource.Success, Resources.Resource.DepositSubmitted, "success")
             Else
-                swal("Oops!", "Deposit failed! Please contact Customer Service.", "error")
+                swal(Resources.Resource.Oops, Resources.Resource.DepositFailed, "error")
             End If
         Else
-            swal("Oops!", "Incorrect captcha code, please try again.", "error")
+            swal(Resources.Resource.Oops, Resources.Resource.IncorrectCaptcha, "error")
         End If
     End Sub
 
@@ -31,7 +35,14 @@ Partial Class Deposit
                     Next
                     Dim promos = db.TblPromotions.Where(Function(x) x.Status = 1).ToList
                     For Each promo As TblPromotion In promos
-                        cmbPromotion.Items.Add(New ListItem(promo.EnglishName.Trim, promo.PromoID))
+                        Select Case Request.Cookies("Lang").Value
+                            Case "zh-CN"
+                                cmbPromotion.Items.Add(New ListItem(promo.ChineseName.Trim, promo.PromoID))
+                            Case "my-MY"
+                                cmbPromotion.Items.Add(New ListItem(promo.MalayName.Trim, promo.PromoID))
+                            Case Else
+                                cmbPromotion.Items.Add(New ListItem(promo.EnglishName.Trim, promo.PromoID))
+                        End Select
                     Next
                     Dim products = db.TblProducts.Where(Function(x) x.Status = True).ToList
                     For Each pdt As TblProduct In products
@@ -93,7 +104,7 @@ Partial Class Deposit
                             fileUploader.SaveAs(file)
                             .UploadFile = fileUrl
                         Else
-                            swal("Oops!", "Receipt upload failed, please try upload supported format.", "error")
+                            swal(Resources.Resource.Oops, Resources.Resource.ReceiptUploadFailed, "error")
                             .UploadFile = Nothing
                         End If
                     Else

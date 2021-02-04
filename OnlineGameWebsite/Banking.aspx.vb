@@ -46,11 +46,11 @@ Partial Class Banking
         Dim feature = New HtmlGenericControl("ul")
         With feature
             .Attributes("class") = "plan-features"
-            .Controls.Add(GenerateLi("ATM / Internet / Local Bank Transfer"))
-            .Controls.Add(GenerateLi("Deposit Min " & minDep & " MYR, Max " & maxDep & " MYR"))
-            .Controls.Add(GenerateLi("Withdrawal Min " & minWth & " MYR, Max " & maxWth & " MYR"))
-            .Controls.Add(GenerateLi("5 Minutes Deposit"))
-            .Controls.Add(GenerateLi("15 Minutes Withdrawal"))
+            .Controls.Add(GenerateLi(Resources.Resource.PaymentMethods))
+            .Controls.Add(GenerateLi(Resources.Resource.DepositMinMaxP1 & minDep & Resources.Resource.DepositMinMaxP2 & maxDep & Resources.Resource.DepositMinMaxP3))
+            .Controls.Add(GenerateLi(Resources.Resource.DepositMinMaxP4 & minWth & Resources.Resource.DepositMinMaxP2 & maxWth & Resources.Resource.DepositMinMaxP3))
+            .Controls.Add(GenerateLi(Resources.Resource.DepositTime))
+            .Controls.Add(GenerateLi(Resources.Resource.WithdrawalTime))
         End With
 
         Dim button = New HtmlGenericControl("a")
@@ -58,7 +58,7 @@ Partial Class Banking
             .Attributes("class") = "btn btn-slider-black"
             .Attributes("href") = website
             .Attributes("target") = "_blank"
-            .InnerText = "DEPOSIT NOW"
+            .InnerText = Resources.Resource.DepositNowU
         End With
 
         Dim pricing = New HtmlGenericControl("div")
@@ -105,11 +105,11 @@ Partial Class Banking
         Dim feature = New HtmlGenericControl("ul")
         With feature
             .Attributes("class") = "plan-features"
-            .Controls.Add(GenerateLi("ATM / Internet / Local Bank Transfer"))
-            .Controls.Add(GenerateLi("Deposit Min " & minDep & " MYR, Max " & maxDep & " MYR"))
-            .Controls.Add(GenerateLi("Withdrawal Min " & minWth & " MYR, Max " & maxWth & " MYR"))
-            .Controls.Add(GenerateLi("5 Minutes Deposit"))
-            .Controls.Add(GenerateLi("15 Minutes Withdrawal"))
+            .Controls.Add(GenerateLi(Resources.Resource.PaymentMethods))
+            .Controls.Add(GenerateLi(Resources.Resource.DepositMinMaxP1 & minDep & Resources.Resource.DepositMinMaxP2 & maxDep & Resources.Resource.DepositMinMaxP3))
+            .Controls.Add(GenerateLi(Resources.Resource.DepositMinMaxP4 & minWth & Resources.Resource.DepositMinMaxP2 & maxWth & Resources.Resource.DepositMinMaxP3))
+            .Controls.Add(GenerateLi(Resources.Resource.DepositTime))
+            .Controls.Add(GenerateLi(Resources.Resource.WithdrawalTime))
         End With
 
         Dim button = New HtmlGenericControl("a")

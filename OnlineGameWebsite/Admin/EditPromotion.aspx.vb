@@ -31,9 +31,9 @@ Partial Class Admin_EditPromotion
                             promoUrl = p.PromoFile
                             promodat = New PromoData(Server.MapPath("..\" & p.PromoFile)).Instance
 
-                            txtEngTnC.Text = promodat.English
-                            txtChiTnC.Text = promodat.Chinese
-                            txtMysTnc.Text = promodat.Malay
+                            txtEngTnC.Text = promodat.English.Base64ToString
+                            txtChiTnC.Text = promodat.Chinese.Base64ToString
+                            txtMysTnc.Text = promodat.Malay.Base64ToString
 
                             imageUrl = p.PromoImage.Trim
                             imgPromo.ImageUrl = If(p.PromoImage = Nothing, "", "..\" & p.PromoImage.Trim)
@@ -61,9 +61,9 @@ Partial Class Admin_EditPromotion
                             promoUrl = p.PromoFile
                             promodat = New PromoData(Server.MapPath("..\" & p.PromoFile)).Instance
 
-                            txtEngTnC.Text = promodat.English
-                            txtChiTnC.Text = promodat.Chinese
-                            txtMysTnc.Text = promodat.Malay
+                            txtEngTnC.Text = promodat.English.Base64ToString
+                            txtChiTnC.Text = promodat.Chinese.Base64ToString
+                            txtMysTnc.Text = promodat.Malay.Base64ToString
 
                             imageUrl = p.PromoImage.Trim
                             imgPromo.ImageUrl = If(p.PromoImage = Nothing, "", "..\" & p.PromoImage.Trim)
@@ -110,9 +110,9 @@ Partial Class Admin_EditPromotion
                             promoUrl = p.PromoFile
                             promodat = New PromoData(Server.MapPath("..\" & p.PromoFile)).Instance
 
-                            txtEngTnC.Text = promodat.English
-                            txtChiTnC.Text = promodat.Chinese
-                            txtMysTnc.Text = promodat.Malay
+                            txtEngTnC.Text = promodat.English.Base64ToString
+                            txtChiTnC.Text = promodat.Chinese.Base64ToString
+                            txtMysTnc.Text = promodat.Malay.Base64ToString
 
                             imageUrl = p.PromoImage.Trim
                             imgPromo.ImageUrl = If(p.PromoImage = Nothing, "", "..\" & p.PromoImage.Trim)
@@ -143,7 +143,9 @@ Partial Class Admin_EditPromotion
                 Using db As New DataClassesDataContext
                     Dim editPromo = db.TblPromotions.Single(Function(x) x.PromoID = CInt(pid))
 
-                    If TryEditPromotion() Then
+                    If Not IsNumeric(txtValue.Text) Then
+                        JsMsgBox("Value is not number.")
+                    ElseIf TryEditPromotion() Then
                         JsMsgBox("Promotion " & editPromo.PromoName & " update successfully.")
                         Response.Redirect("Promotions.aspx")
                     Else
@@ -175,6 +177,8 @@ Partial Class Admin_EditPromotion
                     JsMsgBox("Malay name is required!")
                 ElseIf txtValue.Text = Nothing Then
                     JsMsgBox("Value has to be greater than zero.")
+                ElseIf Not IsNumeric(txtValue.Text) Then
+                    JsMsgBox("Value is not number.")
                 ElseIf txtMaxPayout.Text = Nothing Then
                     JsMsgBox("Max Payout is required.")
                 Else
@@ -205,9 +209,9 @@ Partial Class Admin_EditPromotion
                     .PromoFile = .PromoFile
 
                     promodat = New PromoData(Server.MapPath("..\" & .PromoFile))
-                    promodat.English = txtEngTnC.Text.Trim
-                    promodat.Chinese = txtChiTnC.Text.Trim
-                    promodat.Malay = txtMysTnc.Text.Trim
+                    promodat.English = txtEngTnC.Text.Trim.ToBase64
+                    promodat.Chinese = txtChiTnC.Text.Trim.ToBase64
+                    promodat.Malay = txtMysTnc.Text.Trim.ToBase64
                     promodat.FileName = Server.MapPath("..\" & .PromoFile)
                     promodat.Save()
 
@@ -258,9 +262,9 @@ Partial Class Admin_EditPromotion
                     If Not IO.Directory.Exists(Server.MapPath(promoTnc)) Then IO.Directory.CreateDirectory(Server.MapPath(promoTnc))
                     Dim promodat As New PromoData(Server.MapPath("..\" & fileUrl2))
                     With promodat
-                        .English = txtEngTnC.Text.Trim
-                        .Chinese = txtChiTnC.Text.Trim
-                        .Malay = txtMysTnc.Text.Trim
+                        .English = txtEngTnC.Text.Trim.ToBase64
+                        .Chinese = txtChiTnC.Text.Trim.ToBase64
+                        .Malay = txtMysTnc.Text.Trim.ToBase64
                     End With
                     promodat.Save()
 

@@ -46,10 +46,10 @@
                             </div>
                         </div>
                         <div class="row m-t-30">
-                            <div class="col-md-6 m-t-30 item" id="divUsername" runat="server">
+                            <div class="col-md-3 m-t-30 item" id="divUsername" runat="server">
                                 <label id="username" runat="server">User Name:</label>
                             </div>
-                            <div class="col-md-6 m-t-30 item" id="divPassword" runat="server">
+                            <div class="col-md-3 m-t-30 item" id="divPassword" runat="server">
                                 <label id="password" runat="server">Password:</label>
                             </div>
                         </div>

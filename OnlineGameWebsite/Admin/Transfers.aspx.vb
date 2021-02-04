@@ -10,7 +10,7 @@ Partial Class Admin_Transfers
             txtDateTo.Text = [end].ToString("yyyy-MM-ddTHH:mm")
 
             Using db As New DataClassesDataContext
-                Dim trans = db.TblTransfers.OrderByDescending(Function(x) x.TransferID)
+                Dim trans = (From t In db.TblTransfers Where t.TransferDate >= start AndAlso t.TransferDate <= [end]).OrderByDescending(Function(x) x.TransferID)
                 For Each t As TblTransfer In trans
                     Dim m As TblMember = db.TblMembers.Single(Function(x) x.UserName = t.UserName)
                     Dim pf As TblProduct = db.TblProducts.Single(Function(x) x.ProductID = t.FromProductID)
@@ -26,7 +26,7 @@ Partial Class Admin_Transfers
         Dim [end] As Date = Date.ParseExact(txtDateTo.Text, "yyyy-MM-ddTHH:mm", System.Globalization.DateTimeFormatInfo.InvariantInfo)
 
         Using db As New DataClassesDataContext
-            Dim trans = db.TblTransfers.OrderByDescending(Function(x) x.TransferID)
+            Dim trans = (From t In db.TblTransfers Where t.TransferDate >= start AndAlso t.TransferDate <= [end]).OrderByDescending(Function(x) x.TransferID)
             For Each t As TblTransfer In trans
                 Dim m As TblMember = db.TblMembers.Single(Function(x) x.UserName = t.UserName)
                 Dim pf As TblProduct = db.TblProducts.Single(Function(x) x.ProductID = t.FromProductID)

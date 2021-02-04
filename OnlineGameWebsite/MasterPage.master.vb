@@ -9,7 +9,7 @@ Partial Class MasterPage
             LogAction(txtUserID.Text.Trim, Request.UserHostAddress, eLogType.Login)
             Response.Redirect("Default.aspx")
         Else
-            swal(Me.Page, "Oops!", "Incorrect UserID or Password.", "error")
+            swal(Me.Page, Resources.Resource.Oops, Resources.Resource.IncorrectUserIdPassword, "error")
         End If
     End Sub
 
@@ -71,10 +71,19 @@ Partial Class MasterPage
 
         If Request.Cookies("Lang") Is Nothing Then
             With Response.Cookies("Lang")
-                .Value = "en"
+                .Value = "en-US"
                 .Expires = Now.AddYears(1)
             End With
         End If
+
+        Select Case Request.Cookies("Lang").Value
+            Case "zh-CN"
+                ddlLanguages.Attributes("class") = "dropdown inm_flag_cn_ul"
+            Case "my-MY"
+                ddlLanguages.Attributes("class") = "dropdown inm_flag_my_ul"
+            Case Else
+                ddlLanguages.Attributes("class") = "dropdown inm_flag_gb_ul"
+        End Select
 
         If IsClientOnMobileDevice(Request) Then
             mobileProduct.Visible = True
@@ -150,7 +159,7 @@ Partial Class MasterPage
             End If
 
             For Each w As TblTransaction In winnersList
-                wthdraw.Controls.Add(GenerateLi(Camoflauge(w.UserName.Trim) & " won " & w.Debit.ToString("N") & " MYR " & w.TransactionDate.HowLong))
+                wthdraw.Controls.Add(GenerateLi(Camoflauge(w.UserName.Trim) & Resources.Resource.Won & w.Debit.ToString("N") & " MYR " & w.TransactionDate.HowLong))
             Next
         End If
 
@@ -165,9 +174,7 @@ Partial Class MasterPage
                 memberLogin.Visible = False
                 memberMenu.Visible = True
                 memberName.Visible = True
-                memberName.InnerText = "Hello, " & Session("fullname")
-                'btnHeadAlt.InnerHtml = "Deposit<i class=""fas fa-caret-down"" style=""color: #FFF;""></i>"
-                'btnHeadAlt.HRef = "#"
+                memberName.InnerText = Resources.Resource.Hello & Session("fullname")
                 btnHeadReg.Visible = False
             Case Else
                 memberLogin.Visible = True
@@ -194,19 +201,19 @@ Partial Class MasterPage
 
     Private Sub btnRegister_Click(sender As Object, e As EventArgs) Handles btnRegister.Click
         If IsEmailExists(txtEmail.Text) Then
-            swal(Me.Page, "Oops!", "Email is already been registered!", "error")
+            swal(Me.Page, Resources.Resource.Oops, Resources.Resource.EmailAlreadyRegister, "error")
         ElseIf Not IsEmailValid(txtEmail.Text) Then
-            swal(Me.Page, "Oops!", "Email is not valid!", "error")
+            swal(Me.Page, Resources.Resource.Oops, Resources.Resource.EmailNotValid, "error")
         ElseIf txtUserIDR.Text.Length < 6 Then
-            swal(Me.Page, "Oops!", "UserID is too short!", "error")
+            swal(Me.Page, Resources.Resource.Oops, Resources.Resource.UserIdTooShort, "error")
         ElseIf IsMemberExists(txtUserIDR.Text) Then
-            swal(Me.Page, "Oops!", "UserID already taken, please try another one.", "error")
+            swal(Me.Page, Resources.Resource.Oops, Resources.Resource.UserIdTaken, "error")
         ElseIf txtPasswordR.Text <> txtPasswordR2.Text Then
-            swal(Me.Page, "Oops!", "Your password do not match!", "error")
+            swal(Me.Page, Resources.Resource.Oops, Resources.Resource.PasswordNotMatch, "error")
         ElseIf Not cb18yo.Checked Then
-            swal(Me.Page, "Underage warning", "You have to be at least 18 years old to register.", "warning")
+            swal(Me.Page, Resources.Resource.UnderAge, Resources.Resource.TooYoung, "warning")
         ElseIf Not cbTnc.Checked Then
-            swal(Me.Page, "Terms & Conditions", "Please accept the Terms & Conditions in order to continue.", "warning")
+            swal(Me.Page, Resources.Resource.TnC, Resources.Resource.AcceptTnC, "warning")
         Else
             If RegisterMember() Then
                 LogAction(txtUserIDR.Text.Trim, Request.UserHostAddress, eLogType.Register)
@@ -215,7 +222,7 @@ Partial Class MasterPage
                     Response.Redirect("Default.aspx")
                 End If
             Else
-                swal(Me.Page, "Oops!", "Registration failed! Please contact Customer Service.", "error")
+                swal(Me.Page, Resources.Resource.Oops, Resources.Resource.RegFailed, "error")
             End If
         End If
     End Sub

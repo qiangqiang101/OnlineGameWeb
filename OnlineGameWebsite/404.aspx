@@ -8,10 +8,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1>PAGE NOT FOUND</h1>
+                        <h1><%=Resources.Resource.PageNotFoundAlso %></h1>
                         <ul class="breadcrumb">
-                            <li><a href="Default.aspx">Home</a></li>
-                            <li class="active">404 Page</li>
+                            <li><a href="Default.aspx"><%=Resources.Resource.Home %></a></li>
+                            <li class="active"><%=Resources.Resource.PageNotFoundToo %></li>
                         </ul>
                     </div>
                 </div>
@@ -23,9 +23,9 @@
                     <article class="page-404 p-t-50 p-b-50">
                         <div>
                             <h1>404</h1>
-                            <h2>THIS PAGE IS NOT FOUND</h2>
-                            <p>We apologize for the inconvenience. This is our fault. There is not a problem with your computer or Internet connection.</p>
-                            <button type="button" onclick="window.location.href='Default.aspx'" class="btn btn-slider-black">BACK TO HOME</button>
+                            <h2><%=Resources.Resource.PageNotFound %></h2>
+                            <p><%=Resources.Resource.PnfSubtitle %></p>
+                            <button type="button" onclick="window.location.href='Default.aspx'" class="btn btn-slider-black"><%=Resources.Resource.BackToHomeU %></button>
                         </div>
                     </article>
                 </div>

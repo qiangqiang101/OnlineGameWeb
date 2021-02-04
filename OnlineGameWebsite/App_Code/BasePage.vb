@@ -9,7 +9,7 @@ Public Class BasePage
 
         If Request.Cookies("Lang") Is Nothing Then
             With Response.Cookies("Lang")
-                .Value = "en"
+                .Value = "en-US"
                 .Expires = Now.AddYears(1)
             End With
         End If

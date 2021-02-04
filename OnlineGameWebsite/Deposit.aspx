@@ -37,12 +37,12 @@
                                 <h4><%=Resources.Resource.Deposit %></h4>
                                 <form action="#" class="m-t-30">
                                     <div class="form-group col-md-6">
-                                        <label><%=Resources.Resource.Bank %></label>
+                                        <label><%=Resources.Resource.Bank %><span class="req">*</span></label>
                                         <asp:DropDownList CssClass="form-control" ID="cmbBank" AutoPostBack="False" runat="server" placeholder="">
                                         </asp:DropDownList>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label><%=Resources.Resource.Amount %></label>
+                                        <label><%=Resources.Resource.Amount %><span class="req">*</span></label>
                                         <asp:UpdatePanel ID="updateAmount" runat="server">
                                             <ContentTemplate>
                                                 <asp:ScriptManager ID="smUpdateAmount" runat="server"></asp:ScriptManager>
@@ -52,11 +52,11 @@
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label><%=Resources.Resource.Date %></label>
-                                        <asp:TextBox CssClass="form-control" ID="txtDepositDate" runat="server" placeholder="dd/MM/yyyy" TextMode="DateTimeLocal" required="Required" AutoPostBack="False"></asp:TextBox>
+                                        <asp:TextBox CssClass="form-control" ID="txtDepositDate" runat="server" placeholder="dd/MM/yyyy" TextMode="DateTimeLocal" AutoPostBack="False"></asp:TextBox>
                                     </div>
 
                                     <div class="form-group col-md-6">
-                                        <label><%=Resources.Resource.DepositType %></label>
+                                        <label><%=Resources.Resource.DepositType %><span class="req">*</span></label>
                                         <asp:DropDownList CssClass="form-control" ID="cmbDepositType" AutoPostBack="False" runat="server" placeholder="">
                                             <asp:ListItem Value="0" Text="<%$Resources:Resource, CashDepositMachine%>"></asp:ListItem>
                                             <asp:ListItem Value="1" Text="<%$Resources:Resource, ATMTransfer%>"></asp:ListItem>
@@ -72,19 +72,19 @@
                                         <asp:TextBox CssClass="form-control" ID="txtRefCode" runat="server" placeholder=""></asp:TextBox>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label><%=Resources.Resource.Promotion %></label>
+                                        <label><%=Resources.Resource.Promotion %><span class="req">*</span></label>
                                         <asp:DropDownList CssClass="form-control" ID="cmbPromotion" AutoPostBack="False" runat="server" placeholder="">
                                             <asp:ListItem Value="-1" Text="<%$Resources:Resource, NoThanks%>"></asp:ListItem>
                                         </asp:DropDownList>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label><%=Resources.Resource.Product %></label>
+                                        <label><%=Resources.Resource.Product %><span class="req">*</span></label>
                                         <asp:DropDownList CssClass="form-control" ID="cmbProduct" AutoPostBack="False" runat="server" placeholder="">
                                         </asp:DropDownList>
                                     </div>
                                     <div class="form-group m-t-30">
                                         <div class="form-group col-md-6">
-                                            <label><%=Resources.Resource.Captcha %></label>
+                                            <label><%=Resources.Resource.Captcha %><span class="req">*</span></label>
                                             <asp:TextBox class="form-control" ID="txtVerification" runat="server" placeholder="" TextMode="SingleLine" ClientIDMode="Static"></asp:TextBox>
                                         </div>
                                         <div class="form-group col-md-6">

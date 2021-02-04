@@ -8,10 +8,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1>REGISTER</h1>
+                        <h1><%=Resources.Resource.RegisterU %></h1>
                         <ul class="breadcrumb">
-                            <li><a href="Default.aspx">Home</a></li>
-                            <li class="active">Sign Up</li>
+                            <li><a href="Default.aspx"><%=Resources.Resource.Home %></a></li>
+                            <li class="active"><%=Resources.Resource.SignUp %></li>
                         </ul>
                     </div>
                 </div>
@@ -24,56 +24,56 @@
                         <div class="row">
                             <div class="col-md-9">
                                 <hr class="hr" />
-                                <h4>Sign Up</h4>
+                                <h4><%=Resources.Resource.SignUp %></h4>
                                 <form action="#" class="m-t-30">
                                     <div class="form-group col-md-6">
-                                        <label>Full Name</label>
+                                        <label><%=Resources.Resource.FullName %><span class="req">*</span></label>
                                         <asp:TextBox CssClass="form-control" ID="txtFullName" runat="server" placeholder="Tan Ah Kow" required="Required" AutoCompleteType="DisplayName"></asp:TextBox>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label>Date of Birth</label>
-                                        <asp:TextBox CssClass="form-control" ID="txtBirthday" runat="server" placeholder="dd/MM/yyyy" TextMode="Date" required="Required"></asp:TextBox>
+                                        <label><%=Resources.Resource.DateOfBirth %><span class="req">*</span></label>
+                                        <asp:TextBox CssClass="form-control" ID="txtBirthday" runat="server" placeholder="15/10/1999" TextMode="Date" required="Required"></asp:TextBox>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label>Contact No</label>
+                                        <label><%=Resources.Resource.ContactNo %><span class="req">*</span></label>
                                         <asp:TextBox CssClass="form-control" ID="txtContact" runat="server" placeholder="+60123456789" TextMode="Phone" required="Required" AutoCompleteType="HomePhone"></asp:TextBox>
                                     </div>
 
                                     <div class="form-group col-md-6">
-                                        <label>Email</label>
+                                        <label><%=Resources.Resource.Email %><span class="req">*</span></label>
                                         <asp:TextBox CssClass="form-control" ID="txtEmail" AutoCompleteType="Email" runat="server" placeholder="user@email.com" TextMode="Email" required="Required"></asp:TextBox>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label>Referral Code</label>
+                                        <label><%=Resources.Resource.RefCode %></label>
                                         <asp:TextBox CssClass="form-control" ID="txtRegRefCode" runat="server" placeholder=""></asp:TextBox>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label>User ID</label>
+                                        <label><%=Resources.Resource.UserID %><span class="req">*</span></label>
                                         <asp:TextBox class="form-control" ID="txtUserID" runat="server" placeholder="User ID" required="Required"></asp:TextBox>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label>Password</label>
+                                        <label><%=Resources.Resource.Password %><span class="req">*</span></label>
                                         <asp:TextBox class="form-control" ID="txtPassword" runat="server" placeholder="Password" TextMode="Password" required="Required"></asp:TextBox>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <label>Confirm Password</label>
+                                        <label><%=Resources.Resource.ConfirmPassword %><span class="req">*</span></label>
                                         <asp:TextBox class="form-control" ID="txtPassword2" runat="server" placeholder="Password" TextMode="Password" required="Required"></asp:TextBox>
                                     </div>
                                     <hr class="hr" />
                                     <div class="form-check-label col-md-12">
-                                        <asp:CheckBox class="form-check-input" ID="cbTnc" runat="Server" Text="&nbsp I understand and accept all the <a href='Terms.aspx' target='_blank'>Terms & Conditions</a> and <a href='Privacy.aspx' target='_blank'>Privacy Policy</a> statement." /><br />
-                                        <asp:CheckBox class="form-check-input" ID="cb18yo" runat="Server" Text="&nbsp I declare that I am 18 years old or above." />
+                                        <asp:CheckBox class="form-check-input" ID="cbTnc" runat="Server" Text="" /><%=Resources.Resource.RegisterTnCP1 %><a href='Terms.aspx' target='_blank'><%=Resources.Resource.TnC %></a><%=Resources.Resource.RegisterTnCP2 %><a href='Privacy.aspx' target='_blank'><%=Resources.Resource.PrivacyMenuBtm %></a><%=Resources.Resource.RegisterTncP3 %><span class="req">*</span><br />
+                                        <asp:CheckBox class="form-check-input" ID="cb18yo" runat="Server" Text="<%$Resources:Resource, IDeclare18YearsOld%>" /><span class="req">*</span>
                                         <br />
                                         <br />
                                     </div>
                                     <div class="form-group m-t-30 center-block">
-                                        <asp:Button class="btn btn-palovit" ID="btnRegister" runat="server" Text="CREATE ACCOUNT NOW" />
+                                        <asp:Button class="btn btn-palovit" ID="btnRegister" runat="server" Text="<%$Resources:Resource, CreateAccNow%>" />
                                     </div>
                                 </form>
                             </div>
                             <div class="col-md-3">
                                 <hr class="hr" />
-                                <h4>Member Benefits</h4>
+                                <h4><%=Resources.Resource.MemberBenefits %></h4>
                                 <ul class="adress" id="benefitsList" runat="server">
                                     <%--Promotion will list here--%>
                                 </ul>

@@ -63,19 +63,19 @@
                                 </div>
                                 <div class="dropdown pull-right">
                                     <a href="#" class="dropdown" id="ddlLanguages" runat="server" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><%=Resources.Resource.Language %>
-                            <span class="caret"></span>
+                                        <span class="caret"></span>
                                     </a>
                                     <ul class="dropdown-menu palovit-dropdown" aria-labelledby="language">
-                                        <li><a href="#" id="langEn" runat="server">English</a></li>
-                                        <li><a href="#" id="langZh" runat="server">中文</a></li>
-                                        <li><a href="#" id="langMy" runat="server">Bahasa Malaysia</a></li>
+                                        <li><a href="#" class="inm_flag_gb" id="langEn" runat="server">English</a></li>
+                                        <li><a href="#" class="inm_flag_cn" id="langZh" runat="server">中文</a></li>
+                                        <li><a href="#" class="inm_flag_my" id="langMy" runat="server">Bahasa Malaysia</a></li>
                                     </ul>
                                 </div>
                                 <div class="rmenu" id="memberLogin" runat="server">
                                     <div id="account">
                                         <a href="#" class="dropdown">
                                             <i class="far fa-user">&nbsp</i><%=Resources.Resource.LoginFs %>
-                                <span><%=Resources.Resource.Register %></span>
+                                            <span><%=Resources.Resource.Register %></span>
                                             <span class="caret"></span>
                                         </a>
                                         <ul class="dropdown-menu">
@@ -86,12 +86,12 @@
                                                         <hr />
                                                         <form action="#" method="post">
                                                             <div class="form-group">
-                                                                <label><%=Resources.Resource.UserIdEmail %></label>
+                                                                <label><%=Resources.Resource.UserIdEmail %><span class="req">*</span></label>
                                                                 <asp:TextBox class="form-control" ID="txtUserID" runat="server" placeholder="<%$Resources:Resource, UserIdEmail %>" required="Required"></asp:TextBox>
                                                             </div>
                                                             <div class="form-group">
                                                                 <a class="pull-right" id="Recover" href="#"><%=Resources.Resource.ResetPassword %></a>
-                                                                <label><%=Resources.Resource.Password %></label>
+                                                                <label><%=Resources.Resource.Password %><span class="req">*</span></label>
                                                                 <asp:TextBox class="form-control" ID="txtPassword" runat="server" placeholder="<%$Resources:Resource, Password %>" TextMode="Password" required="Required"></asp:TextBox>
                                                             </div>
                                                             <div class="form-group">
@@ -117,45 +117,45 @@
                                                         <form action="#" method="post">
 
                                                             <div class="form-group">
-                                                                <label><%=Resources.Resource.UserID %></label>
+                                                                <label><%=Resources.Resource.UserID %><span class="req">*</span></label>
                                                                 <asp:TextBox class="form-control" ID="txtUserIDR" runat="server" placeholder="<%$Resources:Resource, RememberMe %>" required="Required"></asp:TextBox>
                                                             </div>
                                                             <div class="form-group">
                                                                 <div class="row">
                                                                     <div class="col-xs-6">
-                                                                        <label><%=Resources.Resource.Password %></label>
+                                                                        <label><%=Resources.Resource.Password %><span class="req">*</span></label>
                                                                         <asp:TextBox class="form-control" ID="txtPasswordR" runat="server" placeholder="<%$Resources:Resource, RememberMe %>" TextMode="Password" required="Required"></asp:TextBox>
                                                                     </div>
                                                                     <div class="col-xs-6">
-                                                                        <label><%=Resources.Resource.ConfirmPassword %></label>
+                                                                        <label><%=Resources.Resource.ConfirmPassword %><span class="req">*</span></label>
                                                                         <asp:TextBox class="form-control" ID="txtPasswordR2" runat="server" placeholder="<%$Resources:Resource, RememberMe %>" TextMode="Password" required="Required"></asp:TextBox>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class="form-group">
-                                                                <label><%=Resources.Resource.FullName %></label>
+                                                                <label><%=Resources.Resource.FullName %><span class="req">*</span></label>
                                                                 <asp:TextBox CssClass="form-control" ID="txtFullName" runat="server" placeholder="Tan Ah Kow" required="Required" AutoCompleteType="DisplayName"></asp:TextBox>
                                                             </div>
                                                             <div class="form-group">
-                                                                <label><%=Resources.Resource.Email %></label>
+                                                                <label><%=Resources.Resource.Email %><span class="req">*</span></label>
                                                                 <asp:TextBox CssClass="form-control" ID="txtEmail" AutoCompleteType="Email" runat="server" placeholder="user@email.com" TextMode="Email" required="Required"></asp:TextBox>
                                                             </div>
                                                             <div class="form-group">
                                                                 <div class="row">
                                                                     <div class="col-xs-6">
-                                                                        <label><%=Resources.Resource.ContactNo %></label>
+                                                                        <label><%=Resources.Resource.ContactNo %><span class="req">*</span></label>
                                                                         <asp:TextBox CssClass="form-control" ID="txtContact" runat="server" placeholder="+60123456789" TextMode="Phone" required="Required" AutoCompleteType="HomePhone"></asp:TextBox>
                                                                     </div>
                                                                     <div class="col-xs-6">
-                                                                        <label><%=Resources.Resource.DateOfBirth %></label>
+                                                                        <label><%=Resources.Resource.DateOfBirth %><span class="req">*</span></label>
                                                                         <asp:TextBox CssClass="form-control" ID="txtBirthday" runat="server" placeholder="dd/MM/yyyy" TextMode="Date" required="Required"></asp:TextBox>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <hr />
                                                             <div class="form-check-label">
-                                                                <asp:CheckBox class="form-check-input" ID="cbTnc" runat="Server" Text="<%$Resources:Resource, IAcceptTnC %>" /><br />
-                                                                <asp:CheckBox class="form-check-input" ID="cb18yo" runat="Server" Text="<%$Resources:Resource, IDeclare18YearsOld %>" />
+                                                                <asp:CheckBox class="form-check-input" ID="cbTnc" runat="Server" Text="<%$Resources:Resource, IAcceptTnC %>" /><span class="req">*</span><br />
+                                                                <asp:CheckBox class="form-check-input" ID="cb18yo" runat="Server" Text="<%$Resources:Resource, IDeclare18YearsOld %>" /><span class="req">*</span>
                                                                 <br />
                                                                 <br />
                                                             </div>
@@ -187,7 +187,7 @@
                                 </div>
                                 <div class="dropdown pull-right" id="memberMenu" runat="server">
                                     <a href="#" class="dropdown" id="memberArea" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><%=Resources.Resource.MyAccount %>
-                            <span class="caret"></span>
+                                        <span class="caret"></span>
                                     </a>
                                     <ul class="dropdown-menu palovit-dropdown" aria-labelledby="memberArea">
                                         <li><a href="MyProfile.aspx"><%=Resources.Resource.MyProfile %></a></li>
@@ -211,7 +211,7 @@
                 <div class="center">
                     <div class="container p-t-30 p-b-30">
                         <div class="row">
-                            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                            <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
                                 <a href="Default.aspx" class="logo">
                                     <img src="Theme/img/logo.png" class="img-responsive" alt="" id="siteLogo" runat="server" />
                                 </a>
@@ -243,7 +243,7 @@
                                     <span id="hWc" runat="server">wxid_0123456789</span>
                                 </div>
                             </div>
-                            <div class="col-lg-2 col-md-2 hidden-md hidden-sm hidden-xs info">
+                            <div class="col-lg-3 col-md-2 hidden-md hidden-sm hidden-xs info">
                                 <a href="Register.aspx" class="btn btn-slider-black dropdown-toggle" id="btnHeadReg" runat="server"><%=Resources.Resource.SignUpNow %><i class="fas fa-user-plus" style="color: #FFF;"></i></a>
                                 <div class="dropdown" id="btnHead" runat="server">
                                     <a href="#" class="btn btn-slider-black dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="btnHeadAlt" runat="server"><%=Resources.Resource.Deposit %><i class="fas fa-caret-down" style="color: #FFF;"></i></a>
@@ -373,7 +373,7 @@
                         <div class="col-md-4">
                             <h4><%=Resources.Resource.GetInTouch %></h4>
                             <ul class="adress" id="contactList" runat="server">
-                               <%--Contact List will show here--%>
+                                <%--Contact List will show here--%>
                             </ul>
                         </div>
                         <div class="col-md-4">
@@ -410,9 +410,9 @@
             </div>
         </footer>
 
-        <a class="pagetop center" href="#">
+        <%--<a class="pagetop center" href="#">
             <i class="fas fa-chevron-up"></i>
-        </a>
+        </a>--%>
         <script src="Scripts/jquery-3.1.1.min.js"></script>
         <script src="Scripts/bootstrap.min.js"></script>
         <script src="Plugins/isotope/isotope.pkgd.min.js"></script>

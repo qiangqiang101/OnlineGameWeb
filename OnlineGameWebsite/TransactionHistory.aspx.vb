@@ -19,7 +19,7 @@ Partial Class TransactionHistory
                         Case 0
                             atnStr = DeleteButton("Action.aspx?mode=cancel&redirect=history&id=" & t.TransactionID, tooltip:="Cancel")
                         Case 3
-                            atnStr = RRButton("'Reject Reason', '" & t.Reason.Trim & "', 'info'", "fa-eye", "Reject Reason")
+                            atnStr = RRButton("'" & Resources.Resource.RejectReason & "', '" & t.Reason.Trim & "', 'info'", "fa-eye", "Reject Reason")
                         Case Else
                             atnStr = String.Empty
                     End Select
@@ -36,7 +36,7 @@ Partial Class TransactionHistory
                         Case 0
                             atnStr = DeleteButton("Action.aspx?mode=cancel&redirect=history&id=" & t.TransactionID, tooltip:="Cancel")
                         Case 3
-                            atnStr = RRButton("'Reject Reason', '" & t.Reason.Trim & "', 'info'", "fa-eye", "Reject Reason")
+                            atnStr = RRButton("'" & Resources.Resource.RejectReason & "', '" & t.Reason.Trim & "', 'info'", "fa-eye", "Reject Reason")
                         Case Else
                             atnStr = String.Empty
                     End Select
@@ -53,7 +53,7 @@ Partial Class TransactionHistory
                         Case 0
                             atnStr = DeleteButton("Action.aspx?mode=cancel&redirect=history&id=" & t.TransactionID, tooltip:="Cancel")
                         Case 3
-                            atnStr = RRButton("'Reject Reason', '" & t.Reason.Trim & "', 'info'", "fa-eye", "Reject Reason")
+                            atnStr = RRButton("'" & Resources.Resource.RejectReason & "', '" & t.Reason.Trim & "', 'info'", "fa-eye", "Reject Reason")
                         Case Else
                             atnStr = String.Empty
                     End Select
@@ -73,7 +73,7 @@ Partial Class TransactionHistory
                         Case 0
                             atnStr = DeleteButton("Action.aspx?mode=cancel2&redirect=history&id=" & t.TransferID, tooltip:="Cancel")
                         Case 3
-                            atnStr = RRButton("'Reject Reason', '" & t.Reason.Trim & "', 'info'", "fa-eye", "Reject Reason")
+                            atnStr = RRButton("'" & Resources.Resource.RejectReason & "', '" & t.Reason.Trim & "', 'info'", "fa-eye", "Reject Reason")
                         Case Else
                             atnStr = String.Empty
                     End Select

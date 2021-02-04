@@ -30,7 +30,7 @@ Partial Class Action
                             End Using
                         Catch ex As Exception
                             Log(ex)
-                            swalRedirect(GetRedirect, "Oops!", "Transaction not found!", "error")
+                            swalRedirect(GetRedirect, Resources.Resource.Oops, Resources.Resource.TransactionNotFound, "error")
                         End Try
                         Response.Redirect(GetRedirect)
                     Case "cancel2"
@@ -44,7 +44,7 @@ Partial Class Action
                             End Using
                         Catch ex As Exception
                             Log(ex)
-                            swalRedirect(GetRedirect, "Oops!", "Transaction not found!", "error")
+                            swalRedirect(GetRedirect, Resources.Resource.Oops, Resources.Resource.TransactionNotFound, "error")
                         End Try
                         Response.Redirect(GetRedirect)
                     Case "account"
@@ -63,10 +63,10 @@ Partial Class Action
                             LogAction(Session("username").ToString.Trim, Request.UserHostAddress, eLogType.RequestGameAcc)
                         Catch ex As Exception
                             Log(ex)
-                            swalRedirect(GetRedirect, "Oops!", "Something went wrong! Please contact customer service.", "error")
+                            swalRedirect(GetRedirect, Resources.Resource.Oops, Resources.Resource.SomethingWrong, "error")
                         End Try
 
-                        Response.Redirect(GetRedirect() & If(gotError, "?swal='Oops!', 'Something went wrong! Please contact customer service.', 'error'", ""))
+                        Response.Redirect(GetRedirect() & If(gotError, "?swal='" & Resources.Resource.Oops & "', '" & Resources.Resource.SomethingWrong & "', 'error'", ""))
                 End Select
             End If
         End If

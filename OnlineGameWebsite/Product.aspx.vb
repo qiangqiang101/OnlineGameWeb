@@ -28,8 +28,8 @@ Partial Class Product
                     Dim role As String = HttpContext.Current.Session("role")
                     If role = "user" Then
                         Try
-                            Dim user = db.TblUsers.Single(Function(x) x.UserName = Session("username") And x.UserID = Session("userid"))
-                            Dim uproduct = db.TblGameAccounts.Single(Function(x) x.MemberUserName.Trim = user.UserName.Trim)
+                            Dim user = db.TblMembers.Single(Function(x) x.UserName = Session("username").ToString.Trim)
+                            Dim uproduct = db.TblGameAccounts.Single(Function(x) x.MemberUserName.Trim = user.UserName.Trim And x.ProductID = CInt(pid))
                             username.InnerText = "User Name: " & uproduct.UserName.Trim
                             password.InnerText = "Password: " & uproduct.Password.Trim
                         Catch ex As Exception

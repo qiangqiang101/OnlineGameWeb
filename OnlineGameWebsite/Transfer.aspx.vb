@@ -44,15 +44,15 @@ Partial Class Transfer
 
     Private Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
         If cmbProductFrom.SelectedValue = cmbProductTo.SelectedValue Then
-            swal("Oops!", "Transfer to same product account is prohibited.", "error")
+            swal(Resources.Resource.Oops, Resources.Resource.CannotTransferSameProduct, "error")
         ElseIf Not txtVerification.Text.Trim.Equals(Session("captcha").ToString.Trim) Then
-            swal("Oops!", "Incorrect captcha code, please try again.", "error")
+            swal(Resources.Resource.Oops, Resources.Resource.IncorrectCaptcha, "error")
         Else
             If Transfer() Then
                 LogAction(Session("username").ToString.Trim, Request.UserHostAddress, eLogType.Transfer)
-                swalRedirect("TransactionHistory.aspx", "Success", "Your transfer request has been submitted successfully.", "success")
+                swalRedirect("TransactionHistory.aspx", Resources.Resource.Success, Resources.Resource.TransferSubmitted, "success")
             Else
-                swal("Oops!", "Transfer failed! Please contact Customer Service.", "error")
+                swal(Resources.Resource.Oops, Resources.Resource.TransferFailed, "error")
             End If
         End If
     End Sub

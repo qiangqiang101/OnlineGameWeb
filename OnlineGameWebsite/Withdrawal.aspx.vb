@@ -8,12 +8,12 @@ Partial Class Withdrawal
         If txtVerification.Text.Trim.Equals(Session("captcha").ToString.Trim) Then
             If Withdrawal() Then
                 LogAction(Session("username").ToString.Trim, Request.UserHostAddress, eLogType.Debit)
-                swalRedirect("TransactionHistory.aspx", "Success", "Your withdrawal request has been submitted successfully.", "success")
+                swalRedirect("TransactionHistory.aspx", Resources.Resource.Success, Resources.Resource.WithdrawalSubmitted, "success")
             Else
-                swal("Oops!", "Withdrawal failed! Please contact Customer Service.", "error")
+                swal(Resources.Resource.Oops, Resources.Resource.WithdrawalFailed, "error")
             End If
         Else
-            swal("Oops!", "Incorrect captcha code, please try again.", "error")
+            swal(Resources.Resource.Oops, Resources.Resource.IncorrectCaptcha, "error")
         End If
     End Sub
 

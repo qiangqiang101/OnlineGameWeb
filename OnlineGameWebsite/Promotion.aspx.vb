@@ -7,7 +7,14 @@ Partial Class Promotion
             Dim promos = db.TblPromotions.Where(Function(x) x.Status = 1).ToList
             For Each promo As TblPromotion In promos
                 Dim data = New PromoData(Server.MapPath(promo.PromoFile)).Instance
-                accordion.Controls.Add(LoadPromotions(promo.PromoID, promo.EnglishName, data.English, promo.PromoImage))
+                Select Case Request.Cookies("Lang").Value
+                    Case "zh-CN"
+                        accordion.Controls.Add(LoadPromotions(promo.PromoID, promo.ChineseName, data.Chinese.Base64ToString, promo.PromoImage))
+                    Case "my-MY"
+                        accordion.Controls.Add(LoadPromotions(promo.PromoID, promo.MalayName, data.Malay.Base64ToString, promo.PromoImage))
+                    Case Else
+                        accordion.Controls.Add(LoadPromotions(promo.PromoID, promo.EnglishName, data.English.Base64ToString, promo.PromoImage))
+                End Select
             Next
         End Using
     End Sub
@@ -41,7 +48,7 @@ Partial Class Promotion
 
         Dim p = New HtmlGenericControl("p")
         With p
-            .InnerText = text.Trim
+            .InnerHtml = text '.Replace(Chr(13), "<br />").Replace(Chr(13), "<br />").Replace("<br /><br />", "<br />")
         End With
 
         Dim tncBody = New HtmlGenericControl("div")

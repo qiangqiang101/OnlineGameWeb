@@ -8,122 +8,121 @@ Partial Class _Products
         cat = Request.QueryString("cat")
 
         If Not IsPostBack Then
+            Dim products As List(Of TblProduct)
+            Dim contacts As List(Of TblContact)
+            Using db As New DataClassesDataContext
+                products = db.TblProducts.Where(Function(x) x.Status = True And x.ProductImage <> Nothing).ToList
+                contacts = db.TblContacts.Where(Function(x) x.Status = True And x.ShowProductPage = True).ToList
+            End Using
+
+            pdtPageContact.Controls.Add(New HtmlGenericControl("li") With {.InnerHtml = Resources.Resource.HowCanWeHelpYou})
+            For Each c In contacts
+                pdtPageContact.Controls.Add(GenerateContact(c.FaIcon, c.Website, c.ContactTitle))
+            Next
+
             Select Case cat
                 Case "slot"
                     headerBgImg.Attributes("class") = "header-page inm_slot"
-                    catTitleH1.InnerText = "SLOT GAME"
-                    catTitle.InnerText = "Slot Game"
+                    catTitleH1.InnerText = Resources.Resource.SlotGameMenu
+                    catTitle.InnerText = Resources.Resource.SlotGame
                     catSlot.Attributes("class") = "active"
 
-                    Using db As New DataClassesDataContext
-                        Dim products = db.TblProducts.Where(Function(x) x.Status = True And x.ProductImage <> Nothing And x.CatSlot = True).ToList
-                        For Each product As TblProduct In products
-                            Dim pdtName As String = Nothing
-                            If String.IsNullOrWhiteSpace(product.ProductAlias) Then pdtName = product.ProductName Else pdtName = product.ProductAlias
-                            productView.Controls.Add(LoadProductsByCategory(product.ProductID, product.ProductImage, pdtName, product.AndroidLink, product.iOSLink, product.WindowsLink, product.WebsiteUrl))
-                        Next
-                    End Using
+                    Dim slots = products.Where(Function(x) x.CatSlot = True).ToList
+                    For Each product As TblProduct In slots
+                        Dim pdtName As String = Nothing
+                        If String.IsNullOrWhiteSpace(product.ProductAlias) Then pdtName = product.ProductName Else pdtName = product.ProductAlias
+                        productView.Controls.Add(LoadProductsByCategory(product.ProductID, product.ProductImage, pdtName, product.AndroidLink, product.iOSLink, product.WindowsLink, product.WebsiteUrl))
+                    Next
                 Case "live"
                     headerBgImg.Attributes("class") = "header-page inm_live"
-                    catTitleH1.InnerText = "LIVE CASINO"
-                    catTitle.InnerText = "Live Casino"
+                    catTitleH1.InnerText = Resources.Resource.LiveCasinoMenu
+                    catTitle.InnerText = Resources.Resource.LiveCasino
                     catLive.Attributes("class") = "active"
 
-                    Using db As New DataClassesDataContext
-                        Dim products = db.TblProducts.Where(Function(x) x.Status = True And x.ProductImage <> Nothing And x.CatLive = True).ToList
-                        For Each product As TblProduct In products
-                            Dim pdtName As String = Nothing
-                            If String.IsNullOrWhiteSpace(product.ProductAlias) Then pdtName = product.ProductName Else pdtName = product.ProductAlias
-                            productView.Controls.Add(LoadProductsByCategory(product.ProductID, product.ProductImage, pdtName, product.AndroidLink, product.iOSLink, product.WindowsLink, product.WebsiteUrl))
-                        Next
-                    End Using
+                    Dim lives = products.Where(Function(x) x.CatLive = True).ToList
+                    For Each product As TblProduct In lives
+                        Dim pdtName As String = Nothing
+                        If String.IsNullOrWhiteSpace(product.ProductAlias) Then pdtName = product.ProductName Else pdtName = product.ProductAlias
+                        productView.Controls.Add(LoadProductsByCategory(product.ProductID, product.ProductImage, pdtName, product.AndroidLink, product.iOSLink, product.WindowsLink, product.WebsiteUrl))
+                    Next
                 Case "sport"
                     headerBgImg.Attributes("class") = "header-page inm_sport"
-                    catTitleH1.InnerText = "SPORTSBOOK"
-                    catTitle.InnerText = "Sportsbook"
+                    catTitleH1.InnerText = Resources.Resource.SportsbookMenu
+                    catTitle.InnerText = Resources.Resource.Sportsbook
                     catSport.Attributes("class") = "active"
 
-                    Using db As New DataClassesDataContext
-                        Dim products = db.TblProducts.Where(Function(x) x.Status = True And x.ProductImage <> Nothing And x.CatSport = True).ToList
-                        For Each product As TblProduct In products
-                            Dim pdtName As String = Nothing
-                            If String.IsNullOrWhiteSpace(product.ProductAlias) Then pdtName = product.ProductName Else pdtName = product.ProductAlias
-                            productView.Controls.Add(LoadProductsByCategory(product.ProductID, product.ProductImage, pdtName, product.AndroidLink, product.iOSLink, product.WindowsLink, product.WebsiteUrl))
-                        Next
-                    End Using
+                    Dim sports = products.Where(Function(x) x.CatSport = True).ToList
+                    For Each product As TblProduct In sports
+                        Dim pdtName As String = Nothing
+                        If String.IsNullOrWhiteSpace(product.ProductAlias) Then pdtName = product.ProductName Else pdtName = product.ProductAlias
+                        productView.Controls.Add(LoadProductsByCategory(product.ProductID, product.ProductImage, pdtName, product.AndroidLink, product.iOSLink, product.WindowsLink, product.WebsiteUrl))
+                    Next
                 Case "rng"
                     headerBgImg.Attributes("class") = "header-page inm_rng"
-                    catTitleH1.InnerText = "RNG"
-                    catTitle.InnerText = "RNG"
+                    catTitleH1.InnerText = Resources.Resource.RngMenu
+                    catTitle.InnerText = Resources.Resource.Rng
                     catRNG.Attributes("class") = "active"
 
-                    Using db As New DataClassesDataContext
-                        Dim products = db.TblProducts.Where(Function(x) x.Status = True And x.ProductImage <> Nothing And x.CatRNG = True).ToList
-                        For Each product As TblProduct In products
-                            Dim pdtName As String = Nothing
-                            If String.IsNullOrWhiteSpace(product.ProductAlias) Then pdtName = product.ProductName Else pdtName = product.ProductAlias
-                            productView.Controls.Add(LoadProductsByCategory(product.ProductID, product.ProductImage, pdtName, product.AndroidLink, product.iOSLink, product.WindowsLink, product.WebsiteUrl))
-                        Next
-                    End Using
+                    Dim rngs = products.Where(Function(x) x.CatRNG = True).ToList
+                    For Each product As TblProduct In rngs
+                        Dim pdtName As String = Nothing
+                        If String.IsNullOrWhiteSpace(product.ProductAlias) Then pdtName = product.ProductName Else pdtName = product.ProductAlias
+                        productView.Controls.Add(LoadProductsByCategory(product.ProductID, product.ProductImage, pdtName, product.AndroidLink, product.iOSLink, product.WindowsLink, product.WebsiteUrl))
+                    Next
                 Case "fish"
                     headerBgImg.Attributes("class") = "header-page inm_fish"
-                    catTitleH1.InnerText = "FISH HUNTER"
-                    catTitle.InnerText = "Fish Hunter"
+                    catTitleH1.InnerText = Resources.Resource.FishHunterMenu
+                    catTitle.InnerText = Resources.Resource.FishHunter
                     catFish.Attributes("class") = "active"
 
-                    Using db As New DataClassesDataContext
-                        Dim products = db.TblProducts.Where(Function(x) x.Status = True And x.ProductImage <> Nothing And x.CatFish = True).ToList
-                        For Each product As TblProduct In products
-                            Dim pdtName As String = Nothing
-                            If String.IsNullOrWhiteSpace(product.ProductAlias) Then pdtName = product.ProductName Else pdtName = product.ProductAlias
-                            productView.Controls.Add(LoadProductsByCategory(product.ProductID, product.ProductImage, pdtName, product.AndroidLink, product.iOSLink, product.WindowsLink, product.WebsiteUrl))
-                        Next
-                    End Using
+                    Dim fishes = products.Where(Function(x) x.CatFish = True).ToList
+                    For Each product As TblProduct In fishes
+                        Dim pdtName As String = Nothing
+                        If String.IsNullOrWhiteSpace(product.ProductAlias) Then pdtName = product.ProductName Else pdtName = product.ProductAlias
+                        productView.Controls.Add(LoadProductsByCategory(product.ProductID, product.ProductImage, pdtName, product.AndroidLink, product.iOSLink, product.WindowsLink, product.WebsiteUrl))
+                    Next
                 Case "poker"
                     headerBgImg.Attributes("class") = "header-page inm_poker"
-                    catTitleH1.InnerText = "POKER"
-                    catTitle.InnerText = "Poker"
+                    catTitleH1.InnerText = Resources.Resource.PokerMenu
+                    catTitle.InnerText = Resources.Resource.Poker
                     catPoker.Attributes("class") = "active"
 
-                    Using db As New DataClassesDataContext
-                        Dim products = db.TblProducts.Where(Function(x) x.Status = True And x.ProductImage <> Nothing And x.CatPoker = True).ToList
-                        For Each product As TblProduct In products
-                            Dim pdtName As String = Nothing
-                            If String.IsNullOrWhiteSpace(product.ProductAlias) Then pdtName = product.ProductName Else pdtName = product.ProductAlias
-                            productView.Controls.Add(LoadProductsByCategory(product.ProductID, product.ProductImage, pdtName, product.AndroidLink, product.iOSLink, product.WindowsLink, product.WebsiteUrl))
-                        Next
-                    End Using
+                    Dim pokers = products.Where(Function(x) x.CatPoker = True).ToList
+                    For Each product As TblProduct In pokers
+                        Dim pdtName As String = Nothing
+                        If String.IsNullOrWhiteSpace(product.ProductAlias) Then pdtName = product.ProductName Else pdtName = product.ProductAlias
+                        productView.Controls.Add(LoadProductsByCategory(product.ProductID, product.ProductImage, pdtName, product.AndroidLink, product.iOSLink, product.WindowsLink, product.WebsiteUrl))
+                    Next
                 Case "other"
                     headerBgImg.Attributes("class") = "header-page inm_other"
-                    catTitleH1.InnerText = "OTHER"
-                    catTitle.InnerText = "Other"
+                    catTitleH1.InnerText = Resources.Resource.OtherMenu
+                    catTitle.InnerText = Resources.Resource.Other
                     catOther.Attributes("class") = "active"
 
-                    Using db As New DataClassesDataContext
-                        Dim products = db.TblProducts.Where(Function(x) x.Status = True And x.ProductImage <> Nothing And x.CatOther = True).ToList
-                        For Each product As TblProduct In products
-                            Dim pdtName As String = Nothing
-                            If String.IsNullOrWhiteSpace(product.ProductAlias) Then pdtName = product.ProductName Else pdtName = product.ProductAlias
-                            productView.Controls.Add(LoadProductsByCategory(product.ProductID, product.ProductImage, pdtName, product.AndroidLink, product.iOSLink, product.WindowsLink, product.WebsiteUrl))
-                        Next
-                    End Using
+                    Dim others = products.Where(Function(x) x.CatOther = True).ToList
+                    For Each product As TblProduct In others
+                        Dim pdtName As String = Nothing
+                        If String.IsNullOrWhiteSpace(product.ProductAlias) Then pdtName = product.ProductName Else pdtName = product.ProductAlias
+                        productView.Controls.Add(LoadProductsByCategory(product.ProductID, product.ProductImage, pdtName, product.AndroidLink, product.iOSLink, product.WindowsLink, product.WebsiteUrl))
+                    Next
                 Case Else 'all
-                    catTitleH1.InnerText = "ALL PRODUCTS"
-                    catTitle.InnerText = "All Products"
+                    catTitleH1.InnerText = Resources.Resource.AllMenu
+                    catTitle.InnerText = Resources.Resource.AllProducts
                     catAll.Attributes("class") = "active"
 
-                    Using db As New DataClassesDataContext
-                        Dim products = db.TblProducts.Where(Function(x) x.Status = True And x.ProductImage <> Nothing).ToList
-                        For Each product As TblProduct In products
-                            Dim pdtName As String = Nothing
-                            If String.IsNullOrWhiteSpace(product.ProductAlias) Then pdtName = product.ProductName Else pdtName = product.ProductAlias
-                            productView.Controls.Add(LoadProductsByCategory(product.ProductID, product.ProductImage, pdtName, product.AndroidLink, product.iOSLink, product.WindowsLink, product.WebsiteUrl))
-                        Next
-                    End Using
+                    For Each product As TblProduct In products
+                        Dim pdtName As String = Nothing
+                        If String.IsNullOrWhiteSpace(product.ProductAlias) Then pdtName = product.ProductName Else pdtName = product.ProductAlias
+                        productView.Controls.Add(LoadProductsByCategory(product.ProductID, product.ProductImage, pdtName, product.AndroidLink, product.iOSLink, product.WindowsLink, product.WebsiteUrl))
+                    Next
             End Select
         End If
 
     End Sub
+
+    Private Function GenerateContact(faicon As String, href As String, title As String) As HtmlGenericControl
+        Return New HtmlGenericControl("li") With {.InnerHtml = "<a href=""" & href & """ target=""_blank""><i class=""" & faicon & " fa-fw""></i> " & title & " <i class=""fas fa-chevron-right""></i></a>"}
+    End Function
 
     Private Function LoadProductsByCategory(id As String, image As String, title As String, android As String, ios As String, windows As String, website As String) As HtmlGenericControl
         Dim img = New HtmlGenericControl("img")
@@ -153,7 +152,7 @@ Partial Class _Products
         With more
             .Attributes("href") = "Product.aspx?id=" & id.Trim
             .Attributes("class") = "read"
-            .InnerText = "READ MORE"
+            .InnerText = Resources.Resource.ReadMoreU
         End With
         Dim innerDiv = New HtmlGenericControl("div")
         With innerDiv
