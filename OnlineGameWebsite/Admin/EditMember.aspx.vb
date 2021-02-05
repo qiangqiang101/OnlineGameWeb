@@ -56,7 +56,7 @@ Partial Class Admin_EditMember
                     lblLastModified.InnerText = m.LastModified.ToString(dateFormat)
 
                     lblRefCode.InnerText = m.RefCode.Trim
-                    lblRegRefCode.InnerText = If(m.RefCodeReg.Trim = Nothing, "-", m.RefCodeReg.Trim)
+                    lblRegRefCode.InnerText = If(m.RefCodeReg = Nothing, "-", m.RefCodeReg.Trim)
 
                     lblRegisterIP.InnerText = m.IPAddress.Trim
                     lblLastLoginIP.InnerText = LogIP(log, eLogType.Login)

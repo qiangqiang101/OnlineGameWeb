@@ -53,7 +53,7 @@
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
                                 <label>Value</label>
-                                <asp:TextBox class="form-control form-control-user" ID="txtValue" runat="server" placeholder="0.00" TextMode="SingleLine" required="Required"></asp:TextBox>
+                                <asp:TextBox class="form-control form-control-user" ID="txtValue" runat="server" placeholder="0.00" TextMode="Number" required="Required"></asp:TextBox>
                             </div>
                             <div class="col-sm-6">
                                 <label>Max Payout</label>
@@ -62,6 +62,13 @@
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
+                                <label>Allow selection on Deposit form?</label>
+                                <asp:DropDownList CssClass="form-control form-control-user" ID="cmbAllowDeposit" AutoPostBack="True" runat="server" placeholder="">
+                                    <asp:ListItem Value="True">Allow</asp:ListItem>
+                                    <asp:ListItem Value="False">Not Allow</asp:ListItem>
+                                </asp:DropDownList>
+                            </div>
+                            <div class="col-sm-6">
                                 <label>Status</label>
                                 <asp:DropDownList CssClass="form-control form-control-user" ID="cmbEnabled" AutoPostBack="True" runat="server" placeholder="">
                                     <asp:ListItem Value="1">Enabled</asp:ListItem>

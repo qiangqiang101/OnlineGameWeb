@@ -35,99 +35,99 @@
                                         <div class="form-group row">
                                             <div class="col-sm-6 mb-3 mb-sm-0">
                                                 <label>User ID</label>
-                                                <asp:textbox class="form-control form-control-user" id="txtUserID" runat="server" placeholder="User ID" readonly="true"></asp:textbox>
+                                                <asp:TextBox class="form-control form-control-user" ID="txtUserID" runat="server" placeholder="User ID" ReadOnly="true"></asp:TextBox>
                                             </div>
                                             <div class="col-sm-6">
                                                 <label>Password</label>
-                                                <asp:textbox class="form-control form-control-user" id="txtPassword" runat="server" placeholder="Password"></asp:textbox>
+                                                <asp:TextBox class="form-control form-control-user" ID="txtPassword" runat="server" placeholder="Password"></asp:TextBox>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-6 mb-3 mb-sm-0">
                                                 <label>Email</label>
-                                                <asp:textbox class="form-control form-control-user" id="txtEmail" runat="server" placeholder="Email"></asp:textbox>
+                                                <asp:TextBox class="form-control form-control-user" ID="txtEmail" runat="server" placeholder="Email"></asp:TextBox>
                                             </div>
                                             <div class="col-sm-6">
                                                 <label>Phone No.</label>
-                                                <asp:textbox class="form-control form-control-user" id="txtPhone" runat="server" placeholder="Phone No." textmode="Phone"></asp:textbox>
+                                                <asp:TextBox class="form-control form-control-user" ID="txtPhone" runat="server" placeholder="Phone No." TextMode="Phone"></asp:TextBox>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-6 mb-3 mb-sm-0">
                                                 <label>Full Name</label>
-                                                <asp:textbox class="form-control form-control-user" id="txtFullName" runat="server" placeholder="Full Name"></asp:textbox>
+                                                <asp:TextBox class="form-control form-control-user" ID="txtFullName" runat="server" placeholder="Full Name"></asp:TextBox>
                                             </div>
                                             <div class="col-sm-6">
                                                 <label>Birthday</label>
-                                                <asp:textbox class="form-control form-control-user" id="txtBirthday" runat="server" textmode="Date"></asp:textbox>
+                                                <asp:TextBox class="form-control form-control-user" ID="txtBirthday" runat="server" TextMode="Date"></asp:TextBox>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-6 mb-3 mb-sm-0">
                                                 <label>Member Level</label>
-                                                <asp:dropdownlist cssclass="form-control form-control-user" id="cmbLevel" autopostback="True" runat="server" placeholder="">
-                                        <asp:ListItem Value="0">Registered</asp:ListItem>
-                                        <asp:ListItem Value="1">New Member</asp:ListItem>
-                                        <asp:ListItem Value="2">Normal</asp:ListItem>
-                                        <asp:ListItem Value="3">Bronze</asp:ListItem>
-                                        <asp:ListItem Value="4">Bronze+</asp:ListItem>
-                                        <asp:ListItem Value="5">Silver</asp:ListItem>
-                                        <asp:ListItem Value="6">Silver+</asp:ListItem>
-                                        <asp:ListItem Value="7">Gold</asp:ListItem>
-                                        <asp:ListItem Value="8">Gold+</asp:ListItem>
-                                        <asp:ListItem Value="9">Platinum</asp:ListItem>
-                                        <asp:ListItem Value="10">Platinum+</asp:ListItem>
-                                    </asp:dropdownlist>
+                                                <asp:DropDownList CssClass="form-control form-control-user" ID="cmbLevel" AutoPostBack="True" runat="server" placeholder="">
+                                                    <asp:ListItem Value="0">Registered</asp:ListItem>
+                                                    <asp:ListItem Value="1">New Member</asp:ListItem>
+                                                    <asp:ListItem Value="2">Normal</asp:ListItem>
+                                                    <asp:ListItem Value="3">Bronze</asp:ListItem>
+                                                    <asp:ListItem Value="4">Bronze+</asp:ListItem>
+                                                    <asp:ListItem Value="5">Silver</asp:ListItem>
+                                                    <asp:ListItem Value="6">Silver+</asp:ListItem>
+                                                    <asp:ListItem Value="7">Gold</asp:ListItem>
+                                                    <asp:ListItem Value="8">Gold+</asp:ListItem>
+                                                    <asp:ListItem Value="9">Platinum</asp:ListItem>
+                                                    <asp:ListItem Value="10">Platinum+</asp:ListItem>
+                                                </asp:DropDownList>
                                             </div>
                                             <div class="col-sm-6">
                                                 <label>Status</label>
-                                                <asp:dropdownlist cssclass="form-control form-control-user" id="cmbEnabled" autopostback="True" runat="server" placeholder="">
-                                        <asp:ListItem Value="True">Enabled</asp:ListItem>
-                                        <asp:ListItem Value="False">Disabled</asp:ListItem>
-                                    </asp:dropdownlist>
+                                                <asp:DropDownList CssClass="form-control form-control-user" ID="cmbEnabled" AutoPostBack="True" runat="server" placeholder="">
+                                                    <asp:ListItem Value="True">Enabled</asp:ListItem>
+                                                    <asp:ListItem Value="False">Disabled</asp:ListItem>
+                                                </asp:DropDownList>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-6 mb-3 mb-sm-0">
                                                 <label>Bank</label>
-                                                <asp:dropdownlist cssclass="form-control form-control-user" id="cmbBank" autopostback="True" runat="server" placeholder="">
-                                        <asp:ListItem Value="-1">---</asp:ListItem>
-                                        <asp:ListItem Value="0">Maybank</asp:ListItem>
-                                        <asp:ListItem Value="1">CIMB Bank</asp:ListItem>
-                                        <asp:ListItem Value="2">Public Bank</asp:ListItem>
-                                        <asp:ListItem Value="3">RHB Bank</asp:ListItem>
-                                        <asp:ListItem Value="4">Hong Leong Bank</asp:ListItem>
-                                        <asp:ListItem Value="5">AmBank</asp:ListItem>
-                                        <asp:ListItem Value="6">UOB Bank</asp:ListItem>
-                                        <asp:ListItem Value="7">Bank Rakyat</asp:ListItem>
-                                        <asp:ListItem Value="8">OCBC Bank</asp:ListItem>
-                                        <asp:ListItem Value="9">HSBC Bank</asp:ListItem>
-                                        <asp:ListItem Value="10">Affin Bank</asp:ListItem>
-                                        <asp:ListItem Value="11">Bank Islam</asp:ListItem>
-                                        <asp:ListItem Value="12">Standard Chartered Bank</asp:ListItem>
-                                        <asp:ListItem Value="13">CitiBank</asp:ListItem>
-                                        <asp:ListItem Value="14">Bank Simpanan Malaysia</asp:ListItem>
-                                        <asp:ListItem Value="15">Bank Muamalat</asp:ListItem>
-                                        <asp:ListItem Value="16">Alliance Bank</asp:ListItem>
-                                        <asp:ListItem Value="17">Agrobank</asp:ListItem>
-                                        <asp:ListItem Value="18">Al-Rajhi</asp:ListItem>
-                                        <asp:ListItem Value="19">MBSB Bank</asp:ListItem>
-                                        <asp:ListItem Value="20">Co-op Bank Pertama</asp:ListItem>
-                                    </asp:dropdownlist>
+                                                <asp:DropDownList CssClass="form-control form-control-user" ID="cmbBank" AutoPostBack="True" runat="server" placeholder="">
+                                                    <asp:ListItem Value="-1">---</asp:ListItem>
+                                                    <asp:ListItem Value="0">Maybank</asp:ListItem>
+                                                    <asp:ListItem Value="1">CIMB Bank</asp:ListItem>
+                                                    <asp:ListItem Value="2">Public Bank</asp:ListItem>
+                                                    <asp:ListItem Value="3">RHB Bank</asp:ListItem>
+                                                    <asp:ListItem Value="4">Hong Leong Bank</asp:ListItem>
+                                                    <asp:ListItem Value="5">AmBank</asp:ListItem>
+                                                    <asp:ListItem Value="6">UOB Bank</asp:ListItem>
+                                                    <asp:ListItem Value="7">Bank Rakyat</asp:ListItem>
+                                                    <asp:ListItem Value="8">OCBC Bank</asp:ListItem>
+                                                    <asp:ListItem Value="9">HSBC Bank</asp:ListItem>
+                                                    <asp:ListItem Value="10">Affin Bank</asp:ListItem>
+                                                    <asp:ListItem Value="11">Bank Islam</asp:ListItem>
+                                                    <asp:ListItem Value="12">Standard Chartered Bank</asp:ListItem>
+                                                    <asp:ListItem Value="13">CitiBank</asp:ListItem>
+                                                    <asp:ListItem Value="14">Bank Simpanan Malaysia</asp:ListItem>
+                                                    <asp:ListItem Value="15">Bank Muamalat</asp:ListItem>
+                                                    <asp:ListItem Value="16">Alliance Bank</asp:ListItem>
+                                                    <asp:ListItem Value="17">Agrobank</asp:ListItem>
+                                                    <asp:ListItem Value="18">Al-Rajhi</asp:ListItem>
+                                                    <asp:ListItem Value="19">MBSB Bank</asp:ListItem>
+                                                    <asp:ListItem Value="20">Co-op Bank Pertama</asp:ListItem>
+                                                </asp:DropDownList>
                                             </div>
                                             <div class="col-sm-6">
                                                 <label>Bank Account</label>
-                                                <asp:textbox class="form-control form-control-user" id="txtAccNo" runat="server" placeholder=""></asp:textbox>
+                                                <asp:TextBox class="form-control form-control-user" ID="txtAccNo" runat="server" placeholder=""></asp:TextBox>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label>Remarks</label>
-                                            <asp:textbox class="form-control form-control-user" id="txtRemarks" runat="server" textmode="MultiLine" height="116px"></asp:textbox>
+                                            <asp:TextBox class="form-control form-control-user" ID="txtRemarks" runat="server" TextMode="MultiLine" Height="116px"></asp:TextBox>
                                         </div>
                                         <hr />
                                         <div class="form-group row">
                                             <div class="col-sm-3 ml-auto">
-                                                <asp:button class="btn btn-success btn-user btn-block" id="btnSubmit" runat="server" text="Update" />
+                                                <asp:Button class="btn btn-success btn-user btn-block" ID="btnSubmit" runat="server" Text="Update" />
                                             </div>
                                             <div class="col-sm-3">
                                                 <input type="button" class="btn btn-primary btn-user btn-block" onclick="window.location = 'Members.aspx'" value="Go Back" />
@@ -254,15 +254,15 @@
                                 <div class="card shadow mb-4">
                                     <div class="card-body">
                                         <div class="table-responsive">
-                                            <asp:table cssclass="table table-bordered table-hover" id="dataTable1" clientidmode="Static" width="100%" cellspacing="0" runat="server">
-                                    <asp:TableHeaderRow TableSection="TableHeader">
-                                        <asp:TableHeaderCell>ID</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>User Name</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>Password</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>Product</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>Actions</asp:TableHeaderCell>
-                                    </asp:TableHeaderRow>
-                                </asp:table>
+                                            <asp:Table CssClass="table table-bordered table-hover" ID="dataTable1" ClientIDMode="Static" Width="100%" CellSpacing="0" runat="server">
+                                                <asp:TableHeaderRow TableSection="TableHeader">
+                                                    <asp:TableHeaderCell>ID</asp:TableHeaderCell>
+                                                    <asp:TableHeaderCell>User Name</asp:TableHeaderCell>
+                                                    <asp:TableHeaderCell>Password</asp:TableHeaderCell>
+                                                    <asp:TableHeaderCell>Product</asp:TableHeaderCell>
+                                                    <asp:TableHeaderCell>Actions</asp:TableHeaderCell>
+                                                </asp:TableHeaderRow>
+                                            </asp:Table>
                                         </div>
                                     </div>
                                 </div>
@@ -274,19 +274,30 @@
                             <div class="col-sm-12">
                                 <div class="card shadow mb-4">
                                     <div class="card-body">
+                                        <div class="form-group row">
+                                            <table>
+                                                <tbody>
+                                                    <tr>
+                                                        <td style="padding-left: 10px;"><a href="AdjustCredit.aspx?mode=credit&id=<%=txtUserID.Text.Trim %>" class="btn btn-primary btn-user btn-block" title="Credit Adjustment"><i class="fas fa-coins"></i> Credit Adjustment</a></td>
+                                                        <td style="padding-left: 10px;"><a href="AdjustCredit.aspx?mode=promo&id=<%=txtUserID.Text.Trim %>" class="btn btn-warning btn-user btn-block" title="Promotion Adjustment"><i class="fas fa-percentage"></i> Promotion Adjustment</a></td>
+                                                        <td style="padding-left: 10px;"><a href="AdjustCredit.aspx?mode=debit&id=<%=txtUserID.Text.Trim %>" class="btn btn-danger btn-user btn-block" title="Debit Adjustment"><i class="fas fa-hand-holding-usd"></i> Debit Adjustment</a></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                         <div class="table-responsive">
-                                            <asp:table cssclass="table table-bordered table-hover" id="dataTable3" clientidmode="Static" width="100%" cellspacing="0" runat="server">
-                                    <asp:TableHeaderRow TableSection="TableHeader">
-                                        <asp:TableHeaderCell>ID</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>Date</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>Product</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>Payment Method</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell HorizontalAlign="Right">Credit</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell HorizontalAlign="Right">Debit</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>Type</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>Status</asp:TableHeaderCell>
-                                    </asp:TableHeaderRow>
-                                </asp:table>
+                                            <asp:Table CssClass="table table-bordered table-hover" ID="dataTable3" ClientIDMode="Static" Width="100%" CellSpacing="0" runat="server">
+                                                <asp:TableHeaderRow TableSection="TableHeader">
+                                                    <asp:TableHeaderCell>ID</asp:TableHeaderCell>
+                                                    <asp:TableHeaderCell>Date</asp:TableHeaderCell>
+                                                    <asp:TableHeaderCell>Product</asp:TableHeaderCell>
+                                                    <asp:TableHeaderCell>Payment Method</asp:TableHeaderCell>
+                                                    <asp:TableHeaderCell HorizontalAlign="Right">Credit</asp:TableHeaderCell>
+                                                    <asp:TableHeaderCell HorizontalAlign="Right">Debit</asp:TableHeaderCell>
+                                                    <asp:TableHeaderCell>Type</asp:TableHeaderCell>
+                                                    <asp:TableHeaderCell>Status</asp:TableHeaderCell>
+                                                </asp:TableHeaderRow>
+                                            </asp:Table>
                                         </div>
                                     </div>
                                 </div>
@@ -298,17 +309,26 @@
                             <div class="col-sm-12">
                                 <div class="card shadow mb-4">
                                     <div class="card-body">
+                                        <div class="form-group row">
+                                            <table>
+                                                <tbody>
+                                                    <tr>
+                                                        <td style="padding-left: 10px;"><a href="AdjustTransfer.aspx?id=<%=txtUserID.Text.Trim %>" class="btn btn-primary btn-user btn-block" title="Transfer Adjustment"><i class="fas fa-exchange-alt"></i> Transfer Adjustment</a></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                         <div class="table-responsive">
-                                            <asp:table cssclass="table table-bordered table-hover" id="dataTable4" clientidmode="Static" width="100%" cellspacing="0" runat="server">
-                                    <asp:TableHeaderRow TableSection="TableHeader">
-                                        <asp:TableHeaderCell>ID</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>Date</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>From Product</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>To Product</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell HorizontalAlign="Right">Amount</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell>Status</asp:TableHeaderCell>
-                                    </asp:TableHeaderRow>
-                                </asp:table>
+                                            <asp:Table CssClass="table table-bordered table-hover" ID="dataTable4" ClientIDMode="Static" Width="100%" CellSpacing="0" runat="server">
+                                                <asp:TableHeaderRow TableSection="TableHeader">
+                                                    <asp:TableHeaderCell>ID</asp:TableHeaderCell>
+                                                    <asp:TableHeaderCell>Date</asp:TableHeaderCell>
+                                                    <asp:TableHeaderCell>From Product</asp:TableHeaderCell>
+                                                    <asp:TableHeaderCell>To Product</asp:TableHeaderCell>
+                                                    <asp:TableHeaderCell HorizontalAlign="Right">Amount</asp:TableHeaderCell>
+                                                    <asp:TableHeaderCell>Status</asp:TableHeaderCell>
+                                                </asp:TableHeaderRow>
+                                            </asp:Table>
                                         </div>
                                     </div>
                                 </div>
@@ -318,39 +338,39 @@
                 </div>
             </div>
         </div>
-    <!-- /.container-fluid -->
+        <!-- /.container-fluid -->
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Bootstrap core JavaScript-->
+        <script src="vendor/jquery/jquery.min.js"></script>
+        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="js/sb-admin-2.min.js"></script>
 
-    <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+        <!-- Page level plugins -->
+        <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+        <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
+        <!-- Page level custom scripts -->
+        <script src="js/demo/datatables-demo.js"></script>
 
-    <script type="text/javascript" defer="defer">
-        $(document).ready(function () {
-            $("table[id^='dataTable']").DataTable({
-                "scrollCollapse": true,
-                "searching": true,
-                "paging": true,
-                "language": {
-                    "lengthMenu": "<td>Display &nbsp</td><td> _MENU_ </td><td>&nbsp records</td>",
-                    "search": "<td>Search &nbsp</td><td> _INPUT_ </td>"
-                },
-                "lengthMenu": [[20, 40, 60, 100, 150, 200, -1], [20, 40, 60, 100, 150, 200, "All"]],
-                "order": [[0, "desc"]]
+        <script type="text/javascript" defer="defer">
+            $(document).ready(function () {
+                $("table[id^='dataTable']").DataTable({
+                    "scrollCollapse": true,
+                    "searching": true,
+                    "paging": true,
+                    "language": {
+                        "lengthMenu": "<td>Display &nbsp</td><td> _MENU_ </td><td>&nbsp records</td>",
+                        "search": "<td>Search &nbsp</td><td> _INPUT_ </td>"
+                    },
+                    "lengthMenu": [[20, 40, 60, 100, 150, 200, -1], [20, 40, 60, 100, 150, 200, "All"]],
+                    "order": [[0, "desc"]]
+                });
             });
-        });
-    </script>
+        </script>
 </asp:Content>
 

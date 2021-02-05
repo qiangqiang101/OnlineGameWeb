@@ -404,6 +404,60 @@ Public Module Helper
         End Try
     End Sub
 
+    <Extension>
+    Public Function MemberBank(member As TblMember) As String
+        Try
+            Select Case member.BankName
+                Case 0
+                    Return "Maybank"
+                Case 1
+                    Return "CIMB Bank"
+                Case 2
+                    Return "Public Bank"
+                Case 3
+                    Return "RHB Bank"
+                Case 4
+                    Return "Hong Leong Bank"
+                Case 5
+                    Return "AmBank"
+                Case 6
+                    Return "UOB Bank"
+                Case 7
+                    Return "Bank Rakyat"
+                Case 8
+                    Return "OCBC Bank"
+                Case 9
+                    Return "HSBC Bank"
+                Case 10
+                    Return "Affin Bank"
+                Case 11
+                    Return "Bank Islam"
+                Case 12
+                    Return "Standard Chartered Bank"
+                Case 13
+                    Return "CitiBank"
+                Case 14
+                    Return "Bank Simpanan Nasional"
+                Case 15
+                    Return "Bank Muamalat"
+                Case 16
+                    Return "Alliance Bank"
+                Case 17
+                    Return "Agro Bank"
+                Case 18
+                    Return "Al Rajhi"
+                Case 19
+                    Return "MBSB Bank"
+                Case 20
+                    Return "Co-opBank Pertama"
+                Case Else
+                    Return ""
+            End Select
+        Catch ex As Exception
+            Return ""
+        End Try
+    End Function
+
     'Public Function UpdateProductBalance(pid As Integer, amount As Single) As Boolean
     '    Try
     '        Using db As New DataClassesDataContext
@@ -454,6 +508,8 @@ Public Module Helper
                 Return "Promotion"
             Case 4
                 Return "Withdrawal"
+            Case 5
+                Return "Adjustment"
             Case Else
                 Return "Other"
         End Select
@@ -578,7 +634,6 @@ Public Module Helper
         Try
             Return log.Where(Function(x) x.LogType = type).OrderByDescending(Function(x) x.LogDate).First.LogIP.Trim
         Catch ex As Exception
-            Logger.Log(ex)
             Return "127.0.0.1"
         End Try
     End Function
@@ -587,7 +642,6 @@ Public Module Helper
         Try
             Return log.Where(Function(x) x.LogType = type).OrderByDescending(Function(x) x.LogDate).First.LogDate
         Catch ex As Exception
-            Logger.Log(ex)
             Return Date.ParseExact("1990-01-01T00:00", "yyyy-MM-ddTHH:mm", System.Globalization.DateTimeFormatInfo.InvariantInfo)
         End Try
     End Function
@@ -611,7 +665,6 @@ Public Module Helper
                     Return 0F
             End Select
         Catch ex As Exception
-            Log(ex)
             Return 0F
         End Try
     End Function
@@ -659,7 +712,6 @@ Public Module Helper
                     Return Date.ParseExact("1990-01-01T00:00", "yyyy-MM-ddTHH:mm", System.Globalization.DateTimeFormatInfo.InvariantInfo)
             End Select
         Catch ex As Exception
-            Log(ex)
             Return Date.ParseExact("1990-01-01T00:00", "yyyy-MM-ddTHH:mm", System.Globalization.DateTimeFormatInfo.InvariantInfo)
         End Try
     End Function

@@ -23,8 +23,15 @@ Partial Class Admin_EditPromotion
                             txtChiName.Text = p.ChineseName.Trim
                             txtMysName.Text = p.MalayName.Trim
                             txtIndex.Text = p.DisplayIndex
+                            cmbAllowDeposit.SelectedValue = p.AllowOnDeposit
                             cmbType.SelectedValue = p.PromoType
-                            txtValue.Text = p.PromoPercent.ToString("0.00")
+                            If p.PromoType = 0 Then
+                                'Percent
+                                txtValue.Text = p.PromoPercent * 100
+                            Else
+                                'Fixed
+                                txtValue.Text = p.PromoPercent.ToString("0.00")
+                            End If
                             txtMaxPayout.Text = p.MaxPayout.ToString("0.00")
                             cmbEnabled.SelectedValue = p.Status
 
@@ -54,8 +61,15 @@ Partial Class Admin_EditPromotion
                             txtMysName.Text = p.MalayName.Trim
                             txtIndex.Text = p.DisplayIndex
                             cmbType.SelectedValue = p.PromoType
-                            txtValue.Text = p.PromoPercent.ToString("0.00")
+                            If p.PromoType = 0 Then
+                                'Percent
+                                txtValue.Text = p.PromoPercent * 100
+                            Else
+                                'Fixed
+                                txtValue.Text = p.PromoPercent.ToString("0.00")
+                            End If
                             txtMaxPayout.Text = p.MaxPayout.ToString("0.00")
+                            cmbAllowDeposit.SelectedValue = p.AllowOnDeposit
                             cmbEnabled.SelectedValue = p.Status
 
                             promoUrl = p.PromoFile
@@ -77,6 +91,7 @@ Partial Class Admin_EditPromotion
                             txtValue.ReadOnly = True
                             txtMaxPayout.ReadOnly = True
                             cmbEnabled.Enabled = False
+                            cmbAllowDeposit.Enabled = False
                             txtEngTnC.ReadOnly = True
                             txtChiTnC.ReadOnly = True
                             txtMysTnc.ReadOnly = True
@@ -103,8 +118,15 @@ Partial Class Admin_EditPromotion
                             txtMysName.Text = p.MalayName.Trim
                             txtIndex.Text = p.DisplayIndex
                             cmbType.SelectedValue = p.PromoType
-                            txtValue.Text = p.PromoPercent.ToString("0.00")
+                            If p.PromoType = 0 Then
+                                'Percent
+                                txtValue.Text = p.PromoPercent * 100
+                            Else
+                                'Fixed
+                                txtValue.Text = p.PromoPercent.ToString("0.00")
+                            End If
                             txtMaxPayout.Text = p.MaxPayout.ToString("0.00")
+                            cmbAllowDeposit.SelectedValue = p.AllowOnDeposit
                             cmbEnabled.SelectedValue = p.Status
 
                             promoUrl = p.PromoFile
@@ -203,8 +225,15 @@ Partial Class Admin_EditPromotion
                     .MalayName = txtMysName.Text.Trim
                     .DisplayIndex = CInt(txtIndex.Text.Trim)
                     .PromoType = CInt(cmbType.SelectedValue)
-                    .PromoPercent = CSng(txtValue.Text.Trim)
+                    If .PromoType = 0 Then
+                        'Percent
+                        .PromoPercent = CSng(CSng(txtValue.Text.Trim) / 100)
+                    Else
+                        'Fixed
+                        .PromoPercent = CSng(txtValue.Text.Trim)
+                    End If
                     .MaxPayout = CSng(txtMaxPayout.Text.Trim)
+                    .AllowOnDeposit = cmbAllowDeposit.SelectedValue
                     .Status = CInt(cmbEnabled.SelectedValue)
                     .PromoFile = .PromoFile
 
@@ -250,11 +279,18 @@ Partial Class Admin_EditPromotion
                     .DisplayIndex = CInt(txtIndex.Text.Trim)
                     .PromoName = txtPromotion.Text.Trim
                     .PromoType = cmbType.SelectedValue
-                    .PromoPercent = CSng(txtValue.Text.Trim)
+                    If .PromoType = 0 Then
+                        'Percent
+                        .PromoPercent = CSng(CSng(txtValue.Text.Trim) / 100)
+                    Else
+                        'Fixed
+                        .PromoPercent = CSng(txtValue.Text.Trim)
+                    End If
                     .MaxPayout = CSng(txtMaxPayout.Text.Trim)
                     .EnglishName = txtEngName.Text.Trim
                     .ChineseName = txtChiName.Text.Trim
                     .MalayName = txtMysName.Text.Trim
+                    .AllowOnDeposit = cmbAllowDeposit.SelectedValue
                     .Status = cmbEnabled.SelectedValue
 
                     Dim uniqueFileName As String = txtPromotion.Text.Trim.GetHashCode & ".xml"

@@ -21,8 +21,10 @@ Partial Class Admin_Transaction
                     Dim m As TblMember = db.TblMembers.Single(Function(x) x.UserName = t.UserName)
                     Dim p As TblProduct = db.TblProducts.Single(Function(x) x.ProductID = t.ProductID)
                     dataTable.AddTransactionTableItem(t.TransactionID, t.TransactionDate, t.UserName, m.FullName, p.ProductName, t.ProductUserName, t.Method, t.Status, t.Credit, t.Debit, t.Promotion, t.TransType)
-                    cdt += t.Credit
-                    dbt += t.Debit
+                    If t.Status = 2 Then
+                        cdt += t.Credit
+                        dbt += t.Debit
+                    End If
                 Next
                 cdtTotal.Text = Strong(cdt.ToString("N"))
                 dbtTotal.Text = Strong(dbt.ToString("N"))

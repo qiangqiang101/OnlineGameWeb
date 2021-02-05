@@ -6,6 +6,7 @@
 <head runat="server">
     <meta charset="utf-8" />
     <title>Online Game Website in ASP</title>
+    <link rel="shortcut icon" href="favicon.ico" />
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -78,7 +79,7 @@
                                             <span><%=Resources.Resource.Register %></span>
                                             <span class="caret"></span>
                                         </a>
-                                        <ul class="dropdown-menu">
+                                        <ul class="dropdown-menu" id="loginRegister" runat="server">
                                             <li>
                                                 <div class="account">
                                                     <div class="signin">
@@ -114,7 +115,7 @@
                                                     <div class="signup">
                                                         <h4><%=Resources.Resource.CreateAccount %></h4>
                                                         <hr />
-                                                        <form action="#" method="post">
+                                                        <%--<form action="#" method="post">
 
                                                             <div class="form-group">
                                                                 <label><%=Resources.Resource.UserID %><span class="req">*</span></label>
@@ -162,7 +163,11 @@
                                                             <div class="form-group clearfix">
                                                                 <asp:Button class="btn btn-palovit palovit35 pull-left" ID="btnRegister" runat="server" Text="<%$Resources:Resource, CreateAccount %>" />
                                                             </div>
-                                                        </form>
+                                                        </form>--%>
+
+                                                        <div class="form-group clearfix">
+                                                            <a class="btn btn-palovit palovit35 pull-left" href="Register.aspx"><%=Resources.Resource.CreateAccount %></a>
+                                                            </div>
                                                         <p><%=Resources.Resource.AlreadyHaveAccount %><a href="#" id="SignIn"><%=Resources.Resource.Login %></a></p>
                                                     </div>
                                                     <div class="recover">

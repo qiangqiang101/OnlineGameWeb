@@ -59,15 +59,12 @@
                                         <label><%=Resources.Resource.ConfirmPassword %><span class="req">*</span></label>
                                         <asp:TextBox class="form-control" ID="txtPassword2" runat="server" placeholder="Password" TextMode="Password" required="Required"></asp:TextBox>
                                     </div>
-                                    <hr class="hr" />
-                                    <div class="form-check-label col-md-12">
+                                    <div class="form-check-label col-md-12 clearfix">
                                         <asp:CheckBox class="form-check-input" ID="cbTnc" runat="Server" Text="" /><%=Resources.Resource.RegisterTnCP1 %><a href='Terms.aspx' target='_blank'><%=Resources.Resource.TnC %></a><%=Resources.Resource.RegisterTnCP2 %><a href='Privacy.aspx' target='_blank'><%=Resources.Resource.PrivacyMenuBtm %></a><%=Resources.Resource.RegisterTncP3 %><span class="req">*</span><br />
                                         <asp:CheckBox class="form-check-input" ID="cb18yo" runat="Server" Text="<%$Resources:Resource, IDeclare18YearsOld%>" /><span class="req">*</span>
-                                        <br />
-                                        <br />
                                     </div>
-                                    <div class="form-group m-t-30 center-block">
-                                        <asp:Button class="btn btn-palovit" ID="btnRegister" runat="server" Text="<%$Resources:Resource, CreateAccNow%>" />
+                                    <div class="form-group m-t-30">
+                                        <asp:Button class="btn btn-palovit center-block" ID="btnRegister" runat="server" Text="<%$Resources:Resource, CreateAccNow%>" />
                                     </div>
                                 </form>
                             </div>

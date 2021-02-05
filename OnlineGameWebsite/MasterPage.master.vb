@@ -14,7 +14,7 @@ Partial Class MasterPage
     End Sub
 
     Private Sub logout_ServerClick(sender As Object, e As EventArgs) Handles logout.ServerClick
-        Session.Clear()
+        Session.Abandon()
         Response.Redirect("Default.aspx")
     End Sub
 
@@ -199,67 +199,67 @@ Partial Class MasterPage
         htmlCode.InnerHtml = ConfigSettings.ReadSetting(Of String)("HTMLCode", "").Base64ToString
     End Sub
 
-    Private Sub btnRegister_Click(sender As Object, e As EventArgs) Handles btnRegister.Click
-        If IsEmailExists(txtEmail.Text) Then
-            swal(Me.Page, Resources.Resource.Oops, Resources.Resource.EmailAlreadyRegister, "error")
-        ElseIf Not IsEmailValid(txtEmail.Text) Then
-            swal(Me.Page, Resources.Resource.Oops, Resources.Resource.EmailNotValid, "error")
-        ElseIf txtUserIDR.Text.Length < 6 Then
-            swal(Me.Page, Resources.Resource.Oops, Resources.Resource.UserIdTooShort, "error")
-        ElseIf IsMemberExists(txtUserIDR.Text) Then
-            swal(Me.Page, Resources.Resource.Oops, Resources.Resource.UserIdTaken, "error")
-        ElseIf txtPasswordR.Text <> txtPasswordR2.Text Then
-            swal(Me.Page, Resources.Resource.Oops, Resources.Resource.PasswordNotMatch, "error")
-        ElseIf Not cb18yo.Checked Then
-            swal(Me.Page, Resources.Resource.UnderAge, Resources.Resource.TooYoung, "warning")
-        ElseIf Not cbTnc.Checked Then
-            swal(Me.Page, Resources.Resource.TnC, Resources.Resource.AcceptTnC, "warning")
-        Else
-            If RegisterMember() Then
-                LogAction(txtUserIDR.Text.Trim, Request.UserHostAddress, eLogType.Register)
-                If IsMemberLoginSuccess(txtUserIDR.Text, txtPasswordR.Text, Page) Then
-                    LogAction(txtUserIDR.Text.Trim, Request.UserHostAddress, eLogType.Login)
-                    Response.Redirect("Default.aspx")
-                End If
-            Else
-                swal(Me.Page, Resources.Resource.Oops, Resources.Resource.RegFailed, "error")
-            End If
-        End If
-    End Sub
+    'Private Sub btnRegister_Click(sender As Object, e As EventArgs) Handles btnRegister.Click
+    '    If IsEmailExists(txtEmail.Text) Then
+    '        swal(Me.Page, Resources.Resource.Oops, Resources.Resource.EmailAlreadyRegister, "error")
+    '    ElseIf Not IsEmailValid(txtEmail.Text) Then
+    '        swal(Me.Page, Resources.Resource.Oops, Resources.Resource.EmailNotValid, "error")
+    '    ElseIf txtUserIDR.Text.Length < 6 Then
+    '        swal(Me.Page, Resources.Resource.Oops, Resources.Resource.UserIdTooShort, "error")
+    '    ElseIf IsMemberExists(txtUserIDR.Text) Then
+    '        swal(Me.Page, Resources.Resource.Oops, Resources.Resource.UserIdTaken, "error")
+    '    ElseIf txtPasswordR.Text <> txtPasswordR2.Text Then
+    '        swal(Me.Page, Resources.Resource.Oops, Resources.Resource.PasswordNotMatch, "error")
+    '    ElseIf Not cb18yo.Checked Then
+    '        swal(Me.Page, Resources.Resource.UnderAge, Resources.Resource.TooYoung, "warning")
+    '    ElseIf Not cbTnc.Checked Then
+    '        swal(Me.Page, Resources.Resource.TnC, Resources.Resource.AcceptTnC, "warning")
+    '    Else
+    '        If RegisterMember() Then
+    '            LogAction(txtUserIDR.Text.Trim, Request.UserHostAddress, eLogType.Register)
+    '            If IsMemberLoginSuccess(txtUserIDR.Text, txtPasswordR.Text, Page) Then
+    '                LogAction(txtUserIDR.Text.Trim, Request.UserHostAddress, eLogType.Login)
+    '                Response.Redirect("Default.aspx")
+    '            End If
+    '        Else
+    '            swal(Me.Page, Resources.Resource.Oops, Resources.Resource.RegFailed, "error")
+    '        End If
+    '    End If
+    'End Sub
 
-    Private Function RegisterMember() As Boolean
-        Try
-            Using db As New DataClassesDataContext
-                Dim newMember As New TblMember
-                With newMember
-                    .UserName = txtUserIDR.Text.Trim
-                    .Password = txtPasswordR.Text.Trim
-                    .Email = txtEmail.Text.Trim
-                    .PhoneNo = txtContact.Text.Trim
-                    .FullName = txtFullName.Text.Trim
-                    .DateOfBirth = Date.ParseExact(txtBirthday.Text.Trim, "yyyy-MM-dd", System.Globalization.DateTimeFormatInfo.InvariantInfo)
-                    .RefCode = txtUserIDR.Text.GetHashCode
-                    .RefCodeReg = Nothing
-                    .VipLevel = 0
-                    .Promotion = 0F
-                    .DateCreated = Now
-                    .LastModified = Now
-                    .IPAddress = Request.UserHostAddress
-                    .GroupLeaderID = -1
-                    .Enabled = True
-                    .Remark = Nothing
-                    .Affiliate = Nothing
-                End With
+    'Private Function RegisterMember() As Boolean
+    '    Try
+    '        Using db As New DataClassesDataContext
+    '            Dim newMember As New TblMember
+    '            With newMember
+    '                .UserName = txtUserIDR.Text.Trim
+    '                .Password = txtPasswordR.Text.Trim
+    '                .Email = txtEmail.Text.Trim
+    '                .PhoneNo = txtContact.Text.Trim
+    '                .FullName = txtFullName.Text.Trim
+    '                .DateOfBirth = Date.ParseExact(txtBirthday.Text.Trim, "yyyy-MM-dd", System.Globalization.DateTimeFormatInfo.InvariantInfo)
+    '                .RefCode = txtUserIDR.Text.GetHashCode
+    '                .RefCodeReg = Nothing
+    '                .VipLevel = 0
+    '                .Promotion = 0F
+    '                .DateCreated = Now
+    '                .LastModified = Now
+    '                .IPAddress = Request.UserHostAddress
+    '                .GroupLeaderID = -1
+    '                .Enabled = True
+    '                .Remark = Nothing
+    '                .Affiliate = Nothing
+    '            End With
 
-                db.TblMembers.InsertOnSubmit(newMember)
-                db.SubmitChanges()
-            End Using
-        Catch ex As Exception
-            Log(ex)
-            Return False
-        End Try
-        Return True
-    End Function
+    '            db.TblMembers.InsertOnSubmit(newMember)
+    '            db.SubmitChanges()
+    '        End Using
+    '    Catch ex As Exception
+    '        Log(ex)
+    '        Return False
+    '    End Try
+    '    Return True
+    'End Function
 
     Private Sub langEn_ServerClick(sender As Object, e As EventArgs) Handles langEn.ServerClick
         Dim language As String = "en-US"

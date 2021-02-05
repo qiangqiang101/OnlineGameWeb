@@ -7,7 +7,7 @@ Partial Class Admin_AdminMaster
     End Sub
 
     Private Sub btnLogout_Click(sender As Object, e As EventArgs) Handles btnLogout.Click
-        Session.Clear()
+        Session.Abandon()
         Response.Redirect("AdminLogin.aspx")
     End Sub
 

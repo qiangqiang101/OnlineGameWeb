@@ -45,7 +45,7 @@ Partial Class Register
                     .FullName = txtFullName.Text.Trim
                     .DateOfBirth = Date.ParseExact(txtBirthday.Text.Trim, "yyyy-MM-dd", System.Globalization.DateTimeFormatInfo.InvariantInfo)
                     .RefCode = txtUserID.Text.GetHashCode
-                    .RefCodeReg = txtRegRefCode.Text.Trim
+                    .RefCodeReg = If(txtRegRefCode.Text = Nothing, Nothing, txtRegRefCode.Text.Trim)
                     .VipLevel = 0
                     .Promotion = 0F
                     .DateCreated = Now
@@ -54,7 +54,7 @@ Partial Class Register
                     .GroupLeaderID = -1
                     .Enabled = True
                     .Remark = Nothing
-                    .Affiliate = agent.Trim
+                    .Affiliate = If(agent = Nothing, Nothing, agent.Trim)
                 End With
 
                 db.TblMembers.InsertOnSubmit(newMember)
@@ -85,6 +85,8 @@ Partial Class Register
         agent = Request.QueryString("agent")
 
         txtRegRefCode.Text = ref
+
+        Master.FindControl("loginRegister").Visible = False
 
         Using db As New DataClassesDataContext
             Dim promos = db.TblPromotions.Where(Function(x) x.Status = 1).ToList

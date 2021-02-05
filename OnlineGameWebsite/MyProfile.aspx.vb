@@ -19,7 +19,7 @@ Partial Class MyProfile
                         txtBirthday.Text = m.DateOfBirth.ToString("yyyy-MM-dd")
                         txtRefCode.Text = m.RefCode.Trim
                         cmbBank.SelectedValue = m.BankName
-                        txtBankAccNo.Text = m.AccountNo.Trim
+                        txtBankAccNo.Text = If(m.AccountNo = Nothing, Nothing, m.AccountNo.Trim)
                     End Using
                 Catch ex As Exception
                     Log(ex)

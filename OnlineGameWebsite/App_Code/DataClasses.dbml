@@ -1,21 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="GameDB" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-9U8TJO4\SQLEXPRESS;Initial Catalog=GameDB;Persist Security Info=True;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="GameDBConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.TblPromotion" Member="TblPromotions">
-    <Type Name="TblPromotion">
-      <Column Name="PromoID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="DisplayIndex" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="PromoName" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
-      <Column Name="PromoType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="PromoPercent" Type="System.Single" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="MaxPayout" Type="System.Single" DbType="Float NOT NULL" CanBeNull="false" />
-      <Column Name="EnglishName" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
-      <Column Name="ChineseName" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
-      <Column Name="MalayName" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
-      <Column Name="PromoFile" Type="System.String" DbType="NChar(255)" CanBeNull="true" />
-      <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="PromoImage" Type="System.String" DbType="NChar(255) NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
   <Table Name="dbo.TblSlider" Member="TblSliders">
     <Type Name="TblSlider">
       <Column Name="SliderID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -214,6 +198,23 @@
       <Column Name="ShowFooter" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="ShowContactPage" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="ShowProductPage" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TblPromotion" Member="TblPromotions">
+    <Type Name="TblPromotion">
+      <Column Name="PromoID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DisplayIndex" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PromoName" Type="System.String" DbType="NChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="PromoType" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PromoPercent" Type="System.Single" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="MaxPayout" Type="System.Single" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="EnglishName" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+      <Column Name="ChineseName" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+      <Column Name="MalayName" Type="System.String" DbType="NChar(30)" CanBeNull="true" />
+      <Column Name="PromoFile" Type="System.String" DbType="NChar(255)" CanBeNull="true" />
+      <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PromoImage" Type="System.String" DbType="NChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="AllowOnDeposit" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
 </Database>

@@ -117,7 +117,7 @@ Partial Class Banking
             .Attributes("class") = "btn btn-slider-black"
             .Attributes("href") = website
             .Attributes("target") = "_blank"
-            .InnerText = "DEPOSIT NOW"
+            .InnerText = Resources.Resource.DepositNowU
         End With
 
         Dim pricing = New HtmlGenericControl("div")

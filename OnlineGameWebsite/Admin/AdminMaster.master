@@ -75,14 +75,14 @@
                     <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Transactions:</h6>
-                            <a class="collapse-item" href="#">Transaction Reminder</a>
+                            <a class="collapse-item" href="TransactionReminder.aspx">Transaction Reminder</a>
                             <a class="collapse-item" href="Transactions.aspx">Transaction Enquiry</a>
                             <a class="collapse-item" href="Transfers.aspx">Transfer Enquiry</a>
                             <h6 class="collapse-header">Adjustments:</h6>
-                            <a class="collapse-item" href="#">Credit</a>
-                            <a class="collapse-item" href="#">Debit</a>
-                            <a class="collapse-item" href="#">Promotion</a>
-                            <a class="collapse-item" href="#">Transfer</a>
+                            <a class="collapse-item" href="AdjustCredit.aspx?mode=credit">Credit</a>
+                            <a class="collapse-item" href="AdjustCredit.aspx?mode=debit">Debit</a>
+                            <a class="collapse-item" href="AdjustCredit.aspx?mode=promo">Promotion</a>
+                            <a class="collapse-item" href="AdjustTransfer.aspx">Transfer</a>
                         </div>
                     </div>
                 </li>

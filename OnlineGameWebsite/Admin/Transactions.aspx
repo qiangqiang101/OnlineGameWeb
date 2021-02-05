@@ -40,7 +40,7 @@
                                         <td style="padding-left: 10px;">
                                             <asp:LinkButton ID="today" runat="server" Text="Today" /></td>
                                         <td style="padding-left: 10px;">
-                                            <asp:Button class="btn btn-success btn-user btn-block" ID="btnRefresh" runat="server" Text="Refresh" /></td>
+                                            <asp:Button class="btn btn-success btn-user btn-block" ID="btnRefresh" runat="server" Text="Refresh" /></td>                                        
                                     </tr>
                                 </tbody>
                             </table>
