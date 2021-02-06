@@ -211,7 +211,7 @@ Public Module Helper
 
     Public Function DeleteButton(url As String, Optional button As String = "fa-times", Optional tooltip As String = Nothing) As String
         Return "<a href=""javascript:swalTheme.fire({title: '" & Resources.Resource.RuSure & "', text: '" & Resources.Resource.OnceCancelled & "', icon: 'warning', showCancelButton: true, confirmButtonText: '" & Resources.Resource.Yes & "', cancelButtonText: '" & Resources.Resource.No & "'})" &
-            ".then((result) => {if (result.isConfirmed) {swalTheme.fire('Successful', '" & Resources.Resource.TransactionCancelled & "', 'success').then(function() {window.location = '" & url & "';})} else if (result.dismiss === swal.DismissReason.cancel)" &
+            ".then((result) => {if (result.isConfirmed) {swalTheme.fire('" & Resources.Resource.Success & "', '" & Resources.Resource.TransactionCancelled & "', 'success').then(function() {window.location = '" & url & "';})} else if (result.dismiss === swal.DismissReason.cancel)" &
             " {swalTheme.fire('Okay', '" & Resources.Resource.OperationCancelled & "', 'success')}})"" data-toggle=""tooltip"" title=""" & tooltip & """><i class=""fas " & button & """></i></a>"
     End Function
 
@@ -934,6 +934,33 @@ Public Module Helper
             Return System.Text.Encoding.UTF8.GetString(base64Bytes)
         Catch ex As Exception
             Return Nothing
+        End Try
+    End Function
+
+    Public Function GetPromotionName(id As Integer, defaultString As String) As String
+        Try
+            Using db As New DataClassesDataContext
+                Return db.TblPromotions.Single(Function(x) x.PromoID = id).PromoName
+            End Using
+        Catch ex As Exception
+            Return defaultString
+        End Try
+    End Function
+
+    Public Function GetPromotionLocalizedName(name As String, lang As String) As String
+        Try
+            Using db As New DataClassesDataContext
+                Select Case lang.Trim
+                    Case "zh-CN"
+                        Return db.TblPromotions.Single(Function(x) x.PromoName = name).ChineseName
+                    Case "my-MY"
+                        Return db.TblPromotions.Single(Function(x) x.PromoName = name).MalayName
+                    Case Else
+                        Return db.TblPromotions.Single(Function(x) x.PromoName = name).EnglishName
+                End Select
+            End Using
+        Catch ex As Exception
+            Return name
         End Try
     End Function
 

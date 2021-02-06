@@ -89,6 +89,7 @@ Partial Class Withdrawal
                     .ApproveDate = Now
                     .Remark = Nothing
                     .TransactionDateUser = Now
+                    .ApproveBankID = -1
                 End With
 
                 db.TblTransactions.InsertOnSubmit(newTransaction)

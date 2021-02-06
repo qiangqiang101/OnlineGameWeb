@@ -20,11 +20,7 @@ Partial Class Admin_EditDeposit
                         Using db As New DataClassesDataContext
                             Dim banks = db.TblBanks.Where(Function(x) x.Status = 1).ToList
                             For Each bank As TblBank In banks
-                                Dim li As New ListItem(bank.BankName.Trim & " (" & bank.AccountName.Trim & ")", bank.BankName.Trim)
-                                With li
-                                    .Attributes("bankid") = bank.BankID
-                                End With
-                                cmbPaymentMethod.Items.Add(li)
+                                cmbPaymentMethod.Items.Add(New ListItem(bank.BankName.Trim & " (" & bank.AccountName.Trim & ")", bank.BankID))
                             Next
                             Dim rejects = db.TblTRejectReasons.Where(Function(x) x.Status = True).ToList
                             cmbRejectReason.Items.Add(New ListItem("", ""))
@@ -70,7 +66,7 @@ Partial Class Admin_EditDeposit
                             Else
                                 bankSlip.Visible = False
                             End If
-                            If Not t.ApproveBank = Nothing Then cmbPaymentMethod.SelectedValue = t.ApproveBank.Trim
+                            cmbPaymentMethod.SelectedValue = t.ApproveBankID
                             If Not t.Reason = Nothing Then cmbRejectReason.SelectedValue = t.Reason.Trim
                             If Not t.Remark = Nothing Then txtRemarks.Text = t.Remark.Trim
                             If t.ApproveByUser.Trim <> "None" Then
@@ -134,7 +130,7 @@ Partial Class Admin_EditDeposit
                                     btnReject.Visible = False
                             End Select
                             bankSlip.Visible = False
-                            If Not t.ApproveBank = Nothing Then cmbPaymentMethod.SelectedValue = t.ApproveBank.Trim
+                            cmbPaymentMethod.SelectedValue = t.ApproveBankID
                             If Not t.Reason = Nothing Then cmbRejectReason.SelectedValue = t.Reason.Trim
                             If Not t.Remark = Nothing Then txtRemarks.Text = t.Remark.Trim
                             If t.ApproveByUser.Trim <> "None" Then
@@ -237,7 +233,7 @@ Partial Class Admin_EditDeposit
                     .Status = 2
                     .ApproveByUser = Session("username").ToString.Trim
                     .ApproveDate = Now
-                    .ApproveBank = cmbPaymentMethod.SelectedValue
+                    .ApproveBankID = cmbPaymentMethod.SelectedValue
                 End With
 
                 db.SubmitChanges()
@@ -278,7 +274,7 @@ Partial Class Admin_EditDeposit
 
                 Dim addBankRecord As New TblBankRecord
                 With addBankRecord
-                    .BankID = CInt(cmbPaymentMethod.SelectedItem.Attributes("bankid"))
+                    .BankID = cmbPaymentMethod.SelectedValue
                     .TransactionID = CInt(tid)
                     .Credit = t.Credit
                     .Debit = t.Debit

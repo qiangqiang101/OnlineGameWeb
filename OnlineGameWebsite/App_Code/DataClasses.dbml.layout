@@ -56,12 +56,6 @@
         <elementListCompartment Id="64adfba4-0a7e-4992-bc12-1cc8e65f10f4" absoluteBounds="0.51500000000000057, 0.96, 1.9700000000000002, 4.095418294270833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="daa14505-3fae-4edb-8db0-2f6afa7ce969" absoluteBounds="2.625, 0.5, 2, 5.2323225911458326">
-      <DataClassMoniker Name="/DataClassesDataContext/TblTransaction" />
-      <nestedChildShapes>
-        <elementListCompartment Id="5bf8c12a-ece0-4ecb-a867-0d52002843e1" absoluteBounds="2.64, 0.96, 1.9700000000000002, 4.672322591145833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="b1db396f-5416-4bf3-acbf-2a52e74e99bc" absoluteBounds="9, 0.5, 2, 2.7324039713541666">
       <DataClassMoniker Name="/DataClassesDataContext/TblUser" />
       <nestedChildShapes>
@@ -90,6 +84,12 @@
       <DataClassMoniker Name="/DataClassesDataContext/TblPromotion" />
       <nestedChildShapes>
         <elementListCompartment Id="84d3ef67-da82-4646-b4e2-365275ea4d64" absoluteBounds="6.89, 5.21, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b0cdc20b-f468-433d-b120-f25e54671fda" absoluteBounds="2.625, 0.5, 2, 5.2323225911458326">
+      <DataClassMoniker Name="/DataClassesDataContext/TblTransaction" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2d66869e-dcbc-4c33-8a4e-a50c0be42268" absoluteBounds="2.64, 0.96, 1.9700000000000002, 4.672322591145833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

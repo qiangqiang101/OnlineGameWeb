@@ -10,7 +10,7 @@
             <source src="" type="audio/mp3">
         </audio>
         <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">Transaction Reminder</h1>
+        <h1 class="h3 mb-2 text-gray-800">Transaction Alert</h1>
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">

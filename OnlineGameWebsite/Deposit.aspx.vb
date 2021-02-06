@@ -33,7 +33,7 @@ Partial Class Deposit
                     For Each bank As TblBank In banks
                         cmbBank.Items.Add(New ListItem(bank.BankName.Trim & " (" & bank.AccountName.Trim & ")", bank.BankID))
                     Next
-                    Dim promos = db.TblPromotions.Where(Function(x) x.Status = 1).ToList
+                    Dim promos = db.TblPromotions.Where(Function(x) x.Status = 1 And x.AllowOnDeposit = True).ToList
                     For Each promo As TblPromotion In promos
                         Select Case Request.Cookies("Lang").Value
                             Case "zh-CN"
@@ -117,6 +117,7 @@ Partial Class Deposit
                     .ApproveDate = Now
                     .Remark = Nothing
                     .TransactionDateUser = Date.ParseExact(txtDepositDate.Text.Trim, "yyyy-MM-ddTHH:mm", System.Globalization.DateTimeFormatInfo.InvariantInfo)
+                    .ApproveBankID = -1
                 End With
 
                 db.TblTransactions.InsertOnSubmit(newTransaction)
@@ -139,7 +140,7 @@ Partial Class Deposit
                     With newTransaction
                         .TransactionDate = Now.AddSeconds(5)
                         .UserName = Session("username").ToString.Trim
-                        .Method = cmbPromotion.SelectedItem.Text
+                        .Method = GetPromotionName(cmbPromotion.SelectedValue, cmbPromotion.SelectedItem.Text)
                         .TransType = 2 'promotion
                         .Debit = 0F
                         .Credit = 0F
@@ -158,6 +159,7 @@ Partial Class Deposit
                         .ApproveDate = Now
                         .Remark = Nothing
                         .TransactionDateUser = Now
+                        .ApproveBankID = -1
                     End With
 
                     db.TblTransactions.InsertOnSubmit(newTransaction)

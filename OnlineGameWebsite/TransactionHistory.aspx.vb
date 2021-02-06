@@ -40,7 +40,7 @@ Partial Class TransactionHistory
                         Case Else
                             atnStr = String.Empty
                     End Select
-                    tblPromotion.AddTableItem(t.TransactionDate.ToString(dateFormat), pdtName & " (" & t.ProductUserName.Trim & ")", t.Method.Trim, StatusToString(t.Status), t.Promotion.ToString("N"), atnStr)
+                    tblPromotion.AddTableItem(t.TransactionDate.ToString(dateFormat), pdtName & " (" & t.ProductUserName.Trim & ")", GetPromotionLocalizedName(t.Method.Trim, Request.Cookies("Lang").Value), StatusToString(t.Status), t.Promotion.ToString("N"), atnStr)
                 Next
 
                 trans = db.TblTransactions.Where(Function(x) x.UserName = Session("username").ToString.Trim And x.TransType = 1).OrderByDescending(Function(x) x.TransactionID).Take(30).ToList
