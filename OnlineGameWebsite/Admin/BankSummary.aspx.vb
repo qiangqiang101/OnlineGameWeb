@@ -14,9 +14,7 @@ Partial Class Admin_BankSummary
                     If Not bankRecords.Count(Function(x) x.Debit) = 0 Then debit = bankRecords.Sum(Function(x) x.Debit)
                     balance = credit - debit
                 End If
-                dataTable.AddTableItem(b.BankID.ToString("00000"), If(hasImage, Img("..\" & b.BankLogo.Trim, b.BankName.Trim), ""), b.BankName.Trim, b.AccountName.Trim, b.AccountNo.Trim, credit.ToString("N"), debit.ToString("N"), balance.ToString("N"),
-                                       RB("BankRecords.aspx?id=" & b.BankID, "fas fa-eye", tooltip:="Bank Record") & RB("AddBankSummary.aspx?mode=credit&id=" & b.BankID, "fas fa-coins", "btn-success", "Add Credit") &
-                                       RB("AddBankSummary.aspx?mode=debit&id=" & b.BankID, "fas fa-hand-holding-usd", "btn-danger", "Add Debit") & RB("AddBankSummary.aspx?mode=transfer&id=" & b.BankID, "fas fa-exchange-alt", "btn-warning", "Add Transfer"))
+                dataTable.AddBankSummaryTableItem(b.BankID, If(hasImage, Img("..\" & b.BankLogo.Trim, b.BankName.Trim), ""), b.BankName, b.AccountName, b.AccountNo, credit, debit, balance)
                 credit = 0F
                 debit = 0F
                 balance = 0F

@@ -247,6 +247,35 @@ Public Module Helper
     End Sub
 
     <Extension>
+    Public Sub AddBankSummaryTableItem(table As Table, id As Integer, img As String, bank As String, name As String, account As String, credit As Single, debit As Single, balance As Single)
+        Dim row As New TableRow()
+        row.Cells.Add(New TableCell() With {.Text = id.ToString("00000")})
+        row.Cells.Add(New TableCell() With {.Text = img})
+        row.Cells.Add(New TableCell() With {.Text = bank.Trim})
+        row.Cells.Add(New TableCell() With {.Text = name.Trim})
+        row.Cells.Add(New TableCell() With {.Text = account.Trim})
+        row.Cells.Add(New TableCell() With {.Text = credit.ToString("N"), .HorizontalAlign = HorizontalAlign.Right})
+        row.Cells.Add(New TableCell() With {.Text = debit.ToString("N"), .HorizontalAlign = HorizontalAlign.Right})
+        row.Cells.Add(New TableCell() With {.Text = balance.ToString("N"), .HorizontalAlign = HorizontalAlign.Right})
+        row.Cells.Add(New TableCell() With {.Text = RB("BankRecords.aspx?id=" & id, "fas fa-eye", tooltip:="Bank Record") & RB("AddBankSummary.aspx?mode=credit&id=" & id, "fas fa-coins", "btn-success", "Add Credit") &
+                                       RB("AddBankSummary.aspx?mode=debit&id=" & id, "fas fa-hand-holding-usd", "btn-danger", "Add Debit") & RB("AddBankSummary.aspx?mode=transfer&id=" & id, "fas fa-exchange-alt", "btn-warning", "Add Transfer")})
+        table.Rows.Add(row)
+    End Sub
+
+    <Extension>
+    Public Sub AddBankRecordTableItem(table As Table, bid As Integer, tid As Integer, tdate As Date, desc As String, credit As Single, debit As Single)
+        Dim row As New TableRow()
+        row.Cells.Add(New TableCell() With {.Text = bid.ToString("00000")})
+        row.Cells.Add(New TableCell() With {.Text = tid.ToString("00000")})
+        row.Cells.Add(New TableCell() With {.Text = tdate.ToString(dateFormat)})
+        row.Cells.Add(New TableCell() With {.Text = desc.Trim})
+        row.Cells.Add(New TableCell() With {.Text = If(credit <> 0F, credit.ToString("N"), ""), .HorizontalAlign = HorizontalAlign.Right, .ClientIDMode = ClientIDMode.Static, .ForeColor = Color.Blue})
+        row.Cells.Add(New TableCell() With {.Text = If(debit <> 0F, debit.ToString("N"), ""), .HorizontalAlign = HorizontalAlign.Right, .ClientIDMode = ClientIDMode.Static, .ForeColor = Color.Red})
+        row.Cells.Add(New TableCell() With {.Text = RB("AddBankSummary.aspx?mode=delete&id=" & bid, "fas fa-trash", "btn-danger", "Delete")})
+        table.Rows.Add(row)
+    End Sub
+
+    <Extension>
     Public Sub AddTransactionTableItem(table As Table, id As Integer, tdate As Date, userid As String, fullname As String, productname As String, productUN As String, method As String, status As Integer, credit As Single, debit As Single, promo As Single, type As Integer)
         Dim row As New TableRow()
         row.Cells.Add(New TableCell() With {.Text = id.ToString("00000")})

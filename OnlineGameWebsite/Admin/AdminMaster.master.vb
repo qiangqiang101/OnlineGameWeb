@@ -50,22 +50,24 @@ Partial Class Admin_AdminMaster
 
                 Dim transactions9 = transactions.OrderByDescending(Function(x) x.TransactionDate).Take(9)
                 For Each t In transactions9
+                    Dim bold = t.Status = 0
                     If t.TransType = 0 Then
                         Dim msg = t.UserName.Trim & " sent a deposit request amount of " & t.Credit.ToString("N") & " MYR."
-                        alertDropdown.Controls.Add(GenerateAlert("fas fa-coins", t.TransactionDate.ToShortDateString, msg))
+                        alertDropdown.Controls.Add(GenerateAlert("fas fa-coins", t.TransactionDate.ToString(dateFormat), msg, bold:=bold))
                     ElseIf t.TransType = 1 Then
                         Dim msg = t.UserName.Trim & " sent a withdrawal request amount of " & t.Debit.ToString("N") & " MYR."
-                        alertDropdown.Controls.Add(GenerateAlert("fas fa-hand-holding-usd", t.TransactionDate.ToShortDateString, msg, "bg-danger"))
+                        alertDropdown.Controls.Add(GenerateAlert("fas fa-hand-holding-usd", t.TransactionDate.ToString(dateFormat), msg, "bg-danger", bold:=bold))
                     Else
                         Dim msg = t.UserName.Trim & " sent a promotion request amount of " & t.Promotion.ToString("N") & " MYR."
-                        alertDropdown.Controls.Add(GenerateAlert("fas fa-percentage", t.TransactionDate.ToShortDateString, msg, "bg-warning"))
+                        alertDropdown.Controls.Add(GenerateAlert("fas fa-percentage", t.TransactionDate.ToString(dateFormat), msg, "bg-warning", bold:=bold))
                     End If
                 Next
                 If transactions9.Count <= 9 Then
                     Dim transfer_ = transfers.OrderByDescending(Function(x) x.ApproveDate).Take(9 - transactions9.Count)
                     For Each t In transfer_
                         Dim msg = t.UserName.Trim & " sent a transfer request amount of " & t.Amount.ToString("N") & " MYR from " & GetProductName(t.FromProductID) & " to " & GetProductName(t.ToProductID) & "."
-                        alertDropdown.Controls.Add(GenerateAlert("fas fa-exchange-alt", t.TransferDate.ToShortDateString, msg, "bg-success", "Transfers.aspx"))
+                        Dim bold = t.Status = 0
+                        alertDropdown.Controls.Add(GenerateAlert("fas fa-exchange-alt", t.TransferDate.ToString(dateFormat), msg, "bg-success", "Transfers.aspx", bold))
                     Next
                 End If
             End If
@@ -82,13 +84,13 @@ Partial Class Admin_AdminMaster
     ''' <param name="text"></param>
     ''' <param name="bg"></param>
     ''' <returns></returns>
-    Private Function GenerateAlert(fafa As String, [date] As String, text As String, Optional bg As String = "bg-primary", Optional href As String = "Transactions.aspx") As HtmlGenericControl
+    Private Function GenerateAlert(fafa As String, [date] As String, text As String, Optional bg As String = "bg-primary", Optional href As String = "Transactions.aspx", Optional bold As Boolean = False) As HtmlGenericControl
         Dim n = vbNewLine
         Dim a = New HtmlGenericControl("a")
         With a
             .Attributes("class") = "dropdown-item d-flex align-items-center"
             .Attributes("href") = href
-            .InnerHtml = n & "<div class=""mr-3"">" & n & "<div class=""icon-circle " & bg & """>" & n & "<i class=""" & fafa & " text-white""></i>" & n & "</div>" & n & "</div><div><div class=""small text-gray-500"">" & [date] & "</div>" & n & text & "</div>" & n
+            .InnerHtml = n & "<div class=""mr-3"">" & n & "<div class=""icon-circle " & bg & """>" & n & "<i class=""" & fafa & " text-white""></i>" & n & "</div>" & n & "</div><div><div class=""small text-gray-500"">" & [date] & "</div>" & n & If(bold, "<span class=""font-weight-bold"">" & text & "</span>", text) & n & "</div>" & n
         End With
         Return a
     End Function
