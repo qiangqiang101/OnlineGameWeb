@@ -10,7 +10,7 @@ Partial Class Admin_AdminLogin
         Else
             If IsAdminLoginSuccess(txtUserID.Text.Trim, txtPassword.Text.Trim, Page) Then
                 UpdateUserLastLogin(txtUserID.Text.Trim, Request.UserHostAddress)
-                Response.Redirect("Dashboard.aspx")
+                Response.Redirect("Default.aspx")
             Else
                 JsMsgBox("Incorrect UserID or Password.")
             End If

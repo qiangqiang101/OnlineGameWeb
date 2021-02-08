@@ -82,22 +82,45 @@ Public Module Helper
         End Using
     End Function
 
-    Public Function IsEmailExists(email As String, Optional checkMember As Boolean = True) As Boolean
-        If checkMember Then
-            Using db As New DataClassesDataContext
-                Dim check = (From m In db.TblMembers Where m.Email = email).ToList
-                Dim members = (From m In db.TblMembers)
-                If members.Contains(check.FirstOrDefault) Then Return True
-                Return False
-            End Using
-        Else
-            Using db As New DataClassesDataContext
-                Dim check = (From u In db.TblUsers Where u.Email = email).ToList
-                Dim users = (From m In db.TblUsers)
-                If users.Contains(check.FirstOrDefault) Then Return True
-                Return False
-            End Using
-        End If
+    Public Function IsPartnerExists(username As String) As Boolean
+        Using db As New DataClassesDataContext
+            Dim check = (From u In db.TblAffiliates Where u.UserName = username).ToList
+            Dim users = (From m In db.TblAffiliates)
+            If users.Contains(check.FirstOrDefault) Then Return True
+            Return False
+        End Using
+    End Function
+
+    Public Enum eCheckEmail
+        Member
+        User
+        Affiliate
+    End Enum
+
+    Public Function IsEmailExists(email As String, Optional checkEmail As eCheckEmail = eCheckEmail.Member) As Boolean
+        Select Case checkEmail
+            Case eCheckEmail.Member
+                Using db As New DataClassesDataContext
+                    Dim check = (From m In db.TblMembers Where m.Email = email).ToList
+                    Dim members = (From m In db.TblMembers)
+                    If members.Contains(check.FirstOrDefault) Then Return True
+                    Return False
+                End Using
+            Case eCheckEmail.User
+                Using db As New DataClassesDataContext
+                    Dim check = (From u In db.TblUsers Where u.Email = email).ToList
+                    Dim users = (From m In db.TblUsers)
+                    If users.Contains(check.FirstOrDefault) Then Return True
+                    Return False
+                End Using
+            Case Else
+                Using db As New DataClassesDataContext
+                    Dim check = (From u In db.TblAffiliates Where u.Email = email).ToList
+                    Dim partners = (From m In db.TblAffiliates)
+                    If partners.Contains(check.FirstOrDefault) Then Return True
+                    Return False
+                End Using
+        End Select
     End Function
 
     Public Function IsEmailValid(email As String) As Boolean
@@ -113,9 +136,9 @@ Public Module Helper
                 If member IsNot Nothing Then
                     If member.Enabled Then
                         page.Session("userid") = member.UserID
-                        page.Session("username") = member.UserName
-                        page.Session("fullname") = member.FullName
-                        page.Session("email") = member.Email
+                        page.Session("username") = member.UserName.Trim
+                        page.Session("fullname") = member.FullName.Trim
+                        page.Session("email") = member.Email.Trim
                         page.Session("role") = "user"
 
                         Return True
@@ -130,9 +153,9 @@ Public Module Helper
                 If member IsNot Nothing Then
                     If member.Enabled Then
                         page.Session("userid") = member.UserID
-                        page.Session("username") = member.UserName
-                        page.Session("fullname") = member.FullName
-                        page.Session("email") = member.Email
+                        page.Session("username") = member.UserName.Trim
+                        page.Session("fullname") = member.FullName.Trim
+                        page.Session("email") = member.Email.Trim
                         page.Session("role") = "user"
 
                         Return True
@@ -152,9 +175,9 @@ Public Module Helper
                     Dim user = db.TblUsers.Single(Function(x) x.Email = username AndAlso x.Password = password)
                     If user.Status Then
                         page.Session("userid") = user.UserID
-                        page.Session("username") = user.UserName
-                        page.Session("fullname") = user.FullName
-                        page.Session("email") = user.Email
+                        page.Session("username") = user.UserName.Trim
+                        page.Session("fullname") = user.FullName.Trim
+                        page.Session("email") = user.Email.Trim
                         page.Session("role") = UserRoleToString(user.UserRole)
 
                         Return True
@@ -170,10 +193,53 @@ Public Module Helper
                     Dim user = db.TblUsers.Single(Function(x) x.UserName = username AndAlso x.Password = password)
                     If user.Status Then
                         page.Session("userid") = user.UserID
-                        page.Session("username") = user.UserName
-                        page.Session("fullname") = user.FullName
-                        page.Session("email") = user.Email
+                        page.Session("username") = user.UserName.Trim
+                        page.Session("fullname") = user.FullName.Trim
+                        page.Session("email") = user.Email.Trim
                         page.Session("role") = UserRoleToString(user.UserRole)
+
+                        Return True
+                    End If
+                End Using
+            Catch ex As Exception
+                Log(ex)
+                Return False
+            End Try
+        End If
+        Return False
+    End Function
+
+    Public Function IsPartnerLoginSuccess(username As String, password As String, page As Page) As Boolean
+        If IsEmailValid(username) Then
+            Try
+                Using db As New DataClassesDataContext
+                    Dim partner = db.TblAffiliates.Single(Function(x) x.Email = username AndAlso x.Password = password)
+                    If partner.Status Then
+                        page.Session("partnerid") = partner.AffiliateID
+                        page.Session("username") = partner.UserName.Trim
+                        page.Session("fullname") = partner.FullName.Trim
+                        page.Session("email") = partner.Email.Trim
+                        page.Session("role") = "partner"
+                        page.Session("code") = partner.Code.Trim
+
+                        Return True
+                    End If
+                End Using
+            Catch ex As Exception
+                Log(ex)
+                Return False
+            End Try
+        Else
+            Try
+                Using db As New DataClassesDataContext
+                    Dim partner = db.TblAffiliates.Single(Function(x) x.UserName = username AndAlso x.Password = password)
+                    If partner.Status Then
+                        page.Session("partnerid") = partner.AffiliateID
+                        page.Session("username") = partner.UserName.Trim
+                        page.Session("fullname") = partner.FullName.Trim
+                        page.Session("email") = partner.Email.Trim
+                        page.Session("role") = "partner"
+                        page.Session("code") = partner.Code.Trim
 
                         Return True
                     End If
@@ -190,6 +256,17 @@ Public Module Helper
         Using db As New DataClassesDataContext
             Dim user = db.TblUsers.Single(Function(x) x.UserName = username)
             With user
+                .LastLoginDate = Now
+                .LastLoginIP = ip
+            End With
+            db.SubmitChanges()
+        End Using
+    End Sub
+
+    Public Sub UpdatePartnerLastLogin(username As String, ip As String)
+        Using db As New DataClassesDataContext
+            Dim partner = db.TblAffiliates.Single(Function(x) x.UserName = username)
+            With partner
                 .LastLoginDate = Now
                 .LastLoginIP = ip
             End With
@@ -224,10 +301,37 @@ Public Module Helper
     End Function
 
     <Extension>
-    Public Sub AddTableItem(table As Table, ParamArray items As String())
+    Public Sub AddSummaryTableItem(table As Table, member As String, balance As String, ParamArray items As String())
+        Dim row As New TableRow()
+        row.Cells.Add(New TableCell() With {.Text = member})
+        For Each item In items
+            row.Cells.Add(New TableCell() With {.Text = item, .HorizontalAlign = HorizontalAlign.Right})
+        Next
+        row.Cells.Add(New TableCell() With {.Text = balance, .HorizontalAlign = HorizontalAlign.Right})
+        table.Rows.Add(row)
+    End Sub
+
+    <Extension>
+    Public Sub AddSummaryReportTableItem(table As Table, product As String, member As Integer, credit As Single, debit As Single, promotion As Single, gameAccounts As Integer)
+        Dim row As New TableRow()
+        row.Cells.Add(New TableCell() With {.Text = product})
+        row.Cells.Add(New TableCell() With {.Text = member})
+        row.Cells.Add(New TableCell() With {.Text = credit.ToString("N"), .HorizontalAlign = HorizontalAlign.Right})
+        row.Cells.Add(New TableCell() With {.Text = debit.ToString("N"), .HorizontalAlign = HorizontalAlign.Right})
+        row.Cells.Add(New TableCell() With {.Text = promotion.ToString("N"), .HorizontalAlign = HorizontalAlign.Right})
+        row.Cells.Add(New TableCell() With {.Text = gameAccounts})
+        table.Rows.Add(row)
+    End Sub
+
+    <Extension>
+    Public Sub AddTableItem(table As Table, ParamArray items As Object())
         Dim row As New TableRow()
         For Each item In items
-            row.Cells.Add(New TableCell() With {.Text = item})
+            If TypeOf item Is TableCell Then
+                row.Cells.Add(item)
+            Else
+                row.Cells.Add(New TableCell() With {.Text = item})
+            End If
         Next
         table.Rows.Add(row)
     End Sub
@@ -575,8 +679,6 @@ Public Module Helper
 
     Public Function UserRoleToString(role As Integer) As String
         Select Case role
-            Case 1
-                Return "Agent/Affiliate"
             Case 2
                 Return "Administrator"
             Case 3
@@ -991,6 +1093,15 @@ Public Module Helper
         Catch ex As Exception
             Return name
         End Try
+    End Function
+
+    Public Function PartnersCalculation(calc As Integer) As String
+        Select Case calc
+            Case 0
+                Return "Profit"
+            Case Else
+                Return "Deposit"
+        End Select
     End Function
 
 End Module

@@ -89,11 +89,7 @@ Partial Class Admin_EditWithdrawal
             Case "edit"
                 If TryApproveTransaction() Then
                     If TryDebitToBank() Then
-                        If TryDebitToSummary() Then
-                            Response.Redirect("Transactions.aspx")
-                        Else
-                            JsMsgBox("Debit to summary failed! Please contact Administrator.")
-                        End If
+                        Response.Redirect("Transactions.aspx")
                     Else
                         JsMsgBox("Debit to bank record failed! Please contact Administrator.")
                     End If
@@ -185,30 +181,4 @@ Partial Class Admin_EditWithdrawal
         Return True
     End Function
 
-    Private Function TryDebitToSummary() As Boolean
-        Try
-            Using db As New DataClassesDataContext
-                Dim t = db.TblTransactions.Single(Function(x) x.TransactionID = CInt(tid))
-
-                Dim addSummary As New TblSummary
-                With addSummary
-                    .ProductID = t.ProductID
-                    .Debit = t.Debit
-                    .Credit = t.Credit
-                    .Promotion = t.Promotion
-                    .SummaryDate = Now
-                    .TransactionID = CInt(tid)
-                End With
-
-
-                db.TblSummaries.InsertOnSubmit(addSummary)
-                db.SubmitChanges()
-            End Using
-        Catch ex As Exception
-            Log(ex)
-            Return False
-        End Try
-
-        Return True
-    End Function
 End Class

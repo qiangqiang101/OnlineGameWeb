@@ -56,8 +56,8 @@
                             <asp:TableHeaderCell>Name</asp:TableHeaderCell>
                             <asp:TableHeaderCell>Product</asp:TableHeaderCell>
                             <asp:TableHeaderCell>Payment Method</asp:TableHeaderCell>
-                            <asp:TableHeaderCell HorizontalAlign="Right">Credit</asp:TableHeaderCell>
-                            <asp:TableHeaderCell HorizontalAlign="Right">Debit</asp:TableHeaderCell>
+                            <asp:TableHeaderCell HorizontalAlign="Right" style="text-align: right !important;">Credit</asp:TableHeaderCell>
+                            <asp:TableHeaderCell HorizontalAlign="Right" style="text-align: right !important;">Debit</asp:TableHeaderCell>
                             <asp:TableHeaderCell>Type</asp:TableHeaderCell>
                             <asp:TableHeaderCell>Status</asp:TableHeaderCell>
                             <asp:TableHeaderCell>Action</asp:TableHeaderCell>

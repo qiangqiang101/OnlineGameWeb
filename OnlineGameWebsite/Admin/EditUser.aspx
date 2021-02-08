@@ -42,7 +42,6 @@
                                 <label>Role</label>
                                 <asp:dropdownlist cssclass="form-control form-control-user" id="cmbCategory" autopostback="True" runat="server" placeholder="">
                                         <asp:ListItem Value="0">Customer Service</asp:ListItem>
-                                        <asp:ListItem Value="1">Agent/Affiliate</asp:ListItem>
                                         <asp:ListItem Value="2">Administrator</asp:ListItem>
                                         <asp:ListItem Value="3">Full Administrator</asp:ListItem>
                                     </asp:dropdownlist>

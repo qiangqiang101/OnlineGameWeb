@@ -171,11 +171,7 @@ Partial Class Admin_EditDeposit
             Case "edit"
                 If TryApproveTransaction() Then
                     If TryCreditToBank() Then
-                        If TryCreditToSummary() Then
-                            Response.Redirect("Transactions.aspx")
-                        Else
-                            JsMsgBoxRedirect("Credit to summary failed! Please contact Administrator.", Request.RawUrl.ToString())
-                        End If
+                        Response.Redirect("Transactions.aspx")
                     Else
                         JsMsgBoxRedirect("Credit to bank record failed! Please contact Administrator.", Request.RawUrl.ToString())
                     End If
@@ -283,33 +279,6 @@ Partial Class Admin_EditDeposit
                 End With
 
                 db.TblBankRecords.InsertOnSubmit(addBankRecord)
-                db.SubmitChanges()
-            End Using
-        Catch ex As Exception
-            Log(ex)
-            Return False
-        End Try
-
-        Return True
-    End Function
-
-    Private Function TryCreditToSummary() As Boolean
-        Try
-            Using db As New DataClassesDataContext
-                Dim t = db.TblTransactions.Single(Function(x) x.TransactionID = CInt(tid))
-
-                Dim addSummary As New TblSummary
-                With addSummary
-                    .ProductID = t.ProductID
-                    .Debit = t.Debit
-                    .Credit = t.Credit
-                    .Promotion = t.Promotion
-                    .SummaryDate = Now
-                    .TransactionID = CInt(tid)
-                End With
-
-
-                db.TblSummaries.InsertOnSubmit(addSummary)
                 db.SubmitChanges()
             End Using
         Catch ex As Exception

@@ -48,14 +48,14 @@
                     </div>
                 </div>
                 <div class="table-responsive">
-                    <asp:table cssclass="table table-bordered" id="dataTable" clientidmode="Static" width="100%" cellspacing="0" runat="server">
+                    <asp:table cssclass="table table-bordered table-hover" id="dataTable" clientidmode="Static" width="100%" cellspacing="0" runat="server">
                             <asp:TableHeaderRow TableSection="TableHeader">
                                 <asp:TableHeaderCell>Record ID</asp:TableHeaderCell>
                                 <asp:TableHeaderCell>Transaction ID</asp:TableHeaderCell>
                                 <asp:TableHeaderCell>Date</asp:TableHeaderCell>
                                 <asp:TableHeaderCell>Description</asp:TableHeaderCell>
-                                <asp:TableHeaderCell HorizontalAlign="Right">Credit</asp:TableHeaderCell>
-                                <asp:TableHeaderCell HorizontalAlign="Right">Debit</asp:TableHeaderCell>
+                                <asp:TableHeaderCell HorizontalAlign="Right" style="text-align: right !important;">Credit</asp:TableHeaderCell>
+                                <asp:TableHeaderCell HorizontalAlign="Right" style="text-align: right !important;">Debit</asp:TableHeaderCell>
                                 <asp:TableHeaderCell>Actions</asp:TableHeaderCell>
                             </asp:TableHeaderRow>
                         </asp:table>

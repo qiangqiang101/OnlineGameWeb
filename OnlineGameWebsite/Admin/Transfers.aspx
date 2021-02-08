@@ -56,7 +56,7 @@
                             <asp:TableHeaderCell>Name</asp:TableHeaderCell>
                             <asp:TableHeaderCell>From Product</asp:TableHeaderCell>
                             <asp:TableHeaderCell>To Product</asp:TableHeaderCell>
-                            <asp:TableHeaderCell HorizontalAlign="Right">Amount</asp:TableHeaderCell>
+                            <asp:TableHeaderCell HorizontalAlign="Right" style="text-align: right !important;">Amount</asp:TableHeaderCell>
                             <asp:TableHeaderCell>Status</asp:TableHeaderCell>
                             <asp:TableHeaderCell>Action</asp:TableHeaderCell>
                         </asp:TableHeaderRow>

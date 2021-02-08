@@ -278,9 +278,9 @@
                                             <table>
                                                 <tbody>
                                                     <tr>
-                                                        <td style="padding-left: 10px;"><a href="AdjustCredit.aspx?mode=credit&id=<%=txtUserID.Text.Trim %>" class="btn btn-primary btn-user btn-block" title="Credit Adjustment"><i class="fas fa-coins"></i> Credit Adjustment</a></td>
-                                                        <td style="padding-left: 10px;"><a href="AdjustCredit.aspx?mode=promo&id=<%=txtUserID.Text.Trim %>" class="btn btn-warning btn-user btn-block" title="Promotion Adjustment"><i class="fas fa-percentage"></i> Promotion Adjustment</a></td>
-                                                        <td style="padding-left: 10px;"><a href="AdjustCredit.aspx?mode=debit&id=<%=txtUserID.Text.Trim %>" class="btn btn-danger btn-user btn-block" title="Debit Adjustment"><i class="fas fa-hand-holding-usd"></i> Debit Adjustment</a></td>
+                                                        <td style="padding-left: 10px;"><a href="AdjustCredit.aspx?mode=credit&id=<%=txtUserID.Text.Trim %>" class="btn btn-primary btn-user btn-block" title="Credit Adjustment"><i class="fas fa-coins"></i>Credit Adjustment</a></td>
+                                                        <td style="padding-left: 10px;"><a href="AdjustCredit.aspx?mode=promo&id=<%=txtUserID.Text.Trim %>" class="btn btn-warning btn-user btn-block" title="Promotion Adjustment"><i class="fas fa-percentage"></i>Promotion Adjustment</a></td>
+                                                        <td style="padding-left: 10px;"><a href="AdjustCredit.aspx?mode=debit&id=<%=txtUserID.Text.Trim %>" class="btn btn-danger btn-user btn-block" title="Debit Adjustment"><i class="fas fa-hand-holding-usd"></i>Debit Adjustment</a></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -292,8 +292,8 @@
                                                     <asp:TableHeaderCell>Date</asp:TableHeaderCell>
                                                     <asp:TableHeaderCell>Product</asp:TableHeaderCell>
                                                     <asp:TableHeaderCell>Payment Method</asp:TableHeaderCell>
-                                                    <asp:TableHeaderCell HorizontalAlign="Right">Credit</asp:TableHeaderCell>
-                                                    <asp:TableHeaderCell HorizontalAlign="Right">Debit</asp:TableHeaderCell>
+                                                    <asp:TableHeaderCell HorizontalAlign="Right" Style="text-align: right !important;">Credit</asp:TableHeaderCell>
+                                                    <asp:TableHeaderCell HorizontalAlign="Right" Style="text-align: right !important;">Debit</asp:TableHeaderCell>
                                                     <asp:TableHeaderCell>Type</asp:TableHeaderCell>
                                                     <asp:TableHeaderCell>Status</asp:TableHeaderCell>
                                                 </asp:TableHeaderRow>
@@ -313,7 +313,7 @@
                                             <table>
                                                 <tbody>
                                                     <tr>
-                                                        <td style="padding-left: 10px;"><a href="AdjustTransfer.aspx?id=<%=txtUserID.Text.Trim %>" class="btn btn-primary btn-user btn-block" title="Transfer Adjustment"><i class="fas fa-exchange-alt"></i> Transfer Adjustment</a></td>
+                                                        <td style="padding-left: 10px;"><a href="AdjustTransfer.aspx?id=<%=txtUserID.Text.Trim %>" class="btn btn-primary btn-user btn-block" title="Transfer Adjustment"><i class="fas fa-exchange-alt"></i>Transfer Adjustment</a></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -325,7 +325,7 @@
                                                     <asp:TableHeaderCell>Date</asp:TableHeaderCell>
                                                     <asp:TableHeaderCell>From Product</asp:TableHeaderCell>
                                                     <asp:TableHeaderCell>To Product</asp:TableHeaderCell>
-                                                    <asp:TableHeaderCell HorizontalAlign="Right">Amount</asp:TableHeaderCell>
+                                                    <asp:TableHeaderCell HorizontalAlign="Right" Style="text-align: right !important;">Amount</asp:TableHeaderCell>
                                                     <asp:TableHeaderCell>Status</asp:TableHeaderCell>
                                                 </asp:TableHeaderRow>
                                             </asp:Table>

@@ -52,7 +52,7 @@
                                         <asp:Button class="btn btn-primary btn-user btn-block" ID="btnLogin" runat="server" Text="Login" />
                                         <hr>
                                         <div class="text-center">
-                                            <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                            <a class="small" href="#">Forgot Password?</a>
                                         </div>
                                         <div class="text-center">
                                             <a class="small" href="../Default.aspx">Back to Homepage</a>

@@ -93,7 +93,7 @@ Partial Class Admin_EditUser
 
                     If TryEditUser() Then
                         JsMsgBox(editUser.UserName & " update successfully.")
-                        Response.Redirect("Dashboard.aspx")
+                        Response.Redirect("Default.aspx")
                     Else
                         JsMsgBox(editUser.UserName & " edit failed! Please contact Administrator.")
                     End If
@@ -126,7 +126,7 @@ Partial Class Admin_EditUser
             Case Else
                 If IsUserExists(txtUserName.Text.Trim) Then
                     JsMsgBox("User ID already exist, please try another.")
-                ElseIf IsEmailExists(txtEmail.Text.Trim, False) Then
+                ElseIf IsEmailExists(txtEmail.Text.Trim, eCheckEmail.User) Then
                     JsMsgBox("Email already exist, please try another.")
                 Else
                     If AddNewUser() Then

@@ -6,9 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="admincontent" runat="Server">
     <!-- Begin Page Content -->
     <div class="container-fluid">
-        <audio id="depositAlert" runat="server">
-            <source src="" type="audio/mp3">
-        </audio>
+        <audio id="depositAlert" runat="server"></audio>
         <!-- Page Heading -->
         <h1 class="h3 mb-2 text-gray-800">Transaction Alert</h1>
 
@@ -27,8 +25,8 @@
                             <asp:TableHeaderCell>Name</asp:TableHeaderCell>
                             <asp:TableHeaderCell>Product</asp:TableHeaderCell>
                             <asp:TableHeaderCell>Payment Method</asp:TableHeaderCell>
-                            <asp:TableHeaderCell HorizontalAlign="Right">Credit</asp:TableHeaderCell>
-                            <asp:TableHeaderCell HorizontalAlign="Right">Debit</asp:TableHeaderCell>
+                            <asp:TableHeaderCell HorizontalAlign="Right" Style="text-align: right !important;">Credit</asp:TableHeaderCell>
+                            <asp:TableHeaderCell HorizontalAlign="Right" Style="text-align: right !important;">Debit</asp:TableHeaderCell>
                             <asp:TableHeaderCell>Type</asp:TableHeaderCell>
                             <asp:TableHeaderCell>Status</asp:TableHeaderCell>
                             <asp:TableHeaderCell>Action</asp:TableHeaderCell>
@@ -52,7 +50,7 @@
                             <asp:TableHeaderCell>Name</asp:TableHeaderCell>
                             <asp:TableHeaderCell>From Product</asp:TableHeaderCell>
                             <asp:TableHeaderCell>To Product</asp:TableHeaderCell>
-                            <asp:TableHeaderCell HorizontalAlign="Right">Amount</asp:TableHeaderCell>
+                            <asp:TableHeaderCell HorizontalAlign="Right" Style="text-align: right !important;">Amount</asp:TableHeaderCell>
                             <asp:TableHeaderCell>Status</asp:TableHeaderCell>
                             <asp:TableHeaderCell>Action</asp:TableHeaderCell>
                         </asp:TableHeaderRow>
@@ -81,19 +79,19 @@
     <%--<script src="js/demo/datatables-demo.js"></script>--%>
 
     <script type="text/javascript" defer="defer">
-            $(document).ready(function () {
-                $("table[id^='dataTable']").DataTable({
-                    "scrollCollapse": true,
-                    "searching": true,
-                    "paging": true,
-                    "language": {
-                        "lengthMenu": "<td>Display &nbsp</td><td> _MENU_ </td><td>&nbsp records</td>",
-                        "search": "<td>Search &nbsp</td><td> _INPUT_ </td>"
-                    },
-                    "lengthMenu": [[10, 20, 50, 100, 150, 200, -1], [10, 20, 50, 100, 150, 200, "All"]],
-                    "order": [[0, "desc"]]
-                });
+        $(document).ready(function () {
+            $("table[id^='dataTable']").DataTable({
+                "scrollCollapse": true,
+                "searching": true,
+                "paging": true,
+                "language": {
+                    "lengthMenu": "<td>Display &nbsp</td><td> _MENU_ </td><td>&nbsp records</td>",
+                    "search": "<td>Search &nbsp</td><td> _INPUT_ </td>"
+                },
+                "lengthMenu": [[10, 20, 50, 100, 150, 200, -1], [10, 20, 50, 100, 150, 200, "All"]],
+                "order": [[0, "desc"]]
             });
-        </script>
+        });
+    </script>
 </asp:Content>
 
