@@ -13,8 +13,7 @@ Partial Class Partners_PartnersMaster
                 navbaruser.InnerText = Session("fullname")
                 navbarProfile.HRef = "EditUser.aspx?mode=profile&id=" & partnerid
             Else
-                JsMsgBox(Page, "Please Login")
-                Response.Redirect("PartnerLogin.aspx")
+                JsMsgBoxRedirect(Page, "Please Login", "PartnerLogin.aspx")
             End If
         End If
     End Sub

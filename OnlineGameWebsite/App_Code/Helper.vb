@@ -64,6 +64,15 @@ Public Module Helper
         page.Response.Write("<script>window.location.href='" & redirect & "';</script>")
     End Sub
 
+    Public Function IsAffiliateMemberExists(username As String, affiliate As String) As Boolean
+        Using db As New DataClassesDataContext
+            Dim check = db.TblMembers.Single(Function(x) x.UserName = username)
+            Dim members = (From m In db.TblMembers Where m.Affiliate = affiliate)
+            If members.Contains(check) Then Return True
+            Return False
+        End Using
+    End Function
+
     Public Function IsMemberExists(username As String) As Boolean
         Using db As New DataClassesDataContext
             Dim check = (From m In db.TblMembers Where m.UserName = username).ToList
@@ -312,6 +321,17 @@ Public Module Helper
     End Sub
 
     <Extension>
+    Public Sub AddPSummaryReportTableItem(table As Table, product As String, member As Integer, credit As Single, debit As Single, promotion As Single)
+        Dim row As New TableRow()
+        row.Cells.Add(New TableCell() With {.Text = product})
+        row.Cells.Add(New TableCell() With {.Text = member})
+        row.Cells.Add(New TableCell() With {.Text = credit.ToString("N"), .HorizontalAlign = HorizontalAlign.Right})
+        row.Cells.Add(New TableCell() With {.Text = debit.ToString("N"), .HorizontalAlign = HorizontalAlign.Right})
+        row.Cells.Add(New TableCell() With {.Text = promotion.ToString("N"), .HorizontalAlign = HorizontalAlign.Right})
+        table.Rows.Add(row)
+    End Sub
+
+    <Extension>
     Public Sub AddSummaryReportTableItem(table As Table, product As String, member As Integer, credit As Single, debit As Single, promotion As Single, gameAccounts As Integer)
         Dim row As New TableRow()
         row.Cells.Add(New TableCell() With {.Text = product})
@@ -380,6 +400,31 @@ Public Module Helper
     End Sub
 
     <Extension>
+    Public Sub AddPTransactionTableItem(table As Table, id As Integer, tdate As Date, userid As String, fullname As String, productname As String, productUN As String, method As String, status As Integer, credit As Single, debit As Single, promo As Single, type As Integer)
+        Dim row As New TableRow()
+        row.Cells.Add(New TableCell() With {.Text = id.ToString("00000")})
+        row.Cells.Add(New TableCell() With {.Text = tdate.ToString(dateFormat)})
+        row.Cells.Add(New TableCell() With {.Text = userid.Trim})
+        row.Cells.Add(New TableCell() With {.Text = fullname.Trim})
+        row.Cells.Add(New TableCell() With {.Text = productname.Trim & " (" & productUN.Trim & ")"})
+        row.Cells.Add(New TableCell() With {.Text = method.Trim})
+        row.Cells.Add(New TableCell() With {.Text = If(credit <> 0F, credit.ToString("N"), If(promo <> 0F, promo.ToString("N"), "")), .HorizontalAlign = HorizontalAlign.Right, .ClientIDMode = ClientIDMode.Static, .ForeColor = Color.Blue})
+        row.Cells.Add(New TableCell() With {.Text = If(debit <> 0F, debit.ToString("N"), ""), .HorizontalAlign = HorizontalAlign.Right, .ClientIDMode = ClientIDMode.Static, .ForeColor = Color.Red})
+        row.Cells.Add(New TableCell() With {.Text = If(type = 0, "Credit", If(type = 2, "Promotion", "Debit"))})
+        Dim statusColor As Color = Color.Blue
+        Select Case status
+            Case 0, 1
+                statusColor = Color.Blue
+            Case 2
+                statusColor = Color.Green
+            Case Else
+                statusColor = Color.Red
+        End Select
+        row.Cells.Add(New TableCell() With {.Text = StatusToString(status), .BackColor = statusColor, .ForeColor = Color.White})
+        table.Rows.Add(row)
+    End Sub
+
+    <Extension>
     Public Sub AddTransactionTableItem(table As Table, id As Integer, tdate As Date, userid As String, fullname As String, productname As String, productUN As String, method As String, status As Integer, credit As Single, debit As Single, promo As Single, type As Integer)
         Dim row As New TableRow()
         row.Cells.Add(New TableCell() With {.Text = id.ToString("00000")})
@@ -428,6 +473,29 @@ Public Module Helper
         row.Cells.Add(New TableCell() With {.Text = If(credit <> 0F, credit.ToString("N"), If(promo <> 0F, promo.ToString("N"), "")), .HorizontalAlign = HorizontalAlign.Right, .ClientIDMode = ClientIDMode.Static, .ForeColor = Color.Blue})
         row.Cells.Add(New TableCell() With {.Text = If(debit <> 0F, debit.ToString("N"), ""), .HorizontalAlign = HorizontalAlign.Right, .ClientIDMode = ClientIDMode.Static, .ForeColor = Color.Red})
         row.Cells.Add(New TableCell() With {.Text = If(type = 0, "Credit", If(type = 2, "Promotion", "Debit"))})
+        Dim statusColor As Color = Color.Blue
+        Select Case status
+            Case 0, 1
+                statusColor = Color.Blue
+            Case 2
+                statusColor = Color.Green
+            Case Else
+                statusColor = Color.Red
+        End Select
+        row.Cells.Add(New TableCell() With {.Text = StatusToString(status), .BackColor = statusColor, .ForeColor = Color.White})
+        table.Rows.Add(row)
+    End Sub
+
+    <Extension>
+    Public Sub AddPTransferTableItem(table As Table, id As Integer, tdate As Date, userid As String, fullname As String, frPdtName As String, frPdtUN As String, toPdtName As String, toPdtUN As String, amount As Single, status As Integer)
+        Dim row As New TableRow()
+        row.Cells.Add(New TableCell() With {.Text = id.ToString("00000")})
+        row.Cells.Add(New TableCell() With {.Text = tdate.ToString(dateFormat)})
+        row.Cells.Add(New TableCell() With {.Text = userid.Trim})
+        row.Cells.Add(New TableCell() With {.Text = fullname.Trim})
+        row.Cells.Add(New TableCell() With {.Text = frPdtName.Trim & " (" & frPdtUN.Trim & ")"})
+        row.Cells.Add(New TableCell() With {.Text = toPdtName.Trim & " (" & toPdtUN.Trim & ")"})
+        row.Cells.Add(New TableCell() With {.Text = amount.ToString("N")})
         Dim statusColor As Color = Color.Blue
         Select Case status
             Case 0, 1
@@ -643,6 +711,8 @@ Public Module Helper
                 Return "Withdrawal"
             Case 5
                 Return "Adjustment"
+            Case 6
+                Return "Affiliate"
             Case Else
                 Return "Other"
         End Select

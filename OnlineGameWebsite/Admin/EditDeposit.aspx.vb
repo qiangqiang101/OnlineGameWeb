@@ -189,7 +189,7 @@ Partial Class Admin_EditDeposit
 
     Private Sub btnReject_Click(sender As Object, e As EventArgs) Handles btnReject.Click
         Select Case mode
-            Case "edit"
+            Case "edit", "promo"
                 If TryRejectTransaction() Then
                     Response.Redirect("Transactions.aspx")
                 Else

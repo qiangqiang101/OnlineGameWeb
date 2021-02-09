@@ -40,7 +40,7 @@ Partial Class Withdrawal
 
                     Try
                         Dim m = db.TblMembers.Single(Function(x) x.UserID = Session("userid").ToString.Trim)
-                        txtBankAccountNo.Text = m.AccountNo.Trim
+                        txtBankAccountNo.Text = If(m.AccountNo = Nothing, "", m.AccountNo.Trim)
                         cmbBank.SelectedValue = m.BankName
                     Catch ex As Exception
                         Log(ex)

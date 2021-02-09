@@ -77,6 +77,10 @@
                                 <label>Referral Code</label>
                                 <asp:textbox class="form-control form-control-user" id="txtRegRefCode" runat="server" placeholder="Referral Code"></asp:textbox>
                             </div>
+                            <div class="col-sm-6">
+                                <label>Affiliate Code</label>
+                                <asp:textbox class="form-control form-control-user" id="txtAgentCode" runat="server" placeholder="Affiliate Code"></asp:textbox>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label>Remarks</label>

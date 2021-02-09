@@ -1,23 +1,22 @@
 ﻿
-Partial Class Admin_AdjustCredit
+Partial Class Partners_AdjustCredit
     Inherits System.Web.UI.Page
 
     Public mode As String = "credit"
-    Public mid As String = 0
 
-    Private Sub Admin_AdjustCredit_Load(sender As Object, e As EventArgs) Handles Me.Load
+    Private Sub Partners_AdjustCredit_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Dim role As String = HttpContext.Current.Session("role")
+        If role <> "partner" Then JsMsgBoxRedirect("Please Login", "PartnerLogin.aspx")
+
         mode = Request.QueryString("mode")
-        mid = Request.QueryString("id")
 
         If Not IsPostBack Then
-            If Not mid = Nothing Then txtUserID.Text = mid
-
             Select Case mode
                 Case "credit"
                     Try
                         h6.InnerText = "Credit Adjustment"
                         Using db As New DataClassesDataContext
-                            Dim members = db.TblMembers.Where(Function(x) x.Enabled = True).ToList
+                            Dim members = db.TblMembers.Where(Function(x) x.Enabled = True And x.Affiliate = Session("code").ToString.Trim).ToList
                             For Each m In members
                                 userIdList.Controls.Add(AddOption(m.UserName.Trim, m.UserName.Trim))
                             Next
@@ -39,7 +38,7 @@ Partial Class Admin_AdjustCredit
                     Try
                         h6.InnerText = "Promotion Adjustment"
                         Using db As New DataClassesDataContext
-                            Dim members = db.TblMembers.Where(Function(x) x.Enabled = True).ToList
+                            Dim members = db.TblMembers.Where(Function(x) x.Enabled = True And x.Affiliate = Session("code").ToString.Trim).ToList
                             For Each m In members
                                 userIdList.Controls.Add(AddOption(m.UserName.Trim, m.UserName.Trim))
                             Next
@@ -61,7 +60,7 @@ Partial Class Admin_AdjustCredit
                     Try
                         h6.InnerText = "Debit Adjustment"
                         Using db As New DataClassesDataContext
-                            Dim members = db.TblMembers.Where(Function(x) x.Enabled = True).ToList
+                            Dim members = db.TblMembers.Where(Function(x) x.Enabled = True And x.Affiliate = Session("code").ToString.Trim).ToList
                             For Each m In members
                                 userIdList.Controls.Add(AddOption(m.UserName.Trim, m.UserName.Trim))
                             Next
@@ -84,29 +83,31 @@ Partial Class Admin_AdjustCredit
     End Sub
 
     Private Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
-        Select Case mode
-            Case "credit"
-                If Deposit() Then
-                    JsMsgBox("Credit adjustment added successfully.")
-                    Response.Redirect("Transactions.aspx")
-                Else
-                    JsMsgBox("Credit adjustment add failed.")
-                End If
-            Case "promo"
-                If Promotion() Then
-                    JsMsgBox("Promotion adjustment added successfully.")
-                    Response.Redirect("Transactions.aspx")
-                Else
-                    JsMsgBox("Promotion adjustment add failed.")
-                End If
-            Case "debit"
-                If Withdrawal() Then
-                    JsMsgBox("Debit adjustment added successfully.")
-                    Response.Redirect("Transactions.aspx")
-                Else
-                    JsMsgBox("Debit adjustment add failed.")
-                End If
-        End Select
+        If Not IsAffiliateMemberExists(txtUserID.Text.Trim, Session("code").ToString.Trim) Then
+            JsMsgBox("This member doesn't exist.")
+        Else
+            Select Case mode
+                Case "credit"
+                    If Deposit() Then
+                        JsMsgBoxRedirect("Credit adjustment added successfully.", "Transactions.aspx")
+                    Else
+                        JsMsgBox("Credit adjustment add failed.")
+                    End If
+                Case "promo"
+                    If Promotion() Then
+                        JsMsgBoxRedirect("Promotion adjustment added successfully.", "Transactions.aspx")
+                    Else
+                        JsMsgBox("Promotion adjustment add failed.")
+                    End If
+                Case "debit"
+                    If Withdrawal() Then
+                        JsMsgBoxRedirect("Debit adjustment added successfully.", "Transactions.aspx")
+                        Response.Redirect("Transactions.aspx")
+                    Else
+                        JsMsgBox("Debit adjustment add failed.")
+                    End If
+            End Select
+        End If
     End Sub
 
     Private Function AddOption(text As String, value As String) As HtmlGenericControl
@@ -130,7 +131,7 @@ Partial Class Admin_AdjustCredit
                     .Debit = 0F
                     .Credit = CSng(txtAmount.Text.Trim)
                     .Promotion = 0F
-                    .Channel = 5
+                    .Channel = 6
                     .Reason = Nothing
                     .ProductID = cmbProduct.SelectedValue
                     .ProductUserName = GetProductUserName(cmbProduct.SelectedValue, txtUserID.Text.Trim)
@@ -168,7 +169,7 @@ Partial Class Admin_AdjustCredit
                     .Debit = 0F
                     .Credit = 0F
                     .Promotion = CSng(txtAmount.Text.Trim)
-                    .Channel = 5
+                    .Channel = 6
                     .Reason = Nothing
                     .ProductID = cmbProduct.SelectedValue
                     .ProductUserName = GetProductUserName(cmbProduct.SelectedValue, txtUserID.Text.Trim)
@@ -207,7 +208,7 @@ Partial Class Admin_AdjustCredit
                     .Debit = CSng(txtAmount.Text.Trim)
                     .Credit = 0F
                     .Promotion = 0F
-                    .Channel = 5
+                    .Channel = 6
                     .Reason = Nothing
                     .ProductID = cmbProduct.SelectedValue
                     .ProductUserName = GetProductUserName(cmbProduct.SelectedValue, txtUserID.Text.Trim)

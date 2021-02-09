@@ -1,5 +1,5 @@
 ﻿
-Partial Class Admin_AddMember
+Partial Class Partners_AddMember
     Inherits System.Web.UI.Page
 
     Private Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
@@ -23,10 +23,9 @@ Partial Class Admin_AddMember
             JsMsgBox("Password is required!")
         Else
             If RegisterMember() Then
-                JsMsgBox("Member created successfully.")
-                Response.Redirect("Members.aspx")
+                JsMsgBoxRedirect("Member created successfully.", "Members.aspx")
             Else
-                JsMsgBox("Registration failed! Please contact Customer Service.")
+                JsMsgBox("Registration failed! Please contact Administrator.")
             End If
         End If
     End Sub
@@ -44,7 +43,7 @@ Partial Class Admin_AddMember
                     .DateOfBirth = Date.ParseExact(txtBirthday.Text.Trim, "yyyy-MM-dd", System.Globalization.DateTimeFormatInfo.InvariantInfo)
                     .RefCode = txtUserID.Text.GetHashCode
                     .RefCodeReg = txtRegRefCode.Text.Trim
-                    .VipLevel = CInt(cmbLevel.SelectedValue)
+                    .VipLevel = 0
                     .Promotion = 0F
                     .DateCreated = Now
                     .LastModified = Now
@@ -52,7 +51,7 @@ Partial Class Admin_AddMember
                     .GroupLeaderID = -1
                     .Enabled = CBool(cmbEnabled.SelectedValue)
                     .Remark = txtRemarks.Text.Trim
-                    .Affiliate = If(txtAgentCode.Text = Nothing, Nothing, txtAgentCode.Text.Trim)
+                    .Affiliate = Session("code").ToString.Trim
                 End With
 
                 db.TblMembers.InsertOnSubmit(newMember)
