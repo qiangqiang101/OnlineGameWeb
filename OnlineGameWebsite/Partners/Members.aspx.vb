@@ -15,7 +15,7 @@ Partial Class Partners_Members
                     Next
                 End Using
             Else
-                JsMsgBoxRedirect("Please Login", "PartnerLogin.aspx")
+                swalBsRedirect("PartnerLogin.aspx", "Hello", "Please Login to continue.", "warning")
             End If
         End If
     End Sub

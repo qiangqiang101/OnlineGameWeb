@@ -43,12 +43,6 @@ Partial Public Class DataClassesDataContext
     End Sub
   Partial Private Sub DeleteTblLog(instance As TblLog)
     End Sub
-  Partial Private Sub InsertTblTransRemark(instance As TblTransRemark)
-    End Sub
-  Partial Private Sub UpdateTblTransRemark(instance As TblTransRemark)
-    End Sub
-  Partial Private Sub DeleteTblTransRemark(instance As TblTransRemark)
-    End Sub
   Partial Private Sub InsertTblTRejectReason(instance As TblTRejectReason)
     End Sub
   Partial Private Sub UpdateTblTRejectReason(instance As TblTRejectReason)
@@ -157,12 +151,6 @@ Partial Public Class DataClassesDataContext
 	Public ReadOnly Property TblLogs() As System.Data.Linq.Table(Of TblLog)
 		Get
 			Return Me.GetTable(Of TblLog)
-		End Get
-	End Property
-	
-	Public ReadOnly Property TblTransRemarks() As System.Data.Linq.Table(Of TblTransRemark)
-		Get
-			Return Me.GetTable(Of TblTransRemark)
 		End Get
 	End Property
 	
@@ -542,113 +530,6 @@ Partial Public Class TblLog
 				Me._LogDate = value
 				Me.SendPropertyChanged("LogDate")
 				Me.OnLogDateChanged
-			End If
-		End Set
-	End Property
-	
-	Public Event PropertyChanging As PropertyChangingEventHandler Implements System.ComponentModel.INotifyPropertyChanging.PropertyChanging
-	
-	Public Event PropertyChanged As PropertyChangedEventHandler Implements System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-	
-	Protected Overridable Sub SendPropertyChanging()
-		If ((Me.PropertyChangingEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanging(Me, emptyChangingEventArgs)
-		End If
-	End Sub
-	
-	Protected Overridable Sub SendPropertyChanged(ByVal propertyName As [String])
-		If ((Me.PropertyChangedEvent Is Nothing)  _
-					= false) Then
-			RaiseEvent PropertyChanged(Me, New PropertyChangedEventArgs(propertyName))
-		End If
-	End Sub
-End Class
-
-<Global.System.Data.Linq.Mapping.TableAttribute(Name:="dbo.TblTransRemark")>  _
-Partial Public Class TblTransRemark
-	Implements System.ComponentModel.INotifyPropertyChanging, System.ComponentModel.INotifyPropertyChanged
-	
-	Private Shared emptyChangingEventArgs As PropertyChangingEventArgs = New PropertyChangingEventArgs(String.Empty)
-	
-	Private _TrID As Integer
-	
-	Private _TRemark As String
-	
-	Private _Status As Boolean
-	
-    #Region "Extensibility Method Definitions"
-    Partial Private Sub OnLoaded()
-    End Sub
-    Partial Private Sub OnValidate(action As System.Data.Linq.ChangeAction)
-    End Sub
-    Partial Private Sub OnCreated()
-    End Sub
-    Partial Private Sub OnTrIDChanging(value As Integer)
-    End Sub
-    Partial Private Sub OnTrIDChanged()
-    End Sub
-    Partial Private Sub OnTRemarkChanging(value As String)
-    End Sub
-    Partial Private Sub OnTRemarkChanged()
-    End Sub
-    Partial Private Sub OnStatusChanging(value As Boolean)
-    End Sub
-    Partial Private Sub OnStatusChanged()
-    End Sub
-    #End Region
-	
-	Public Sub New()
-		MyBase.New
-		OnCreated
-	End Sub
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TrID", AutoSync:=AutoSync.OnInsert, DbType:="Int NOT NULL IDENTITY", IsPrimaryKey:=true, IsDbGenerated:=true)>  _
-	Public Property TrID() As Integer
-		Get
-			Return Me._TrID
-		End Get
-		Set
-			If ((Me._TrID = value)  _
-						= false) Then
-				Me.OnTrIDChanging(value)
-				Me.SendPropertyChanging
-				Me._TrID = value
-				Me.SendPropertyChanged("TrID")
-				Me.OnTrIDChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_TRemark", DbType:="NChar(255) NOT NULL", CanBeNull:=false)>  _
-	Public Property TRemark() As String
-		Get
-			Return Me._TRemark
-		End Get
-		Set
-			If (String.Equals(Me._TRemark, value) = false) Then
-				Me.OnTRemarkChanging(value)
-				Me.SendPropertyChanging
-				Me._TRemark = value
-				Me.SendPropertyChanged("TRemark")
-				Me.OnTRemarkChanged
-			End If
-		End Set
-	End Property
-	
-	<Global.System.Data.Linq.Mapping.ColumnAttribute(Storage:="_Status", DbType:="Bit NOT NULL")>  _
-	Public Property Status() As Boolean
-		Get
-			Return Me._Status
-		End Get
-		Set
-			If ((Me._Status = value)  _
-						= false) Then
-				Me.OnStatusChanging(value)
-				Me.SendPropertyChanging
-				Me._Status = value
-				Me.SendPropertyChanged("Status")
-				Me.OnStatusChanged
 			End If
 		End Set
 	End Property

@@ -48,6 +48,17 @@ Partial Class Admin_Summary
                 transTable.AddTableItem("Credit", TransactionCount(start, [end], eSum.Credit), New TableCell() With {.Text = TransactionSum(start, [end], eSum.Credit).ToString("N"), .HorizontalAlign = HorizontalAlign.Right})
                 transTable.AddTableItem("Debit", TransactionCount(start, [end], eSum.Debit), New TableCell() With {.Text = TransactionSum(start, [end], eSum.Debit).ToString("N"), .HorizontalAlign = HorizontalAlign.Right})
                 transTable.AddTableItem("Promotion", TransactionCount(start, [end], eSum.Promotion), New TableCell() With {.Text = TransactionSum(start, [end], eSum.Promotion).ToString("N"), .HorizontalAlign = HorizontalAlign.Right})
+
+                Dim partners = db.TblAffiliates.Where(Function(x) x.Status = True)
+                For Each p In partners
+                    Dim credit = PartnerTransSum(start, [end], p, eSum.Credit)
+                    Dim debit = PartnerTransSum(start, [end], p, eSum.Debit)
+                    Dim promotion = PartnerTransSum(start, [end], p, eSum.Promotion)
+                    Dim total = credit - promotion - debit
+                    Dim commission = total * p.Percentage
+                    If p.Calculation = 1 Then commission = credit * p.Percentage
+                    dataTable2.AddTableItem(p.Code.Trim, p.FullName.Trim, PartnersCalculation(p.Calculation), New TableCell() With {.Text = p.Percentage * 100 & "%", .HorizontalAlign = HorizontalAlign.Right}, PartnerTransCount(start, [end], p), New TableCell() With {.Text = commission.ToString("N"), .HorizontalAlign = HorizontalAlign.Right})
+                Next
             End Using
         Catch ex As Exception
             Log(ex)
@@ -78,11 +89,57 @@ Partial Class Admin_Summary
                 transTable.AddTableItem("Credit", TransactionCount(start, [end], eSum.Credit), New TableCell() With {.Text = TransactionSum(start, [end], eSum.Credit).ToString("N"), .HorizontalAlign = HorizontalAlign.Right})
                 transTable.AddTableItem("Debit", TransactionCount(start, [end], eSum.Debit), New TableCell() With {.Text = TransactionSum(start, [end], eSum.Debit).ToString("N"), .HorizontalAlign = HorizontalAlign.Right})
                 transTable.AddTableItem("Promotion", TransactionCount(start, [end], eSum.Promotion), New TableCell() With {.Text = TransactionSum(start, [end], eSum.Promotion).ToString("N"), .HorizontalAlign = HorizontalAlign.Right})
+
+                Dim partners = db.TblAffiliates.Where(Function(x) x.Status = True)
+                For Each p In partners
+                    Dim credit = PartnerTransSum(start, [end], p, eSum.Credit)
+                    Dim debit = PartnerTransSum(start, [end], p, eSum.Debit)
+                    Dim promotion = PartnerTransSum(start, [end], p, eSum.Promotion)
+                    Dim total = credit - promotion - debit
+                    Dim commission = total * p.Percentage
+                    If p.Calculation = 1 Then commission = credit * p.Percentage
+                    dataTable2.AddTableItem(p.Code.Trim, p.FullName.Trim, PartnersCalculation(p.Calculation), New TableCell() With {.Text = p.Percentage * 100 & "%", .HorizontalAlign = HorizontalAlign.Right}, PartnerTransCount(start, [end], p), New TableCell() With {.Text = commission.ToString("N"), .HorizontalAlign = HorizontalAlign.Right})
+                Next
             End Using
         Catch ex As Exception
             Log(ex)
         End Try
     End Sub
+
+    Private Function PartnerTransCount(startDate As Date, endDate As Date, partner As TblAffiliate) As Integer
+        Try
+            Using db As New DataClassesDataContext
+                Dim trans = (From m In db.TblMembers Where m.Affiliate = partner.Code
+                             From t In db.TblTransactions Where t.UserName = m.UserName And t.Status = 2 And t.TransactionDate >= startDate AndAlso t.TransactionDate <= endDate
+                             Select t)
+                Return trans.Count
+            End Using
+        Catch ex As Exception
+            Return 0
+        End Try
+    End Function
+
+    Private Function PartnerTransSum(startDate As Date, endDate As Date, partner As TblAffiliate, type As eSum) As Single
+        Try
+            Using db As New DataClassesDataContext
+                Dim trans = (From m In db.TblMembers Where m.Affiliate = partner.Code
+                             From t In db.TblTransactions Where t.UserName = m.UserName And t.Status = 2 And t.TransactionDate >= startDate AndAlso t.TransactionDate <= endDate
+                             Select t)
+                Select Case type
+                    Case eSum.Credit
+                        Return trans.Sum(Function(x) x.Credit)
+                    Case eSum.Debit
+                        Return trans.Sum(Function(x) x.Debit)
+                    Case eSum.Promotion
+                        Return trans.Sum(Function(x) x.Promotion)
+                    Case Else
+                        Return 0F
+                End Select
+            End Using
+        Catch ex As Exception
+            Return 0F
+        End Try
+    End Function
 
     Private Function TransactionCount(startDate As Date, endDate As Date, type As eSum) As Integer
         Try

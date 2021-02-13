@@ -37,7 +37,7 @@ Partial Class Admin_EditProduct
                         End Using
                     Catch ex As Exception
                         Log(ex)
-                        JsMsgBox("Product not found!")
+                        swalBs("Oops!", "This Product ID does not exist.", "error")
                         btnSubmit.Enabled = False
                     End Try
                 Case "delete"
@@ -83,7 +83,7 @@ Partial Class Admin_EditProduct
                         End Using
                     Catch ex As Exception
                         Log(ex)
-                        JsMsgBox("Product not found!")
+                        swalBs("Oops!", "This Product ID does not exist.", "error")
                         btnSubmit.Enabled = False
                     End Try
                 Case "duplicate"
@@ -113,15 +113,14 @@ Partial Class Admin_EditProduct
                             imgProduct.ImageUrl = If(p.ProductImage = Nothing, "", "..\" & p.ProductImage.Trim)
 
                             If AddNewProduct(p.ProductImage.Trim) Then
-                                JsMsgBox("Product added successfully.")
-                                Response.Redirect("Products.aspx")
+                                swalBsRedirect("Products.aspx", "Success", "This Product is successfully added.", "success")
                             Else
-                                JsMsgBox("Add product failed! Please contact Administrator.")
+                                swalBs("Oops!", "Failed to add Product, Please contact Adminstrator.", "error")
                             End If
                         End Using
                     Catch ex As Exception
                         Log(ex)
-                        JsMsgBox("Product not found!")
+                        swalBs("Oops!", "This Product ID does not exist.", "error")
                         btnSubmit.Enabled = False
                     End Try
                 Case Else
@@ -139,10 +138,10 @@ Partial Class Admin_EditProduct
                     Dim editProduct = db.TblProducts.Single(Function(x) x.ProductID = CInt(pid))
 
                     If TryEditProduct() Then
-                        JsMsgBox("Product " & editProduct.ProductName & " update successfully.")
-                        Response.Redirect("Products.aspx")
+                        swalBsRedirect("Products.aspx", "Success", "This Product is successfully update.", "success")
+
                     Else
-                        JsMsgBox("Product " & editProduct.ProductName & " edit failed! Please contact Administrator.")
+                        swalBs("Oops!", "Failed to edit this Product, Please contact Administrator.", "error")
                     End If
                 End Using
             Case "delete"
@@ -152,24 +151,22 @@ Partial Class Admin_EditProduct
                         db.TblProducts.DeleteOnSubmit(productToDelete)
                         db.SubmitChanges()
 
-                        JsMsgBox("Product delete successfully.")
-                        Response.Redirect("Products.aspx")
+                        swalBsRedirect("Products.aspx", "Success", "This Product is successfully delete.", "success")
                     End Using
                 Catch ex As Exception
                     Log(ex)
-                    JsMsgBox("Delete product failed! Please contact Administrator.")
+                    swalBs("Oops!", "This Product is failed to delete! Please contact Adminstrator.", "error")
                 End Try
             Case Else
                 If txtName.Text = Nothing Then
-                    JsMsgBox("Name is required!")
+                    swalBs("Oops!", "Please enter Product Name.", "error")
                 ElseIf txtBalance.Text = Nothing Then
-                    JsMsgBox("Balance is required!")
+                    swalBs("Oops!", "Please enter Product Balance.", "error")
                 Else
                     If AddNewProduct() Then
-                        JsMsgBox("Product added successfully.")
-                        Response.Redirect("Products.aspx")
+                        swalBsRedirect("Products.aspx", "Success", "This Product is successfully added.", "success")
                     Else
-                        JsMsgBox("Add product failed! Please contact Administrator.")
+                        swalBs("Oops!", "Failed to add Product, Please contact Adminstrator.", "error")
                     End If
                 End If
         End Select
@@ -205,7 +202,7 @@ Partial Class Admin_EditProduct
                             fileUploader.SaveAs(file)
                             .ProductImage = fileUrl
                         Else
-                            JsMsgBox("Image upload failed, please try upload only supported image format.")
+                            swalBs("Oops!", "Failed to upload image, please try again with supported image format.", "error")
                             .ProductImage = imageUrl
                         End If
                     Else
@@ -252,7 +249,7 @@ Partial Class Admin_EditProduct
                             fileUploader.SaveAs(file)
                             .ProductImage = fileUrl
                         Else
-                            JsMsgBox("Image upload failed, please try upload only supported image format.")
+                            swalBs("Oops!", "Failed to upload image, please try again with supported image format.", "error")
                             .ProductImage = imgProduct.ImageUrl
                         End If
                     Else

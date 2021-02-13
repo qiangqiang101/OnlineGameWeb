@@ -21,7 +21,7 @@ Partial Class Admin_EditRejectReason
                         End Using
                     Catch ex As Exception
                         Log(ex)
-                        JsMsgBox("Reject reason not found!")
+                        swalBs("Oops!", "This Reject Reason ID does not exist.", "error")
                         btnSubmit.Enabled = False
                     End Try
                 Case "delete"
@@ -39,7 +39,7 @@ Partial Class Admin_EditRejectReason
                         End Using
                     Catch ex As Exception
                         Log(ex)
-                        JsMsgBox("Reject reason not found!")
+                        swalBs("Oops!", "This Reject Reason ID does not exist.", "error")
                         btnSubmit.Enabled = False
                     End Try
                 Case "duplicate"
@@ -54,14 +54,13 @@ Partial Class Admin_EditRejectReason
                         End Using
 
                         If AddNewRR() Then
-                            JsMsgBox("Reject reason added successfully.")
-                            Response.Redirect("RejectReasons.aspx")
+                            swalBsRedirect("RejectReasons.aspx", "Success", "This reject reason is successfully added.", "success")
                         Else
-                            JsMsgBox("Add reject reason failed! Please contact Administrator.")
+                            swalBs("Oops!", "This Reject reason is failed to add! Please contact Adminstrator.", "error")
                         End If
                     Catch ex As Exception
                         Log(ex)
-                        JsMsgBox("Reject reason not found!")
+                        swalBs("Oops!", "This Reject Reason ID does not exist.", "error")
                         btnSubmit.Enabled = False
                     End Try
                 Case Else
@@ -75,13 +74,10 @@ Partial Class Admin_EditRejectReason
         Select Case mode
             Case "edit"
                 Using db As New DataClassesDataContext
-                    Dim editRR = db.TblTRejectReasons.Single(Function(x) x.TrrID = CInt(rrid))
-
                     If TryEditRR() Then
-                        JsMsgBox("Reject reason " & editRR.TrReason & " update successfully.")
-                        Response.Redirect("RejectReasons.aspx")
+                        swalBsRedirect("RejectReasons.aspx", "Success", "This reject reason is successfully update.", "success")
                     Else
-                        JsMsgBox("Reject reason " & editRR.TrReason & " edit failed! Please contact Administrator.")
+                        swalBs("Oops!", "This Reject reason is failed to edit! Please contact Adminstrator.", "error")
                     End If
                 End Using
             Case "delete"
@@ -92,18 +88,16 @@ Partial Class Admin_EditRejectReason
                         db.SubmitChanges()
                     End Using
 
-                    JsMsgBox("Reject Reason delete successfully.")
-                    Response.Redirect("RejectReasons.aspx")
+                    swalBsRedirect("RejectReasons.aspx", "Success", "This reject reason is successfully delete.", "success")
                 Catch ex As Exception
                     Log(ex)
-                    JsMsgBox("Delete reject reason failed! Please contact Administrator.")
+                    swalBs("Oops!", "This Reject reason is failed to delete! Please contact Adminstrator.", "error")
                 End Try
             Case Else
                 If AddNewRR() Then
-                    JsMsgBox("Reject reason added successfully.")
-                    Response.Redirect("RejectReasons.aspx")
+                    swalBsRedirect("RejectReasons.aspx", "Success", "This reject reason is successfully added.", "success")
                 Else
-                    JsMsgBox("Add reject reason failed! Please contact Administrator.")
+                    swalBs("Oops!", "Failed to add Reject Reason! Please contact Adminstrator.", "error")
                 End If
         End Select
     End Sub

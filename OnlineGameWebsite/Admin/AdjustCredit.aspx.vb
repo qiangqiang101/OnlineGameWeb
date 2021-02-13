@@ -87,24 +87,21 @@ Partial Class Admin_AdjustCredit
         Select Case mode
             Case "credit"
                 If Deposit() Then
-                    JsMsgBox("Credit adjustment added successfully.")
-                    Response.Redirect("Transactions.aspx")
+                    swalBsRedirect("Transactions.aspx", "Success", "This Credit Adjustment is successfully added.", "success")
                 Else
-                    JsMsgBox("Credit adjustment add failed.")
+                    swalBs("Oops!", "Failed to add Credit Adjustment, Please contact Adminstrator.", "error")
                 End If
             Case "promo"
                 If Promotion() Then
-                    JsMsgBox("Promotion adjustment added successfully.")
-                    Response.Redirect("Transactions.aspx")
+                    swalBsRedirect("Transactions.aspx", "Success", "This Promotion Adjustment is successfully added.", "success")
                 Else
-                    JsMsgBox("Promotion adjustment add failed.")
+                    swalBs("Oops!", "Failed to add Promotion Adjustment, Please contact Adminstrator.", "error")
                 End If
             Case "debit"
                 If Withdrawal() Then
-                    JsMsgBox("Debit adjustment added successfully.")
-                    Response.Redirect("Transactions.aspx")
+                    swalBsRedirect("Transactions.aspx", "Success", "This Debit Adjustment is successfully added.", "success")
                 Else
-                    JsMsgBox("Debit adjustment add failed.")
+                    swalBs("Oops!", "Failed to add Debit Adjustment, Please contact Adminstrator.", "error")
                 End If
         End Select
     End Sub

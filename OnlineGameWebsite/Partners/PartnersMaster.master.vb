@@ -6,14 +6,13 @@ Partial Class Partners_PartnersMaster
         Page.Title = ConfigSettings.ReadSetting(Of String)("CompanyName", "Online Game") & " - Partners"
 
         Dim role As String = HttpContext.Current.Session("role")
-        Dim partnerid As String = HttpContext.Current.Session("partnerid")
 
         If Not Page.IsPostBack Then
             If role = "partner" Then
                 navbaruser.InnerText = Session("fullname")
-                navbarProfile.HRef = "EditUser.aspx?mode=profile&id=" & partnerid
+                navbarProfile.HRef = "EditPartner.aspx"
             Else
-                JsMsgBoxRedirect(Page, "Please Login", "PartnerLogin.aspx")
+                Page.swalBsRedirect("PartnerLogin.aspx", "Hello", "Please Login to continue.", "warning")
             End If
         End If
     End Sub

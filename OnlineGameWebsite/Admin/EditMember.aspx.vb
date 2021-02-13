@@ -17,7 +17,7 @@ Partial Class Admin_EditMember
                 End Using
             Catch ex As Exception
                 Log(ex)
-                JsMsgBox("Member not found!")
+                swalBs("Oops!", "This Member ID does not exist.", "error")
                 btnSubmit.Enabled = False
                 Exit Sub
             End Try
@@ -81,7 +81,7 @@ Partial Class Admin_EditMember
                 End Using
             Catch ex As Exception
                 Log(ex)
-                JsMsgBox("Member not found!")
+                swalBs("Oops!", "This Member ID does not exist.", "error")
                 btnSubmit.Enabled = False
                 Exit Sub
             End Try
@@ -116,7 +116,7 @@ Partial Class Admin_EditMember
                         End Using
                     Catch ex As Exception
                         Log(ex)
-                        JsMsgBox("Member not found!")
+                        swalBs("Oops!", "This Member ID does not exist.", "error")
                         btnSubmit.Enabled = False
                         Exit Sub
                     End Try
@@ -135,7 +135,7 @@ Partial Class Admin_EditMember
                         End Using
                     Catch ex As Exception
                         Log(ex)
-                        JsMsgBox("Member not found!")
+                        swalBs("Oops!", "This Member ID does not exist.", "error")
                         btnSubmit.Enabled = False
                         Exit Sub
                     End Try
@@ -152,10 +152,9 @@ Partial Class Admin_EditMember
                     Dim editMember = db.TblMembers.Single(Function(x) x.UserID = CInt(mid))
 
                     If TryEditMember() Then
-                        JsMsgBox("Member " & editMember.UserName & " update successfully.")
-                        Response.Redirect("Members.aspx")
+                        swalBsRedirect("Members.aspx", "Success", "This member is successfully update.", "success")
                     Else
-                        JsMsgBox("Member " & editMember.UserName & " edit failed! Please contact Administrator.")
+                        swalBs("Oops!", "Failed to edit this member, Please contact Administrator.", "error")
                     End If
                 End Using
         End Select

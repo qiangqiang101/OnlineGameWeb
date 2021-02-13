@@ -17,21 +17,11 @@ Partial Class Admin_AdminMaster
 
         If Not Page.IsPostBack Then
             Select Case role
-                Case "Agent/Affiliate"
-                    navbaruser.InnerText = Session("fullname")
-                    navbarProfile.HRef = "EditUser.aspx?mode=profile&id=" & userid
-                Case "Administrator"
-                    navbaruser.InnerText = Session("fullname")
-                    navbarProfile.HRef = "EditUser.aspx?mode=profile&id=" & userid
-                Case "Full Administrator"
-                    navbaruser.InnerText = Session("fullname")
-                    navbarProfile.HRef = "EditUser.aspx?mode=profile&id=" & userid
-                Case "Customer Serivce"
+                Case "Administrator", "Full Administrator", "Customer Serivce"
                     navbaruser.InnerText = Session("fullname")
                     navbarProfile.HRef = "EditUser.aspx?mode=profile&id=" & userid
                 Case Else
-                    JsMsgBox(Page, "Please Login")
-                    Response.Redirect("AdminLogin.aspx")
+                    Page.swalBsRedirect("AdminLogin.aspx", "Hello", "Please Login to continue.", "warning")
             End Select
         End If
 

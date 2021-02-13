@@ -6,7 +6,7 @@ Partial Class Partners_AdjustCredit
 
     Private Sub Partners_AdjustCredit_Load(sender As Object, e As EventArgs) Handles Me.Load
         Dim role As String = HttpContext.Current.Session("role")
-        If role <> "partner" Then JsMsgBoxRedirect("Please Login", "PartnerLogin.aspx")
+        If role <> "partner" Then swalBsRedirect("PartnerLogin.aspx", "Hello", "Please Login to continue.", "warning")
 
         mode = Request.QueryString("mode")
 
@@ -84,27 +84,26 @@ Partial Class Partners_AdjustCredit
 
     Private Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
         If Not IsAffiliateMemberExists(txtUserID.Text.Trim, Session("code").ToString.Trim) Then
-            JsMsgBox("This member doesn't exist.")
+            swalBs("Oops!", "This Member ID does not exist.", "error")
         Else
             Select Case mode
                 Case "credit"
                     If Deposit() Then
-                        JsMsgBoxRedirect("Credit adjustment added successfully.", "Transactions.aspx")
+                        swalBsRedirect("Transactions.aspx", "Success", "This Credit Adjustment is successfully added.", "success")
                     Else
-                        JsMsgBox("Credit adjustment add failed.")
+                        swalBs("Oops!", "Failed to add Credit Adjustment, Please contact Adminstrator.", "error")
                     End If
                 Case "promo"
                     If Promotion() Then
-                        JsMsgBoxRedirect("Promotion adjustment added successfully.", "Transactions.aspx")
+                        swalBsRedirect("Transactions.aspx", "Success", "This Promotion Adjustment is successfully added.", "success")
                     Else
-                        JsMsgBox("Promotion adjustment add failed.")
+                        swalBs("Oops!", "Failed to add Promotion Adjustment, Please contact Adminstrator.", "error")
                     End If
                 Case "debit"
                     If Withdrawal() Then
-                        JsMsgBoxRedirect("Debit adjustment added successfully.", "Transactions.aspx")
-                        Response.Redirect("Transactions.aspx")
+                        swalBsRedirect("Transactions.aspx", "Success", "This Debit Adjustment is successfully added.", "success")
                     Else
-                        JsMsgBox("Debit adjustment add failed.")
+                        swalBs("Oops!", "Failed to add Debit Adjustment, Please contact Adminstrator.", "error")
                     End If
             End Select
         End If

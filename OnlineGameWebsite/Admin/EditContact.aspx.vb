@@ -30,7 +30,7 @@ Partial Class Admin_EditContact
                         End Using
                     Catch ex As Exception
                         Log(ex)
-                        JsMsgBox("Contact not found!")
+                        swalBs("Oops!", "This Contact ID does not exist.", "error")
                         btnSubmit.Enabled = False
                     End Try
                 Case "delete"
@@ -64,7 +64,7 @@ Partial Class Admin_EditContact
                         End Using
                     Catch ex As Exception
                         Log(ex)
-                        JsMsgBox("Contact not found!")
+                        swalBs("Oops!", "This Contact ID does not exist.", "error")
                         btnSubmit.Enabled = False
                     End Try
                 Case "duplicate"
@@ -86,14 +86,13 @@ Partial Class Admin_EditContact
                         End Using
 
                         If AddNewContact() Then
-                            JsMsgBox("Contact duplicate successfully.")
-                            Response.Redirect("Contacts.aspx")
+                            swalBsRedirect("Contacts.aspx", "Success", "This Contact is successfully duplicated.", "success")
                         Else
-                            JsMsgBox("Duplicate contact failed! Please contact Administrator.")
+                            swalBs("Oops!", "Failed to duplicate Contact, Please contact Adminstrator.", "error")
                         End If
                     Catch ex As Exception
                         Log(ex)
-                        JsMsgBox("Contact not found!")
+                        swalBs("Oops!", "This Contact ID does not exist.", "error")
                         btnSubmit.Enabled = False
                     End Try
                 Case Else
@@ -113,10 +112,9 @@ Partial Class Admin_EditContact
         Select Case mode
             Case "edit"
                 If TryEditContact() Then
-                    JsMsgBox("Contact update successfully.")
-                    Response.Redirect("Contacts.aspx")
+                    swalBsRedirect("Contacts.aspx", "Success", "This Contact is successfully update.", "success")
                 Else
-                    JsMsgBox("Contact edit failed! Please contact Administrator.")
+                    swalBs("Oops!", "Failed to edit this Contact, Please contact Administrator.", "error")
                 End If
             Case "delete"
                 Try
@@ -126,18 +124,16 @@ Partial Class Admin_EditContact
                         db.SubmitChanges()
                     End Using
 
-                    JsMsgBox("Contact delete successfully.")
-                    Response.Redirect("Contacts.aspx")
+                    swalBsRedirect("Contacts.aspx", "Success", "This Contact is successfully update.", "success")
                 Catch ex As Exception
                     Log(ex)
-                    JsMsgBox("Delete contact failed! Please contact Administrator.")
+                    swalBs("Oops!", "This Contact is failed to delete! Please contact Adminstrator.", "error")
                 End Try
             Case Else
                 If AddNewContact() Then
-                    JsMsgBox("Contact added successfully.")
-                    Response.Redirect("Contacts.aspx")
+                    swalBsRedirect("Contacts.aspx", "Success", "This Contact is successfully added.", "success")
                 Else
-                    JsMsgBox("Add contact failed! Please contact Administrator.")
+                    swalBs("Oops!", "Failed to add Contact, Please contact Adminstrator.", "error")
                 End If
         End Select
     End Sub

@@ -36,7 +36,7 @@ Partial Class Partners_Transactions
                 End Using
                 dataTable.AddTableFooter("", "", "", "", "", "", cdtTotal, dbtTotal, "", "")
             Else
-                JsMsgBoxRedirect("Please Login", "PartnerLogin.aspx")
+                swalBsRedirect("PartnerLogin.aspx", "Hello", "Please Login to continue.", "warning")
             End If
         End If
     End Sub

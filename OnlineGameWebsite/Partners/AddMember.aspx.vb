@@ -4,28 +4,28 @@ Partial Class Partners_AddMember
 
     Private Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
         If txtFullName.Text = Nothing Then
-            JsMsgBox("Full Name is required!")
+            swalBs("Oops!", "Please enter Full Name.", "error")
         ElseIf txtBirthday.Text = Nothing Then
-            JsMsgBox("Birthday is required!")
+            swalBs("Oops!", "Please enter Birthday.", "error")
         ElseIf txtPhone.Text = Nothing Then
-            JsMsgBox("Contact No. is required!")
+            swalBs("Oops!", "Please enter Phone Contact Number.", "error")
         ElseIf txtEmail.Text = Nothing Then
-            JsMsgBox("Email is required!")
+            swalBs("Oops!", "Please enter Email Address.", "error")
         ElseIf IsEmailExists(txtEmail.Text) Then
-            JsMsgBox("Email is already been registered!")
+            swalBs("Oops!", "This Email is already exist.", "error")
         ElseIf txtUserID.Text = Nothing Then
-            JsMsgBox("UserID is required!")
+            swalBs("Oops!", "Please enter User ID.", "error")
         ElseIf txtUserID.Text.Length < 6 Then
-            JsMsgBox("UserID is too short!")
+            swalBs("Oops!", "User ID is too short, please enter at least 6 characters.", "error")
         ElseIf IsMemberExists(txtUserID.Text) Then
-            JsMsgBox("UserID already taken, please try another one.")
+            swalBs("Oops!", "User ID you entered is already taken, please try again.", "error")
         ElseIf txtPassword.Text = Nothing Then
-            JsMsgBox("Password is required!")
+            swalBs("Oops!", "Please enter Password.", "error")
         Else
             If RegisterMember() Then
-                JsMsgBoxRedirect("Member created successfully.", "Members.aspx")
+                swalBsRedirect("Members.aspx", "Success", "This member is successfully created.", "success")
             Else
-                JsMsgBox("Registration failed! Please contact Administrator.")
+                swalBs("Oops!", "Failed to create account! Please contact Adminstrator.", "error")
             End If
         End If
     End Sub

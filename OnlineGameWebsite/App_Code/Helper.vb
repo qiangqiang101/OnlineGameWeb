@@ -12,10 +12,10 @@ Public Module Helper
     Public promoTnc As String = "~/Promo/" & Now.Year & "/" & Now.Month & "/" & Now.Day & "/"
     Public logPath As String = HttpContext.Current.ApplicationInstance.Server.MapPath("~\App_Data\")
 
-    <Extension>
-    Public Sub JsMsgBox(page As Page, text As String)
-        page.Response.Write("<script>alert('" & text & "');</script>")
-    End Sub
+    '<Extension>
+    'Public Sub JsMsgBox(page As Page, text As String)
+    '    page.Response.Write("<script>alert('" & text & "');</script>")
+    'End Sub
 
     ''' <summary>
     ''' And with a third argument, you can add an icon to your alert! There are 4 predefined ones: "warning", "error", "success" and "info".
@@ -35,6 +35,43 @@ Public Module Helper
     <Extension>
     Public Sub swal(page As Page, text As String)
         page.ClientScript.RegisterStartupScript(page.GetType, "SweetAlert", "swalTheme.fire(" & text & ");", True)
+    End Sub
+
+    '<Extension>
+    'Public Sub JsMsgBox(page As Page, text As String)
+    '    page.Response.Write("<script>alert('" & text & "');</script>")
+    'End Sub
+
+    ''' <summary>
+    ''' And with a third argument, you can add an icon to your alert! There are 4 predefined ones: "warning", "error", "success" and "info".
+    ''' </summary>
+    ''' <param name="page"></param>
+    ''' <param name="texts"></param>
+    <Extension>
+    Public Sub swalBs(page As Page, ParamArray texts As String())
+        Dim texts2 As New List(Of String)
+        For Each txt In texts
+            texts2.Add("'" & txt & "'")
+        Next
+        Dim result = String.Join(", ", texts2)
+        page.ClientScript.RegisterStartupScript(page.GetType, "SweetAlert", "swal(" & result & ");", True)
+    End Sub
+
+    ''' <summary>
+    ''' And with a third argument, you can add an icon to your alert! There are 4 predefined ones: "warning", "error", "success" and "info".
+    ''' </summary>
+    ''' <param name="page"></param>
+    ''' <param name="redirect"></param>
+    ''' <param name="title"></param>
+    ''' <param name="text"></param>
+    ''' <param name="type"></param>
+    ''' <param name="showCancelButton"></param>
+    ''' <param name="btnConfirmClass"></param>
+    ''' <param name="btnConfirmText"></param>
+    <Extension>
+    Public Sub swalBsRedirect(page As Page, redirect As String, title As String, text As String, type As String, Optional showCancelButton As Boolean = False, Optional btnConfirmClass As String = "btn-primary", Optional btnConfirmText As String = "OK")
+        Dim str = "swal({title: '" & title & "', text: '" & text & "', type: '" & type & "', showCancelButton: " & showCancelButton.ToString.ToLower & ", confirmButtonClass: '" & btnConfirmClass & "', confirmButtonText: '" & btnConfirmText & "'}, function() {window.location = '" & redirect & "';});"
+        page.ClientScript.RegisterStartupScript(page.GetType, "SweetAlert", Str, True)
     End Sub
 
     ''' <summary>
@@ -58,11 +95,11 @@ Public Module Helper
         swalRedirect(page, "Default.aspx", Resources.Resource.LoginHello, Resources.Resource.PleaseLogin, "warning")
     End Sub
 
-    <Extension>
-    Public Sub JsMsgBoxRedirect(page As Page, text As String, redirect As String)
-        page.Response.Write("<script>alert('" & text & "');</script>")
-        page.Response.Write("<script>window.location.href='" & redirect & "';</script>")
-    End Sub
+    '<Extension>
+    'Public Sub JsMsgBoxRedirect(page As Page, text As String, redirect As String)
+    '    page.Response.Write("<script>alert('" & text & "');</script>")
+    '    page.Response.Write("<script>window.location.href='" & redirect & "';</script>")
+    'End Sub
 
     Public Function IsAffiliateMemberExists(username As String, affiliate As String) As Boolean
         Using db As New DataClassesDataContext

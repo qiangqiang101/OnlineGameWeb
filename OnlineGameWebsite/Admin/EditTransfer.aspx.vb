@@ -55,7 +55,7 @@ Partial Class Admin_EditTransfer
                             End If
                         End Using
                     Catch ex As Exception
-                        JsMsgBox("Transfer not found!")
+                        swalBs("Oops!", "This transfer ID does not exist.", "error")
                         Log(ex)
                         btnApprove.Enabled = False
                         btnReject.Enabled = False
@@ -65,13 +65,13 @@ Partial Class Admin_EditTransfer
                     If TryApproveTransfer() Then
                         Response.Redirect("Transfers.aspx")
                     Else
-                        JsMsgBoxRedirect("Transfer failed to Approve! Please contact Administrator.", Request.RawUrl.ToString())
+                        swalBsRedirect(Request.RawUrl, "Oops!", "This transfer is unable to approve! Please contact Administrator", "error")
                     End If
                 Case "reject"
                     If TryRejectTransfer() Then
                         Response.Redirect("Transfers.aspx")
                     Else
-                        JsMsgBoxRedirect("Transfer failed to Reject! Please contact Administrator.", Request.RawUrl.ToString())
+                        swalBsRedirect(Request.RawUrl, "Oops!", "This transfer is unable to reject! Please contact Administrator", "error")
                     End If
             End Select
         End If
@@ -125,7 +125,7 @@ Partial Class Admin_EditTransfer
             If TryApproveTransfer() Then
                 Response.Redirect("Transfers.aspx")
             Else
-                JsMsgBoxRedirect("Transfer failed to Approve! Please contact Administrator.", Request.RawUrl.ToString())
+                swalBsRedirect(Request.RawUrl, "Oops!", "This transfer is unable to approve! Please contact Administrator", "error")
             End If
         End If
     End Sub
@@ -135,7 +135,7 @@ Partial Class Admin_EditTransfer
             If TryRejectTransfer() Then
                 Response.Redirect("Transfers.aspx")
             Else
-                JsMsgBoxRedirect("Transfer failed to Reject! Please contact Administrator.", Request.RawUrl.ToString())
+                swalBsRedirect(Request.RawUrl, "Oops!", "This transfer is unable to approve! Please contact Administrator", "error")
             End If
         End If
     End Sub

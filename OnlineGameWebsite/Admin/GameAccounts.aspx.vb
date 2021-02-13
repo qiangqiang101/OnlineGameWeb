@@ -37,10 +37,10 @@ Partial Class Admin_GameAccounts
                 fileUploader.SaveAs(csvPath)
                 BulkInsert(File.ReadAllLines(csvPath))
             Else
-                JsMsgBox("The file extension " & ext & " is not allowed!")
+                swalBs("Oops!", "The file you are trying to upload is not a .CSV file, please try again.", "error")
             End If
         Else
-            JsMsgBox("You have not specified a file.")
+            swalBs("Oops!", "You have not specified a file.", "error")
         End If
     End Sub
 
@@ -57,10 +57,10 @@ Partial Class Admin_GameAccounts
                 db.SubmitChanges()
             End Using
 
-            JsMsgBoxRedirect("Game Accounts import successfully.", "GameAccounts.aspx")
+            swalBsRedirect("GameAccounts.aspx", "Success", lists.Count & " of " & cmbProduct2.SelectedItem.Text & " Accounts import successfully.", "success")
         Catch ex As Exception
             Log(ex)
-            JsMsgBox(ex.Message)
+            swalBs("Oops!", ex.Message, "error")
         End Try
     End Sub
 
@@ -83,7 +83,7 @@ Partial Class Admin_GameAccounts
             Response.Redirect("GameAccounts.aspx")
         Catch ex As Exception
             Log(ex)
-            JsMsgBox(ex.Message)
+            swalBs("Oops!", ex.Message, "error")
         End Try
     End Sub
 

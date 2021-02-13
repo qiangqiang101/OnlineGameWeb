@@ -5,7 +5,7 @@ Partial Class Partners_Summary
     Private Sub Partners_Summary_Load(sender As Object, e As EventArgs) Handles Me.Load
         Dim start, [end] As Date
         Dim role As String = HttpContext.Current.Session("role")
-        If Not role = "partner" Then JsMsgBoxRedirect("Please Login", "PartnerLogin.aspx")
+        If Not role = "partner" Then swalBsRedirect("PartnerLogin.aspx", "Hello", "Please Login to continue.", "warning")
 
         If Not IsPostBack Then
             start = Date.ParseExact(Now.Year & "-" & Now.Month.ToString("00") & "-" & Now.Day.ToString("00") & "T00:00", "yyyy-MM-ddTHH:mm", System.Globalization.DateTimeFormatInfo.InvariantInfo)

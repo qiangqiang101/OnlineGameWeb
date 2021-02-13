@@ -77,15 +77,15 @@ Partial Class Admin_AddBankSummary
         Select Case mode
             Case "credit"
                 If TryCredit() Then
-                    JsMsgBoxRedirect("Credit to bank successful.", "BankSummary.aspx")
+                    swalBsRedirect("BankSummary.aspx", "Success", "Credit to bank is successfully added.", "success")
                 Else
-                    JsMsgBox("Error while credit to Bank, please contact Administrator.")
+                    swalBs("Oops!", "An error occurred while adding Credit to bank, Please contact Adminstrator.", "error")
                 End If
             Case "debit"
                 If TryDebit() Then
-                    JsMsgBoxRedirect("Debit to bank successful.", "BankSummary.aspx")
+                    swalBsRedirect("BankSummary.aspx", "Success", "Debit to bank is successfully added.", "success")
                 Else
-                    JsMsgBox("Error while debit to Bank, please contact Administrator.")
+                    swalBs("Oops!", "An error occurred while adding Debit to bank, Please contact Adminstrator.", "error")
                 End If
             Case "delete"
                 Try
@@ -95,11 +95,11 @@ Partial Class Admin_AddBankSummary
                         db.TblBankRecords.DeleteOnSubmit(bs)
                         db.SubmitChanges()
 
-                        JsMsgBoxRedirect("Bank summary delete successfully.", "BankSummary.aspx")
+                        swalBsRedirect("BankSummary.aspx", "Success", "This Bank Summary is successfully delete.", "success")
                     End Using
                 Catch ex As Exception
                     Log(ex)
-                    JsMsgBox("Delete bank summary failed! Please contact Administrator.")
+                    swalBs("Oops!", "This Bank Summary is failed to delete! Please contact Adminstrator.", "error")
                 End Try
         End Select
     End Sub
@@ -108,9 +108,9 @@ Partial Class Admin_AddBankSummary
         Select Case mode
             Case "transfer"
                 If TryTransfer() Then
-                    JsMsgBoxRedirect("Transfer successful.", "BankSummary.aspx")
+                    swalBsRedirect("BankSummary.aspx", "Success", "Transfer to bank is successfully added.", "success")
                 Else
-                    JsMsgBox("Error while transferring, please contact Administrator.")
+                    swalBs("Oops!", "An error occurred while transferring, Please contact Adminstrator.", "error")
                 End If
         End Select
     End Sub

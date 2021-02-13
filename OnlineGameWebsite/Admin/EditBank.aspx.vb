@@ -34,7 +34,7 @@ Partial Class Admin_EditBank
                         End Using
                     Catch ex As Exception
                         Log(ex)
-                        JsMsgBox("Bank not found!")
+                        swalBs("Oops!", "This Bank ID does not exist.", "error")
                         btnSubmit.Enabled = False
                     End Try
                 Case "delete"
@@ -72,7 +72,7 @@ Partial Class Admin_EditBank
                         End Using
                     Catch ex As Exception
                         Log(ex)
-                        JsMsgBox("Bank not found!")
+                        swalBs("Oops!", "This Bank ID does not exist.", "error")
                         btnSubmit.Enabled = False
                     End Try
                 Case "duplicate"
@@ -98,14 +98,13 @@ Partial Class Admin_EditBank
                         End Using
 
                         If AddNewBank() Then
-                            JsMsgBox("Bank duplicate successfully.")
-                            Response.Redirect("Banks.aspx")
+                            swalBsRedirect("Banks.aspx", "Success", "This Bank is successfully duplicated.", "success")
                         Else
-                            JsMsgBox("Duplicate bank failed! Please contact Administrator.")
+                            swalBs("Oops!", "Failed to duplicate Bank, Please contact Adminstrator.", "error")
                         End If
                     Catch ex As Exception
                         Log(ex)
-                        JsMsgBox("Bank not found!")
+                        swalBs("Oops!", "This Bank ID does not exist.", "error")
                         btnSubmit.Enabled = False
                     End Try
                 Case Else
@@ -119,13 +118,10 @@ Partial Class Admin_EditBank
         Select Case mode
             Case "edit"
                 Using db As New DataClassesDataContext
-                    Dim editbank = db.TblBanks.Single(Function(x) x.BankID = CInt(bid))
-
                     If TryEditBank() Then
-                        JsMsgBox(editbank.BankName & " - " & editbank.AccountName & " (" & editbank.AccountNo & ") update successfully.")
-                        Response.Redirect("Banks.aspx")
+                        swalBsRedirect("Banks.aspx", "Success", "This Bank is successfully update.", "success")
                     Else
-                        JsMsgBox(editbank.BankName & " - " & editbank.AccountName & " (" & editbank.AccountNo & ") edit failed! Please contact Administrator.")
+                        swalBs("Oops!", "Failed to edit this Bank, Please contact Administrator.", "error")
                     End If
                 End Using
             Case "delete"
@@ -136,18 +132,16 @@ Partial Class Admin_EditBank
                         db.SubmitChanges()
                     End Using
 
-                    JsMsgBox("Bank delete successfully.")
-                    Response.Redirect("Banks.aspx")
+                    swalBsRedirect("Banks.aspx", "Success", "This Bank is successfully delete.", "success")
                 Catch ex As Exception
                     Log(ex)
-                    JsMsgBox("Delete bank failed! Please contact Administrator.")
+                    swalBs("Oops!", "This Bank is failed to delete! Please contact Adminstrator.", "error")
                 End Try
             Case Else
                 If AddNewBank() Then
-                    JsMsgBox("Bank added successfully.")
-                    Response.Redirect("Banks.aspx")
+                    swalBsRedirect("Banks.aspx", "Success", "This Bank is successfully added.", "success")
                 Else
-                    JsMsgBox("Add bank failed! Please contact Administrator.")
+                    swalBs("Oops!", "Failed to add Bank, Please contact Adminstrator.", "error")
                 End If
         End Select
     End Sub
@@ -177,7 +171,7 @@ Partial Class Admin_EditBank
                             fileUploader.SaveAs(file)
                             .BankLogo = fileUrl
                         Else
-                            JsMsgBox("Image upload failed, please try upload only supported image format.")
+                            swalBs("Oops!", "Failed to upload image, please try again with supported image format.", "error")
                             .BankLogo = imgBank.ImageUrl
                         End If
                     Else
@@ -220,7 +214,7 @@ Partial Class Admin_EditBank
                             fileUploader.SaveAs(file)
                             .BankLogo = fileUrl
                         Else
-                            JsMsgBox("Image upload failed, please try upload only supported image format.")
+                            swalBs("Oops!", "Failed to upload image, please try again with supported image format.", "error")
                             .BankLogo = Nothing
                         End If
                     Else

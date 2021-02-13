@@ -14,22 +14,16 @@
         <elementListCompartment Id="ff36e713-6106-4469-b8c1-1b3734099f95" absoluteBounds="0.51500000000000057, 7.835, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="234c93cb-7ac3-4058-8a8b-8d64ac1fad02" absoluteBounds="2.625, 5.875, 2, 1.3862939453125">
-      <DataClassMoniker Name="/DataClassesDataContext/TblTransRemark" />
-      <nestedChildShapes>
-        <elementListCompartment Id="0522c6ae-38c2-479b-bb30-f22e0160a3d3" absoluteBounds="2.64, 6.3350000000000009, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="c5c06f9f-07e1-450d-b8cc-15406d8cbc61" absoluteBounds="2.625, 7.375, 2, 1.3862939453125">
+    <classShape Id="c5c06f9f-07e1-450d-b8cc-15406d8cbc61" absoluteBounds="4.75, 7.625, 2, 1.3862939453125">
       <DataClassMoniker Name="/DataClassesDataContext/TblTRejectReason" />
       <nestedChildShapes>
-        <elementListCompartment Id="62d11214-8155-4d5b-ae00-af0b3ba5ad1d" absoluteBounds="2.64, 7.8350000000000009, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="62d11214-8155-4d5b-ae00-af0b3ba5ad1d" absoluteBounds="4.7650000000000006, 8.085, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="3da23226-c3a9-4012-8d07-65ff39aecbb6" absoluteBounds="9, 3.375, 2, 2.1554996744791666">
+    <classShape Id="3da23226-c3a9-4012-8d07-65ff39aecbb6" absoluteBounds="9, 4, 2, 2.1554996744791666">
       <DataClassMoniker Name="/DataClassesDataContext/TblBankRecord" />
       <nestedChildShapes>
-        <elementListCompartment Id="399f4915-e791-4f16-a2ed-2db749cba16a" absoluteBounds="9.015, 3.835, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="399f4915-e791-4f16-a2ed-2db749cba16a" absoluteBounds="9.015, 4.46, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="b8432e64-177f-494d-bb5a-e9b9748516b8" absoluteBounds="6.875, 0.5, 2, 4.0785139973958326">
@@ -50,10 +44,10 @@
         <elementListCompartment Id="64adfba4-0a7e-4992-bc12-1cc8e65f10f4" absoluteBounds="0.51500000000000057, 0.96, 1.9700000000000002, 4.095418294270833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="b1db396f-5416-4bf3-acbf-2a52e74e99bc" absoluteBounds="9, 0.5, 2, 2.7324039713541666">
+    <classShape Id="b1db396f-5416-4bf3-acbf-2a52e74e99bc" absoluteBounds="2.625, 5.875, 2, 2.7324039713541666">
       <DataClassMoniker Name="/DataClassesDataContext/TblUser" />
       <nestedChildShapes>
-        <elementListCompartment Id="d8219f20-b1fa-47a6-8beb-c34aad886d9c" absoluteBounds="9.015, 0.96, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="d8219f20-b1fa-47a6-8beb-c34aad886d9c" absoluteBounds="2.6400000000000006, 6.335, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="df928911-c9e2-4439-a338-eec4dd365763" absoluteBounds="4.75, 0.5, 2, 3.5016097005208326">
@@ -68,10 +62,10 @@
         <elementListCompartment Id="8f4db1ee-e311-4a89-8827-f0ee19768f1a" absoluteBounds="4.765, 4.585, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="0ac6d92e-b107-4d96-b34f-3684bce0e7cc" absoluteBounds="9, 5.625, 2, 2.7324039713541666">
+    <classShape Id="0ac6d92e-b107-4d96-b34f-3684bce0e7cc" absoluteBounds="9, 6.25, 2, 2.7324039713541666">
       <DataClassMoniker Name="/DataClassesDataContext/TblContact" />
       <nestedChildShapes>
-        <elementListCompartment Id="932120e0-4a8e-436d-ba2c-d5f7afd25327" absoluteBounds="9.015, 6.085, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="932120e0-4a8e-436d-ba2c-d5f7afd25327" absoluteBounds="9.015, 6.71, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="d0031011-a9c7-4a20-a70f-527996cacbcf" absoluteBounds="6.875, 4.75, 2, 3.3093082682291666">
@@ -86,10 +80,10 @@
         <elementListCompartment Id="2d66869e-dcbc-4c33-8a4e-a50c0be42268" absoluteBounds="2.64, 0.96, 1.9700000000000002, 4.672322591145833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="d7c22b38-c1a9-45a2-875d-b12c7da8d369" absoluteBounds="11.125, 2.625, 2, 3.3093082682291666">
+    <classShape Id="d7c22b38-c1a9-45a2-875d-b12c7da8d369" absoluteBounds="9, 0.5, 2, 3.3093082682291666">
       <DataClassMoniker Name="/DataClassesDataContext/TblAffiliate" />
       <nestedChildShapes>
-        <elementListCompartment Id="c920d21d-e0c4-426a-8b52-3682d45fba23" absoluteBounds="11.14, 3.085, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="c920d21d-e0c4-426a-8b52-3682d45fba23" absoluteBounds="9.015, 0.96, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

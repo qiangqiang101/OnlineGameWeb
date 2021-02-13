@@ -15,7 +15,7 @@ Partial Class Partners_ViewMember
                 End Using
             Catch ex As Exception
                 Log(ex)
-                JsMsgBox("Member not found!")
+                swalBs("Oops!", "This Member ID does not exist.", "error")
                 Exit Sub
             End Try
         End If
@@ -78,7 +78,7 @@ Partial Class Partners_ViewMember
                 End Using
             Catch ex As Exception
                 Log(ex)
-                JsMsgBox("Member not found!")
+                swalBs("Oops!", "This Member ID does not exist.", "error")
                 Exit Sub
             End Try
 
@@ -108,7 +108,7 @@ Partial Class Partners_ViewMember
                 End Using
             Catch ex As Exception
                 Log(ex)
-                JsMsgBox("Member not found!")
+                swalBs("Oops!", "This Member ID does not exist.", "error")
                 Exit Sub
             End Try
         End If

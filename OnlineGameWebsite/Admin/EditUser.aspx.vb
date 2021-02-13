@@ -30,7 +30,7 @@ Partial Class Admin_EditUser
                         End Using
                     Catch ex As Exception
                         Log(ex)
-                        JsMsgBox("User not found!")
+                        swalBs("Oops!", "This User ID does not exist.", "error")
                         btnSubmit.Enabled = False
                     End Try
                 Case "edit"
@@ -49,7 +49,7 @@ Partial Class Admin_EditUser
                         End Using
                     Catch ex As Exception
                         Log(ex)
-                        JsMsgBox("User not found!")
+                        swalBs("Oops!", "This User ID does not exist.", "error")
                         btnSubmit.Enabled = False
                     End Try
                 Case "delete"
@@ -75,7 +75,7 @@ Partial Class Admin_EditUser
                         End Using
                     Catch ex As Exception
                         Log(ex)
-                        JsMsgBox("User not found!")
+                        swalBs("Oops!", "This User ID does not exist.", "error")
                         btnSubmit.Enabled = False
                     End Try
                 Case Else
@@ -89,13 +89,10 @@ Partial Class Admin_EditUser
         Select Case mode
             Case "profile"
                 Using db As New DataClassesDataContext
-                    Dim editUser = db.TblUsers.Single(Function(x) x.UserID = CInt(uid))
-
                     If TryEditUser() Then
-                        JsMsgBox(editUser.UserName & " update successfully.")
-                        Response.Redirect("Default.aspx")
+                        swalBsRedirect("Default.aspx", "Success", "Profile is successfully update.", "info")
                     Else
-                        JsMsgBox(editUser.UserName & " edit failed! Please contact Administrator.")
+                        swalBs("Oops!", "Failed to update profile.", "error")
                     End If
                 End Using
             Case "edit"
@@ -103,10 +100,9 @@ Partial Class Admin_EditUser
                     Dim editUser = db.TblUsers.Single(Function(x) x.UserID = CInt(uid))
 
                     If TryEditUser() Then
-                        JsMsgBox(editUser.UserName & " update successfully.")
-                        Response.Redirect("Users.aspx")
+                        swalBsRedirect("Users.aspx", "Success", "This user is successfully update.", "info")
                     Else
-                        JsMsgBox(editUser.UserName & " edit failed! Please contact Administrator.")
+                        swalBs("Oops!", "Failed to update user, Please contact Administrator.", "error")
                     End If
                 End Using
             Case "delete"
@@ -116,24 +112,22 @@ Partial Class Admin_EditUser
                         db.TblUsers.DeleteOnSubmit(userToDelete)
                         db.SubmitChanges()
 
-                        JsMsgBox("User delete successfully.")
-                        Response.Redirect("Users.aspx")
+                        swalBsRedirect("Users.aspx", "Success", "This user is successfully delete.", "info")
                     End Using
                 Catch ex As Exception
                     Log(ex)
-                    JsMsgBox("Delete user failed! Please contact Administrator.")
+                    swalBs("Oops!", "Failed to delete user, Please contact Administrator.", "error")
                 End Try
             Case Else
                 If IsUserExists(txtUserName.Text.Trim) Then
-                    JsMsgBox("User ID already exist, please try another.")
+                    swalBs("Oops!", "User ID already exists, please try again.", "error")
                 ElseIf IsEmailExists(txtEmail.Text.Trim, eCheckEmail.User) Then
-                    JsMsgBox("Email already exist, please try another.")
+                    swalBs("Oops!", "Email already exists, please try again.", "error")
                 Else
                     If AddNewUser() Then
-                        JsMsgBox("User added successfully.")
-                        Response.Redirect("Users.aspx")
+                        swalBsRedirect("Users.aspx", "Success", "User is successfully added.", "info")
                     Else
-                        JsMsgBox("Add user failed! Please contact Administrator.")
+                        swalBs("Oops!", "Failed to add user, Please contact Administrator.", "error")
                     End If
                 End If
         End Select

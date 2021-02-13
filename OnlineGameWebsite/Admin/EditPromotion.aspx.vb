@@ -48,7 +48,7 @@ Partial Class Admin_EditPromotion
                         End Using
                     Catch ex As Exception
                         Log(ex)
-                        JsMsgBox("Promotion not found!")
+                        swalBs("Oops!", "This Promotion ID does not exist.", "error")
                         btnSubmit.Enabled = False
                     End Try
                 Case "delete"
@@ -101,7 +101,7 @@ Partial Class Admin_EditPromotion
                         End Using
                     Catch ex As Exception
                         Log(ex)
-                        JsMsgBox("Promotion not found!")
+                        swalBs("Oops!", "This Promotion ID does not exist.", "error")
                         btnSubmit.Enabled = False
                     End Try
                 Case "duplicate"
@@ -140,15 +140,15 @@ Partial Class Admin_EditPromotion
                             imgPromo.ImageUrl = If(p.PromoImage = Nothing, "", "..\" & p.PromoImage.Trim)
 
                             If AddNewPromotion(p.PromoImage.Trim) Then
-                                JsMsgBox("Promotion added successfully.")
+                                swalBsRedirect("Promotions.aspx", "Success", "This Promotion is successfully added.", "success")
                                 Response.Redirect("Promotions.aspx")
                             Else
-                                JsMsgBox("Add promotion failed! Please contact Administrator.")
+                                swalBs("Oops!", "Failed to add Promotion! Please contact Adminstrator.", "error")
                             End If
                         End Using
                     Catch ex As Exception
                         Log(ex)
-                        JsMsgBox("Promotion not found!")
+                        swalBs("Oops!", "This Promotion ID does not exist.", "error")
                         btnSubmit.Enabled = False
                     End Try
                 Case Else
@@ -163,15 +163,12 @@ Partial Class Admin_EditPromotion
         Select Case mode
             Case "edit"
                 Using db As New DataClassesDataContext
-                    Dim editPromo = db.TblPromotions.Single(Function(x) x.PromoID = CInt(pid))
-
                     If Not IsNumeric(txtValue.Text) Then
-                        JsMsgBox("Value is not number.")
+                        swalBs("Oops!", "The value you entered is not number.", "error")
                     ElseIf TryEditPromotion() Then
-                        JsMsgBox("Promotion " & editPromo.PromoName & " update successfully.")
-                        Response.Redirect("Promotions.aspx")
+                        swalBsRedirect("Promotions.aspx", "Success", "This Promotion is successfully update.", "success")
                     Else
-                        JsMsgBox("Promotion " & editPromo.PromoName & " edit failed! Please contact Administrator.")
+                        swalBs("Oops!", "Failed to edit this Promotion, Please contact Administrator.", "error")
                     End If
                 End Using
             Case "delete"
@@ -180,35 +177,32 @@ Partial Class Admin_EditPromotion
                         Dim promoToDelete = db.TblPromotions.Single(Function(x) x.PromoID = CInt(pid))
                         db.TblPromotions.DeleteOnSubmit(promoToDelete)
                         db.SubmitChanges()
-
-                        JsMsgBox("Promotion delete successfully.")
-                        Response.Redirect("Promotions.aspx")
+                        swalBsRedirect("Promotions.aspx", "Success", "This Promotion is successfully delete.", "success")
                     End Using
                 Catch ex As Exception
                     Log(ex)
-                    JsMsgBox("Delete product failed! Please contact Administrator.")
+                    swalBs("Oops!", "This Promotion is failed to delete! Please contact Adminstrator.", "error")
                 End Try
             Case Else
                 If txtPromotion.Text = Nothing Then
-                    JsMsgBox("Promotion name is required!")
+                    swalBs("Oops!", "Please enter Promotion Name.", "error")
                 ElseIf txtEngName.Text = Nothing Then
-                    JsMsgBox("English name is required!")
+                    swalBs("Oops!", "Please enter English Name.", "error")
                 ElseIf txtChiName.Text = Nothing Then
-                    JsMsgBox("Chinese name is required!")
+                    swalBs("Oops!", "Please enter Chinese Name.", "error")
                 ElseIf txtMysName.Text = Nothing Then
-                    JsMsgBox("Malay name is required!")
+                    swalBs("Oops!", "Please enter Malay Name.", "error")
                 ElseIf txtValue.Text = Nothing Then
-                    JsMsgBox("Value has to be greater than zero.")
+                    swalBs("Oops!", "Value needs to be greater than zero.", "error")
                 ElseIf Not IsNumeric(txtValue.Text) Then
-                    JsMsgBox("Value is not number.")
+                    swalBs("Oops!", "The value you entered is not number.", "error")
                 ElseIf txtMaxPayout.Text = Nothing Then
-                    JsMsgBox("Max Payout is required.")
+                    swalBs("Oops!", "Please enter Max Payout.", "error")
                 Else
                     If AddNewPromotion() Then
-                        JsMsgBox("Promotion added successfully.")
-                        Response.Redirect("Promotions.aspx")
+                        swalBsRedirect("Promotions.aspx", "Success", "This Promotion is successfully added.", "success")
                     Else
-                        JsMsgBox("Add promotion failed! Please contact Administrator.")
+                        swalBs("Oops!", "Failed to add Promotion, Please contact Adminstrator.", "error")
                     End If
                 End If
         End Select
@@ -253,7 +247,7 @@ Partial Class Admin_EditPromotion
                             fileUploader.SaveAs(file)
                             .PromoImage = fileUrl
                         Else
-                            JsMsgBox("Image upload failed, please try upload only supported image format.")
+                            swalBs("Oops!", "Failed to upload image, please try again with supported image format.", "error")
                             .PromoImage = imgPromo.ImageUrl
                         End If
                     Else
@@ -315,7 +309,7 @@ Partial Class Admin_EditPromotion
                             fileUploader.SaveAs(file)
                             .PromoImage = fileUrl
                         Else
-                            JsMsgBox("Image upload failed, please try upload only supported image format.")
+                            swalBs("Oops!", "Failed to upload image, please try again with supported image format.", "error")
                             .PromoImage = Nothing
                         End If
                     Else

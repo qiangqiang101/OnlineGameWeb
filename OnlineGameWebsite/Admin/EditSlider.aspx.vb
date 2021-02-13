@@ -28,7 +28,7 @@ Partial Class Admin_EditSlider
                         End Using
                     Catch ex As Exception
                         Log(ex)
-                        JsMsgBox("Slider not found!")
+                        swalBs("Oops!", "This Slider ID does not exist.", "error")
                         btnSubmit.Enabled = False
                     End Try
                 Case "delete"
@@ -52,7 +52,7 @@ Partial Class Admin_EditSlider
                         End Using
                     Catch ex As Exception
                         Log(ex)
-                        JsMsgBox("Slider not found!")
+                        swalBs("Oops!", "This Slider ID does not exist.", "error")
                         btnSubmit.Enabled = False
                     End Try
                 Case "duplicate"
@@ -73,14 +73,13 @@ Partial Class Admin_EditSlider
                         End Using
 
                         If AddNewSlider() Then
-                            JsMsgBox("Slider added successfully.")
-                            Response.Redirect("Sliders.aspx")
+                            swalBsRedirect("Sliders.aspx", "Success", "This Slider is successfully added.", "success")
                         Else
-                            JsMsgBox("Add slider failed! Please contact Administrator.")
+                            swalBs("Oops!", "Failed to add Slider, Please contact Adminstrator.", "error")
                         End If
                     Catch ex As Exception
                         Log(ex)
-                        JsMsgBox("Slider not found!")
+                        swalBs("Oops!", "This Slider ID does not exist.", "error")
                         btnSubmit.Enabled = False
                     End Try
                 Case Else
@@ -95,13 +94,10 @@ Partial Class Admin_EditSlider
         Select Case mode
             Case "edit"
                 Using db As New DataClassesDataContext
-                    Dim editSlide = db.TblSliders.Single(Function(x) x.SliderID = CInt(sid))
-
                     If TryEditSlider() Then
-                        JsMsgBox("Slider " & editSlide.SliderName & " update successfully.")
-                        Response.Redirect("Sliders.aspx")
+                        swalBsRedirect("Sliders.aspx", "Success", "This Slider is successfully update.", "success")
                     Else
-                        JsMsgBox("Slider " & editSlide.SliderName & " edit failed! Please contact Administrator.")
+                        swalBs("Oops!", "Failed to edit this Slider, Please contact Administrator.", "error")
                     End If
                 End Using
             Case "delete"
@@ -112,21 +108,19 @@ Partial Class Admin_EditSlider
                         db.SubmitChanges()
                     End Using
 
-                    JsMsgBox("Slider delete successfully.")
-                    Response.Redirect("Sliders.aspx")
+                    swalBsRedirect("Sliders.aspx", "Success", "This Slider is successfully delete.", "success")
                 Catch ex As Exception
                     Log(ex)
-                    JsMsgBox("Delete slider failed! Please contact Administrator.")
+                    swalBs("Oops!", "This Slider is failed to delete! Please contact Adminstrator.", "error")
                 End Try
             Case Else
                 If txtName.Text = Nothing Then
-                    JsMsgBox("Slider name is required!")
+                    swalBs("Oops!", "Please enter Slider Name.", "error")
                 Else
                     If AddNewSlider() Then
-                        JsMsgBox("Slider added successfully.")
-                        Response.Redirect("Sliders.aspx")
+                        swalBsRedirect("Sliders.aspx", "Success", "This Slider is successfully added.", "success")
                     Else
-                        JsMsgBox("Add slider failed! Please contact Administrator.")
+                        swalBs("Oops!", "Failed to add Slider, Please contact Adminstrator.", "error")
                     End If
                 End If
         End Select
@@ -152,7 +146,7 @@ Partial Class Admin_EditSlider
                             fileUploader.SaveAs(file)
                             .SliderImage = fileUrl
                         Else
-                            JsMsgBox("Image upload failed, please try upload only supported image format.")
+                            swalBs("Oops!", "Failed to upload image, please try again with supported image format.", "error")
                             .SliderImage = imgSlide.ImageUrl
                         End If
                     Else
@@ -189,7 +183,7 @@ Partial Class Admin_EditSlider
                             fileUploader.SaveAs(file)
                             .SliderImage = fileUrl
                         Else
-                            JsMsgBox("Image upload failed, please try upload only supported image format.")
+                            swalBs("Oops!", "Failed to upload image, please try again with supported image format.", "error")
                             .SliderImage = Nothing
                         End If
                     Else

@@ -75,7 +75,7 @@ Partial Class Admin_EditDeposit
                             End If
                         End Using
                     Catch ex As Exception
-                        JsMsgBox("Transaction not found!")
+                        swalBs("Oops!", "This Transaction ID does not exist.", "error")
                         Log(ex)
                         btnApprove.Enabled = False
                         btnReject.Enabled = False
@@ -139,7 +139,7 @@ Partial Class Admin_EditDeposit
                             End If
                         End Using
                     Catch ex As Exception
-                        JsMsgBox("Transaction not found!")
+                        swalBs("Oops!", "This Transaction ID does not exist.", "error")
                         Log(ex)
                         btnApprove.Enabled = False
                         btnReject.Enabled = False
@@ -149,13 +149,13 @@ Partial Class Admin_EditDeposit
                     If TryApprovePromotion() Then
                         Response.Redirect("Transactions.aspx")
                     Else
-                        JsMsgBox("Transaction failed to Approve! Please contact Administrator.")
+                        swalBs("Oops!", "This Transaction is unable to approve! Please contact Administrator", "error")
                     End If
                 Case "reject"
                     If TryRejectTransaction() Then
                         Response.Redirect("Transactions.aspx")
                     Else
-                        JsMsgBox("Transaction failed to Reject! Please contact Administrator.")
+                        swalBs("Oops!", "This Transaction is unable to reject! Please contact Administrator", "error")
                     End If
                 Case Else
             End Select
@@ -173,16 +173,16 @@ Partial Class Admin_EditDeposit
                     If TryCreditToBank() Then
                         Response.Redirect("Transactions.aspx")
                     Else
-                        JsMsgBoxRedirect("Credit to bank record failed! Please contact Administrator.", Request.RawUrl.ToString())
+                        swalBsRedirect(Request.RawUrl, "Oops!", "Unable to create new record to bank, Please contact Administrator", "error")
                     End If
                 Else
-                    JsMsgBoxRedirect("Transaction failed to Approve! Please contact Administrator.", Request.RawUrl.ToString())
+                    swalBsRedirect(Request.RawUrl, "Oops!", "This Transaction is unable to approve! Please contact Administrator", "error")
                 End If
             Case "promo"
                 If TryApprovePromotion() Then
                     Response.Redirect("Transactions.aspx")
                 Else
-                    JsMsgBoxRedirect("Transaction failed to Approve! Please contact Administrator.", Request.RawUrl.ToString())
+                    swalBsRedirect(Request.RawUrl, "Oops!", "This Transaction is unable to approve! Please contact Administrator", "error")
                 End If
         End Select
     End Sub
@@ -193,7 +193,7 @@ Partial Class Admin_EditDeposit
                 If TryRejectTransaction() Then
                     Response.Redirect("Transactions.aspx")
                 Else
-                    JsMsgBoxRedirect("Transaction failed to Reject! Please contact Administrator.", Request.RawUrl.ToString())
+                    swalBsRedirect(Request.RawUrl, "Oops!", "This Transaction is unable to reject! Please contact Administrator", "error")
                 End If
         End Select
     End Sub

@@ -4,7 +4,7 @@ Partial Class Partners_AdjustTransfer
 
     Private Sub Partners_AdjustTransfer_Load(sender As Object, e As EventArgs) Handles Me.Load
         Dim role As String = HttpContext.Current.Session("role")
-        If role <> "partner" Then JsMsgBoxRedirect("Please Login", "PartnerLogin.aspx")
+        If role <> "partner" Then swalBsRedirect("PartnerLogin.aspx", "Hello", "Please Login to continue.", "warning")
 
         If Not IsPostBack Then
             Try
@@ -28,15 +28,14 @@ Partial Class Partners_AdjustTransfer
 
     Private Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
         If Not IsAffiliateMemberExists(txtUserID.Text.Trim, Session("code").ToString.Trim) Then
-            JsMsgBox("This member doesn't exist.")
+            swalBs("Oops!", "This member does not exist.", "error")
         ElseIf cmbFromProduct.SelectedValue = cmbToProduct.SelectedValue Then
-            JsMsgBox("Cannot transfer to same product.")
+            swalBs("Oops!", "Transfer to same account is not allowed.", "error")
         Else
             If Transfer() Then
-                JsMsgBox("Transfer adjustment added successfully.")
-                Response.Redirect("Transfers.aspx")
+                swalBsRedirect("Transfers.aspx", "Success", "The Transfer Adjustment hasbeen successfully added.", "success")
             Else
-                JsMsgBox("Transfer adjustment add failed.")
+                swalBs("Oops!", "Failed to add Transfer Adjustment, Please contact Adminstrator.", "error")
             End If
         End If
     End Sub

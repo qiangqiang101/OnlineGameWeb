@@ -19,13 +19,6 @@
       <Column Name="LogDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
-  <Table Name="dbo.TblTransRemark" Member="TblTransRemarks">
-    <Type Name="TblTransRemark">
-      <Column Name="TrID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="TRemark" Type="System.String" DbType="NChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="Status" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
   <Table Name="dbo.TblTRejectReason" Member="TblTRejectReasons">
     <Type Name="TblTRejectReason">
       <Column Name="TrrID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />

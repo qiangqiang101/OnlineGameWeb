@@ -36,10 +36,10 @@ Partial Class Admin_GeneralSettings
             Dim encoded As String = txtHTML.Text.ToBase64
 
             ConfigSettings.WriteSetting(Of String)("HTMLCode", encoded)
-            JsMsgBox("HTML saved successfully.")
+            swalBsRedirect("AdminLogin.aspx", "Success", "HTML is successfully saved. System will restart and your session will end.", "success")
         Catch ex As Exception
             Log(ex)
-            JsMsgBox(ex.Message)
+            swalBs("Oops!", ex.Message, "error")
         End Try
     End Sub
 
@@ -53,7 +53,7 @@ Partial Class Admin_GeneralSettings
                 fileUploader.SaveAs(file)
                 _logo = fileUrl
             Else
-                JsMsgBox("Image upload failed, please try upload only supported image format.")
+                swalBs("Oops!", "Failed to upload image, please try again with supported image format.", "error")
                 _logo = imgLogo.ImageUrl
                 Exit Sub
             End If
@@ -64,19 +64,18 @@ Partial Class Admin_GeneralSettings
         ConfigSettings.WriteSettings(New CfgWrite("CompanyName", txtCompany.Text.Trim), New CfgWrite("CopyrightText", txtCopyright.Text.Trim), New CfgWrite("CompanyLogo", If(_logo = Nothing, _logo, _logo.Trim)),
                                      New CfgWrite("RecPercent", CSng(txtRecBonusPercent.Text.Trim)), New CfgWrite("RecMinAmmount", CSng(txtRecBonusMinAmount.Text.Trim)))
 
-        JsMsgBox("Settings saved successfully.")
+        swalBsRedirect("AdminLogin.aspx", "Success", "Settings are successfully saved. System will restart and your session will end.", "success")
     End Sub
 
     Private Sub btnSubmitSocial_Click(sender As Object, e As EventArgs) Handles btnSubmitSocial.Click
         ConfigSettings.WriteSettings(New CfgWrite("HeadFacebook", txtFacebook.Text.Trim), New CfgWrite("HeadTwitter", txtTwitter.Text.Trim), New CfgWrite("HeadInstagram", txtInstagram.Text.Trim), New CfgWrite("HeadTikTok", txtTikTok.Text.Trim), New CfgWrite("HeadYoutube", txtYoutube.Text.Trim),
                                      New CfgWrite("HeadWhatsApp", txtWhatsapp.Text.Trim), New CfgWrite("HeadTelegram", txtTelegram.Text.Trim), New CfgWrite("HeadWeChat", txtWechat.Text.Trim))
-        JsMsgBox("Social settings saved successfully.")
+        swalBsRedirect("AdminLogin.aspx", "Success", "Social settings are successfully saved. System will restart and your session will end.", "success")
     End Sub
 
     Private Sub btnSubmitTwilio_Click(sender As Object, e As EventArgs) Handles btnSubmitTwilio.Click
         ConfigSettings.WriteSettings(New CfgWrite("TwilioEnable", cmbTwilioEnabled.SelectedValue), New CfgWrite("TwilioPhone", txtTwilioPhone.Text.Trim),
                                      New CfgWrite("TwilioSID", txtTwilioSID.Text.Trim), New CfgWrite("TwilioAuthToken", txtTwilioToken.Text.Trim))
-
-        JsMsgBox("Twilio SMS API settings saved successfully.")
+        swalBsRedirect("AdminLogin.aspx", "Success", "Twilio SMS API settings are successfully saved. System will restart and your session will end.", "success")
     End Sub
 End Class

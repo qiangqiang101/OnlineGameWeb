@@ -32,7 +32,7 @@ Partial Class Admin_EditAffiliate
                         End Using
                     Catch ex As Exception
                         Log(ex)
-                        JsMsgBox("Affiliate not found!")
+                        swalBs("Oops!", "This Affiliate ID does not exist.", "error")
                         btnSubmit.Enabled = False
                     End Try
                 Case "delete"
@@ -64,7 +64,7 @@ Partial Class Admin_EditAffiliate
                         End Using
                     Catch ex As Exception
                         Log(ex)
-                        JsMsgBox("Affiliate not found!")
+                        swalBs("Oops!", "This Affiliate ID does not exist.", "error")
                         btnSubmit.Enabled = False
                     End Try
                 Case Else
@@ -78,9 +78,9 @@ Partial Class Admin_EditAffiliate
         Select Case mode
             Case "edit"
                 If TryEditAffiliate() Then
-                    JsMsgBoxRedirect("Affiliate update successfully.", "Affiliates.aspx")
+                    swalBsRedirect("Affiliates.aspx", "Success", "This affiliate is successfully update.", "success")
                 Else
-                    JsMsgBox("Affiliate edit failed! Please contact Administrator.")
+                    swalBs("Oops!", "Failed to edit this Affiliate! Please contact Administrator.", "error")
                 End If
             Case "delete"
                 Try
@@ -93,22 +93,22 @@ Partial Class Admin_EditAffiliate
                         db.TblAffiliates.DeleteOnSubmit(affToDelete)
                         db.SubmitChanges()
 
-                        JsMsgBoxRedirect("Affiliate delete successfully.", "Affiliates.aspx")
+                        swalBsRedirect("Affiliates.aspx", "Success", "This Affiliate is successfully delete.", "success")
                     End Using
                 Catch ex As Exception
                     Log(ex)
-                    JsMsgBox("Delete affiliate failed! Please contact Administrator.")
+                    swalBs("Oops!", "Failed to delete this Affiliate! Please contact Administrator.", "error")
                 End Try
             Case Else
                 If IsPartnerExists(txtUserName.Text.Trim) Then
-                    JsMsgBox("User ID already exist, please try another.")
+                    swalBs("Oops!", "This User ID already exists, please try again.", "error")
                 ElseIf IsEmailExists(txtEmail.Text.Trim, eCheckEmail.Affiliate) Then
-                    JsMsgBox("Email already exist, please try another.")
+                    swalBs("Oops!", "This Email already exists, please try again.", "error")
                 Else
                     If AddNewAffiliate() Then
-                        JsMsgBoxRedirect("Affiliate added successfully.", "Affiliates.aspx")
+                        swalBsRedirect("Affiliates.aspx", "Success", "This Affiliate is successfully added.", "success")
                     Else
-                        JsMsgBox("Add affiliate failed! Please contact Administrator.")
+                        swalBs("Oops!", "Failed to add this Affiliate! Please contact Administrator.", "error")
                     End If
                 End If
         End Select

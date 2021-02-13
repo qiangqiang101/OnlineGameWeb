@@ -71,7 +71,7 @@ Partial Class Admin_EditWithdrawal
                         End Using
                     Catch ex As Exception
                         Log(ex)
-                        JsMsgBox("Transaction not found!")
+                        swalBs("Oops!", "This Transaction ID does not exist.", "error")
                         btnApprove.Enabled = False
                         btnReject.Enabled = False
                         Exit Sub
@@ -91,10 +91,10 @@ Partial Class Admin_EditWithdrawal
                     If TryDebitToBank() Then
                         Response.Redirect("Transactions.aspx")
                     Else
-                        JsMsgBox("Debit to bank record failed! Please contact Administrator.")
+                        swalBsRedirect(Request.RawUrl, "Oops!", "Unable to create new record to bank, Please contact Administrator", "error")
                     End If
                 Else
-                    JsMsgBox("Transaction failed to Approve! Please contact Administrator.")
+                    swalBsRedirect(Request.RawUrl, "Oops!", "This Transaction is unable to approve! Please contact Administrator", "error")
                 End If
         End Select
     End Sub
@@ -105,7 +105,7 @@ Partial Class Admin_EditWithdrawal
                 If TryRejectTransaction() Then
                     Response.Redirect("Transactions.aspx")
                 Else
-                    JsMsgBox("Transaction failed to Reject! Please contact Administrator.")
+                    swalBs("Oops!", "This Transaction is unable to reject! Please contact Administrator", "error")
                 End If
         End Select
     End Sub

@@ -31,13 +31,12 @@ Partial Class Admin_AdjustTransfer
 
     Private Sub btnSubmit_Click(sender As Object, e As EventArgs) Handles btnSubmit.Click
         If cmbFromProduct.SelectedValue = cmbToProduct.SelectedValue Then
-            JsMsgBox("Cannot transfer to same product.")
+            swalBs("Oops!", "Unable to transfer to the same product.", "error")
         Else
             If Transfer() Then
-                JsMsgBox("Transfer adjustment added successfully.")
-                Response.Redirect("Transfers.aspx")
+                swalBsRedirect("Transfers.aspx", "Success", "This Transfer Adjustment is successfully added.", "success")
             Else
-                JsMsgBox("Transfer adjustment add failed.")
+                swalBs("Oops!", "Failed to add Transfer Adjustment, Please contact Adminstrator.", "error")
             End If
         End If
     End Sub
