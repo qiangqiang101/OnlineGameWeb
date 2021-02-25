@@ -23,14 +23,14 @@
                     <aside class="aside p-t-50">
                         <h4><%=Resources.Resource.Categories %></h4>
                         <ul class="category m-b-60">
-                            <li id="catSlot" runat="server"><a href="Products.aspx?cat=slot"><%=Resources.Resource.SlotGame %></a></li>
-                            <li id="catLive" runat="server"><a href="Products.aspx?cat=live"><%=Resources.Resource.LiveCasino %></a></li>
-                            <li id="catSport" runat="server"><a href="Products.aspx?cat=sport"><%=Resources.Resource.Sportsbook %></a></li>
-                            <li id="catRNG" runat="server"><a href="Products.aspx?cat=rng"><%=Resources.Resource.Rng %></a></li>
-                            <li id="catFish" runat="server"><a href="Products.aspx?cat=fish"><%=Resources.Resource.FishHunter %></a></li>
-                            <li id="catPoker" runat="server"><a href="Products.aspx?cat=poker"><%=Resources.Resource.Poker %></a></li>
-                            <li id="catOther" runat="server"><a href="Products.aspx?cat=other"><%=Resources.Resource.Other %></a></li>
-                            <li id="catAll" runat="server"><a href="Products.aspx?cat=all"><%=Resources.Resource.AllProducts %></a></li>
+                            <li id="catSlot" runat="server"><a href="Products-slot"><%=Resources.Resource.SlotGame %></a></li>
+                            <li id="catLive" runat="server"><a href="Products-live"><%=Resources.Resource.LiveCasino %></a></li>
+                            <li id="catSport" runat="server"><a href="Products-sport"><%=Resources.Resource.Sportsbook %></a></li>
+                            <li id="catRNG" runat="server"><a href="Products-rng"><%=Resources.Resource.Rng %></a></li>
+                            <li id="catFish" runat="server"><a href="Products-fish"><%=Resources.Resource.FishHunter %></a></li>
+                            <li id="catPoker" runat="server"><a href="Products-poker"><%=Resources.Resource.Poker %></a></li>
+                            <li id="catOther" runat="server"><a href="Products-other"><%=Resources.Resource.Other %></a></li>
+                            <li id="catAll" runat="server"><a href="Products-all"><%=Resources.Resource.AllProducts %></a></li>
                         </ul>
                         <h4><%=Resources.Resource.Contact %></h4>
                         <ul class="contact m-b-60" id="pdtPageContact" runat="server">
@@ -46,7 +46,5 @@
                 </div>
             </div>
         </div>
-
     </div>
 </asp:Content>
-

@@ -138,7 +138,7 @@ Partial Class _Products
         End With
         Dim a = New HtmlGenericControl("a")
         With a
-            .Attributes("href") = "Product.aspx?id=" & id.Trim
+            .Attributes("href") = "Product-" & id.Trim
             .Controls.Add(h4)
         End With
         Dim p = New HtmlGenericControl("p")
@@ -150,7 +150,7 @@ Partial Class _Products
         End With
         Dim more = New HtmlGenericControl("a")
         With more
-            .Attributes("href") = "Product.aspx?id=" & id.Trim
+            .Attributes("href") = "Product-" & id.Trim
             .Attributes("class") = "read"
             .InnerText = Resources.Resource.ReadMoreU
         End With

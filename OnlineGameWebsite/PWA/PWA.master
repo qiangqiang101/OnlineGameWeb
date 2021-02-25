@@ -1,0 +1,71 @@
+﻿<%@ Master Language="VB" CodeFile="PWA.master.vb" Inherits="PWA_PWA" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+    <title>Online Game App in ASP</title>
+    <link rel="stylesheet" type="text/css" href="styles/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="styles/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="fonts/css/fontawesome-all.min.css">
+    <link rel="manifest" href="_manifest.json" data-pwa-version="set_in_manifest_and_pwa_js">
+    <link rel="apple-touch-icon" sizes="180x180" href="app/icons/icon-192x192.png">
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class="theme-light">
+    <div id="preloader">
+        <div class="spinner-border color-highlight" role="status"></div>
+    </div>
+
+    <form id="form1" runat="server">
+        <div id="page">
+
+            <div class="header header-auto-show header-fixed header-logo-center">
+                <a href="Default.aspx" class="header-title" id="headerTitle" runat="server">Title</a>
+                <%--<a href="#" data-menu="menu-main" class="header-icon header-icon-1"><i class="fas fa-bars"></i></a>--%>
+                <a href="#" data-toggle-theme class="header-icon header-icon-4 show-on-theme-dark"><i class="fas fa-sun"></i></a>
+                <a href="#" data-toggle-theme class="header-icon header-icon-4 show-on-theme-light"><i class="fas fa-moon"></i></a>
+                <%--<a href="#" data-menu="menu-share" class="header-icon header-icon-3"><i class="fas fa-share-alt"></i></a>--%>
+            </div>
+
+            <div id="footer-bar" class="footer-bar-6">
+                <a href="index-components.html"><i class="fa fa-bars"></i><span>Setting</span></a>
+                <a href="index-homepages.html"><i class="fa fa-wallet"></i><span>Wallet</span></a>
+                <a href="Default.aspx" class="circle-nav active-nav"><i class="fa fa-home"></i><span>Home</span></a>
+                <a href="index-projects.html"><i class="fa fa-compass"></i><span>Discover</span></a>
+                <a href="index-pages.html"><i class="fa fa-users"></i><span>Me</span></a>
+            </div>
+
+            <div class="page-title page-title-fixed">
+                <h1 id="siteTitle" runat="server">Title</h1>
+                <%--<a href="#" class="page-title-icon shadow-xl bg-theme color-theme" data-menu="menu-share"><i class="fa fa-share-alt"></i></a>--%>
+                <a href="#" class="page-title-icon shadow-xl bg-theme color-theme show-on-theme-light" data-toggle-theme><i class="fa fa-moon"></i></a>
+                <a href="#" class="page-title-icon shadow-xl bg-theme color-theme show-on-theme-dark" data-toggle-theme><i class="fa fa-lightbulb color-yellow-dark"></i></a>
+
+            </div>
+            <div class="page-title-clear"></div>
+
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+
+
+            <!-- Main Menu-->
+            <!-- Share Menu-->
+            <div id="menu-share" class="menu menu-box-bottom rounded-m" data-menu-load="menu-share.html" data-menu-height="370"></div>
+
+            <!-- Colors Menu-->
+            <div id="menu-colors" class="menu menu-box-bottom rounded-m" data-menu-load="menu-colors.html" data-menu-height="480"></div>
+        </div>
+    </form>
+
+    <script type="text/javascript" src="scripts/jquery.js"></script>
+    <script type="text/javascript" src="scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="scripts/custom.js"></script>
+</body>
+</html>

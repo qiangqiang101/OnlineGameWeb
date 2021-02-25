@@ -271,7 +271,7 @@
                                     <ul class="nav nav-pills">
                                         <li><a href="Default.aspx"><i class="fas fa-home">&nbsp</i><%=Resources.Resource.HomeMenu %></a></li>
                                         <li class="dropdown dropdown-mega" id="megaProduct" runat="server">
-                                            <a class="dropdown-toggle" href="Products.aspx?cat=all"><i class="fas fa-dragon">&nbsp</i><%=Resources.Resource.ProductsMenu %></a>
+                                            <a class="dropdown-toggle" href="Products-all"><i class="fas fa-dragon">&nbsp</i><%=Resources.Resource.ProductsMenu %></a>
                                             <ul class="dropdown-menu">
                                                 <li>
                                                     <div class="mega-content">
@@ -325,16 +325,16 @@
                                             </ul>
                                         </li>
                                         <li class="dropdown" id="mobileProduct" runat="server">
-                                            <a class="dropdown-toggle" href="Products.aspx?cat=all"><i class="fas fa-dragon">&nbsp</i><%=Resources.Resource.ProductsMenu %></a>
+                                            <a class="dropdown-toggle" href="Products-all"><i class="fas fa-dragon">&nbsp</i><%=Resources.Resource.ProductsMenu %></a>
                                             <ul class="dropdown-menu">
-                                                <li><a href="Products.aspx?cat=slot"><%=Resources.Resource.SlotGameMenu %></a></li>
-                                                <li><a href="Products.aspx?cat=live"><%=Resources.Resource.LiveCasinoMenu %></a></li>
-                                                <li><a href="Products.aspx?cat=sport"><%=Resources.Resource.SportsbookMenu %></a></li>
-                                                <li><a href="Products.aspx?cat=rng"><%=Resources.Resource.RngMenu %></a></li>
-                                                <li><a href="Products.aspx?cat=fish"><%=Resources.Resource.FishHunterMenu %></a></li>
-                                                <li><a href="Products.aspx?cat=poker"><%=Resources.Resource.PokerMenu %></a></li>
-                                                <li><a href="Products.aspx?cat=other"><%=Resources.Resource.OtherMenu %></a></li>
-                                                <li><a href="Products.aspx?cat=all"><%=Resources.Resource.AllMenu %></a></li>
+                                                <li><a href="Products-slot"><%=Resources.Resource.SlotGameMenu %></a></li>
+                                                <li><a href="Products-live"><%=Resources.Resource.LiveCasinoMenu %></a></li>
+                                                <li><a href="Products-sport"><%=Resources.Resource.SportsbookMenu %></a></li>
+                                                <li><a href="Products-rng"><%=Resources.Resource.RngMenu %></a></li>
+                                                <li><a href="Products-fish"><%=Resources.Resource.FishHunterMenu %></a></li>
+                                                <li><a href="Products-poker"><%=Resources.Resource.PokerMenu %></a></li>
+                                                <li><a href="Products-other"><%=Resources.Resource.OtherMenu %></a></li>
+                                                <li><a href="Products-all"><%=Resources.Resource.AllMenu %></a></li>
                                             </ul>
                                         </li>
                                         <li><a href="LiveScore.aspx"><i class="fas fa-futbol">&nbsp</i><%=Resources.Resource.LiveScoreMenu %></a></li>

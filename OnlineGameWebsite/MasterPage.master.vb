@@ -100,51 +100,51 @@ Partial Class MasterPage
 
             Dim slots = productsList.Where(Function(x) x.CatSlot = True).Take(5).ToList
             For Each slot As TblProduct In slots
-                menuSlot.Controls.Add(LoadProductMenus(slot.ProductName, "Product.aspx?id=" & slot.ProductID))
+                menuSlot.Controls.Add(LoadProductMenus(slot.ProductName, "Product-" & slot.ProductID))
             Next
-            menuSlot.Controls.Add(LoadProductMenus(Resources.Resource.More & Resources.Resource.SlotGame & "...", "Products.aspx?cat=slot"))
+            menuSlot.Controls.Add(LoadProductMenus(Resources.Resource.More & Resources.Resource.SlotGame & "...", "Products-slot"))
 
             Dim lcs = productsList.Where(Function(x) x.CatLive = True).Take(5).ToList
             For Each lc As TblProduct In lcs
-                menuLive.Controls.Add(LoadProductMenus(lc.ProductName, "Product.aspx?id=" & lc.ProductID))
+                menuLive.Controls.Add(LoadProductMenus(lc.ProductName, "Product-" & lc.ProductID))
             Next
-            menuLive.Controls.Add(LoadProductMenus(Resources.Resource.More & Resources.Resource.LiveCasino & "...", "Products.aspx?cat=live"))
+            menuLive.Controls.Add(LoadProductMenus(Resources.Resource.More & Resources.Resource.LiveCasino & "...", "Products-live"))
 
             Dim sports = productsList.Where(Function(x) x.CatSport = True).Take(5).ToList
             For Each sport As TblProduct In sports
-                menuSport.Controls.Add(LoadProductMenus(sport.ProductName, "Product.aspx?id=" & sport.ProductID))
+                menuSport.Controls.Add(LoadProductMenus(sport.ProductName, "Product-" & sport.ProductID))
             Next
-            menuSport.Controls.Add(LoadProductMenus(Resources.Resource.More & Resources.Resource.Sportsbook & "...", "Products.aspx?cat=sport"))
+            menuSport.Controls.Add(LoadProductMenus(Resources.Resource.More & Resources.Resource.Sportsbook & "...", "Products-sport"))
 
             Dim rngs = productsList.Where(Function(x) x.CatRNG = True).Take(5).ToList
             For Each rng As TblProduct In rngs
-                menuRNG.Controls.Add(LoadProductMenus(rng.ProductName, "Product.aspx?id=" & rng.ProductID))
+                menuRNG.Controls.Add(LoadProductMenus(rng.ProductName, "Product-" & rng.ProductID))
             Next
-            menuRNG.Controls.Add(LoadProductMenus(Resources.Resource.More & Resources.Resource.Rng & "...", "Products.aspx?cat=rng"))
+            menuRNG.Controls.Add(LoadProductMenus(Resources.Resource.More & Resources.Resource.Rng & "...", "Products-rng"))
 
             Dim fishes = productsList.Where(Function(x) x.CatFish = True).Take(5).ToList
             For Each fish As TblProduct In fishes
-                menuFish.Controls.Add(LoadProductMenus(fish.ProductName, "Product.aspx?id=" & fish.ProductID))
+                menuFish.Controls.Add(LoadProductMenus(fish.ProductName, "Product-" & fish.ProductID))
             Next
-            menuFish.Controls.Add(LoadProductMenus(Resources.Resource.More & Resources.Resource.FishHunter & "...", "Products.aspx?cat=fish"))
+            menuFish.Controls.Add(LoadProductMenus(Resources.Resource.More & Resources.Resource.FishHunter & "...", "Products-fish"))
 
             Dim pokers = productsList.Where(Function(x) x.CatPoker = True).Take(5).ToList
             For Each poker As TblProduct In pokers
-                menuPoker.Controls.Add(LoadProductMenus(poker.ProductName, "Product.aspx?id=" & poker.ProductID))
+                menuPoker.Controls.Add(LoadProductMenus(poker.ProductName, "Product-" & poker.ProductID))
             Next
-            menuPoker.Controls.Add(LoadProductMenus(Resources.Resource.More & Resources.Resource.Poker & "...", "Products.aspx?cat=poker"))
+            menuPoker.Controls.Add(LoadProductMenus(Resources.Resource.More & Resources.Resource.Poker & "...", "Products-poker"))
 
             Dim others = productsList.Where(Function(x) x.CatOther = True).Take(5).ToList
             For Each other As TblProduct In others
-                menuOther.Controls.Add(LoadProductMenus(other.ProductName, "Product.aspx?id=" & other.ProductID))
+                menuOther.Controls.Add(LoadProductMenus(other.ProductName, "Product-" & other.ProductID))
             Next
-            menuOther.Controls.Add(LoadProductMenus(Resources.Resource.More & Resources.Resource.Other & "...", "Products.aspx?cat=other"))
+            menuOther.Controls.Add(LoadProductMenus(Resources.Resource.More & Resources.Resource.Other & "...", "Products-other"))
 
             Dim products = productsList.Take(5).ToList
             For Each product As TblProduct In products
-                menuAll.Controls.Add(LoadProductMenus(product.ProductName, "Product.aspx?id=" & product.ProductID))
+                menuAll.Controls.Add(LoadProductMenus(product.ProductName, "Product-" & product.ProductID))
             Next
-            menuAll.Controls.Add(LoadProductMenus(Resources.Resource.More & "...", "Products.aspx?cat=all"))
+            menuAll.Controls.Add(LoadProductMenus(Resources.Resource.More & "...", "Products-all"))
 
             mobileProduct.Visible = False
             megaProduct.Visible = True
